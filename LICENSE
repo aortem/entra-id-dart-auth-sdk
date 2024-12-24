@@ -1,9 +1,3 @@
-Yes, you can absolutely link to the full text of both the **BSD-3 License** and the **Enhanced License Version 2 (ELv2)** rather than including the full text in your `LICENSE.md`. This keeps the file concise while still providing users with easy access to the complete terms.
-
-Here's the updated version of the `LICENSE.md` with links:
-
----
-
 ## LICENSE
 
 ### **EntraID Dart Auth SDK Licensing**
