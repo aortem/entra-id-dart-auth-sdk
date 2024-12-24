@@ -41,150 +41,74 @@
 </p>
 <!-- x-hide-in-docs-start -->
 
-# Firebase Dart Admin Auth SDK
+# Entra Id Dart Auth SDK
 
-Firebase Dart Admin Auth SDK is designed to provide select out of the box features of Firebase in Dart.  Both low level and high level abstractions are provided.
+The Entra ID Dart Auth SDK is designed to enable seamless integration with Microsoft Entra ID (formerly Azure AD) for Dart developers. It provides both low-level and high-level abstractions to support a wide variety of authentication and authorization scenarios.
 
 ## Features
-This implementation does not yet support all functionalities of the firebase authentication service. Here is a list of functionalities with the current support status:
-
-# Firebase to Entra ID Dart Auth SDK Migration
-
-This document provides a high-level comparison of Firebase Authentication methods and features against Entra ID (Azure Active Directory) capabilities, tailored for the creation of a similar SDK. The goal is to maintain familiarity for developers transitioning from Firebase to Entra ID while incorporating enterprise-grade security and features of Azure AD.
-
+This implementation provides critical functionalities to authenticate and manage users in Microsoft Entra ID. These features include support for OAuth2 flows, token management, and multi-tenant environments.
 ---
 
 ## **Feature Comparison Chart**
 
-### **Core Authentication Methods**
 
-# Firebase to Entra ID Dart Auth SDK Migration
-
-This document provides a high-level comparison of Firebase Authentication methods and features against Entra ID (Azure Active Directory) capabilities, tailored for the creation of a similar SDK. The goal is to maintain familiarity for developers transitioning from Firebase to Entra ID while incorporating enterprise-grade security and features of Azure AD.
-
----
-
-# Firebase to Entra ID Dart Auth SDK Migration
-
-This document provides a high-level comparison of Firebase Authentication methods and features against Entra ID (Azure Active Directory) capabilities, tailored for the creation of a similar SDK. The goal is to maintain familiarity for developers transitioning from Firebase to Entra ID while incorporating enterprise-grade security and features of Azure AD.
-
----
-
-## **Feature Comparison Chart**
-
-### **Core Authentication Methods**
-
-| Firebase Method                                 | Entra ID Equivalent                            | Notes                                                                                   | Supported |
-| ----------------------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------- | --------- |
-| `FirebaseApp.getAuth()`                         | MSAL: `PublicClientApplication` initialization | Initialize and access the authentication instance.                                      | ✅         |
-| `FirebaseApp.initializeAuth()`                  | MSAL: `PublicClientApplication` initialization | SDK initialization. Entra ID may require additional tenant or directory configurations. | ✅         |
-| `FirebaseAuth.signInWithEmailAndPassword()`     | MSAL: `acquireTokenByUsernamePassword()`       | Email/password-based sign-in.                                                           | ✅         |
-| `FirebaseAuth.createUserWithEmailAndPassword()` | Microsoft Graph API: `POST /users`             | Register a new user in the directory.                                                   | ✅         |
-| `FirebaseAuth.signOut()`                        | MSAL: Clear tokens                             | Logout functionality, including token invalidation.                                     | ✅         |
-| `FirebaseAuth.setPersistence()`                 | Not Applicable                                 | Azure AD handles session duration via token expiration and refresh policies.            | ❌         |
-| `FirebaseAuth.sendPasswordResetEmail()`         | Microsoft Graph API: `POST /me/sendMail`       | Password reset functionality.                                                           | ✅         |
-| `FirebaseAuth.connectAuthEmulator`              | Not Applicable                                 | Azure AD does not support emulated authentication environments.                         | ❌         |
-| `FirebaseAuth.beforeAuthStateChanged()`         | Not Applicable                                 | Azure AD does not provide a similar method for pre-auth state changes.                 | ❌         |
-
----
-
-### **Token Management**
-
-| Firebase Method                        | Entra ID Equivalent                             | Notes                                                                                 | Supported |
-| -------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- | --------- |
-| `FirebaseAuth.getIdToken()`            | MSAL: `acquireTokenSilent()`                    | Retrieve access tokens. Entra ID supports multiple token types (ID, access, refresh). | ✅         |
-| `FirebaseAuth.onIdTokenChanged()`      | Not Applicable                                  | No direct event listener for token changes; monitor expiration programmatically.      | ❌         |
-| `FirebaseAuth.revokeAccessToken()`     | Microsoft Graph API: `POST /oauth2/v2.0/logout` | Token revocation can be managed via Graph API or Azure AD portal.                     | ✅         |
-| `FirebaseAuth.signInWithCustomToken()` | Not Applicable                                  | Azure AD does not use custom tokens in the same way as Firebase.                      | ❌         |
-| `FirebaseAuth.setLanguageCode()`       | Not Applicable                                  | Azure AD does not natively support language code settings.                            | ❌         |
-
----
-
-### **User Management**
-
-| Firebase Method                        | Entra ID Equivalent                            | Notes                                                         | Supported |
-| -------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------- | --------- |
-| `FirebaseUser.updateEmail()`           | Microsoft Graph API: `PATCH /me`               | Updates the user's email address.                             | ✅         |
-| `FirebaseUser.updatePassword()`        | Microsoft Graph API: `POST /me/changePassword` | Updates the user's password.                                  | ✅         |
-| `FirebaseUser.deleteUser()`            | Microsoft Graph API: `DELETE /users/{id}`      | Deletes the user account.                                     | ✅         |
-| `FirebaseUser.updateProfile()`         | Microsoft Graph API: `PATCH /me`               | Updates user profile details like display name.               | ✅         |
-| `FirebaseUser.sendEmailVerification()` | Not Applicable                                 | Azure AD does not require email verification in the same way. | ❌         |
-| `FirebaseUser.unlink()`                | Not Applicable                                 | Unlinking accounts is not a common Azure AD concept.          | ❌         |
-| `FirebaseUser.reload()`                | Microsoft Graph API: `GET /me`                 | Refreshes the user profile information.                       | ✅         |
-| `FirebaseAuth.updateCurrentUser()`     | Microsoft Graph API: `PATCH /me`               | Updates the current user's details, such as their profile.    | ✅         |
+| Feature                                | Description                                            | Supported | Notes                                                                                   |
+|----------------------------------------|--------------------------------------------------------|-----------|-----------------------------------------------------------------------------------------|
+| **AortemAzureApiId**                   | Identifies API endpoints for authentication.          | ✅         | Centralized management of API identifiers.                                              |
+| **AortemAzureAuthorizationCodeRequest**| Handles authorization code flow for OAuth2.           | ✅         | Core to enabling secure authorization flows.                                            |
+| **AortemAzureAuthorizationUrlRequest** | Builds URLs for authorization requests.               | ✅         | Helps construct valid URLs for redirect-based flows.                                    |
+| **AortemAzureCacheKVStore**            | Provides a key-value store for caching.               | ✅         | Supports efficient data caching for tokens and configurations.                         |
+| **AortemAzureCacheOptions**            | Configures cache behavior and settings.               | ✅         | Allows flexibility in how cache is managed.                                             |
+| **AortemAzureClientApplication**       | Represents the client application using the SDK.      | ✅         | Serves as the entry point for SDK integration.                                          |
+| **AortemAzureClientAssertion**         | Supports client assertion flows for secure tokens.    | ✅         | Designed for apps requiring high-security authentication.                              |
+| **AortemAzureClientCredentialRequest** | Handles client credential-based authentication flows. | ✅         | Simplifies the acquisition of access tokens using client credentials.                  |
+| **AortemAzureConfidentialClientApplication** | Manages client credentials for confidential applications. | ✅         | Ensures secure operations for apps with client secrets.                                |
+| **AortemAzurePublicClientApplication**      | Supports user-based flows for public applications.        | ✅         | Useful for applications without secure client secret storage.                          |
+| **AortemAzureAuthOptions**                  | Configures authentication options for flexibility.        | ✅         | Provides developers with a configurable authentication setup.                          |
+| **AortemAzureConfiguration**               | Manages global SDK configurations.                       | ✅         | Handles tenant IDs, endpoints, and other global settings.                              |
+| **AortemAzureInteractiveRequest**          | Handles user-based interactive authentication.            | ✅         | Enables user interaction for login via redirect or browser flows.                      |
+| **AortemAzureSilentFlowRequest**           | Acquires tokens silently using cached credentials.        | ✅         | Improves performance by avoiding repeated login prompts.                               |
+| **AortemAzureTokenCache**                  | Handles token storage and retrieval.                      | ✅         | Centralized token cache for reuse across SDK components.                               |
+| **AortemAzureInMemoryCache**               | Provides in-memory caching for fast token access.         | ✅         | Recommended for single-instance applications with predictable memory constraints.      |
+| **AortemAzureJsonCache**                   | Stores tokens in a structured JSON format.                | ✅         | Ensures compatibility with external storage or APIs that require JSON.                |
+| **AortemAzureSerializedAccessTokenEntity** | Represents serialized access tokens for storage.          | ✅         | Designed for efficient token storage and retrieval.                                    |
+| **AortemAzureSerializedRefreshTokenEntity** | Manages serialized refresh tokens for token renewal.      | ✅         | Helps ensure smooth token renewal workflows.                                           |
+| **AortemAzureSerializedAppMetadataEntity** | Stores application-specific metadata.                     | ✅         | Keeps metadata for application-specific configurations or states.                     |
+| **AortemAzureHttpClient**                  | Makes HTTP requests for authentication workflows.          | ✅         | Streamlines HTTP operations for token acquisition and API calls.                      |
+| **AortemAzureHttpMethod**                  | Defines HTTP methods (GET, POST, etc.).                   | ✅         | Simplifies request method selection across the SDK.                                    |
+| **AortemAzureHttpStatus**                  | Manages HTTP status codes and error handling.              | ✅         | Standardizes HTTP response handling and improves error clarity.                       |
+| **AortemAzureNetworkUtils**                | Provides utilities for network checks and retries.         | ✅         | Helps manage connectivity and ensures reliability through retries.                    |
+| **AortemAzureProxyStatus**                 | Handles proxy-related configurations and statuses.         | ✅         | Allows integration with proxy configurations where required.                          |
+| **AortemAzureCryptoProvider**              | Performs cryptographic operations like hashing.            | ✅         | Ensures secure data transmission and token management.                                |
+| **AortemAzurePkceGenerator**               | Generates PKCE codes for enhanced OAuth security.          | ✅         | Supports secure authorization code flows in compliance with OAuth2.                   |
+| **AortemAzureGuidGenerator**               | Generates globally unique identifiers.                     | ✅         | Provides UUID generation for session or correlation tracking.                         |
+| **AortemAzureHashUtils**                   | Provides hashing utilities for secure operations.          | ✅         | Enables secure and consistent hashing for sensitive data.                             |
+| **AortemAzureEncodingUtils**               | Handles encoding and decoding tasks.                       | ✅         | Facilitates base64 and other encoding operations for data handling.                   |
+| **AortemAzureSerializer**                  | Serializes objects for storage and transmission.           | ✅         | Converts data into a transferable format.                                             |
+| **AortemAzureDeserializer**                | Deserializes objects into usable formats.                  | ✅         | Converts stored or transmitted data back to its original structure.                   |
+| **AortemAzureStorage**                     | Handles storage-specific configurations.                   | ✅         | Allows developers to define custom storage settings.                                  |
+| **AortemAzureSystemOptions**               | Manages system-wide settings for the SDK.                  | ✅         | Governs operational configurations and environmental options.                         |
+| **AortemAzureTelemetryOptions**            | Configures telemetry for SDK performance tracking.         | ✅         | Enables monitoring and debugging via detailed telemetry data.                         |
+| **AortemAzureIPartitionManager**           | Manages token partitioning for multi-tenant scenarios.     | ✅         | Ensures secure and logical separation of tenant-specific data.                        |
+| **AortemAzureDeviceCodeRequest**           | Handles device code-based authentication flows.            | ✅         | Simplifies login on devices without browsers (e.g., smart TVs).                       |
+| **AortemAzureLoopbackClient**              | Provides a localhost HTTP server for redirects.            | ✅         | Facilitates local redirection during authentication workflows.                       |
+| **AortemAzureClientCredentialRequest**     | Acquires tokens for applications via client credentials.   | ✅         | Simplifies access token retrieval for app-only flows.                                |
+| **AortemAzureDistributedCachePlugin**      | Supports distributed caching strategies.                   | ✅         | Ensures scalability in cloud or multi-server environments.                           |
+| **AortemAzureAuthorizationCodeRequest**    | Handles OAuth2 authorization code grant flows.             | ✅         | Core to enabling secure, standards-compliant authentication flows.                   |
+| **AortemAzureInteractiveRequest**          | Manages browser-based interactive logins.                  | ✅         | Provides user interaction for login with redirects.                                  |
 
 ---
-
-### **Multi-Factor Authentication (MFA)**
-
-| Firebase Method                               | Entra ID Equivalent                                   | Notes                                                                   | Supported |
-| --------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------- | --------- |
-| `FirebaseAuth.getMultiFactorResolver()`       | Microsoft Graph API: `GET /me/authentication/methods` | Retrieve MFA configurations for a user.                                 | ✅         |
-| `FirebaseAuth.initializeRecaptchaConfig()`    | Not Applicable                                        | Azure AD uses conditional access policies for MFA instead of Recaptcha. | ❌         |
-| `FirebaseUser.multiFactor()`                  | Microsoft Graph API: `GET /me/authentication/methods` | Fetches available multi-factor methods for a user.                      | ✅         |
-| `FirebaseUser.reauthenticateWithCredential()` | MSAL: `acquireTokenByUsernamePassword()`              | Reauthenticates the user for sensitive operations.                      | ✅         |
-| `FirebaseUser.linkWithCredential()`           | Not Applicable                                        | Azure AD does not support direct credential linking.                    | ❌         |
-| `FirebaseUser.reauthenticateWithPhoneNumber()`| Not Applicable                                        | Azure AD does not support phone-based reauthentication directly.        | ❌         |
-
----
-
-### **Sign-In Methods**
-
-| Firebase Method                        | Entra ID Equivalent                   | Notes                                                                     | Supported |
-| -------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------- | --------- |
-| `FirebaseAuth.signInWithPopup()`       | Not Applicable                        | Azure AD does not support popup-based authentication flows.               | ❌         |
-| `FirebaseAuth.signInWithRedirect()`    | MSAL: `acquireTokenInteractive()`     | Redirect-based federated login.                                           | ✅         |
-| `FirebaseAuth.signInWithPhoneNumber()` | Microsoft Graph API with Azure AD B2C | Phone-based authentication (requires Azure AD B2C for consumer accounts). | ✅         |
-| `FirebaseAuth.isSignInWithEmailLink()` | Not Applicable                        | Azure AD uses other mechanisms for email-based login.                     | ❌         |
-| `FirebaseAuth.sendSignInLinkToEmail()` | Not Applicable                        | Azure AD does not support sign-in links.                                  | ❌         |
-
----
-
-### **Action Code Handling**
-
-| Firebase Method                          | Entra ID Equivalent | Notes                                                                                | Supported |
-| ---------------------------------------- | ------------------- | ------------------------------------------------------------------------------------ | --------- |
-| `FirebaseAuth.applyActionCode()`         | Not Applicable      | Azure AD does not use action codes in the same manner.                               | ❌         |
-| `FirebaseAuth.checkActionCode()`         | Not Applicable      | Azure AD does not use action codes in the same manner.                               | ❌         |
-| `FirebaseAuth.verifyPasswordResetCode()` | Not Applicable      | Azure AD does not use password reset codes; resets are handled through secure flows. | ❌         |
-| `FirebaseLink.parseActionCodeURL()`      | Not Applicable      | Azure AD does not use URL-based action codes.                                        | ❌         |
-
----
-
-### **Error Handling**
-
-| Firebase Error         | Entra ID Equivalent | Notes                                    | Supported |
-| ---------------------- | ------------------- | ---------------------------------------- | --------- |
-| `ERROR_WRONG_PASSWORD` | `AADSTS50056`       | Password mismatch or expired password.   | ✅         |
-| `ERROR_USER_DISABLED`  | `AADSTS50057`       | User account disabled.                   | ✅         |
-| `ERROR_INVALID_EMAIL`  | `AADSTS50034`       | Invalid email or account does not exist. | ✅         |
-
----
-
-### **Enterprise Features Unique to Entra ID**
-
-| Feature                                     | Description                                      | Supported |
-| ------------------------------------------- | ----------------------------------------------- | --------- |
-| Conditional Access Policies                 | Enforce granular access control based on risk.  | ✅         |
-| Role-Based Access Control (RBAC)            | Assign roles to limit access to resources.      | ✅         |
-| B2B and B2C Support                         | Collaborate with external users and consumers.  | ✅         |
-| Identity Protection                         | Detect and respond to suspicious activities.    | ✅         |
-| Privileged Identity Management (PIM)        | Control access to sensitive resources.          | ✅         |
-| Device Management Integration               | Enforce policies on managed devices.            | ✅         |
-
----
-
 
 ## Available Versions
 
-Firebase Dart Admin Auth SDK is available in two versions to cater to different needs:
+The SDK is available in two versions to cater to different needs:
 
 1. **Main - Stable Version**: Usually one release a month.  This version attempts to keep stability without introducing breaking changes.
 2. **Pre-Release - Edge Version**: Provided as an early indication of a release when breaking changes are expect.  This release is inconsistent. Use only if you are looking to test new features.
 
 ## Documentation
 
-For detailed guides, API references, and example projects, visit our [Firebase Dart Admin Auth SDK Documentation](https://aortem.gitbook.io/firebase-dart-auth-admin-sdk). Start building with  Firebase Dart Admin Auth SDK today and take advantage of its robust features and elegant syntax.
+For detailed guides, API references, and example projects, visit our [Entra ID Dart Auth SDK Documentation](https://aortem.gitbook.io/firebase-dart-auth-admin-sdk). Start building with  Microsoft Entra Id today and take advantage of its robust features and elegant syntax.
 
 ## Examples
 
@@ -194,50 +118,31 @@ Explore the `/example` directory in this repository to find sample applications 
 
 We welcome contributions of all forms from the community! If you're interested in helping improve  Firebase Dart Admin Auth SDK, please fork the repository and submit your pull requests. For more details, check out our [CONTRIBUTING.md](CONTRIBUTING.md) guide.  Our team will review your pull request. Once approved, we will integrate your changes into our primary repository and push the mirrored changes on the main github branch.
 
-## Support Tiers
+## Support
 
-Firebase Dart Admin Auth SDK offers various support tiers for our open-source products with an Initial Response Service Level Agreement (IRSLA):
-
-### Community Support
-- **Cost**: Free
-- **Features**: Access to community forums, basic documentation.
-- **Ideal for**: Individual developers or small startups.
-- **SLA**: NA
-
-### Standard Support
-- **Cost**: $10/month - Billed Annually.
-- **Features**: Extended documentation, email support, 10 business days response SLA.
-- **Ideal for**: Growing startups and small businesses.
-- **SLA**: 10 business days (Monday-Friday) IRSLANA
-- [Subscribe-Coming Soon]()
-
-### Enhanced Support
-- **Cost**: $100/month - Billed Annually
-- **Features**: Access to roadmap, 72-hour response SLA, feature request prioritization.
-- **Ideal for**: Medium-sized enterprises requiring frequent support.
-- **SLA**: 5 business days IRSLA
-- [Subscribe-Coming Soon]()
-
-### Enterprise Support
-- **Cost**: 450/month
-- **Features**: 
-  - 48-hour response SLA, 
-  - Access to beta features:
-  - Comprehensive support for all Aortem Open Source products.
-  - Premium access to our exclusive enterprise customer forum.
-  - Early access to cutting-edge features.
-  - Exclusive access to Partner/Reseller/Channel Program..
-- **Ideal for**: Large organizations and enterprises with complex needs.
-- **SLA**: 48-hour IRSLA
-- [Subscribe-Coming Soon]()
-
-*Enterprise Support is designed for businesses, agencies, and partners seeking top-tier support across a wide range of Dart backend and server-side projects.  All Open Source projects that are part of the Aortem Collective are included in the Enterprise subscription, with more projects being added soon.
+For support across all Aortem open-source products, including this SDK, visit our Support Page.
 
 ## Licensing
 
-All  Firebase Dart Admin Auth SDK packages are licensed under BSD-3, except for the *services packages*, which uses the ELv2 license, which are licensed from third party software  Inc. In short, this means that you can, without limitation, use any of the client packages in your app as long as you do not offer the SDK's or services as a cloud service to 3rd parties (this is typically only relevant for cloud service providers).  See the [LICENSE](LICENSE.md) file for more details.
+The **EntraID Dart Auth SDK** is licensed under a dual-license approach:
+
+1. **BSD-3 License**:
+   - Applies to all packages and libraries in the SDK.
+   - Allows use, modification, and redistribution, provided that credit is given and compliance with the BSD-3 terms is maintained.
+   - Permits usage in open-source projects, applications, and private deployments.
+
+2. **Enhanced License Version 2 (ELv2)**:
+   - Applies to all use cases where the SDK or its derivatives are offered as part of a **cloud service**.
+   - This ensures that the SDK cannot be directly used by cloud providers to offer competing services without explicit permission.
+   - Example restricted use cases:
+     - Including the SDK in a hosted SaaS authentication platform.
+     - Offering the SDK as a component of a managed cloud service.
+
+### **Summary**
+- You are free to use the SDK in your applications, including open-source and commercial projects, as long as the SDK is not directly offered as part of a third-party cloud service.
+- For details, refer to the [LICENSE](LICENSE.md) file.
 
 
 ## Enhance with Firebase Dart Admin Auth SDK
 
-We hope the Firebase Dart Admin Auth SDK helps you to efficiently build and scale your server-side applications. Join our growing community and start contributing to the ecosystem today!  test
+We hope the Entra Id Dart Admin Auth SDK helps you to efficiently build and scale your server-side applications. Join our growing community and start contributing to the ecosystem today!
