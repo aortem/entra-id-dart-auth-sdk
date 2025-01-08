@@ -83,7 +83,7 @@ validate_dart_sdk_version:
   script:
     - echo "Validating Dart SDK versions in all pubspec.yaml files..."
     - apk add --no-cache grep
-    - cd entra_id_dart_auth_sdk
+    - cd entra-id-dart-auth-sdk
 
     # Find all pubspec.yaml files (recursively, all levels)
     - PUBSPEC_FILES=$(find . -name "pubspec.yaml")
@@ -91,7 +91,7 @@ validate_dart_sdk_version:
     - echo "$PUBSPEC_FILES"
 
     # Define the minimum required Dart SDK version
-    - MINIMUM_VERSION="3.5.4"
+    - MINIMUM_VERSION="3.6.0"
     - ALL_VALID="true"
 
     # Iterate over each pubspec.yaml file
