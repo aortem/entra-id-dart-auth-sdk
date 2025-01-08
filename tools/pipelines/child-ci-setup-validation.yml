@@ -47,7 +47,10 @@ validate_commit_messages:
       # Check if this is a merge request pipeline
       if [ -n "$CI_MERGE_REQUEST_IID" ]; then
         echo "Merge request detected. Allowing merge commit messages..."
+        echo "Debug: Setting up merge commit validation"
         MERGE_REGEX="^Merge branch '[a-zA-Z0-9/_-]+' into '$TARGET_BRANCHES'$"
+        echo "Merge Regex: $MERGE_REGEX"
+        echo "Target Branches: $TARGET_BRANCHES"
         REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$"
         COMBINED_REGEX="($MERGE_REGEX|$REGEX)"
       else
