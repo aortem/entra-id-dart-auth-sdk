@@ -44,8 +44,6 @@ validate_commit_messages:
     - |
       # Define valid target branches for merge commits
       TARGET_BRANCHES="(development|main|qa)"
-
-      # Detect if this is a merge commit based on GitLab behavior
       MERGE_COMMIT_MESSAGE=$(git log -1 --pretty=%B | grep -E "^Merge branch '")
 
       # Check if this is a merge request pipeline
