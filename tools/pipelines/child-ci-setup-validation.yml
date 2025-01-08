@@ -44,7 +44,16 @@ validate_commit_messages:
     - |
       # Define valid target branches for merge commits
       TARGET_BRANCHES="(development|main|qa)"
-      MERGE_COMMIT_MESSAGE=$(git log -1 --pretty=%B | grep -E "^Merge branch '")
+
+      # Check for merge commits in the latest commit message
+      if git log -1 --pretty=%B | grep -qE "^Merge branch '"; then
+        MERGE_COMMIT_MESSAGE=true
+      else
+        MERGE_COMMIT_MESSAGE=false
+      fi
+
+      # Debug information
+      echo "Merge commit detected: $MERGE_COMMIT_MESSAGE"
 
       # Check if this is a merge request pipeline
       if [ -n "$CI_MERGE_REQUEST_IID" ]; then
