@@ -44,13 +44,21 @@ validate_commit_messages:
     - |
       # Define valid target branches for merge commits
       TARGET_BRANCHES="(development|main|qa)"
+
+      # Check for merge commits in the latest commit message
+      if git log -1 --pretty=%B | grep -qE "^Merge branch '"; then
+        MERGE_COMMIT_MESSAGE=true
+      else
+        MERGE_COMMIT_MESSAGE=false
+      fi
+
+      # Debug information
+      echo "Merge commit detected: $MERGE_COMMIT_MESSAGE"
+
       # Check if this is a merge request pipeline
       if [ -n "$CI_MERGE_REQUEST_IID" ]; then
         echo "Merge request detected. Allowing merge commit messages..."
-        echo "Debug: Setting up merge commit validation"
         MERGE_REGEX="^Merge branch '[a-zA-Z0-9/_-]+' into '$TARGET_BRANCHES'$"
-        echo "Merge Regex: $MERGE_REGEX"
-        echo "Target Branches: $TARGET_BRANCHES"
         REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$"
         COMBINED_REGEX="($MERGE_REGEX|$REGEX)"
       else
@@ -58,7 +66,9 @@ validate_commit_messages:
         REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$"
         COMBINED_REGEX="$REGEX"
       fi
-
+  
+      echo "Using combined regex: $COMBINED_REGEX"
+      
       # Validate the last commit message
       INVALID_COMMITS=$(git log -1 --format=%s | grep -vE "$COMBINED_REGEX" || true)
 
