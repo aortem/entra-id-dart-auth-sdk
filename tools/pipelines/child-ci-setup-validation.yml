@@ -55,31 +55,18 @@ validate_commit_messages:
       # Debug information
       echo "Merge commit detected: $MERGE_COMMIT_MESSAGE"
 
-       # Define regex for merge commit messages
+      # Define regex for commit messages
       MERGE_REGEX="^Merge branch '(development|main|qa|[a-zA-Z0-9/_-]+)' into '(development|main|qa|[a-zA-Z0-9/_-]+)'$"
       REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$"
       COMBINED_REGEX="($MERGE_REGEX|$REGEX)"
 
-      # Validate commit messages
-      if [ "$MERGE_COMMIT_MESSAGE" = true ]; then
-        echo "Validating merge commit message..."
-      elif [ -n "$CI_MERGE_REQUEST_IID" ]; then
-        echo "Merge request detected. Allowing merge commit messages..."
-      else
-        echo "Standard pipeline detected. Enforcing strict commit message validation..."
-      fi
-
+      # Debug: Print the regex being used
       echo "Using combined regex: $COMBINED_REGEX"
 
-      # Validate the last commit message
-      git log -1 --format=%s | grep -E "$COMBINED_REGEX" || (
+      # Validate the latest commit message
+      if ! git log -1 --format=%s | grep -qE "$COMBINED_REGEX"; then
         echo "❌ Commit message does not follow convention."
-        exit 1
-      )
-
-      if [ -n "$INVALID_COMMITS" ]; then
-        echo "❌ Commit message does not follow convention:"
-        echo "$INVALID_COMMITS"
+        echo "Commit message: $(git log -1 --format=%s)"
         echo "Expected formats:"
         echo "  Merge branch 'source-branch' into 'target-branch' (for merge requests)"
         echo "  <type>(<scope>): <short summary> (standard commits)"
@@ -87,9 +74,10 @@ validate_commit_messages:
         echo "  feat(auth): add OAuth 2.0 support"
         echo "  fix(payment): resolve rounding error in total calculation"
         exit 1
-      else
-        echo "✅ Commit message follows the convention."
       fi
+
+      # If everything passes
+      echo "✅ Commit message follows the convention."
   rules:
     - when: always
 
