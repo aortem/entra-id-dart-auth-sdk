@@ -1,19 +1,12 @@
+/// Microsoft Entra ID Authentication SDK for Dart
+/// Provides authentication and authorization capabilities using Microsoft Entra ID
+/// (formerly Azure Active Directory).
 library entra_id_dart_auth_sdk;
 
-export 'src/firebase_auth.dart';
-export 'src/user_credential.dart';
-export 'src/exceptions.dart';
-export 'src/utils.dart';
-export 'src/confirmation_result.dart';
-export 'src/auth_credential.dart';
-export 'src/firebase_app.dart';
-export 'src/auth_provider.dart';
-export 'src/application_verifier.dart';
-export 'src/user.dart';
-export 'src/auth/check_action_code.dart';
-export 'src/additional_user_info.dart';
+export 'src/entra_auth.dart';
+export 'src/auth/auth_entra_id_configuration.dart';
+export 'src/auth/auth_crypto_provider.dart';
+export 'src/auth/auth_entra_id_deserializer.dart';
 
-export 'src/auth/auth_link_with_phone_number.dart';
-
-export 'src/auth/auth_redirect_link.dart';
-export 'src/firebase_storage.dart';
+// Version information
+const String SDK_VERSION = '0.0.1-pre+1';
