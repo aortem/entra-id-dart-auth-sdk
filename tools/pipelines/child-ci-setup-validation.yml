@@ -55,22 +55,27 @@ validate_commit_messages:
       # Debug information
       echo "Merge commit detected: $MERGE_COMMIT_MESSAGE"
 
-      # Check if this is a merge request pipeline
-      if [ -n "$CI_MERGE_REQUEST_IID" ]; then
+       # Define regex for merge commit messages
+      MERGE_REGEX="^Merge branch '(development|main|qa|[a-zA-Z0-9/_-]+)' into '(development|main|qa|[a-zA-Z0-9/_-]+)'$"
+      REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$"
+      COMBINED_REGEX="($MERGE_REGEX|$REGEX)"
+
+      # Validate commit messages
+      if [ "$MERGE_COMMIT_MESSAGE" = true ]; then
+        echo "Validating merge commit message..."
+      elif [ -n "$CI_MERGE_REQUEST_IID" ]; then
         echo "Merge request detected. Allowing merge commit messages..."
-        MERGE_REGEX="^Merge branch '[a-zA-Z0-9/_-]+' into ($TARGET_BRANCHES|[a-zA-Z0-9/_-]+)$"
-        REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$"
-        COMBINED_REGEX="($MERGE_REGEX|$REGEX)"
       else
         echo "Standard pipeline detected. Enforcing strict commit message validation..."
-        REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$|^Merge branch ($TARGET_BRANCHES) into '[a-zA-Z0-9/_-]+'$"
-        COMBINED_REGEX="$REGEX"
       fi
-  
+
       echo "Using combined regex: $COMBINED_REGEX"
-      
+
       # Validate the last commit message
-      INVALID_COMMITS=$(git log -1 --format=%s | grep -vE "$COMBINED_REGEX" || true)
+      git log -1 --format=%s | grep -E "$COMBINED_REGEX" || (
+        echo "❌ Commit message does not follow convention."
+        exit 1
+      )
 
       if [ -n "$INVALID_COMMITS" ]; then
         echo "❌ Commit message does not follow convention:"
