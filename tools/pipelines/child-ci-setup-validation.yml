@@ -56,7 +56,7 @@ validate_commit_messages:
       echo "Merge commit detected: $MERGE_COMMIT_MESSAGE"
 
       # Define regex for commit messages
-      MERGE_REGEX="^Merge branch '(development|main|qa|[a-zA-Z0-9/_-]+)' into '(development|main|qa|[a-zA-Z0-9/_-]+)'$"
+      MERGE_REGEX=MERGE_REGEX="^Merge branch '([a-zA-Z0-9/_-]+)' into '([a-zA-Z0-9/_-]+)'$"
       REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$"
       COMBINED_REGEX="($MERGE_REGEX|$REGEX)"
 
