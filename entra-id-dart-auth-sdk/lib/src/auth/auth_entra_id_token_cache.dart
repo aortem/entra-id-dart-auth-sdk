@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'package:entra_id_dart_auth_sdk/utils/guid_generator.dart';
 import 'package:logging/logging.dart';
-import '../utils/guid_generator.dart';
 
 /// Types of tokens that can be stored in the cache
 enum TokenType {

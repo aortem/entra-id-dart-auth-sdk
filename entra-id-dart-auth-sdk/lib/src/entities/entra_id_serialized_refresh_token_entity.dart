@@ -1,5 +1,5 @@
+import 'package:entra_id_dart_auth_sdk/utils/guid_generator.dart';
 import 'package:logging/logging.dart';
-import '../utils/guid_generator.dart';
 
 /// Exception thrown for refresh token entity operations
 class RefreshTokenEntityException implements Exception {

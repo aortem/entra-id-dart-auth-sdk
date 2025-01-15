@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'package:entra_id_dart_auth_sdk/utils/guid_generator.dart';
 import 'package:logging/logging.dart';
-import '../utils/guid_generator.dart';
 import 'auth_entra_id_authorization_url_request.dart';
 import 'auth_crypto_provider.dart';
 
