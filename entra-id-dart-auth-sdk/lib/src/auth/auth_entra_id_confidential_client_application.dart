@@ -100,6 +100,15 @@ class AortemEntraIdConfidentialClientApplication
   }
 
   @override
+
+  /// Refreshes an existing token for a confidential client using the
+  /// `refresh_token` grant.
+  ///
+  /// This method will throw an [UnimplementedError] until implemented.
+  ///
+  /// If the token refresh fails, a [TokenAcquisitionException] will be thrown.
+  ///
+  /// Returns a new token if the refresh is successful.
   Future<Map<String, dynamic>> refreshToken(String refreshToken) async {
     _logger.info('Refreshing token for confidential client');
 
@@ -169,6 +178,10 @@ class AortemEntraIdConfidentialClientApplication
   }
 
   @override
+
+  /// Returns application metadata
+  ///
+  /// This includes the credential type and whether legacy protocols are allowed
   Map<String, dynamic> getApplicationMetadata() {
     final metadata = super.getApplicationMetadata();
     metadata['credentialType'] = credentialType.toString();
