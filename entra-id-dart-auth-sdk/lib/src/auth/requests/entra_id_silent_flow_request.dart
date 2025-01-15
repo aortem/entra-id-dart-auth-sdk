@@ -1,6 +1,6 @@
 import 'package:logging/logging.dart';
-import '../auth/auth_entra_id_configuration.dart';
-import '../auth/auth_entra_id_cache_kvstore.dart';
+import '../auth_entra_id_configuration.dart';
+import '../auth_entra_id_cache_kvstore.dart';
 
 /// Exception for silent flow request errors
 class SilentFlowRequestException implements Exception {
