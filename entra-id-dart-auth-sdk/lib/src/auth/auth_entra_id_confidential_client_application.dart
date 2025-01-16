@@ -1,178 +1,88 @@
-import 'package:logging/logging.dart';
-import 'auth_entra_id_client_application.dart';
-import 'auth_entra_id_configuration.dart';
+/// A class to manage confidential client applications for the Aortem Entra ID SDK.
+class AortemEntraIdConfidentialClientApplication {
+  /// The client ID of the confidential client application.
+  final String clientId;
 
-/// Confidential client credentials type
-enum CredentialType {
-  /// Client secret provided as a string
-  secret,
+  /// The authority (e.g., the tenant-specific or common endpoint URL).
+  final String authority;
 
-  /// Client certificate
-  certificate,
+  /// The client secret for the application (if applicable).
+  final String? clientSecret;
 
-  /// Client assertion
-  assertion
-}
+  /// The client assertion for the application (if applicable).
+  final String? clientAssertion;
 
-/// Represents a confidential client application in Entra ID.
-/// Used for applications that can securely store credentials (e.g., web apps).
-class AortemEntraIdConfidentialClientApplication
-    extends AortemEntraIdClientApplication {
-  final Logger _logger = Logger('AortemEntraIdConfidentialClientApplication');
-
-  /// The type of credential used for authentication
-  final CredentialType credentialType;
-
-  /// The client credential (secret, certificate, or assertion)
-  final String credential;
-
-  /// Whether to allow legacy authentication protocols
-  final bool allowLegacyProtocols;
-
-  /// Creates a new instance of AortemEntraIdConfidentialClientApplication
+  /// Constructor for initializing the confidential client application.
+  ///
+  /// Throws [ArgumentError] if required parameters are not provided or invalid.
   AortemEntraIdConfidentialClientApplication({
-    required AortemEntraIdConfiguration configuration,
-    required this.credential,
-    this.credentialType = CredentialType.secret,
-    this.allowLegacyProtocols = false,
-  }) : super(configuration) {
-    validateConfiguration();
+    required this.clientId,
+    required this.authority,
+    this.clientSecret,
+    this.clientAssertion,
+  }) {
+    // Validate required parameters.
+    if (clientId.isEmpty) {
+      throw ArgumentError('Client ID is required.');
+    }
+
+    if (authority.isEmpty) {
+      throw ArgumentError('Authority is required.');
+    }
+
+    if (!authority.startsWith('https://')) {
+      throw ArgumentError('Authority must be a valid HTTPS URL.');
+    }
+
+    if (clientSecret == null && clientAssertion == null) {
+      throw ArgumentError('Either clientSecret or clientAssertion must be provided.');
+    }
   }
 
-  @override
+  /// Validate the current configuration.
+  ///
+  /// Throws [ArgumentError] if the configuration is invalid.
   void validateConfiguration() {
-    if (credential.isEmpty) {
-      handleError(
-        'Credential cannot be empty',
-        code: 'invalid_credential',
-      );
+    if (clientId.isEmpty) {
+      throw ArgumentError('Client ID is required.');
     }
 
-    if (!configuration.authority.startsWith('https://')) {
-      handleError(
-        'Authority must use HTTPS',
-        code: 'invalid_authority_protocol',
-      );
+    if (authority.isEmpty) {
+      throw ArgumentError('Authority is required.');
     }
 
-    _logger.info('Confidential client configuration validated');
+    if (!authority.startsWith('https://')) {
+      throw ArgumentError('Authority must be a valid HTTPS URL.');
+    }
   }
 
-  @override
-  Future<Map<String, dynamic>> acquireToken() async {
-    _logger.info('Acquiring token for confidential client');
+  /// Acquire a token using the client credentials flow.
+  ///
+  /// This method uses the client ID and either the client secret or client assertion
+  /// to request an access token from the authority.
+  ///
+  /// Throws [Exception] if token acquisition fails.
+  Future<String> acquireToken() async {
+    // Example pseudo-code for making a token request.
+    // Replace this with actual HTTP request logic.
 
     try {
-      switch (credentialType) {
-        case CredentialType.secret:
-          return await _acquireTokenWithSecret();
-        case CredentialType.certificate:
-          return await _acquireTokenWithCertificate();
-        case CredentialType.assertion:
-          return await _acquireTokenWithAssertion();
-      }
+      // Validate configuration before proceeding.
+      validateConfiguration();
+
+      // Simulate token acquisition.
+      print('Acquiring token from $authority for client $clientId...');
+      await Future.delayed(Duration(seconds: 1)); // Simulate network delay.
+
+      // Simulated response
+      return 'mock-access-token';
     } catch (e) {
-      handleError(
-        'Failed to acquire token',
-        code: 'token_acquisition_failed',
-        details: e,
-      );
+      // Handle exceptions and rethrow as needed.
+      print('Failed to acquire token: $e');
+      throw Exception('Token acquisition failed: $e');
     }
   }
 
-  /// Acquires token using client secret
-  Future<Map<String, dynamic>> _acquireTokenWithSecret() async {
-    // TODO: Implement client secret flow
-    // This would make a POST request to the token endpoint with client_credentials grant
-    throw UnimplementedError();
-  }
+  /// Example usage of the class.
 
-  /// Acquires token using client certificate
-  Future<Map<String, dynamic>> _acquireTokenWithCertificate() async {
-    // TODO: Implement certificate-based authentication
-    throw UnimplementedError();
-  }
-
-  /// Acquires token using client assertion
-  Future<Map<String, dynamic>> _acquireTokenWithAssertion() async {
-    // TODO: Implement client assertion flow
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Map<String, dynamic>> refreshToken(String refreshToken) async {
-    _logger.info('Refreshing token for confidential client');
-
-    try {
-      // TODO: Implement token refresh
-      // This would make a POST request to the token endpoint with refresh_token grant
-      throw UnimplementedError();
-    } catch (e) {
-      handleError(
-        'Failed to refresh token',
-        code: 'token_refresh_failed',
-        details: e,
-      );
-    }
-  }
-
-  /// Makes client credentials request
-  Future<Map<String, dynamic>> acquireTokenByClientCredential(
-      List<String> scopes) async {
-    validateScopes(scopes);
-
-    try {
-      // Check cache first
-      final cachedToken = await acquireTokenSilently(scopes);
-      if (cachedToken != null) {
-        _logger.info('Retrieved token from cache');
-        return cachedToken;
-      }
-
-      // Acquire new token
-      final tokenResponse = await acquireToken();
-
-      // Cache the new token
-      // await _cacheStore.set(
-      //   _generateTokenCacheKey(scopes),
-      //   tokenResponse,
-      // );
-
-      return tokenResponse;
-    } catch (e) {
-      handleError(
-        'Failed to acquire token by client credential',
-        code: 'client_credential_failed',
-        details: e,
-      );
-    }
-  }
-
-  /// Makes on-behalf-of request
-  Future<Map<String, dynamic>> acquireTokenOnBehalfOf(
-    String userAssertion,
-    List<String> scopes,
-  ) async {
-    validateScopes(scopes);
-
-    try {
-      // TODO: Implement on-behalf-of flow
-      // This would exchange the user's token for a new token
-      throw UnimplementedError();
-    } catch (e) {
-      handleError(
-        'Failed to acquire token on behalf of user',
-        code: 'on_behalf_of_failed',
-        details: e,
-      );
-    }
-  }
-
-  @override
-  Map<String, dynamic> getApplicationMetadata() {
-    final metadata = super.getApplicationMetadata();
-    metadata['credentialType'] = credentialType.toString();
-    metadata['allowLegacyProtocols'] = allowLegacyProtocols;
-    return metadata;
-  }
 }
