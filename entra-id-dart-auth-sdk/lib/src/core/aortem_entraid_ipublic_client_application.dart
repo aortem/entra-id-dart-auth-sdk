@@ -40,17 +40,45 @@ abstract class AortemEntraIdIPublicClientApplication {
 
 /// Example implementation of the AortemEntraIdIPublicClientApplication interface
 /// for managing public client authentication flows like interactive and device code.
+/// AortemEntraIdPublicClientApp: Represents a public client application for Aortem Entra ID.
+///
+/// This class implements the `AortemEntraIdIPublicClientApplication` interface
+/// and provides methods for acquiring tokens interactively or using the device code flow.
+/// It also supports clearing the token cache.
 class AortemEntraIdPublicClientApp implements AortemEntraIdIPublicClientApplication {
+  /// The client ID of the application registered in Entra ID.
   final String clientId;
+
+  /// The authority URL for the authentication endpoint.
   final String authority;
+
+  /// The redirect URI where the application expects to receive the authentication response.
   final String redirectUri;
 
+  /// Creates an instance of `AortemEntraIdPublicClientApp`.
+  ///
+  /// - [clientId]: The application client ID.
+  /// - [authority]: The authentication authority URL.
+  /// - [redirectUri]: The redirect URI for handling authentication responses.
   AortemEntraIdPublicClientApp({
     required this.clientId,
     required this.authority,
     required this.redirectUri,
   });
 
+  /// Acquires a token interactively by launching an authentication flow.
+  ///
+  /// This method simulates the process of interactive authentication, such as
+  /// opening a browser or displaying a login dialog to the user.
+  ///
+  /// Example:
+  /// ```dart
+  /// final token = await app.acquireTokenInteractively(['user.read']);
+  /// print(token['access_token']);
+  /// ```
+  ///
+  /// - [scopes]: A list of scopes required for the access token.
+  /// - Returns: A map containing the access token, refresh token, ID token, and expiration details.
   @override
   Future<Map<String, dynamic>> acquireTokenInteractively(List<String> scopes) async {
     print("Launching interactive authentication...");
@@ -63,6 +91,19 @@ class AortemEntraIdPublicClientApp implements AortemEntraIdIPublicClientApplicat
     };
   }
 
+  /// Acquires a token using the device code flow.
+  ///
+  /// This method simulates the process of the device code flow, where a user is
+  /// prompted to enter a code on a specified URL to authenticate.
+  ///
+  /// Example:
+  /// ```dart
+  /// final token = await app.acquireTokenByDeviceCode(['user.read']);
+  /// print(token['access_token']);
+  /// ```
+  ///
+  /// - [scopes]: A list of scopes required for the access token.
+  /// - Returns: A map containing the access token, refresh token, ID token, and expiration details.
   @override
   Future<Map<String, dynamic>> acquireTokenByDeviceCode(List<String> scopes) async {
     print("Starting device code flow...");
@@ -75,6 +116,16 @@ class AortemEntraIdPublicClientApp implements AortemEntraIdIPublicClientApplicat
     };
   }
 
+  /// Clears the token cache.
+  ///
+  /// This method removes all stored tokens from the local cache to ensure no
+  /// stale or invalid tokens remain.
+  ///
+  /// Example:
+  /// ```dart
+  /// await app.clearCache();
+  /// print("Cache cleared.");
+  /// ```
   @override
   Future<void> clearCache() async {
     print("Clearing token cache...");

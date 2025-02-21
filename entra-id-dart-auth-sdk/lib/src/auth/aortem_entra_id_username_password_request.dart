@@ -4,12 +4,47 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 /// AortemEntraIdUsernamePasswordRequest: Handles username and password authentication flow.
 ///
 /// Acquires tokens by directly using the user's credentials.
+/// AortemEntraIdUsernamePasswordRequest: Handles token acquisition using the username-password grant flow.
+///
+/// This class is responsible for acquiring access tokens, refresh tokens, and ID tokens
+/// from Microsoft Entra ID using the Resource Owner Password Credentials (ROPC) flow.
+///
+/// Key Features:
+/// - Uses client credentials (client ID, client secret, and tenant ID) for authentication.
+/// - Acquires tokens by providing a user's username and password.
+/// - Validates input and handles error responses gracefully.
+///
+/// Example usage:
+/// ```dart
+/// final request = AortemEntraIdUsernamePasswordRequest(
+///   clientId: 'your-client-id',
+///   clientSecret: 'your-client-secret',
+///   tenantId: 'your-tenant-id',
+///   authority: 'https://login.microsoftonline.com',
+/// );
+///
+/// final tokens = await request.acquireToken('user@example.com', 'password123');
+/// print('Access Token: ${tokens['access_token']}');
+/// ```
 class AortemEntraIdUsernamePasswordRequest {
+  /// The client ID of the application registered in Microsoft Entra ID.
   final String clientId;
+
+  /// The client secret associated with the application in Microsoft Entra ID.
   final String clientSecret;
+
+  /// The tenant ID of the directory in Microsoft Entra ID.
   final String tenantId;
+
+  /// The authority URL for token requests, e.g., `https://login.microsoftonline.com`.
   final String authority;
 
+  /// Constructs an instance of `AortemEntraIdUsernamePasswordRequest`.
+  ///
+  /// - [clientId]: The application's client ID.
+  /// - [clientSecret]: The application's client secret.
+  /// - [tenantId]: The directory's tenant ID.
+  /// - [authority]: The authority URL for authentication requests.
   AortemEntraIdUsernamePasswordRequest({
     required this.clientId,
     required this.clientSecret,
@@ -17,13 +52,26 @@ class AortemEntraIdUsernamePasswordRequest {
     required this.authority,
   });
 
-  /// Acquires tokens using username and password.
+  /// Acquires tokens using the Resource Owner Password Credentials (ROPC) flow.
   ///
-  /// [username] The user's username (e.g., email).
-  /// [password] The user's password.
+  /// - [username]: The user's username (e.g., email address).
+  /// - [password]: The user's password.
   ///
-  /// Returns a map containing the access token, refresh token, and ID token.
-  /// Throws [ArgumentError] or [Exception] for errors.
+  /// Returns:
+  /// A map containing the tokens, including:
+  /// - `access_token`: The access token.
+  /// - `refresh_token`: The refresh token.
+  /// - `id_token`: The ID token.
+  ///
+  /// Throws:
+  /// - [ArgumentError]: If the username or password is empty.
+  /// - [Exception]: For HTTP errors or unexpected responses.
+  ///
+  /// Example:
+  /// ```dart
+  /// final tokens = await request.acquireToken('user@example.com', 'password123');
+  /// print('Access Token: ${tokens['access_token']}');
+  /// ```
   Future<Map<String, dynamic>> acquireToken(String username, String password) async {
     if (username.isEmpty || password.isEmpty) {
       throw ArgumentError('Username and password must not be empty.');

@@ -2,16 +2,16 @@
 ///
 /// This class manages telemetry options, such as event tracking and endpoint configuration.
 class AortemEntraIdTelemetryOptions {
-  // Enable or disable telemetry collection
+  /// Enable or disable telemetry collection
   final bool enableTelemetry;
 
-  // Telemetry endpoint URL
+  /// Telemetry endpoint URL
   final String telemetryEndpoint;
 
-  // Retry attempts for telemetry if endpoint is unreachable
+  /// Retry attempts for telemetry if endpoint is unreachable
   final int retryAttempts;
 
-  // Private constructor with named parameters
+  /// Private constructor with named parameters
   AortemEntraIdTelemetryOptions({
     required this.enableTelemetry,
     required this.telemetryEndpoint,

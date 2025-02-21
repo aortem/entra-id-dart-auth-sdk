@@ -1,4 +1,3 @@
-/// File: src/utils/http/aortem_entraid_http_method.dart
 ///
 /// AortemEntraIdHttpMethod: Defines standard HTTP methods for API requests
 /// in the Aortem EntraId Dart SDK.
@@ -6,35 +5,34 @@
 /// This file provides an enumeration of HTTP methods and a utility class to
 /// validate, convert, and manage HTTP methods consistently across the SDK.
 ///
-/// Author: Usman Babar
-/// Email: ubabar@venturseed.com
-/// Date: 2025-01-14
+
+library;
 
 /// Enum defining standard HTTP methods.
 enum AortemEntraIdHttpMethod {
   /// The HTTP GET method is used to retrieve data from a server.
-  GET,
+  get,
 
   /// The HTTP POST method is used to send data to a server.
-  POST,
+  post,
 
   /// The HTTP PUT method is used to update or create a resource.
-  PUT,
+  put,
 
   /// The HTTP DELETE method is used to delete a resource from a server.
-  DELETE,
+  delete,
 
   /// The HTTP PATCH method is used to partially update a resource.
-  PATCH,
+  patch,
 
   /// The HTTP HEAD method retrieves the headers of a resource without its body.
-  HEAD,
+  head,
 
   /// The HTTP OPTIONS method describes the communication options for a resource.
-  OPTIONS,
+  options,
 
   /// The HTTP TRACE method performs a diagnostic request for testing.
-  TRACE,
+  trace,
 }
 
 /// Utility class for managing and validating HTTP methods.
@@ -43,8 +41,8 @@ class AortemEntraIdHttpMethodUtils {
   ///
   /// Example:
   /// ```dart
-  /// final method = AortemEntraIdHttpMethod.POST;
-  /// print(AortemEntraIdHttpMethodUtils.methodToString(method)); // Output: POST
+  /// final method = AortemEntraIdHttpMethod.post;
+  /// print(AortemEntraIdHttpMethodUtils.methodToString(method)); // Output: post
   /// ```
   static String methodToString(AortemEntraIdHttpMethod method) {
     return method.name;
@@ -56,13 +54,13 @@ class AortemEntraIdHttpMethodUtils {
   ///
   /// Example:
   /// ```dart
-  /// final method = AortemEntraIdHttpMethodUtils.stringToMethod('GET');
-  /// print(method); // Output: AortemEntraIdHttpMethod.GET
+  /// final method = AortemEntraIdHttpMethodUtils.stringToMethod('get');
+  /// print(method); // Output: AortemEntraIdHttpMethod.get
   /// ```
   static AortemEntraIdHttpMethod stringToMethod(String method) {
     try {
       return AortemEntraIdHttpMethod.values
-          .firstWhere((e) => e.name.toUpperCase() == method.toUpperCase());
+          .firstWhere((e) => e.name.toLowerCase() == method.toLowerCase());
     } catch (e) {
       throw ArgumentError('Unsupported HTTP method: $method');
     }
@@ -72,12 +70,12 @@ class AortemEntraIdHttpMethodUtils {
   ///
   /// Example:
   /// ```dart
-  /// final isValid = AortemEntraIdHttpMethodUtils.isSupported('PATCH');
+  /// final isValid = AortemEntraIdHttpMethodUtils.isSupported('patch');
   /// print(isValid); // Output: true
   /// ```
   static bool isSupported(String method) {
     return AortemEntraIdHttpMethod.values
-        .map((e) => e.name.toUpperCase())
-        .contains(method.toUpperCase());
+        .map((e) => e.name.toLowerCase())
+        .contains(method.toLowerCase());
   }
 }
