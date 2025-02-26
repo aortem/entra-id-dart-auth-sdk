@@ -1,35 +1,20 @@
-import 'package:logging/logging.dart';
-import 'auth_entra_id_client_application.dart';
-import 'auth_entra_id_configuration.dart';
+/// A class to manage confidential client applications for the Aortem Entra ID SDK.
+class AortemEntraIdConfidentialClientApplication {
+  /// The client ID of the confidential client application.
+  final String clientId;
 
-/// Confidential client credentials type
-enum CredentialType {
-  /// Client secret provided as a string
-  secret,
+  /// The authority (e.g., the tenant-specific or common endpoint URL).
+  final String authority;
 
-  /// Client certificate
-  certificate,
+  /// The client secret for the application (if applicable).
+  final String? clientSecret;
 
-  /// Client assertion
-  assertion
-}
+  /// The client assertion for the application (if applicable).
+  final String? clientAssertion;
 
-/// Represents a confidential client application in Entra ID.
-/// Used for applications that can securely store credentials (e.g., web apps).
-class AortemEntraIdConfidentialClientApplication
-    extends AortemEntraIdClientApplication {
-  final Logger _logger = Logger('AortemEntraIdConfidentialClientApplication');
-
-  /// The type of credential used for authentication
-  final CredentialType credentialType;
-
-  /// The client credential (secret, certificate, or assertion)
-  final String credential;
-
-  /// Whether to allow legacy authentication protocols
-  final bool allowLegacyProtocols;
-
-  /// Creates a new instance of AortemEntraIdConfidentialClientApplication
+  /// Constructor for initializing the confidential client application.
+  ///
+  /// Throws [ArgumentError] if required parameters are not provided or invalid.
   AortemEntraIdConfidentialClientApplication({
     required AortemEntraIdConfiguration configuration,
     required this.credential,

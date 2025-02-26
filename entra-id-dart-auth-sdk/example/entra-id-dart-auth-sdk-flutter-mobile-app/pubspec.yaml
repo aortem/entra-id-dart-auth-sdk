@@ -35,7 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   entra_id_dart_auth_sdk:
-    path: ../../../entra_id_dart_auth_sdk
+  #  path: ../../../entra_id_dart_auth_sdk
   provider: ^6.1.2
   bot_toast: ^4.1.3
   google_sign_in: ^6.2.1
@@ -47,6 +47,7 @@ dependencies:
   webview_flutter: ^4.10.0
 
 
+  firebase: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -62,6 +63,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+  firebase: any
 flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
