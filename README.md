@@ -21,8 +21,8 @@
   <a href="https://dart.dev/">
     <img alt="Built with Dart" src="https://img.shields.io/badge/Built%20with-Dart-blue.svg?style=for-the-badge" />
   </a>
- <!-- Firebase Badge -->
-   <a href="https://firebase.google.com/docs/reference/admin/node/firebase-admin.auth?_gl=1*1ewipg9*_up*MQ..*_ga*NTUxNzc0Mzk3LjE3MzMxMzk3Mjk.*_ga_CW55HF8NVT*MTczMzEzOTcyOS4xLjAuMTczMzEzOTcyOS4wLjAuMA..">
+ <!-- Entra Id Badge -->
+   <a href="https://entra_id.google.com/docs/reference/admin/node/entra_id-admin.auth?_gl=1*1ewipg9*_up*MQ..*_ga*NTUxNzc0Mzk3LjE3MzMxMzk3Mjk.*_ga_CW55HF8NVT*MTczMzEzOTcyOS4xLjAuMTczMzEzOTcyOS4wLjAuMA..">
     <img alt="API Reference" src="https://img.shields.io/badge/API-reference-blue.svg?style=for-the-badge" />
   <br/>
 <!-- Pipeline Badge -->
@@ -108,15 +108,15 @@ The SDK is available in two versions to cater to different needs:
 
 ## Documentation
 
-For detailed guides, API references, and example projects, visit our [Entra ID Dart Auth SDK Documentation](https://aortem.gitbook.io/firebase-dart-auth-admin-sdk). Start building with  Microsoft Entra Id today and take advantage of its robust features and elegant syntax.
+For detailed guides, API references, and example projects, visit our [Entra ID Dart Auth SDK Documentation](https://aortem.gitbook.io/entra_id-dart-auth-admin-sdk). Start building with  Microsoft Entra Id today and take advantage of its robust features and elegant syntax.
 
 ## Examples
 
-Explore the `/example` directory in this repository to find sample applications demonstrating  Firebase Dart Admin Auth SDK's capabilities in real-world scenarios.
+Explore the `/example` directory in this repository to find sample applications demonstrating  Entra Id Auth SDK's capabilities in real-world scenarios.
 
 ## Contributing
 
-We welcome contributions of all forms from the community! If you're interested in helping improve  Firebase Dart Admin Auth SDK, please fork the repository and submit your pull requests. For more details, check out our [CONTRIBUTING.md](CONTRIBUTING.md) guide.  Our team will review your pull request. Once approved, we will integrate your changes into our primary repository and push the mirrored changes on the main github branch.
+We welcome contributions of all forms from the community! If you're interested in helping improve  Entra Id Auth SDK, please fork the repository and submit your pull requests. For more details, check out our [CONTRIBUTING.md](CONTRIBUTING.md) guide.  Our team will review your pull request. Once approved, we will integrate your changes into our primary repository and push the mirrored changes on the main github branch.
 
 ## Support
 

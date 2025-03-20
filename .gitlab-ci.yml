@@ -25,18 +25,16 @@ debug_merge_request:
     - echo "Branch name determined $BRANCH_NAME"
 
     - echo "Pipeline Metadata..."
-    - echo "CI_PIPELINE_SOURCE is $CI_PIPELINE_SOURCE" 
+    - echo "CI_PIPELINE_SOURCE is $CI_PIPELINE_SOURCE"
   rules:
-    - if: '$CI_PIPELINE_SOURCE'
-      when: always  
+    - if: '$CI_PIPELINE_SOURCE'  # Forces execution in ALL scenarios
+      when: always
 
 # Validate Conditional Triggers
 validation_trigger:
   stage: validation
   trigger:
     include: tools/pipelines/backend/child-ci-setup-validation.yml
-  needs:
-    - job: debug_merge_request
   rules:
     # Condition 1: Branch is not main, qa, or development
     - if: '$CI_COMMIT_REF_NAME != "main" && $CI_COMMIT_REF_NAME != "qa" && $CI_COMMIT_REF_NAME != "development"'
@@ -78,23 +76,3 @@ analyze_flutter_mobile:
   rules:
     # Always runs after unit_test trigger
     - when: always
-
-#  stage: triggers
-#  trigger:
-#    include: tools/pipelines/child-ci-qa.yml
-#  rules:
-#    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "qa" || $CI_COMMIT_BRANCH == "qa"
-
-#conditional_preprod:
-#  stage: triggers
-#  trigger:
-#    include: tools/pipelines/child-ci-preprod.yml
-#  rules:
-#    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "preprod" || $CI_COMMIT_BRANCH == "preprod"
-
-#conditional_production:
-#  stage: triggers
-#  trigger:
-#    include: tools/pipelines/child-ci-production.yml
-#  rules:
-#    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "production" || $CI_COMMIT_BRANCH == "production"
