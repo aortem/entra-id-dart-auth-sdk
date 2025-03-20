@@ -1,16 +1,16 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:firebase/screens/sign_in_with_credential/sign_in_with_credential.dart';
-import 'package:firebase/screens/sign_in_with_email_and_password_screen/sign_in_with_email_and_password_screen.dart';
-import 'package:firebase/screens/sign_in_with_email_link_screen/send_sign_in_with_email_link_screen.dart';
-import 'package:firebase/screens/sign_in_with_phone_number_screen/sign_in_with_phone_number_screen.dart';
-import 'package:firebase/screens/sign_in_with_custom_token_screen/sign_in_with_custom_token_screen.dart';
-import 'package:firebase/screens/sign_in_with_popup_screen/sign_in_with_popup_screen.dart';
-import 'package:firebase/shared/shared.dart';
-import 'package:firebase/utils/extensions.dart';
+import 'package:entra_id/screens/sign_in_with_credential/sign_in_with_credential.dart';
+import 'package:entra_id/screens/sign_in_with_email_and_password_screen/sign_in_with_email_and_password_screen.dart';
+import 'package:entra_id/screens/sign_in_with_email_link_screen/send_sign_in_with_email_link_screen.dart';
+import 'package:entra_id/screens/sign_in_with_phone_number_screen/sign_in_with_phone_number_screen.dart';
+import 'package:entra_id/screens/sign_in_with_custom_token_screen/sign_in_with_custom_token_screen.dart';
+import 'package:entra_id/screens/sign_in_with_popup_screen/sign_in_with_popup_screen.dart';
+import 'package:entra_id/shared/shared.dart';
+import 'package:entra_id/utils/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase/screens/apple_sign_in_screen/apple_sign_in_screen.dart';
-import 'package:firebase/screens/gcp_sign_in_screen/gcp_sign_in_screen.dart';
+import 'package:entra_id/screens/apple_sign_in_screen/apple_sign_in_screen.dart';
+import 'package:entra_id/screens/gcp_sign_in_screen/gcp_sign_in_screen.dart';
 
 import '../screens/sign_in_with_redirect/sign_in_with_redirect.dart';
 

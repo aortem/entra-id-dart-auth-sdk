@@ -33,7 +33,7 @@ class _AppleSignInScreenState extends State<AppleSignInScreen> {
   @override
   void initState() {
     super.initState();
-    // Initialize the view model with Firebase Auth instance
+    // Initialize the view model with Entra Id Auth instance
     _viewModel = AppleSignInViewModel(
       auth: context.read<FirebaseAuth>(),
     );

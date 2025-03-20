@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:firebase/screens/splash_screen/splash_screen.dart';
+import 'package:entra_id/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
@@ -24,7 +24,7 @@ void main() async {
       );
 
       // Initialize for web
-      debugPrint('Initializing Firebase for Web...');
+      debugPrint('Initializing Entra Id for Web...');
       await FirebaseApp.initializeAppWithEnvironmentVariables(
         apiKey: 'YOUR_API_KEY', // 'YOUR_API_KEY'
         authdomain: 'YOUR_AUTH_DOMAIN', // 'YOUR_AUTH_DOMAIN'
@@ -34,10 +34,10 @@ void main() async {
         appId: 'YOUR_APP_ID', // 'YOUR_APP_ID'
       );
       auth = FirebaseApp.instance.getAuth(); // Initialize auth for web
-      debugPrint('Firebase initialized for Web.');
+      debugPrint('Entra Id initialized for Web.');
     } else {
       if (Platform.isAndroid || Platform.isIOS) {
-        debugPrint('Initializing Firebase for Mobile...');
+        debugPrint('Initializing Entra Id for Mobile...');
 
         // Load the service account JSON
         String serviceAccountContent = await rootBundle.loadString(
@@ -45,12 +45,12 @@ void main() async {
         );
         debugPrint('Service account loaded.');
 
-        // Initialize Firebase with the service account content
+        // Initialize Entra Id with the service account content
         await FirebaseApp.initializeAppWithServiceAccount(
           serviceAccountContent: serviceAccountContent,
         );
         auth = FirebaseApp.instance.getAuth(); // Initialize auth for mobile
-        debugPrint('Firebase initialized for Mobile.');
+        debugPrint('Entra Id initialized for Mobile.');
 
         // Uncomment to use service account impersonation if needed
         /*
@@ -58,12 +58,12 @@ void main() async {
           impersonatedEmail: 'impersonatedEmail',
           serviceAccountContent: serviceAccountContent,
         );
-        debugPrint('Firebase initialized with service account impersonation.');
+        debugPrint('Entra Id initialized with service account impersonation.');
         */
       }
     }
 
-    debugPrint('Firebase Auth instance obtained.');
+    debugPrint('Entra Id Auth instance obtained.');
 
     // Wrap the app with Provider
     runApp(
@@ -73,7 +73,7 @@ void main() async {
       ),
     );
   } catch (e, stackTrace) {
-    debugPrint('Error initializing Firebase: $e');
+    debugPrint('Error initializing Entra Id: $e');
     debugPrint('StackTrace: $stackTrace');
   }
 }

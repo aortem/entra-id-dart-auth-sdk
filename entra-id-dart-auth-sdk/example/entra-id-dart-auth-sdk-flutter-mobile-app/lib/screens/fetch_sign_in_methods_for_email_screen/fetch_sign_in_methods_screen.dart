@@ -1,10 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:firebase/screens/fetch_sign_in_methods_for_email_screen/fetch_sign_in_methods_view_model.dart';
+import 'package:entra_id/screens/fetch_sign_in_methods_for_email_screen/fetch_sign_in_methods_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase/shared/shared.dart';
-import 'package:firebase/utils/extensions.dart';
+import 'package:entra_id/shared/shared.dart';
+import 'package:entra_id/utils/extensions.dart';
 
 class FetchSignInMethodsScreen extends StatefulWidget {
   const FetchSignInMethodsScreen({super.key});

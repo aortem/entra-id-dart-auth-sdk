@@ -1,6 +1,6 @@
-import 'package:firebase/screens/home_screen/home_screen.dart';
-import 'package:firebase/shared/shared.dart';
-import 'package:firebase/utils/extensions.dart';
+import 'package:entra_id/screens/home_screen/home_screen.dart';
+import 'package:entra_id/shared/shared.dart';
+import 'package:entra_id/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'sign_in_with_phone_number_view_model.dart';
@@ -83,7 +83,7 @@ class _SignInWithPhoneNumberScreenState
                   ],
                   20.vSpace,
                   const Text(
-                    'Use Firebase test phone numbers like +16505550101',
+                    'Use Entra Id test phone numbers like +16505550101',
                     style: TextStyle(color: Colors.blue),
                     textAlign: TextAlign.center,
                   ),

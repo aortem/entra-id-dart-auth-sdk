@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:aad_oauth/aad_oauth.dart';
 import 'package:aad_oauth/model/config.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:firebase/utils/platform_provider.dart';
+import 'package:entra_id/utils/platform_provider.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -84,7 +84,7 @@ class SignInWithCredentialViewModel extends ChangeNotifier {
       } catch (e) {
         BotToast.showText(text: e.toString());
       }
-      // Use this token to authenticate with your backend or Firebase
+      // Use this token to authenticate with your backend or Entra Id
     } else if (result.status == LoginStatus.cancelled) {
       log('Login cancelled');
     } else {

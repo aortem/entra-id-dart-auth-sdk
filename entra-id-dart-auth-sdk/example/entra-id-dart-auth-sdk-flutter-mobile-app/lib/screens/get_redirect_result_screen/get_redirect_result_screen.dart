@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 import 'get_redirect_result_view_model.dart';
-import 'package:firebase/shared/shared.dart';
-import 'package:firebase/utils/extensions.dart';
+import 'package:entra_id/shared/shared.dart';
+import 'package:entra_id/utils/extensions.dart';
 
 class GetRedirectResultScreen extends StatefulWidget {
   const GetRedirectResultScreen({super.key});

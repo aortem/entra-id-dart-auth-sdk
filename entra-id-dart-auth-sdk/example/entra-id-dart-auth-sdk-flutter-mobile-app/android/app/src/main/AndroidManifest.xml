@@ -7,7 +7,7 @@
 
         <!-- Main Activity -->
         <activity
-            android:name="com.aortem.firebase.dart.admin.auth.sample.app.MainActivity"
+            android:name="com.aortem.entra_id.dart.admin.auth.sample.app.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:taskAffinity=""

@@ -35,7 +35,7 @@ class GCPSignInViewModel extends ChangeNotifier {
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
 
-      // Use tokens to sign in with Firebase
+      // Use tokens to sign in with Entra Id
       await FirebaseApp.firebaseAuth?.signInWithGCP(
         clientId: googleAuth.accessToken!,
         clientSecret: googleAuth.idToken!,

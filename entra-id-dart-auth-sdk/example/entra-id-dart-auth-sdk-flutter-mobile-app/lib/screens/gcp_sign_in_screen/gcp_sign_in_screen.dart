@@ -1,8 +1,8 @@
-import 'package:firebase/screens/home_screen/home_screen.dart';
+import 'package:entra_id/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../shared/shared.dart';
-import 'package:firebase/utils/extensions.dart';
+import 'package:entra_id/utils/extensions.dart';
 import 'gcp_sign_in_view_model.dart';
 
 class GCPSignInScreen extends StatefulWidget {

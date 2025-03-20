@@ -1,4 +1,4 @@
-package com.aortem.firebase.dart.admin.auth.sample.app
+package com.aortem.entra_id.dart.admin.auth.sample.app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -2,7 +2,7 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 import 'package:flutter/foundation.dart'; // for kIsWeb
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-// Your Firebase SDK
+// Your Entra Id SDK
 
 class StorageExample extends StatefulWidget {
   const StorageExample({super.key});
@@ -66,7 +66,7 @@ class _StorageExampleState extends State<StorageExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Firebase Storage Example'),
+        title: const Text('Entra Id Storage Example'),
       ),
       body: Center(
         child: Column(
@@ -81,7 +81,7 @@ class _StorageExampleState extends State<StorageExample> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: uploadFile,
-              child: const Text('Upload File to Firebase Storage'),
+              child: const Text('Upload File to Entra Id Storage'),
             ),
           ],
         ),

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:bot_toast/bot_toast.dart';
-import 'package:firebase/utils/extensions.dart';
+import 'package:entra_id/utils/extensions.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 import 'package:flutter/material.dart';
 

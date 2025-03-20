@@ -1,4 +1,4 @@
-import 'package:firebase/screens/home_screen/home_screen.dart';
+import 'package:entra_id/screens/home_screen/home_screen.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';

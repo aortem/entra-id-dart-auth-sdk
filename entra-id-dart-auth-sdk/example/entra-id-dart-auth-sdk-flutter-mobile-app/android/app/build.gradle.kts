@@ -28,7 +28,7 @@ val minSdkVersion = (project.findProperty("flutter.minSdkVersion") as? String)?.
 val targetSdkVersion = (project.findProperty("flutter.targetSdkVersion") as? String)?.toIntOrNull() ?: 35
 
 android {
-    namespace = "com.aortem.firebase.dart.admin.auth.sample.app"
+    namespace = "com.aortem.entra_id.dart.admin.auth.sample.app"
     compileSdk = compileSdkVersion?.toInt() ?: 34
     ndkVersion = ndkVersion
 
@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.aortem.firebase.dart.admin.auth.sample.app"
+        applicationId = "com.aortem.entra_id.dart.admin.auth.sample.app"
         minSdk = minSdkVersion
         targetSdk = targetSdkVersion
         versionCode = flutterVersionCode
@@ -61,16 +61,16 @@ flutter {
 }
 
 dependencies {
-    // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    // Import the Entra Id BoM
+    implementation(platform("com.google.entra_id:entra_id-bom:33.5.1"))
 
 
-    // TODO: Add the dependencies for Firebase products you want to use
-    // When using the BoM, don't specify versions in Firebase dependencies
-    implementation("com.google.firebase:firebase-analytics")
+    // TODO: Add the dependencies for Entra Id products you want to use
+    // When using the BoM, don't specify versions in Entra Id dependencies
+    implementation("com.google.entra_id:entra_id-analytics")
 
 
-    // Add the dependencies for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
+    // Add the dependencies for any other desired Entra Id products
+    // https://entra_id.google.com/docs/android/setup#available-libraries
 }
 

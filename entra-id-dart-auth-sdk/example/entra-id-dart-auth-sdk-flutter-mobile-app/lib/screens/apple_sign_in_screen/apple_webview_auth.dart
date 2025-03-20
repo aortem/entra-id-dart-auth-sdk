@@ -44,7 +44,7 @@ class _AppleWebViewAuthState extends State<AppleWebViewAuth> {
         Uri.parse('https://appleid.apple.com/auth/authorize?'
             'response_type=id_token&'
             'client_id=YOUR_SERVICES_ID&' // Replace with your Apple Services ID
-            'redirect_uri=${Uri.encodeComponent("https://your-firebase-project.firebaseapp.com/__/auth/handler")}&'
+            'redirect_uri=${Uri.encodeComponent("https://your-entra_id-project.firebaseapp.com/__/auth/handler")}&'
             'scope=email%20name&'
             'response_mode=fragment'),
       );

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
-import 'package:firebase/shared/shared.dart';
+import 'package:entra_id/shared/shared.dart';
 import 'package:provider/provider.dart';
 
 class ConnectAuthEmulatorScreen extends StatefulWidget {

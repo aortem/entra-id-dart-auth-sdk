@@ -1,6 +1,6 @@
-import 'package:firebase/screens/set_language_code_screen/set_language_code_screen_view_model.dart';
-import 'package:firebase/shared/shared.dart';
-import 'package:firebase/utils/extensions.dart';
+import 'package:entra_id/screens/set_language_code_screen/set_language_code_screen_view_model.dart';
+import 'package:entra_id/shared/shared.dart';
+import 'package:entra_id/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

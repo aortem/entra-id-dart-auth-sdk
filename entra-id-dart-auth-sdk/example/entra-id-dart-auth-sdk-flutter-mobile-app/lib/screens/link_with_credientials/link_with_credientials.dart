@@ -88,7 +88,7 @@ class _LinkWithCredentialsState extends State<LinkWithCredentials> {
       } catch (e) {
         BotToast.showText(text: e.toString());
       }
-      // Use this token to authenticate with your backend or Firebase
+      // Use this token to authenticate with your backend or Entra Id
     } else if (result.status == LoginStatus.cancelled) {
       log('Login cancelled');
     } else {
