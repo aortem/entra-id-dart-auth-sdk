@@ -4,13 +4,27 @@ import '../auth_entra_id_cache_kvstore.dart';
 import '../auth_entra_id_cache_options.dart';
 
 /// Exception thrown for JSON cache operations
+/// Exception thrown for errors related to JSON cache operations.
+/// This exception is used to handle issues that occur while storing,
+/// retrieving, or managing cached JSON data.
 class JsonCacheException implements Exception {
+  /// The error message describing the issue.
   final String message;
+
+  /// An optional error code to categorize the error.
   final String? code;
+
+  /// Additional details about the error, such as debug information or stack trace.
   final dynamic details;
 
+  /// Creates a new instance of [JsonCacheException].
+  ///
+  /// - [message]: A required description of the error.
+  /// - [code]: An optional identifier for the error type.
+  /// - [details]: Optional extra details related to the error, such as a stack trace.
   JsonCacheException(this.message, {this.code, this.details});
 
+  /// Returns a string representation of the exception, including the error message and optional code.
   @override
   String toString() => 'JsonCacheException: $message (Code: $code)';
 }
@@ -29,11 +43,10 @@ class AortemEntraIdAzureJsonCache {
   static const String schemaVersion = '1.0';
 
   /// Creates a new instance of AortemEntraIdAzureJsonCache
-  AortemEntraIdAzureJsonCache({
-    AortemEntraIdCacheOptions? options,
-  }) : _kvStore = AortemEntraIdCacheKVStore(
-          options ?? AortemEntraIdCacheOptions(namespace: 'azure_json_cache'),
-        ) {
+  AortemEntraIdAzureJsonCache({AortemEntraIdCacheOptions? options})
+    : _kvStore = AortemEntraIdCacheKVStore(
+        options ?? AortemEntraIdCacheOptions(namespace: 'azure_json_cache'),
+      ) {
     _logger.info('Initializing Azure JSON cache');
   }
 
@@ -56,7 +69,9 @@ class AortemEntraIdAzureJsonCache {
 
   /// Retrieves and deserializes JSON data from the cache
   Future<T?> retrieve<T>(
-      String key, T Function(Map<String, dynamic>) fromJson) async {
+    String key,
+    T Function(Map<String, dynamic>) fromJson,
+  ) async {
     try {
       final jsonString = await _kvStore.get(key);
       if (jsonString == null) {

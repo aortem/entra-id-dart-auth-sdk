@@ -65,13 +65,26 @@ class AuthorizationUrlRequestParameters {
 }
 
 /// Exception thrown for authorization URL creation errors
+/// Exception thrown for errors related to authorization URL generation.
+/// This exception is used when constructing or processing an authorization URL fails.
 class AuthorizationUrlException implements Exception {
+  /// The error message describing the issue.
   final String message;
+
+  /// An optional error code to categorize the type of error.
   final String? code;
+
+  /// Additional details about the error, such as debug information or stack trace.
   final dynamic details;
 
+  /// Creates a new instance of [AuthorizationUrlException].
+  ///
+  /// - [message]: A required description of the error.
+  /// - [code]: An optional identifier for the error type.
+  /// - [details]: Optional extra details related to the error, such as a stack trace.
   AuthorizationUrlException(this.message, {this.code, this.details});
 
+  /// Returns a string representation of the exception, including the error message and optional code.
   @override
   String toString() => 'AuthorizationUrlException: $message (Code: $code)';
 }
@@ -178,12 +191,11 @@ class AortemEntraIdAuthorizationUrlRequest {
         queryParams['client-request-id'] = parameters.correlationId!;
       }
 
-      final uri = Uri.parse(authorityUrl).replace(
-        queryParameters: queryParams,
-      );
+      final uri = Uri.parse(authorityUrl).replace(queryParameters: queryParams);
 
-      _logger
-          .info('Built authorization URL with state: ${queryParams['state']}');
+      _logger.info(
+        'Built authorization URL with state: ${queryParams['state']}',
+      );
       return uri.toString();
     } catch (e) {
       _logger.severe('Failed to build authorization URL', e);

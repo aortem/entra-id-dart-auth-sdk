@@ -5,6 +5,7 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 /// AortemEntraIdClientCredentialRequest:
 /// Handles the client credential flow for confidential clients in the Aortem EntraId Dart SDK.
 ///
+
 /// This class provides functionality to acquire access tokens using the client credentials flow.
 class AortemEntraIdClientCredentialRequest {
   /// The client ID of the confidential client application.
@@ -89,6 +90,8 @@ class AortemEntraIdClientCredentialRequest {
   Map<String, dynamic> handleError(http.Response response) {
     final Map<String, dynamic> errorResponse = jsonDecode(response.body);
     print('Error: ${errorResponse['error_description']}');
-    throw Exception('Error acquiring token: ${errorResponse['error_description']}');
+    throw Exception(
+      'Error acquiring token: ${errorResponse['error_description']}',
+    );
   }
 }

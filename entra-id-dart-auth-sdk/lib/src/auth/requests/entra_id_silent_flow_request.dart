@@ -2,38 +2,55 @@ import 'package:logging/logging.dart';
 import '../auth_entra_id_configuration.dart';
 import '../auth_entra_id_cache_kvstore.dart';
 
-/// Exception for silent flow request errors
+
+/// Exception for silent flow request errors.
+///
+/// This exception is thrown when a silent authentication request fails due to
+/// missing tokens, invalid scopes, or any other unexpected issue.
 class SilentFlowRequestException implements Exception {
+  /// Error message describing the failure.
   final String message;
+
+  /// Optional error code for categorizing the failure.
   final String? code;
+
+  /// Additional details related to the exception.
   final dynamic details;
 
+  /// Constructs a [SilentFlowRequestException] with a message and optional details.
   SilentFlowRequestException(this.message, {this.code, this.details});
 
   @override
   String toString() => 'SilentFlowRequestException: $message (Code: $code)';
 }
 
-/// Handles silent token acquisition using cached refresh tokens
+/// Handles silent token acquisition using cached refresh tokens.
+///
+/// This class attempts to retrieve a valid access token from the cache.
+/// If no valid token is found, it attempts to refresh the token using
+/// the refresh token stored in cache.
 class AortemEntraIdSilentFlowRequest {
+  /// Logger instance for tracking silent authentication flow.
   final Logger _logger = Logger('AortemEntraIdSilentFlowRequest');
 
-  /// Configuration for the request
+  /// Configuration for the request.
   final AortemEntraIdConfiguration configuration;
 
-  /// Cache store for tokens
+  /// Cache store for token storage and retrieval.
   final AortemEntraIdCacheKVStore _cacheStore;
 
-  /// The requested scopes
+  /// The requested authentication scopes.
   final List<String> scopes;
 
-  /// Account identifier (optional)
+  /// Optional account identifier for multi-account scenarios.
   final String? accountId;
 
-  /// Authority to use for the request (optional)
+  /// Optional authority URL for token requests.
   final String? authority;
 
-  /// Creates a new instance of AortemEntraIdSilentFlowRequest
+  /// Creates an instance of [AortemEntraIdSilentFlowRequest].
+  ///
+  /// Ensures that the request parameters are valid before proceeding.
   AortemEntraIdSilentFlowRequest({
     required this.configuration,
     required AortemEntraIdCacheKVStore cacheStore,
@@ -44,7 +61,7 @@ class AortemEntraIdSilentFlowRequest {
     _validateRequest();
   }
 
-  /// Validates the request parameters
+  /// Validates request parameters before executing the silent token request.
   void _validateRequest() {
     if (scopes.isEmpty) {
       throw SilentFlowRequestException(
@@ -52,11 +69,15 @@ class AortemEntraIdSilentFlowRequest {
         code: 'invalid_scopes',
       );
     }
-
     _logger.info('Silent flow request validated');
   }
 
-  /// Executes the silent token request
+  /// Executes the silent authentication request.
+  ///
+  /// Attempts to retrieve a valid access token from cache. If unavailable,
+  /// tries to refresh the token using the refresh token.
+  ///
+  /// Throws [SilentFlowRequestException] if authentication fails.
   Future<Map<String, dynamic>> executeRequest() async {
     try {
       // Try to get token from cache
@@ -87,20 +108,20 @@ class AortemEntraIdSilentFlowRequest {
     }
   }
 
-  /// Retrieves cached access token
+  /// Retrieves the cached access token from storage.
   Future<Map<String, dynamic>?> _getCachedAccessToken() async {
     final cacheKey = _generateAccessTokenCacheKey();
     return await _cacheStore.get(cacheKey);
   }
 
-  /// Retrieves cached refresh token
+  /// Retrieves the cached refresh token from storage.
   Future<String?> _getCachedRefreshToken() async {
     final cacheKey = _generateRefreshTokenCacheKey();
     final tokenData = await _cacheStore.get(cacheKey);
     return tokenData?['refresh_token'];
   }
 
-  /// Checks if a token is expired
+  /// Determines if the token has expired.
   bool _isTokenExpired(Map<String, dynamic> token) {
     final expiresIn = token['expires_in'] as int?;
     final createdAt = token['created_at'] as int?;
@@ -109,14 +130,17 @@ class AortemEntraIdSilentFlowRequest {
       return true;
     }
 
-    final expirationTime = DateTime.fromMillisecondsSinceEpoch(createdAt)
-        .add(Duration(seconds: expiresIn));
+    final expirationTime = DateTime.fromMillisecondsSinceEpoch(
+      createdAt,
+    ).add(Duration(seconds: expiresIn));
 
-    // Add buffer time of 5 minutes
+    // Add buffer time of 5 minutes to prevent using a nearly expired token
     return DateTime.now().add(Duration(minutes: 5)).isAfter(expirationTime);
   }
 
-  /// Refreshes the token using a refresh token
+  /// Refreshes the access token using a stored refresh token.
+  ///
+  /// Throws [SilentFlowRequestException] if the refresh operation fails.
   Future<Map<String, dynamic>> _refreshToken(String refreshToken) async {
     try {
       // TODO: Implement token refresh logic
@@ -135,14 +159,14 @@ class AortemEntraIdSilentFlowRequest {
     }
   }
 
-  /// Generates cache key for access tokens
+  /// Generates a cache key for storing and retrieving access tokens.
   String _generateAccessTokenCacheKey() {
     final scopeString = scopes.join(' ');
     final accountSuffix = accountId != null ? ':$accountId' : '';
     return 'access:${configuration.clientId}:$scopeString$accountSuffix';
   }
 
-  /// Generates cache key for refresh tokens
+  /// Generates a cache key for storing and retrieving refresh tokens.
   String _generateRefreshTokenCacheKey() {
     final accountSuffix = accountId != null ? ':$accountId' : '';
     return 'refresh:${configuration.clientId}$accountSuffix';
