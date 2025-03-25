@@ -22,10 +22,8 @@ debug_merge_request:
     - echo "Branch name determined $BRANCH_NAME"
 
     - echo "Pipeline Metadata..."
-    - echo "CI_PIPELINE_SOURCE is $CI_PIPELINE_SOURCE" 
-  rules:
-    - if: '$CI_PIPELINE_SOURCE'  # Forces execution in ALL scenarios
-      when: always
+    - echo "CI_PIPELINE_SOURCE is $CI_PIPELINE_SOURCE"
+
 
 validate_branch_name:
   stage: validate
@@ -65,6 +63,7 @@ validate_commit_messages:
       else
         echo "Standard pipeline detected. Enforcing strict commit message validation..."
         REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$"
+        COMBINED_REGEX="$REGEX"
       fi
 
       # Validate the last commit message
@@ -148,7 +147,7 @@ analyze_main:
     - validate_commit_messages
   script:
     - echo "Analyzing main project..."
-    - cd entra_id_dart_auth_sdk
+    - cd entra-id-dart-auth-sdk
     - dart pub get || { echo "Failed to install dependencies. Exiting..."; exit 1; }
     - dart analyze lib/ > analysis_report.txt 2> error_log.txt || true
 
@@ -185,9 +184,9 @@ analyze_main:
     - echo "Main project analysis complete. Check categorized issue files for details."
   artifacts:
     paths:
-      - entra_id_dart_auth_sdk/info_issues.txt
-      - entra_id_dart_auth_sdk/warning_issues.txt
-      - entra_id_dart_auth_sdk/error_issues.txt
+      - entra-id-dart-auth-sdk/info_issues.txt
+      - entra-id-dart-auth-sdk/warning_issues.txt
+      - entra-id-dart-auth-sdk/error_issues.txt
     expire_in: 1h
   rules:
    - when: always
