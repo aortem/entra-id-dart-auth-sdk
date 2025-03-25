@@ -46,8 +46,6 @@ dependencies:
   aad_oauth: ^1.0.1
   webview_flutter: ^4.10.0
 
-
-  entra_id: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
