@@ -1,6 +1,8 @@
 /// Microsoft Entra ID Authentication SDK for Dart
 /// Provides authentication and authorization capabilities using Microsoft Entra ID
 /// (formerly Azure Active Directory).
+library;
+
 // Exporting auth related files
 export 'src/auth/cache/aortem_entra_id_azure_json_cache.dart';
 export 'src/auth/cache/aortem_entra_id_distributed_cache_plugin.dart';
