@@ -1,86 +1,74 @@
-
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/auth/auth_entra_id_confidential_client_application.dart';
+import 'package:entra_id_dart_auth_sdk/src/auth/auth_entra_id_configuration.dart';
 
 void main() {
-  group('AortemEntraIdConfidentialClientApplication', () {
-    test('Should throw error if clientId is missing', () {
-      expect(
-        () => AortemEntraIdConfidentialClientApplication(
-          clientId: '',
-          authority: 'https://valid-authority.com',
-          clientSecret: 'some-secret',
-        ),
-        throwsA(predicate((e) => e is ArgumentError && e.message == 'Client ID is required.')),
+  group('AortemEntraIdConfidentialClientApplication Tests', () {
+    late AortemEntraIdConfiguration configuration;
+
+    setUp(() {
+      configuration = AortemEntraIdConfiguration(
+        clientId: 'test-client-id',
+        tenantId: 'test-tenant-id',
+        authority: 'https://login.microsoftonline.com/test-tenant',
       );
     });
 
-    test('Should throw error if authority is missing', () {
+    test(
+      'should initialize successfully with valid configuration and secret',
+      () {
+        expect(
+          () => AortemEntraIdConfidentialClientApplication(
+            configuration: configuration,
+            credential: 'test-secret',
+            credentialType: CredentialType.secret,
+          ),
+          returnsNormally,
+        );
+      },
+    );
+
+    test('should throw an error if credential is empty', () {
       expect(
         () => AortemEntraIdConfidentialClientApplication(
-          clientId: 'some-client-id',
-          authority: '',
-          clientSecret: 'some-secret',
+          configuration: configuration,
+          credential: '',
         ),
-        throwsA(predicate((e) => e is ArgumentError && e.message == 'Authority is required.')),
+        throwsA(isA<ArgumentError>()),
       );
     });
 
-    test('Should throw error if authority is not HTTPS', () {
+    test('should throw an error if authority is invalid', () {
+      final invalidConfiguration = AortemEntraIdConfiguration(
+        clientId: 'test-client-id',
+        tenantId: 'test-tenant-id',
+        authority: 'http://invalid-url.com',
+      );
+
       expect(
         () => AortemEntraIdConfidentialClientApplication(
-          clientId: 'some-client-id',
-          authority: 'http://invalid-authority.com',
-          clientSecret: 'some-secret',
+          configuration: invalidConfiguration,
+          credential: 'test-secret',
         ),
-        throwsA(predicate((e) => e is ArgumentError && e.message == 'Authority must be a valid HTTPS URL.')),
+        throwsA(isA<ArgumentError>()),
       );
     });
 
-    test('Should throw error if neither clientSecret nor clientAssertion is provided', () {
-      expect(
-        () => AortemEntraIdConfidentialClientApplication(
-          clientId: 'some-client-id',
-          authority: 'https://valid-authority.com',
-        ),
-        throwsA(predicate((e) => e is ArgumentError && e.message == 'Either clientSecret or clientAssertion must be provided.')),
-      );
-    });
-
-    test('Should initialize successfully with valid parameters', () {
+    test('should return application metadata correctly', () {
       final app = AortemEntraIdConfidentialClientApplication(
-        clientId: 'valid-client-id',
-        authority: 'https://valid-authority.com',
-        clientSecret: 'valid-secret',
+        configuration: configuration,
+        credential: 'test-secret',
       );
 
-      expect(app.clientId, 'valid-client-id');
-      expect(app.authority, 'https://valid-authority.com');
-      expect(app.clientSecret, 'valid-secret');
-      expect(app.clientAssertion, isNull);
-    });
-
-    test('Should acquire token successfully (mock test)', () async {
-      final app = AortemEntraIdConfidentialClientApplication(
-        clientId: 'valid-client-id',
-        authority: 'https://valid-authority.com',
-        clientSecret: 'valid-secret',
-      );
-
-      final token = await app.acquireToken();
-      expect(token, 'mock-access-token');
-    });
-
-    test('Should throw error on invalid configuration during token acquisition', () async {
-      final app = AortemEntraIdConfidentialClientApplication(
-        clientId: '',
-        authority: 'https://valid-authority.com',
-        clientSecret: 'valid-secret',
-      );
-
+      final metadata = app.getApplicationMetadata();
+      expect(metadata['clientId'], equals('test-client-id'));
       expect(
-        () async => await app.acquireToken(),
-        throwsA(predicate((e) => e is ArgumentError && e.message == 'Client ID is required.')),
+        metadata['authority'],
+        equals('https://login.microsoftonline.com/test-tenant'),
+      );
+      expect(
+        metadata['credentialType'],
+        equals(CredentialType.secret.toString()),
       );
     });
   });

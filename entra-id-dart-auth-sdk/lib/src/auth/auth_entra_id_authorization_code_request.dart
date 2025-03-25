@@ -58,11 +58,20 @@ class AuthorizationCodeRequestParameters {
 }
 
 /// Exception thrown for authorization code request errors
+/// /// Exception thrown when an error occurs during the authorization code flow.
 class AuthorizationCodeException implements Exception {
+  /// - [message]: A descriptive error message.
   final String message;
+
+  /// - [code]: An optional error code for categorization.
   final String? code;
+
+  /// - [details]: Additional details about the error, if available.
+
   final dynamic details;
 
+  /// This exception is typically used to signal issues related to obtaining,
+  /// processing, or validating authorization codes in authentication flows.
   AuthorizationCodeException(this.message, {this.code, this.details});
 
   @override
@@ -161,9 +170,7 @@ class AortemEntraIdAuthorizationCodeRequest {
 
   /// Gets the required headers for the token request
   Map<String, String> getHeaders() {
-    final headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    };
+    final headers = {'Content-Type': 'application/x-www-form-urlencoded'};
 
     // Add basic auth header for confidential clients
     if (parameters.clientSecret != null) {

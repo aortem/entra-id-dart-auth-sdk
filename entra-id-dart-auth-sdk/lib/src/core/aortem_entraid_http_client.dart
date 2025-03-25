@@ -4,8 +4,8 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 /// AortemEntraIdHttpClient: A lightweight HTTP client for making REST API requests.
 ///
 /// This class simplifies HTTP communication by providing easy-to-use methods
-/// for common HTTP operations such as GET and POST. It also supports custom headers
-/// and request body handling.
+/// for common HTTP operations such as GET, POST, PUT, and DELETE. It also supports
+/// custom headers and request body handling.
 ///
 /// Features:
 /// - Base URL support for consistent endpoint construction.
@@ -33,31 +33,14 @@ class AortemEntraIdHttpClient {
   }) : httpClient = client ?? http.Client();
 
   /// Sends a GET request to the specified endpoint.
-  ///
-  /// - [endpoint]: The API endpoint relative to the base URL.
-  /// - [headers]: Optional headers to include in the request.
-  ///
-  /// Returns: A `Map<String, dynamic>` containing the response data.
-  /// Throws: An exception if the request fails or the response status code is not 2xx.
   Future<Map<String, dynamic>> get(
     String endpoint, {
     Map<String, String>? headers,
   }) async {
-    return _sendRequest(
-      method: 'GET',
-      endpoint: endpoint,
-      headers: headers,
-    );
+    return _sendRequest(method: 'GET', endpoint: endpoint, headers: headers);
   }
 
   /// Sends a POST request to the specified endpoint.
-  ///
-  /// - [endpoint]: The API endpoint relative to the base URL.
-  /// - [headers]: Optional headers to include in the request.
-  /// - [body]: Optional request body as a `Map<String, dynamic>`.
-  ///
-  /// Returns: A `Map<String, dynamic>` containing the response data.
-  /// Throws: An exception if the request fails or the response status code is not 2xx.
   Future<Map<String, dynamic>> post(
     String endpoint, {
     Map<String, String>? headers,
@@ -71,15 +54,29 @@ class AortemEntraIdHttpClient {
     );
   }
 
+  /// Sends a PUT request to the specified endpoint.
+  Future<Map<String, dynamic>> put(
+    String endpoint, {
+    Map<String, String>? headers,
+    Map<String, dynamic>? body,
+  }) async {
+    return _sendRequest(
+      method: 'PUT',
+      endpoint: endpoint,
+      headers: headers,
+      body: body,
+    );
+  }
+
+  /// Sends a DELETE request to the specified endpoint.
+  Future<Map<String, dynamic>> delete(
+    String endpoint, {
+    Map<String, String>? headers,
+  }) async {
+    return _sendRequest(method: 'DELETE', endpoint: endpoint, headers: headers);
+  }
+
   /// Sends an HTTP request based on the specified method, endpoint, and parameters.
-  ///
-  /// - [method]: The HTTP method (e.g., 'GET', 'POST').
-  /// - [endpoint]: The API endpoint relative to the base URL.
-  /// - [headers]: Optional headers to include in the request.
-  /// - [body]: Optional request body for methods like POST.
-  ///
-  /// Returns: A `Map<String, dynamic>` containing the response data.
-  /// Throws: An exception if the request fails or the response status code is not 2xx.
   Future<Map<String, dynamic>> _sendRequest({
     required String method,
     required String endpoint,
@@ -87,7 +84,11 @@ class AortemEntraIdHttpClient {
     Map<String, dynamic>? body,
   }) async {
     final uri = Uri.parse('$baseUrl$endpoint');
-    final combinedHeaders = {...defaultHeaders, if (headers != null) ...headers};
+    final combinedHeaders = {
+      ...defaultHeaders,
+      if (headers != null) ...headers,
+      'Content-Type': 'application/json',
+    };
     late http.Response response;
 
     try {
@@ -102,6 +103,16 @@ class AortemEntraIdHttpClient {
             body: body != null ? jsonEncode(body) : null,
           );
           break;
+        case 'PUT':
+          response = await httpClient.put(
+            uri,
+            headers: combinedHeaders,
+            body: body != null ? jsonEncode(body) : null,
+          );
+          break;
+        case 'DELETE':
+          response = await httpClient.delete(uri, headers: combinedHeaders);
+          break;
         default:
           throw Exception('Unsupported HTTP method: $method');
       }
@@ -113,17 +124,13 @@ class AortemEntraIdHttpClient {
   }
 
   /// Handles the HTTP response and parses it as JSON.
-  ///
-  /// - [response]: The HTTP response object.
-  ///
-  /// Returns: A `Map<String, dynamic>` containing the parsed response data.
-  /// Throws: An exception if the response status code indicates an error.
   Map<String, dynamic> _handleResponse(http.Response response) {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return jsonDecode(response.body);
     } else {
       throw Exception(
-          'HTTP Error: ${response.statusCode}, body: ${response.body}');
+        'HTTP Error: ${response.statusCode}, body: ${response.body}',
+      );
     }
   }
 }

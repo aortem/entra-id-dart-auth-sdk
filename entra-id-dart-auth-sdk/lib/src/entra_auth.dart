@@ -56,7 +56,7 @@ class EntraAuth {
   /// final version = entraAuth.getVersion();
   /// print('SDK Version: $version');
   /// ```
-  String getVersion() => SDK_VERSION;
+  String getVersion() => sdkVersion;
 
   // TODO: Add method signatures for other features as they are implemented:
   // - Authentication flows (e.g., device code, authorization code, implicit flows).
@@ -74,4 +74,4 @@ class EntraAuth {
 /// ```dart
 /// print(SDK_VERSION); // Output: 0.0.1-pre+1
 /// ```
-const String SDK_VERSION = '0.0.1-pre+1';
+const String sdkVersion = '0.0.1-pre+1';

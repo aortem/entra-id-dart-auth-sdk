@@ -1,13 +1,26 @@
 import 'package:logging/logging.dart';
 
-/// Exception thrown for app metadata entity operations
+/// Exception thrown for errors related to application metadata entity operations.
+/// This exception is used to handle issues that arise when processing or retrieving
+/// application metadata.
 class AppMetadataEntityException implements Exception {
+  /// The error message describing the issue.
   final String message;
+
+  /// An optional error code to categorize the error.
   final String? code;
+
+  /// Additional details about the error, such as debug information or stack trace.
   final dynamic details;
 
+  /// Creates a new instance of [AppMetadataEntityException].
+  ///
+  /// - [message]: A required description of the error.
+  /// - [code]: An optional identifier for the error type.
+  /// - [details]: Optional extra details related to the error, like stack trace or metadata.
   AppMetadataEntityException(this.message, {this.code, this.details});
 
+  /// Returns a string representation of the exception, including the error message and optional code.
   @override
   String toString() => 'AppMetadataEntityException: $message (Code: $code)';
 }
@@ -24,7 +37,7 @@ enum AppEnvironment {
   development,
 
   /// Testing environment
-  testing
+  testing,
 }
 
 /// Authentication types supported by the application
@@ -39,7 +52,7 @@ enum AuthenticationType {
   personalMicrosoft,
 
   /// Both work/school and personal accounts
-  mixed
+  mixed,
 }
 
 /// Represents application metadata for caching and configuration

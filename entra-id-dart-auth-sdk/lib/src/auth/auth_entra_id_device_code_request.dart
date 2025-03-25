@@ -63,13 +63,26 @@ class DeviceCodeRequestParameters {
 }
 
 /// Exception thrown for device code flow errors
+/// Exception thrown for errors related to the device code flow.
+/// This exception is used when there are issues in obtaining or validating the device code.
 class DeviceCodeException implements Exception {
+  /// The error message describing the issue.
   final String message;
+
+  /// An optional error code to categorize the type of error.
   final String? code;
+
+  /// Additional details about the error, such as debug information or stack trace.
   final dynamic details;
 
+  /// Creates a new instance of [DeviceCodeException].
+  ///
+  /// - [message]: A required description of the error.
+  /// - [code]: An optional identifier for the error type.
+  /// - [details]: Optional extra details related to the error, such as a stack trace.
   DeviceCodeException(this.message, {this.code, this.details});
 
+  /// Returns a string representation of the exception, including the error message and optional code.
   @override
   String toString() => 'DeviceCodeException: $message (Code: $code)';
 }
@@ -89,7 +102,7 @@ enum DeviceCodeStatus {
   cancelled,
 
   /// The device code expired
-  expired
+  expired,
 }
 
 /// Handles device code authentication flow
@@ -174,9 +187,7 @@ class AortemEntraIdDeviceCodeRequest {
 
   /// Gets headers for requests
   Map<String, String> getHeaders() {
-    final headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    };
+    final headers = {'Content-Type': 'application/x-www-form-urlencoded'};
 
     if (parameters.correlationId != null) {
       headers['client-request-id'] = parameters.correlationId!;

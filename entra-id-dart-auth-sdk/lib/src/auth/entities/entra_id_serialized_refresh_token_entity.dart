@@ -1,14 +1,24 @@
 import 'package:entra_id_dart_auth_sdk/utils/guid_generator.dart';
 import 'package:logging/logging.dart';
 
-/// Exception thrown for refresh token entity operations
+/// Exception thrown when an error occurs during refresh token entity operations.
+/// This is used to handle errors related to refresh token management, such as validation failures.
 class RefreshTokenEntityException implements Exception {
+  /// The error message describing what went wrong.
   final String message;
+
+  /// An optional error code to categorize the exception.
   final String? code;
+
+  /// Additional details about the error (e.g., stack trace or debug info).
   final dynamic details;
 
+  /// Creates a new instance of [RefreshTokenEntityException].
+  ///
+  /// Takes a required [message] and optional [code] and [details].
   RefreshTokenEntityException(this.message, {this.code, this.details});
 
+  /// Returns a string representation of the exception.
   @override
   String toString() => 'RefreshTokenEntityException: $message (Code: $code)';
 }

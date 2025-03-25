@@ -2,29 +2,45 @@ import 'dart:async';
 import 'dart:io';
 import 'package:logging/logging.dart';
 
-/// Exception thrown for loopback client operations
+/// Exception thrown for loopback client operations.
+///
+/// This is used to handle errors occurring within the loopback client,
+/// particularly during the handling of local HTTP server operations.
 class LoopbackClientException implements Exception {
+  /// Error message describing the exception.
   final String message;
+
+  /// Optional error code providing additional context.
   final String? code;
+
+  /// Additional details about the error, if available.
   final dynamic details;
 
+  /// Creates a new [LoopbackClientException] with a message and optional details.
   LoopbackClientException(this.message, {this.code, this.details});
 
   @override
   String toString() => 'LoopbackClientException: $message (Code: $code)';
 }
 
-/// Response from the loopback server
+/// Represents a response from the loopback server.
+///
+/// This is used to capture authentication responses from the redirect URI.
 class LoopbackResponse {
-  /// Query parameters from the redirect URI
+  /// Query parameters extracted from the redirect URI.
   final Map<String, String> queryParameters;
 
-  /// Raw request data
+  /// The raw request URI string received from the client.
   final String rawRequest;
 
-  /// Timestamp of the response
+  /// Timestamp indicating when the response was received.
   final DateTime timestamp;
 
+  /// Creates a [LoopbackResponse] instance.
+  ///
+  /// - [queryParameters]: The extracted query parameters from the redirect URI.
+  /// - [rawRequest]: The raw request string received.
+  /// - [timestamp]: Optional timestamp (defaults to the current time).
   LoopbackResponse({
     required this.queryParameters,
     required this.rawRequest,
@@ -32,33 +48,45 @@ class LoopbackResponse {
   }) : timestamp = timestamp ?? DateTime.now();
 }
 
-/// Handles local HTTP server for authentication redirects
+/// Handles a local HTTP server for authentication redirects.
+///
+/// This server listens on a loopback address and captures authentication
+/// responses sent to the redirect URI.
 class AortemEntraIdAzureLoopbackClient {
   final Logger _logger = Logger('AortemEntraIdAzureLoopbackClient');
 
-  /// The port to listen on
+  /// The port the server will listen on (0 means auto-assign).
   final int port;
 
-  /// Path for the redirect endpoint
+  /// The redirect endpoint path for authentication.
   final String path;
 
-  /// Timeout duration for waiting for the redirect
+  /// Timeout duration for waiting for authentication responses.
   final Duration timeout;
 
-  /// The HTTP server instance
+  /// The internal HTTP server instance.
   HttpServer? _server;
 
-  /// Completer for the response
+  /// Completer used to capture the response asynchronously.
   Completer<LoopbackResponse>? _responseCompleter;
 
-  /// Creates a new instance of AortemEntraIdAzureLoopbackClient
+  /// Creates an instance of [AortemEntraIdAzureLoopbackClient].
+  ///
+  /// - [port]: The port for the local HTTP server (0 to auto-assign).
+  /// - [path]: The path used for authentication redirection.
+  /// - [timeout]: The maximum duration to wait for a response.
   AortemEntraIdAzureLoopbackClient({
-    this.port = 0, // 0 means let the system choose an available port
+    this.port = 0, // System assigns an available port.
     this.path = '/redirect',
     this.timeout = const Duration(minutes: 5),
   });
 
-  /// Starts the loopback server
+  /// Starts the loopback server and returns the assigned port.
+  ///
+  /// This binds an HTTP server to `127.0.0.1` (loopback address) and begins
+  /// listening for incoming authentication requests.
+  ///
+  /// Throws [LoopbackClientException] if the server fails to start.
   Future<int> start() async {
     try {
       _server = await HttpServer.bind(InternetAddress.loopbackIPv4, port);
@@ -76,7 +104,11 @@ class AortemEntraIdAzureLoopbackClient {
     }
   }
 
-  /// Waits for and returns the redirect response
+  /// Waits for an authentication response from the redirect URI.
+  ///
+  /// This method blocks until a valid response is received or the timeout is reached.
+  ///
+  /// Throws [LoopbackClientException] if the server is not started or times out.
   Future<LoopbackResponse> waitForResponse() async {
     if (_server == null) {
       throw LoopbackClientException(
@@ -102,7 +134,9 @@ class AortemEntraIdAzureLoopbackClient {
     }
   }
 
-  /// Stops the loopback server
+  /// Stops the loopback server.
+  ///
+  /// Closes the HTTP server if it is running.
   Future<void> stop() async {
     if (_server != null) {
       await _server!.close();
@@ -111,7 +145,7 @@ class AortemEntraIdAzureLoopbackClient {
     }
   }
 
-  /// Listens for incoming connections
+  /// Listens for incoming connections and handles authentication redirects.
   void _listenForConnections() {
     _server!.listen(
       (HttpRequest request) async {
@@ -139,14 +173,17 @@ class AortemEntraIdAzureLoopbackClient {
     );
   }
 
-  /// Handles the redirect request
+  /// Handles incoming authentication redirect requests.
+  ///
+  /// Extracts query parameters from the request and sends a response
+  /// indicating that authentication is complete.
   Future<void> _handleRedirect(HttpRequest request) async {
     final response = LoopbackResponse(
       queryParameters: request.uri.queryParameters,
       rawRequest: request.uri.toString(),
     );
 
-    // Send success response
+    // Send success response to the user.
     request.response.statusCode = HttpStatus.ok;
     request.response.headers.contentType = ContentType.html;
     request.response.write('''
@@ -161,23 +198,32 @@ class AortemEntraIdAzureLoopbackClient {
     ''');
     await request.response.close();
 
-    // Complete the response
+    // Complete the response future.
     _responseCompleter?.complete(response);
   }
 
-  /// Sends a 404 Not Found response
+  /// Sends a 404 Not Found response.
+  ///
+  /// This is used when an unknown request is received.
   Future<void> _sendNotFound(HttpRequest request) async {
     request.response.statusCode = HttpStatus.notFound;
     await request.response.close();
   }
 
-  /// Sends an error response
+  /// Sends a 500 Internal Server Error response.
+  ///
+  /// This is used when an unexpected error occurs.
   Future<void> _sendError(HttpRequest request) async {
     request.response.statusCode = HttpStatus.internalServerError;
     await request.response.close();
   }
 
-  /// Gets the redirect URI for this loopback server
+  /// Returns the redirect URI for this loopback server.
+  ///
+  /// This URI should be registered as an allowed redirect URI in
+  /// the authentication provider's configuration.
+  ///
+  /// Throws [LoopbackClientException] if the server is not started.
   String getRedirectUri() {
     if (_server == null) {
       throw LoopbackClientException(
