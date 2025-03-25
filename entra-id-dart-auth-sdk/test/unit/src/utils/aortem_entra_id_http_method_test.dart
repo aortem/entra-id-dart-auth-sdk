@@ -1,5 +1,5 @@
 import 'package:ds_tools_testing/ds_tools_testing.dart';
-import 'package:entra_id_dart_auth_sdk/src/utils/aortem_entraid_http_method.dart';
+import 'package:entra_id_dart_auth_sdk/src/utils/aortem_entra_id_http_method.dart';
 
 void main() {
   group('AortemEntraIdHttpMethodUtils', () {

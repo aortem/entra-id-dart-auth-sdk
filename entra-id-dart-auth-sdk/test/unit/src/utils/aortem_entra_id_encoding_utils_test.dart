@@ -1,7 +1,5 @@
-
-
 import 'package:ds_tools_testing/ds_tools_testing.dart';
-import 'package:entra_id_dart_auth_sdk/utils/encoding_utils.dart';
+import 'package:entra_id_dart_auth_sdk/src/utils/aortem_entra_id_encoding_utils.dart';
 
 void main() {
   group('AortemEntraIdEncodingUtils', () {
@@ -14,8 +12,14 @@ void main() {
     });
 
     test('should throw error on empty Base64 input', () {
-      expect(() => AortemEntraIdEncodingUtils.encodeBase64(''), throwsArgumentError);
-      expect(() => AortemEntraIdEncodingUtils.decodeBase64(''), throwsArgumentError);
+      expect(
+        () => AortemEntraIdEncodingUtils.encodeBase64(''),
+        throwsArgumentError,
+      );
+      expect(
+        () => AortemEntraIdEncodingUtils.decodeBase64(''),
+        throwsArgumentError,
+      );
     });
 
     test('should encode and decode URL correctly', () {

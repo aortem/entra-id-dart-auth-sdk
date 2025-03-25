@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
-import 'package:entra_id_dart_auth_sdk/src/core/aortem_entraid_http_client.dart';
-import 'package:entra_id_dart_auth_sdk/utils/aortem_entra_exceptions.dart'
+import 'package:entra_id_dart_auth_sdk/src/core/aortem_entra_id_http_client.dart';
+import 'package:entra_id_dart_auth_sdk/src/utils/aortem_entra_id_exceptions.dart'
     as exception;
-import 'package:entra_id_dart_auth_sdk/utils/aortem_entra_exceptions.dart';
+import 'package:entra_id_dart_auth_sdk/src/utils/aortem_entra_id_exceptions.dart';
 
 /// Mock HTTP Client
 class MockHttpClient extends Mock implements http.Client {}

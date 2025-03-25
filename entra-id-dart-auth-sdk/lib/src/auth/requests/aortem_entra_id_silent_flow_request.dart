@@ -1,7 +1,6 @@
 import 'package:logging/logging.dart';
-import '../auth_entra_id_configuration.dart';
-import '../auth_entra_id_cache_kvstore.dart';
-
+import '../aortem_entra_id_auth_configuration.dart';
+import '../aortem_entra_id_auth_cache_kvstore.dart';
 
 /// Exception for silent flow request errors.
 ///
@@ -34,7 +33,7 @@ class AortemEntraIdSilentFlowRequest {
   final Logger _logger = Logger('AortemEntraIdSilentFlowRequest');
 
   /// Configuration for the request.
-  final AortemEntraIdConfiguration configuration;
+  final AortemEntraIdAuthConfiguration configuration;
 
   /// Cache store for token storage and retrieval.
   final AortemEntraIdCacheKVStore _cacheStore;

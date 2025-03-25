@@ -1,4 +1,4 @@
-import 'package:entra_id_dart_auth_sdk/utils/encoding_utils.dart';
+import 'package:entra_id_dart_auth_sdk/src/utils/aortem_entra_id_encoding_utils.dart';
 import 'package:logging/logging.dart';
 
 /// Parameters for an authorization code token request

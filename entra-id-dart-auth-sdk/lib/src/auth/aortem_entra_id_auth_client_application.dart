@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:ds_standard_features/ds_standard_features.dart';
-import 'auth_entra_id_configuration.dart';
-import 'auth_entra_id_cache_kvstore.dart';
-import 'auth_entra_id_cache_options.dart';
+import 'aortem_entra_id_auth_configuration.dart';
+import 'aortem_entra_id_auth_cache_kvstore.dart';
+import 'aortem_entra_id_auth_cache_options.dart';
 
 /// Status of the client application
 enum ClientApplicationStatus {
@@ -13,7 +13,7 @@ enum ClientApplicationStatus {
   ready,
 
   /// Application encountered an error
-  error
+  error,
 }
 
 /// Exception thrown for client application errors
@@ -40,7 +40,7 @@ abstract class AortemEntraIdClientApplication {
   final Logger _logger = Logger('AortemEntraIdClientApplication');
 
   /// Configuration for the client application
-  final AortemEntraIdConfiguration configuration;
+  final AortemEntraIdAuthConfiguration configuration;
 
   /// Cache store for tokens and other data
   late final AortemEntraIdCacheKVStore _cacheStore;
@@ -70,9 +70,7 @@ abstract class AortemEntraIdClientApplication {
 
       // Initialize cache store with default options
       _cacheStore = AortemEntraIdCacheKVStore(
-        AortemEntraIdCacheOptions(
-          namespace: configuration.clientId,
-        ),
+        AortemEntraIdCacheOptions(namespace: configuration.clientId),
       );
 
       _updateStatus(ClientApplicationStatus.ready);
@@ -117,7 +115,8 @@ abstract class AortemEntraIdClientApplication {
   /// [scopes] The scopes required for the token
   /// Returns a token if found in cache, null otherwise
   Future<Map<String, dynamic>?> acquireTokenSilently(
-      List<String> scopes) async {
+    List<String> scopes,
+  ) async {
     _validateReady();
 
     final cacheKey = _generateTokenCacheKey(scopes);

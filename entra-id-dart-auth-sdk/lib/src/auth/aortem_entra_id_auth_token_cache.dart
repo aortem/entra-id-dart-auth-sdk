@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:entra_id_dart_auth_sdk/utils/guid_generator.dart';
+import 'package:entra_id_dart_auth_sdk/src/utils/aortem_entra_id_guid_generator.dart';
 import 'package:logging/logging.dart';
 
 /// Types of tokens that can be stored in the cache

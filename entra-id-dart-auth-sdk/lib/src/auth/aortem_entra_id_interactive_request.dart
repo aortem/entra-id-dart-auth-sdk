@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:entra_id_dart_auth_sdk/utils/guid_generator.dart';
+import 'package:entra_id_dart_auth_sdk/src/utils/aortem_entra_id_guid_generator.dart';
 import 'package:logging/logging.dart';
-import 'auth_entra_id_authorization_url_request.dart';
-import 'auth_crypto_provider.dart';
+import 'aortem_entra_id_authorization_url_request.dart';
+import 'aortem_entra_id_auth_crypto_provider.dart';
 
 /// Parameters for interactive authentication
 class InteractiveRequestParameters {

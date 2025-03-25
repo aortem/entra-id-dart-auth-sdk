@@ -3,7 +3,7 @@ import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Configuration class for the Entra ID Authentication SDK.
 /// Manages global settings and configurations for authentication workflows.
-class AortemEntraIdConfiguration {
+class AortemEntraIdAuthConfiguration {
   final Logger _logger = Logger('AortemEntraIdConfiguration');
 
   /// The client ID of the application registered in Entra ID
@@ -42,7 +42,7 @@ class AortemEntraIdConfiguration {
   /// - [clientId]: The client ID from Entra ID application registration
   /// - [tenantId]: The tenant ID for the Entra ID instance
   /// - [authority]: The authority URL for authentication
-  AortemEntraIdConfiguration({
+  AortemEntraIdAuthConfiguration({
     required this.clientId,
     required this.tenantId,
     required this.authority,
@@ -59,8 +59,8 @@ class AortemEntraIdConfiguration {
   }
 
   /// Factory method to create configuration from JSON
-  factory AortemEntraIdConfiguration.fromJson(Map<String, dynamic> json) {
-    return AortemEntraIdConfiguration(
+  factory AortemEntraIdAuthConfiguration.fromJson(Map<String, dynamic> json) {
+    return AortemEntraIdAuthConfiguration(
       clientId: json['clientId'] as String,
       tenantId: json['tenantId'] as String,
       authority: json['authority'] as String,
@@ -70,8 +70,9 @@ class AortemEntraIdConfiguration {
       cacheOptions: json['cacheOptions'] as Map<String, dynamic>? ?? {},
       telemetryOptions: json['telemetryOptions'] as Map<String, dynamic>? ?? {},
       timeoutInSeconds: json['timeoutInSeconds'] as int? ?? 30,
-      customHeaders: (json['customHeaders'] as Map<String, dynamic>?)
-          ?.cast<String, String>(),
+      customHeaders:
+          (json['customHeaders'] as Map<String, dynamic>?)
+              ?.cast<String, String>(),
     );
   }
 
@@ -127,7 +128,7 @@ class AortemEntraIdConfiguration {
   String get apiEndpoint => '$authority/$tenantId/oauth2/v2.0';
 
   /// Creates a copy of the configuration with updated values
-  AortemEntraIdConfiguration copyWith({
+  AortemEntraIdAuthConfiguration copyWith({
     String? clientId,
     String? tenantId,
     String? authority,
@@ -139,7 +140,7 @@ class AortemEntraIdConfiguration {
     int? timeoutInSeconds,
     Map<String, String>? customHeaders,
   }) {
-    return AortemEntraIdConfiguration(
+    return AortemEntraIdAuthConfiguration(
       clientId: clientId ?? this.clientId,
       tenantId: tenantId ?? this.tenantId,
       authority: authority ?? this.authority,

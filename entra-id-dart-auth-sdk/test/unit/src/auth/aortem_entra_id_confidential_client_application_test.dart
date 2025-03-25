@@ -1,13 +1,13 @@
 import 'package:ds_tools_testing/ds_tools_testing.dart';
-import 'package:entra_id_dart_auth_sdk/src/auth/auth_entra_id_confidential_client_application.dart';
-import 'package:entra_id_dart_auth_sdk/src/auth/auth_entra_id_configuration.dart';
+import 'package:entra_id_dart_auth_sdk/src/auth/aortem_entra_id_auth_confidential_client_application.dart';
+import 'package:entra_id_dart_auth_sdk/src/auth/aortem_entra_id_auth_configuration.dart';
 
 void main() {
   group('AortemEntraIdConfidentialClientApplication Tests', () {
-    late AortemEntraIdConfiguration configuration;
+    late AortemEntraIdAuthConfiguration configuration;
 
     setUp(() {
-      configuration = AortemEntraIdConfiguration(
+      configuration = AortemEntraIdAuthConfiguration(
         clientId: 'test-client-id',
         tenantId: 'test-tenant-id',
         authority: 'https://login.microsoftonline.com/test-tenant',
@@ -39,7 +39,7 @@ void main() {
     });
 
     test('should throw an error if authority is invalid', () {
-      final invalidConfiguration = AortemEntraIdConfiguration(
+      final invalidConfiguration = AortemEntraIdAuthConfiguration(
         clientId: 'test-client-id',
         tenantId: 'test-tenant-id',
         authority: 'http://invalid-url.com',

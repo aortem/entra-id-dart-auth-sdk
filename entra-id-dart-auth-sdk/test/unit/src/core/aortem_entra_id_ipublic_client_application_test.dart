@@ -1,6 +1,5 @@
-
 import 'package:ds_tools_testing/ds_tools_testing.dart';
-import 'package:entra_id_dart_auth_sdk/src/core/aortem_entraid_ipublic_client_application.dart';
+import 'package:entra_id_dart_auth_sdk/src/core/aortem_entra_id_ipublic_client_application.dart';
 
 void main() {
   group('AortemEntraIdPublicClientApp Tests', () {
@@ -16,9 +15,11 @@ void main() {
 
     test('Interactive Token Acquisition', () async {
       final scopes = ['user.read'];
-      
-      final tokenResponse = await publicClientApp.acquireTokenInteractively(scopes);
-      
+
+      final tokenResponse = await publicClientApp.acquireTokenInteractively(
+        scopes,
+      );
+
       expect(tokenResponse['access_token'], 'mocked_access_token');
       expect(tokenResponse['refresh_token'], 'mocked_refresh_token');
       expect(tokenResponse['id_token'], 'mocked_id_token');
@@ -28,7 +29,9 @@ void main() {
     test('Device Code Token Acquisition', () async {
       final scopes = ['user.read'];
 
-      final tokenResponse = await publicClientApp.acquireTokenByDeviceCode(scopes);
+      final tokenResponse = await publicClientApp.acquireTokenByDeviceCode(
+        scopes,
+      );
 
       expect(tokenResponse['access_token'], 'mocked_access_token');
       expect(tokenResponse['refresh_token'], 'mocked_refresh_token');

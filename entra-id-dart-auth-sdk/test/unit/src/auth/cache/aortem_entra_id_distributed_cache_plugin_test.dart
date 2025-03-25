@@ -1,7 +1,5 @@
 import 'package:ds_tools_testing/ds_tools_testing.dart';
-import 'package:entra_id_dart_auth_sdk/src/auth/cache/distributed_cache_plugin.dart';
-
-
+import 'package:entra_id_dart_auth_sdk/src/auth/cache/aortem_entra_id_distributed_cache_plugin.dart';
 
 void main() {
   group('AortemEntraIdDistributedCachePlugin Tests', () {

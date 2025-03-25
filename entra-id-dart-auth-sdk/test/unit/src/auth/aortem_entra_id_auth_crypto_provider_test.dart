@@ -1,5 +1,5 @@
 import 'package:ds_tools_testing/ds_tools_testing.dart';
-import 'package:entra_id_dart_auth_sdk/src/auth/auth_crypto_provider.dart';
+import 'package:entra_id_dart_auth_sdk/src/auth/aortem_entra_id_auth_crypto_provider.dart';
 
 void main() {
   group('AortemEntraIdCryptoProvider', () {
