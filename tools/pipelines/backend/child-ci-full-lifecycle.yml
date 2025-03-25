@@ -34,7 +34,7 @@ unit_tests:
     - if: $CI_COMMIT_REF_NAME == "development" && $GITLAB_USER_LOGIN == "alphabetacreatives"
   script:
     - echo "Running Unit Tests..."
-    - cd entra_id_dart_auth_sdk/entra_id_dart_auth_sdk/test/test/unit # Navigate to the directory with pubspec.yaml
+    - cd entra-id-dart-auth-sdk/entra_id_dart_auth_sdk/test/test/unit # Navigate to the directory with pubspec.yaml
     - dart pub get
     - dart test test/unit/ --reporter expanded
   artifacts:
