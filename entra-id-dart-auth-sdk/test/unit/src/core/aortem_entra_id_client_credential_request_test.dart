@@ -3,7 +3,7 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 import 'dart:convert';
 
-import 'package:entra_id_dart_auth_sdk/src/core/aortem_entraid_client_credential_request.dart';
+import 'package:entra_id_dart_auth_sdk/src/core/aortem_entra_id_client_credential_request.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
 

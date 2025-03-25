@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:logging/logging.dart';
-import 'auth_entra_id_cache_options.dart';
+import 'aortem_entra_id_auth_cache_options.dart';
 
 /// Represents a cached item with metadata
 class CacheEntry {
@@ -40,7 +40,8 @@ class AortemEntraIdCacheKVStore {
   /// Creates a new instance of AortemEntraIdCacheKVStore
   AortemEntraIdCacheKVStore(this.options) {
     _logger.info(
-        'Initializing cache store with ${options.storageType} storage type');
+      'Initializing cache store with ${options.storageType} storage type',
+    );
     _startMaintenanceTimer();
   }
 
@@ -55,8 +56,9 @@ class AortemEntraIdCacheKVStore {
   Future<void> set(String key, dynamic value, {int? ttlSeconds}) async {
     _ensureCapacity();
 
-    final expiresAt = DateTime.now()
-        .add(Duration(seconds: ttlSeconds ?? options.defaultTtlSeconds));
+    final expiresAt = DateTime.now().add(
+      Duration(seconds: ttlSeconds ?? options.defaultTtlSeconds),
+    );
 
     _cache[_namespaceKey(key)] = CacheEntry(
       value: value,
@@ -146,8 +148,10 @@ class AortemEntraIdCacheKVStore {
 
   /// Evicts the least recently used entries
   void _evictLRU() {
-    final sorted = _cache.entries.toList()
-      ..sort((a, b) => a.value.lastAccessed.compareTo(b.value.lastAccessed));
+    final sorted =
+        _cache.entries.toList()..sort(
+          (a, b) => a.value.lastAccessed.compareTo(b.value.lastAccessed),
+        );
 
     // Remove 10% of the oldest entries
     final removeCount = (_cache.length * 0.1).ceil();

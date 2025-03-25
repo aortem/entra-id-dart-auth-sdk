@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:logging/logging.dart';
-import '../auth_entra_id_cache_kvstore.dart';
-import '../auth_entra_id_cache_options.dart';
+import '../aortem_entra_id_auth_cache_kvstore.dart';
+import '../aortem_entra_id_auth_cache_options.dart';
 
 /// Exception thrown for JSON cache operations
 /// Exception thrown for errors related to JSON cache operations.

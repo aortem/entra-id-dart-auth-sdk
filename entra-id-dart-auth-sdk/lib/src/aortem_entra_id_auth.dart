@@ -1,5 +1,5 @@
 import 'package:logging/logging.dart'; // Provides logging capabilities for the SDK.
-import 'auth/auth_entra_id_configuration.dart'; // Imports the configuration class for Entra ID.
+import 'auth/aortem_entra_id_auth_configuration.dart'; // Imports the configuration class for Entra ID.
 
 /// Main class providing access to all Entra ID authentication functionality.
 ///
@@ -11,7 +11,7 @@ class EntraAuth {
   final Logger _logger = Logger('EntraAuth');
 
   /// Configuration object for the Entra ID SDK.
-  final AortemEntraIdConfiguration _configuration;
+  final AortemEntraIdAuthConfiguration _configuration;
 
   /// Creates an instance of `EntraAuth` with the given configuration.
   ///
@@ -30,7 +30,7 @@ class EntraAuth {
   /// final config = entraAuth.configuration;
   /// print(config.clientId);
   /// ```
-  AortemEntraIdConfiguration get configuration => _configuration;
+  AortemEntraIdAuthConfiguration get configuration => _configuration;
 
   /// Initializes the SDK components.
   ///

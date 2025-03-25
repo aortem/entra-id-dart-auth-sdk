@@ -1,4 +1,4 @@
-import 'package:entra_id_dart_auth_sdk/src/auth/auth_entra_id_configuration.dart';
+import 'package:entra_id_dart_auth_sdk/src/auth/aortem_entra_id_auth_configuration.dart';
 import 'package:logging/logging.dart';
 
 /// Enum for credential types used in authentication
@@ -16,7 +16,7 @@ enum CredentialType {
 /// Manages confidential client applications for the Aortem Entra ID SDK.
 class AortemEntraIdConfidentialClientApplication {
   /// Configuration object for the confidential client application.
-  final AortemEntraIdConfiguration configuration;
+  final AortemEntraIdAuthConfiguration configuration;
 
   /// The credential used for authentication.
   final String credential;

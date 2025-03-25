@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:logging/logging.dart';
-import 'auth_entra_id_token_cache.dart';
+import 'aortem_entra_id_auth_token_cache.dart';
 
 /// Configuration for the in-memory token cache
 class InMemoryCacheConfig {
@@ -39,9 +39,8 @@ class AortemEntraIdInMemoryCache extends AortemEntraIdTokenCache {
   Timer? _cleanupTimer;
 
   /// Creates a new instance of AortemEntraIdInMemoryCache
-  AortemEntraIdInMemoryCache({
-    InMemoryCacheConfig? config,
-  }) : config = config ?? InMemoryCacheConfig() {
+  AortemEntraIdInMemoryCache({InMemoryCacheConfig? config})
+    : config = config ?? InMemoryCacheConfig() {
     if (this.config.enableAutomaticCleanup) {
       _startCleanupTimer();
     }
@@ -92,8 +91,9 @@ class AortemEntraIdInMemoryCache extends AortemEntraIdTokenCache {
       return null;
     }
 
-    return validTokens
-        .reduce((a, b) => a.expiresOn.isAfter(b.expiresOn) ? a : b);
+    return validTokens.reduce(
+      (a, b) => a.expiresOn.isAfter(b.expiresOn) ? a : b,
+    );
   }
 
   @override
@@ -103,16 +103,19 @@ class AortemEntraIdInMemoryCache extends AortemEntraIdTokenCache {
     String? userId,
     List<String>? scopes,
   }) async {
-    final tokensToRemove = _tokenStorage.entries
-        .where((entry) => _matchesFilter(
-              entry.value,
-              tokenType: tokenType,
-              clientId: clientId,
-              userId: userId,
-              scopes: scopes,
-            ))
-        .map((e) => e.key)
-        .toList();
+    final tokensToRemove =
+        _tokenStorage.entries
+            .where(
+              (entry) => _matchesFilter(
+                entry.value,
+                tokenType: tokenType,
+                clientId: clientId,
+                userId: userId,
+                scopes: scopes,
+              ),
+            )
+            .map((e) => e.key)
+            .toList();
 
     for (final key in tokensToRemove) {
       _tokenStorage.remove(key);
@@ -132,13 +135,15 @@ class AortemEntraIdInMemoryCache extends AortemEntraIdTokenCache {
     List<String>? scopes,
   }) async {
     return _tokenStorage.values
-        .where((token) => _matchesFilter(
-              token,
-              tokenType: tokenType,
-              clientId: clientId,
-              userId: userId,
-              scopes: scopes,
-            ))
+        .where(
+          (token) => _matchesFilter(
+            token,
+            tokenType: tokenType,
+            clientId: clientId,
+            userId: userId,
+            scopes: scopes,
+          ),
+        )
         .toList();
   }
 
@@ -152,10 +157,11 @@ class AortemEntraIdInMemoryCache extends AortemEntraIdTokenCache {
   @override
   Future<void> removeExpiredTokens() async {
     final now = DateTime.now();
-    final expiredKeys = _tokenStorage.entries
-        .where((entry) => entry.value.expiresOn.isBefore(now))
-        .map((e) => e.key)
-        .toList();
+    final expiredKeys =
+        _tokenStorage.entries
+            .where((entry) => entry.value.expiresOn.isBefore(now))
+            .map((e) => e.key)
+            .toList();
 
     for (final key in expiredKeys) {
       _tokenStorage.remove(key);
@@ -171,9 +177,10 @@ class AortemEntraIdInMemoryCache extends AortemEntraIdTokenCache {
   Future<Map<String, dynamic>> getCacheStats() async {
     final now = DateTime.now();
     final total = _tokenStorage.length;
-    final expired = _tokenStorage.values
-        .where((token) => token.expiresOn.isBefore(now))
-        .length;
+    final expired =
+        _tokenStorage.values
+            .where((token) => token.expiresOn.isBefore(now))
+            .length;
 
     return {
       'totalTokens': total,
@@ -203,8 +210,9 @@ class AortemEntraIdInMemoryCache extends AortemEntraIdTokenCache {
 
     // If still at capacity, remove oldest tokens
     if (_tokenStorage.length >= config.maxTokens) {
-      final tokens = _tokenStorage.entries.toList()
-        ..sort((a, b) => a.value.expiresOn.compareTo(b.value.expiresOn));
+      final tokens =
+          _tokenStorage.entries.toList()
+            ..sort((a, b) => a.value.expiresOn.compareTo(b.value.expiresOn));
 
       // Remove 10% of oldest tokens
       final removeCount = (config.maxTokens * 0.1).ceil();

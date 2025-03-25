@@ -1,6 +1,6 @@
 import 'package:logging/logging.dart';
-import 'auth_entra_id_client_application.dart';
-import 'auth_entra_id_configuration.dart';
+import 'aortem_entra_id_auth_client_application.dart';
+import 'aortem_entra_id_auth_configuration.dart';
 
 /// Browser type for interactive authentication
 enum BrowserType {
@@ -11,7 +11,7 @@ enum BrowserType {
   embedded,
 
   /// Custom tab (mobile)
-  customTab
+  customTab,
 }
 
 /// Represents a public client application in Entra ID.
@@ -31,7 +31,7 @@ class AortemEntraIdPublicClientApplication
 
   /// Creates a new instance of AortemEntraIdPublicClientApplication
   AortemEntraIdPublicClientApplication({
-    required AortemEntraIdConfiguration configuration,
+    required AortemEntraIdAuthConfiguration configuration,
     this.browserType = BrowserType.systemDefault,
     this.enableMemoryCache = true,
     this.usePkce = true,
@@ -77,7 +77,8 @@ class AortemEntraIdPublicClientApplication
 
   /// Initiates interactive authentication flow
   Future<Map<String, dynamic>> acquireTokenInteractive(
-      List<String> scopes) async {
+    List<String> scopes,
+  ) async {
     validateScopes(scopes);
 
     try {
@@ -109,7 +110,8 @@ class AortemEntraIdPublicClientApplication
 
   /// Initiates device code flow authentication
   Future<Map<String, dynamic>> acquireTokenWithDeviceCode(
-      List<String> scopes) async {
+    List<String> scopes,
+  ) async {
     validateScopes(scopes);
 
     try {

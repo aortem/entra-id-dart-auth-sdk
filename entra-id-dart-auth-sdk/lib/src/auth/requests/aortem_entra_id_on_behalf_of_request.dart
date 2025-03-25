@@ -1,6 +1,6 @@
 import 'package:logging/logging.dart';
-import '../auth_entra_id_configuration.dart';
-import '../auth_entra_id_cache_kvstore.dart';
+import '../aortem_entra_id_auth_configuration.dart';
+import '../aortem_entra_id_auth_cache_kvstore.dart';
 
 /// Exception thrown when an error occurs during an On-Behalf-Of (OBO) request.
 ///
@@ -37,7 +37,7 @@ class AortemEntraIdOnBehalfOfRequest {
   final Logger _logger = Logger('AortemEntraIdOnBehalfOfRequest');
 
   /// Configuration for the request
-  final AortemEntraIdConfiguration configuration;
+  final AortemEntraIdAuthConfiguration configuration;
 
   /// Cache store for tokens
   final AortemEntraIdCacheKVStore _cacheStore;
