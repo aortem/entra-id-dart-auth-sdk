@@ -1,12 +1,13 @@
+import 'dart:developer';
 
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:entra_id_dart_auth_sdk/src/auth/aortem_entra_id_username_password_request.dart';
 
-
 import 'dart:convert';
 
 import 'package:http/testing.dart';
+
 void main() {
   group('AortemEntraIdUsernamePasswordRequest', () {
     test('should successfully acquire tokens', () async {
@@ -31,7 +32,11 @@ void main() {
         authority: 'https://login.microsoftonline.com',
       );
 
-      final tokens = await authRequest.acquireToken('user@example.com', 'password');
+      log('MockClient initialized: $mockClient');
+      final tokens = await authRequest.acquireToken(
+        'user@example.com',
+        'password',
+      );
       expect(tokens['access_token'], 'test_access_token');
       expect(tokens['refresh_token'], 'test_refresh_token');
       expect(tokens['id_token'], 'test_id_token');
@@ -74,8 +79,12 @@ void main() {
         authority: 'https://login.microsoftonline.com',
       );
 
+      log('MockClient initialized: $mockClient');
       expect(
-        () async => await authRequest.acquireToken('user@example.com', 'wrong-password'),
+        () async => await authRequest.acquireToken(
+          'user@example.com',
+          'wrong-password',
+        ),
         throwsA(isA<Exception>()),
       );
     });

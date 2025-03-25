@@ -2,12 +2,30 @@ import 'package:logging/logging.dart';
 import '../auth_entra_id_configuration.dart';
 import '../auth_entra_id_cache_kvstore.dart';
 
-/// Exception for OnBehalfOf request errors
+/// Exception thrown when an error occurs during an On-Behalf-Of (OBO) request.
+///
+/// This exception is used to handle errors related to the OBO authentication flow,
+/// where a service obtains an access token on behalf of a user.
+///
+/// Example usage:
+/// ```dart
+/// throw OnBehalfOfRequestException('Invalid token', code: 'invalid_token');
+/// ```
 class OnBehalfOfRequestException implements Exception {
+  /// Error message describing the reason for the exception.
   final String message;
+
+  /// Optional error code providing additional context for the error.
   final String? code;
+
+  /// Optional additional details related to the error (e.g., response data, stack trace).
   final dynamic details;
 
+  /// Creates an instance of [OnBehalfOfRequestException].
+  ///
+  /// - [message]: A descriptive error message.
+  /// - [code]: An optional error code (e.g., 'invalid_token').
+  /// - [details]: Additional information about the error, if available.
   OnBehalfOfRequestException(this.message, {this.code, this.details});
 
   @override

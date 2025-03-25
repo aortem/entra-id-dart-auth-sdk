@@ -69,17 +69,30 @@ enum InteractiveRequestStatus {
   cancelled,
 
   /// Authentication timed out
-  timeout
+  timeout,
 }
 
-/// Exception thrown for interactive authentication errors
+/// Exception thrown for errors related to interactive requests.
+/// This exception is used when an interactive user request fails
+/// due to issues such as user cancellation, timeout, or authentication failure.
 class InteractiveRequestException implements Exception {
+  /// The error message describing the issue.
   final String message;
+
+  /// An optional error code to categorize the type of error.
   final String? code;
+
+  /// Additional details about the error, such as debug information or stack trace.
   final dynamic details;
 
+  /// Creates a new instance of [InteractiveRequestException].
+  ///
+  /// - [message]: A required description of the error.
+  /// - [code]: An optional identifier for the error type.
+  /// - [details]: Optional extra details related to the error, such as a stack trace.
   InteractiveRequestException(this.message, {this.code, this.details});
 
+  /// Returns a string representation of the exception, including the error message and optional code.
   @override
   String toString() => 'InteractiveRequestException: $message (Code: $code)';
 }
@@ -191,11 +204,12 @@ class AortemEntraIdInteractiveRequest {
           prompt: parameters.prompt,
           correlationId: parameters.correlationId,
         ),
-        pkceCodeChallenge: parameters.usePkce
-            ? AortemEntraIdCryptoProvider.generatePkceCodeChallenge(
-                _pkceCodeVerifier!,
-              )
-            : null,
+        pkceCodeChallenge:
+            parameters.usePkce
+                ? AortemEntraIdCryptoProvider.generatePkceCodeChallenge(
+                  _pkceCodeVerifier!,
+                )
+                : null,
         pkceCodeChallengeMethod: parameters.usePkce ? 'S256' : null,
       );
 

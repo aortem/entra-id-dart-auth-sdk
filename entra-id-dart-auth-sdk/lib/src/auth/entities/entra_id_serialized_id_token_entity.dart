@@ -1,13 +1,25 @@
 import 'package:logging/logging.dart';
 
 /// Exception thrown for ID token entity operations
+/// Exception thrown when an error occurs during ID token entity operations.
+/// This exception is used to handle errors related to ID token validation,
+/// parsing, or any other token-related issue.
 class IdTokenEntityException implements Exception {
+  /// The error message describing the issue.
   final String message;
+
+  /// An optional error code to help categorize the error.
   final String? code;
+
+  /// Additional details about the error, such as debug information or stack trace.
   final dynamic details;
 
+  /// Creates a new instance of [IdTokenEntityException].
+  ///
+  /// Requires a [message] to describe the error, while [code] and [details] are optional.
   IdTokenEntityException(this.message, {this.code, this.details});
 
+  /// Returns a string representation of the exception, including the error message and optional code.
   @override
   String toString() => 'IdTokenEntityException: $message (Code: $code)';
 }
@@ -106,26 +118,28 @@ class AortemEntraIdSerializedIdTokenEntity {
       preferredUsername: claims['preferred_username'] as String?,
       email: claims['email'] as String?,
       emailVerified: claims['email_verified'] as bool?,
-      authTime: claims['auth_time'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(
-              (claims['auth_time'] as int) * 1000,
-              isUtc: true,
-            )
-          : null,
-      additionalClaims: Map<String, dynamic>.from(claims)
-        ..removeWhere((key, _) => [
-              'iss',
-              'sub',
-              'aud',
-              'exp',
-              'iat',
-              'nonce',
-              'name',
-              'preferred_username',
-              'email',
-              'email_verified',
-              'auth_time',
-            ].contains(key)),
+      authTime:
+          claims['auth_time'] != null
+              ? DateTime.fromMillisecondsSinceEpoch(
+                (claims['auth_time'] as int) * 1000,
+                isUtc: true,
+              )
+              : null,
+      additionalClaims: Map<String, dynamic>.from(claims)..removeWhere(
+        (key, _) => [
+          'iss',
+          'sub',
+          'aud',
+          'exp',
+          'iat',
+          'nonce',
+          'name',
+          'preferred_username',
+          'email',
+          'email_verified',
+          'auth_time',
+        ].contains(key),
+      ),
     );
   }
 
@@ -146,9 +160,10 @@ class AortemEntraIdSerializedIdTokenEntity {
       preferredUsername: json['preferredUsername'] as String?,
       email: json['email'] as String?,
       emailVerified: json['emailVerified'] as bool?,
-      authTime: json['authTime'] != null
-          ? DateTime.parse(json['authTime'] as String)
-          : null,
+      authTime:
+          json['authTime'] != null
+              ? DateTime.parse(json['authTime'] as String)
+              : null,
       additionalClaims: Map<String, dynamic>.from(
         json['additionalClaims'] as Map<String, dynamic>? ?? {},
       ),

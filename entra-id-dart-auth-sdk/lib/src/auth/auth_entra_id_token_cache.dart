@@ -11,7 +11,7 @@ enum TokenType {
   refreshToken,
 
   /// ID tokens containing user claims
-  idToken
+  idToken,
 }
 
 /// Represents a cached token with metadata
@@ -83,13 +83,27 @@ class CachedToken {
 }
 
 /// Exception thrown for token cache operations
+/// Exception thrown for errors related to token cache operations.
+/// This exception is used to handle issues that occur while storing,
+/// retrieving, or managing cached authentication tokens.
 class TokenCacheException implements Exception {
+  /// The error message describing the issue.
   final String message;
+
+  /// An optional error code to categorize the error.
   final String? code;
+
+  /// Additional details about the error, such as debug information or stack trace.
   final dynamic details;
 
+  /// Creates a new instance of [TokenCacheException].
+  ///
+  /// - [message]: A required description of the error.
+  /// - [code]: An optional identifier for the error type.
+  /// - [details]: Optional extra details related to the error, such as a stack trace.
   TokenCacheException(this.message, {this.code, this.details});
 
+  /// Returns a string representation of the exception, including the error message and optional code.
   @override
   String toString() => 'TokenCacheException: $message (Code: $code)';
 }

@@ -1,14 +1,24 @@
 import 'package:entra_id_dart_auth_sdk/utils/guid_generator.dart';
 import 'package:logging/logging.dart';
 
-/// Exception thrown for access token entity operations
+/// Exception thrown when an error occurs during access token entity operations.
+/// This is used to handle errors related to access token management, such as validation failures.
 class AccessTokenEntityException implements Exception {
+  /// The error message describing what went wrong.
   final String message;
+
+  /// An optional error code to categorize the exception.
   final String? code;
+
+  /// Additional details about the error (e.g., stack trace or debug information).
   final dynamic details;
 
+  /// Creates a new instance of [AccessTokenEntityException].
+  ///
+  /// Takes a required [message] and optional [code] and [details].
   AccessTokenEntityException(this.message, {this.code, this.details});
 
+  /// Returns a string representation of the exception, including the error message and optional code.
   @override
   String toString() => 'AccessTokenEntityException: $message (Code: $code)';
 }
@@ -98,9 +108,10 @@ class AortemEntraIdSerializedAccessTokenEntity {
       authority: json['authority'] as String,
       userId: json['userId'] as String?,
       resource: json['resource'] as String?,
-      cacheExpiresOn: json['cacheExpiresOn'] != null
-          ? DateTime.parse(json['cacheExpiresOn'] as String)
-          : null,
+      cacheExpiresOn:
+          json['cacheExpiresOn'] != null
+              ? DateTime.parse(json['cacheExpiresOn'] as String)
+              : null,
       claims: Map<String, dynamic>.from(
         json['claims'] as Map<String, dynamic>? ?? {},
       ),
