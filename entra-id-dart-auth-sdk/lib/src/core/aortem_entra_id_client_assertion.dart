@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:jose/jose.dart';
 
 /// AortemEntraIdClientAssertion: Handles the generation of client assertions for Entra ID.
 ///
@@ -66,9 +65,10 @@ class AortemEntraIdClientAssertion {
       final key = JsonWebKey.fromPem(privateKey);
 
       // Sign the token
-      final builder = JsonWebSignatureBuilder()
-        ..jsonContent = claims.toJson()
-        ..addRecipient(key, algorithm: 'RS256');
+      final builder =
+          JsonWebSignatureBuilder()
+            ..jsonContent = claims.toJson()
+            ..addRecipient(key, algorithm: 'RS256');
 
       final jws = builder.build();
       return jws.toCompactSerialization();
@@ -85,7 +85,10 @@ class AortemEntraIdClientAssertion {
   /// - Returns: A unique JWT ID as a base64 URL-encoded string.
   String _generateJwtId() {
     return base64UrlEncode(
-      List<int>.generate(16, (_) => DateTime.now().millisecondsSinceEpoch % 256),
+      List<int>.generate(
+        16,
+        (_) => DateTime.now().millisecondsSinceEpoch % 256,
+      ),
     );
   }
 
