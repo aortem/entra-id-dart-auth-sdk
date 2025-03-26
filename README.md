@@ -27,49 +27,68 @@ Entra Id Dart Auth SDK is designed to provide select out of the box features of 
 ## Features
 This implementation does not yet support all functionalities of the Entra Id authentication service. Here is a list of functionalities with the current support status:
 
-| #  | Method                                                     | Supported |
-|----|------------------------------------------------------------|:---------:|
-| 1  | EntraIdApiId                                               | ✅        |
-| 2  | EntraIdAuthorizationCodeRequest                            | ✅        |
-| 3  | EntraIdAuthorizationUrlRequest                             | ✅        |
-| 4  | Token Issuance/Generation Method                           | ✅        |
-| 5  | Refresh Token Flow                                         | ✅        |
-| 6  | Reset Token Flow                                           | ✅        |
-| 7  | Journey Token Flow                                         | ✅        |
-| 8  | Send Magic Link Email Method                               | ✅        |
-| 9  | Authenticate Magic Link Method                             | ✅        |
-| 10 | Implement Send OTP Method                                  | ✅        |
-| 11 | Authenticate OTP Method                                    | ✅        |
-| 12 | Authenticate TOTP Method                                   | ✅        |
-| 13 | Start Transaction Signing TOTP                             | ✅        |
-| 14 | Authenticate Transaction Signing TOTP Method               | ✅        |
-| 15 | Register TOTP Method                                       | ✅        |
-| 16 | Revoke TOTP Method                                         | ✅        |
-| 17 | evoke TOTP Management Method                               | ✅        |
-| 18 | Authentication Start (WebAuthn) Method                     | ✅        |
-| 19 | Authenticate WebAuthn Credential Method                    | ✅        |
-| 20 | Hosted WebAuthn Registration Hint Method                   | ✅        |
-| 21 | WebAuthn Registration Start Method                         | ✅        |
-| 22 | WebAuthn Registration Method                               | ✅        |
-| 23 | WebAuthn Registration External Method                      | ✅        |
-| 24 | WebAuthn Cross Device Registration Start Method            | ✅        |
-| 25 | WebAuthn Cross Device Registration Init Method             | ✅        |
-| 26 | WebAuthn Cross Device External Registration Init Method    | ✅        |
-| 27 | WebAuthn Cross Device Registration Method                  | ✅        |
-| 28 | WebAuthn Cross Device Abort Method                         | ✅        |
-| 29 | WebAuthn Cross Device Status Method                        | ✅        |
-| 30 | WebAuthn Cross Device Attach Device Method                 | ✅        |
-| 31 | WebAuthn Cross Device Authentication Init Method           | ✅        |
-| 32 | WebAuthn Cross Device Authenticate Start Method            | ✅        |
-| 33 | Authenticate Native Mobile Biometrics Method               | ✅        |
-| 34 | Mobile Biometrics Registration Method                      | ✅        |
-| 35 | Implement Mobile Biometrics Deletion Method                | ✅        |
-| 36 | Implement Authenticate Password Method                     | ✅        |
-| 37 | Implement Authenticate Session Method                      | ✅        |
-| 38 | Implement Refresh Backend Auth Token Method                | ✅        |
-| 39 | Logout Backend Session Method                              | ✅        |
-| 40 | Implement Get User Sessions Method                         | ✅        |
-| 41 | Implement Revoke User Sessions Method                      | ✅        |
+| #  | Method                                      | Supported |
+|----|---------------------------------------------|:---------:|
+| 1  | EntraIdApiId                                | ✅        |
+| 2  | EntraIdAuthorizationCodeRequest             | ✅        |
+| 3  | EntraIdAuthorizationUrlRequest              | ✅        |
+| 4  | EntraIdCacheKVStore                         | ✅        |
+| 5  | EntraIdCacheOptions                         | ✅        |
+| 6  | EntraIdClientApplication                    | ✅        |
+| 7  | EntraIdClientAssertion                      | ✅        |
+| 8  | EntraIdClientCredentialRequest              | ✅        |
+| 9  | EntraIdConfidentialClientApplication        | ✅        |
+| 10 | EntraIdConfiguration                        | ✅        |
+| 11 | EntraIdCryptoProvider                       | ✅        |
+| 12 | EntraIdDeserializer                         | ✅        |
+| 13 | EntraIdDeviceCodeRequest                    | ✅        |
+| 14 | EntraIdDistributedCachePlugin               | ✅        |
+| 15 | EntraIdEncodingUtils                        | ✅        |
+| 16 | EntraIdGuidGenerator                        | ✅        |
+| 17 | EntraIdHashUtils                            | ✅        |
+| 18 | EntraIdHttpClient                           | ✅        |
+| 19 | EntraIdHttpMethod                           | ✅        |
+| 20 | EntraIdHttpStatus                           | ✅        |
+| 21 | EntraIdICacheClient                         | ✅        |
+| 22 | EntraIdConfidentialClientApplication        | ✅        |
+| 23 | EntraIdIPublicClientApplication             | ✅        |
+| 24 | EntraIdITokenCache                          | ✅        |
+| 25 | EntraIdAzureJsonCache                       | ✅        |
+| 26 | EntraIdAzureLoopbackClient                  | ✅        |
+| 27 | EntraIdAuthOptions                          | ✅        |
+| 28 | EntraIdConfiguration                        | ✅        |
+| 29 | EntraIdCryptoProvider                       | ✅        |
+| 30 | EntraIdDistributedCachePlugin               | ✅        |
+| 31 | EntraIdEncodingUtils                        | ✅        |
+| 32 | EntraIdGuidGenerator                        | ✅        |
+| 33 | EntraIdHashUtils                            | ✅        |
+| 34 | EntraIdHttpClient                           | ✅        |
+| 35 | EntraIdHttpMethod                           | ✅        |
+| 36 | EntraIdHttpStatus                           | ✅        |
+| 37 | EntraIdCacheKVStore                         | ✅        |
+| 38 | EntraIdCacheOptions                         | ✅        |
+| 39 | EntraIdClientApplication                    | ✅        |
+| 40 | EntraIdClientAssertion                      | ✅        |
+| 41 | EntraIdClientCredentialRequest              | ✅        |
+| 42 | EntraIdConfidentialClientApplication        | ✅        |
+| 43 | EntraIdIPublicClientApplication             | ✅        |
+| 44 | EntraIdITokenCache                          | ✅        |
+| 45 | EntraIdAzureJsonCache                       | ✅        |
+| 46 | EntraIdAzureLoopbackClient                  | ✅        |
+| 47 | EntraIdAuthOptions                          | ✅        |
+| 48 | EntraIdConfiguration                        | ✅        |
+| 49 | EntraIdCryptoProvider                       | ✅        |
+| 50 | EntraIdDistributedCachePlugin               | ✅        |
+| 51 | EntraIdEncodingUtils                        | ✅        |
+| 52 | EntraIdGuidGenerator                        | ✅        |
+| 53 | EntraIdHashUtils                            | ✅        |
+| 54 | EntraIdHttpClient                           | ✅        |
+| 55 | EntraIdHttpMethod                           | ✅        |
+| 56 | EntraIdHttpStatus                           | ✅        |
+| 57 | EntraIdInMemoryCache                        | ✅        |
+| 58 | EntraIdInteractiveRequest                   | ✅        |
+| 59 | EntraIdIPartitionManager                    | ✅        |
+| 60 | EntraIdNetworkUtils                         | ✅        |
 
 ## Available Versions
 
