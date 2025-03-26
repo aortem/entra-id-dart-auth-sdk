@@ -17,6 +17,7 @@ dependencies:
   jwt_generator: ^0.0.3
   
   logging: ^1.3.0
+  
 
 
 #------------------ TESTING FEATURES---------------------------------
