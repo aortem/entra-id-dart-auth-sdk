@@ -4,7 +4,7 @@ version: 0.0.1-pre
 repository: https://github.com/aortem/entra_id_dart_auth_sdk
 
 environment:
-  sdk: 3.6.2
+  sdk: 3.7.2
 
 # Add regular dependencies here.
 
@@ -15,7 +15,7 @@ dependencies:
   ds_standard_features: ^0.0.1-pre+11 #Standard Dart Team Utilities For HTTP //Default
   build_web_compilers: ^4.0.11
   jwt_generator: ^0.0.3
-  jose: ^0.3.4
+  
   logging: ^1.3.0
 
 
