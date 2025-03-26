@@ -29,9 +29,9 @@ This implementation does not yet support all functionalities of the Entra Id aut
 
 | #  | Method                                                     | Supported |
 |----|------------------------------------------------------------|:---------:|
-| 1  | Authorization Methods with Flexible Options                | ✅        |
-| 2  | Search Query Functionality with Flexible Options           | ✅        |
-| 3  | Token Reference Operations with Flexible Options           | ✅        |
+| 1  | EntraIdApiId                                               | ✅        |
+| 2  | EntraIdAuthorizationCodeRequest                            | ✅        |
+| 3  | EntraIdAuthorizationUrlRequest                             | ✅        |
 | 4  | Token Issuance/Generation Method                           | ✅        |
 | 5  | Refresh Token Flow                                         | ✅        |
 | 6  | Reset Token Flow                                           | ✅        |
