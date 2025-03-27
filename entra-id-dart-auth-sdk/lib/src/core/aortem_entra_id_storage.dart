@@ -1,6 +1,5 @@
 import 'dart:convert'; // Provides utilities for encoding and decoding JSON and Base64.
 import 'dart:io'; // Provides file system operations for persistent storage.
-import 'package:path_provider/path_provider.dart'; // Provides paths for storing application-specific files.
 
 /// AortemEntraIdStorage: Manages token storage for Aortem EntraId SDK.
 ///
