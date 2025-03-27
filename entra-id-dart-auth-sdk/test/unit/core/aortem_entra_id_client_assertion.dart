@@ -6,31 +6,7 @@ void main() {
   // Test private key (for testing only)
   const testPrivateKey = '''
 -----BEGIN RSA PRIVATE KEY-----
-MIIEogIBAAKCAQEAy1YRVTIxeB6YU88f6OhsHtZUB0ll/9Wi72lgzohPRHkHHb3J
-y193Y41wmtYNhxY9GHQ6QjciXP4LtQUqf+WOf70O9x3xDJLPuHx8Zw25Cz+S4r0t
-KnSNnh7gBi0QJ5PYv+gIJxgV/QlQFVencXbpaohkU/LInxVMoo8bkta160OOBSW2
-5JBSxF8tY49SDfxcLyh91BD+E/8cOplGAXaYyPbsVUn76Y83JZ+jIzZWXNvap9Xq
-SbfqXzjVQuOQ/XdrQOS5u1c+F6OzWgdSa7OBj479yzfuh7z+W+NpZAKjFihvh1ME
-nnLd61Htu/1D5/L/zkv+lZ5sjAps0aWRkwZ+CQIDAQABAoIBADI8BjY1G1GgxWNX
-NXv2B9gqfUH7mS52WjWppBgCRwsUl3R6keMjp7w5kks+fMMV9GwZMtdvBZdR0BSd
-vR0x2l2mmI7mn8nKb3UVlCplkoS75Q8NS55Eg0RAPnpoIaiVdyQaMAFwiuYjqdxL
-9nsqtIn0Pk0bGwNqYK98iYRidTk026KsYrZGSb/Ya0DlBJYOMQnDslPmebGgbZro
-9opVaceLpYaklQa2Q7cF4M2MRcKAK//wb2t2aPQ+LmtZGfnyW0z/ZZB8loaMClCU
-k0vLcRPt8OuzGUO+9it8GT9JjW59HTEhYtkBs9dLr3yWeSOiUraienNGAEwRSALe
-sYyFiTECgYEA5ITum3Vw339C5KByBek3wmFSWhxokgtJfUe33hgqFeSB4Cs8rJri
-B8zc00q4WSoXWH7zz/lJm4DCUHl+U7ycppQYovVfuoegXC784uihW4XwPWc4r3yH
-agpNancSkLVkWznDGafpQxq7YbK21hYdVRoaw9Y36fO1/9zw+xIHJGUCgYEA48nd
-HoXL0v062IdoJ/dgm+RO97iYCDtVzRCYvv65Toa0n5mA+W6IFcJzKFWjE8/eiqoV
-/Vl+UXu8QG0g6elVgdHEyoR5ZzX5jjaNl4ZAyzY9Oubh3pj8N6xq1deAOjjBPQNZ
-z+NRchG43GJ7m0Z7lajmaMc0PLVNe7SUY7sF/tUCgYBEoriX8LoqJqsMyDP3Goko
-1NpLPmUaGFHGUxgimNdrI+ruTY43uX1SInHg9HxSK5Y/ekH4oUM+dXnnedY7iFb0
-oV6U82YBPGMpzOMftAdi2ePCTZJ1As4ZR2bhJ0poNFMkI0E6H3isMwc83NSVkKbW
-vLR1RY4dspljdBTdFBkZEQKBgGzzNlHNCOpHuIesbEMBbTHjB2ow3nbBeo50q7pe
-t185ytazYx7qoShXMyFNpIxrVjPYml/tGB/9INNn3uBCfGV1YbzDlBWrmUtOCHc6
-/W606KBtogcIAUrXqtnRE0HFt5dpLOHkBiabF2JBsIFaOu4gNORUs0V+KitK+dah
-s4JpAoGAd+YLoCWwe+2P7EqhiGi0eUcqFyTvOsxxRCTsBWWkf2P0SorjjYcmlw2G
-iLxH64ZqxyJNdI1wYkGYVxoTdB5jFRP3X7QPDv5v0iMs6iLX0e3XHkUQZSpij2rq
-UmUIGqLdAx3FNG0CO/HLr+kc8vkeDTkBKYtDm4r9Ik9IquF4MUc=
+[YOUR PRIVATE KEY]
 -----END RSA PRIVATE KEY-----
 ''';
 
@@ -46,8 +22,10 @@ UmUIGqLdAx3FNG0CO/HLr+kc8vkeDTkBKYtDm4r9Ik9IquF4MUc=
         privateKey: testPrivateKey,
       );
 
-      expect(assertion.audience,
-          'https://login.microsoftonline.com/$testTenantId/oauth2/v2.0/token');
+      expect(
+        assertion.audience,
+        'https://login.microsoftonline.com/$testTenantId/oauth2/v2.0/token',
+      );
     });
 
     test('should initialize with custom audience', () {
