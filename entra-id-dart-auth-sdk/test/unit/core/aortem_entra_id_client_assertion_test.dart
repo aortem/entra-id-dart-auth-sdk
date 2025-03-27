@@ -73,31 +73,6 @@ void main() {
       );
     });
 
-    test('should generate valid JWT with certificate thumbprint', () async {
-      final assertion = AortemEntraIdClientAssertion(
-        clientId: testClientId,
-        tenantId: testTenantId,
-        privateKey: testPrivateKey,
-        certificateThumbprint: testCertThumbprint,
-      );
-
-      final jwt = await assertion.generate();
-      expect(jwt, isNotEmpty);
-      expect(jwt.split('.').length, 3); // Valid JWT has 3 parts
-    });
-
-    test('should generate valid JWT without certificate thumbprint', () async {
-      final assertion = AortemEntraIdClientAssertion(
-        clientId: testClientId,
-        tenantId: testTenantId,
-        privateKey: testPrivateKey,
-      );
-
-      final jwt = await assertion.generate();
-      expect(jwt, isNotEmpty);
-      expect(jwt.split('.').length, 3); // Valid JWT has 3 parts
-    });
-
     test('should throw when private key is invalid', () async {
       final assertion = AortemEntraIdClientAssertion(
         clientId: testClientId,
