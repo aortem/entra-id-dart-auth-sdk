@@ -1,8 +1,5 @@
 # Add your own git ignore rules.
 
-# Ignore all IDE settings
-.idea/
-
 # Ignore Flutter plugin files in example project
 /entra_id_dart_auth_sdk/example/entra_id_dart_auth_sdk-sample-app/.flutter-plugins
 /entra_id_dart_auth_sdk/example/entra_id_dart_auth_sdk-sample-app/.flutter-plugins-dependencies
