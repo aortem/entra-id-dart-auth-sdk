@@ -4,7 +4,7 @@ version: 0.0.1-pre
 repository: https://github.com/aortem/entra_id_dart_auth_sdk
 
 environment:
-  sdk: 3.7.2
+  sdk: ">=3.6.2 <4.0.0"
 
 # Add regular dependencies here.
 
@@ -34,3 +34,6 @@ git_hooks:
     pre-commit: ./local_dev_tools/validate_commit.dart
     commit-msg: ./local_dev_tools/validate_commit_msg.dart
     pre-push: ./local_dev_tools/validate_branch.dart
+
+false_secrets:
+  - test/unit/core/aortem_entra_id_client_assertion.dart
