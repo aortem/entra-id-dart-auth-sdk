@@ -135,4 +135,4 @@ The **Entra Id Dart Auth SDK** is licensed under a dual-license approach:
 
 ## Enhance with Entra Id Dart Auth SDK
 
-We hope the Entra Id Dart Auth SDK helps you to efficiently build and scale your server-side applications. Join our growing community and start contributing to the ecosystem today!  test
+We hope the Entra Id Dart Auth SDK helps you to efficiently build and scale your server-side applications. Join our growing community and start contributing to the ecosystem today!
