@@ -32,3 +32,6 @@ git_hooks:
     pre-commit: ./local_dev_tools/validate_commit.dart
     commit-msg: ./local_dev_tools/validate_commit_msg.dart
     pre-push: ./local_dev_tools/validate_branch.dart
+
+false_secrets:
+  - test/unit/core/aortem_entra_id_client_assertion.dart
