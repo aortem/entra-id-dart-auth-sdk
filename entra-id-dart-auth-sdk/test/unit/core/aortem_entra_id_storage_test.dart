@@ -5,59 +5,53 @@ void main() {
   group('AortemEntraIdStorage Tests', () {
     late AortemEntraIdStorage inMemoryStorage;
     late AortemEntraIdStorage persistentStorage;
+    final testKey = 'accessToken';
+    final testToken = 'test-token-value';
 
     setUp(() async {
-      inMemoryStorage = AortemEntraIdStorage();
+      inMemoryStorage = AortemEntraIdStorage(persistent: false);
       persistentStorage = AortemEntraIdStorage(persistent: true);
-
-      // Initialize persistent storage
-      await persistentStorage.initialize();
+      await persistentStorage.clearStorage(); // Ensure clean state
     });
 
-    test('Save and Retrieve Token (In-Memory)', () async {
-      await inMemoryStorage.saveToken('testKey', 'testToken');
-      final token = await inMemoryStorage.getToken('testKey');
-      expect(token, 'testToken');
+    test('Save and retrieve token (in-memory)', () async {
+      await inMemoryStorage.saveToken(testKey, testToken);
+      final retrievedToken = await inMemoryStorage.getToken(testKey);
+      expect(retrievedToken, equals(testToken));
     });
 
-    test('Save and Retrieve Token (Persistent)', () async {
-      await persistentStorage.saveToken('testKey', 'testToken');
-      final token = await persistentStorage.getToken('testKey');
-      expect(token, 'testToken');
+    test('Save and retrieve token (persistent)', () async {
+      await persistentStorage.saveToken(testKey, testToken);
+      final retrievedToken = await persistentStorage.getToken(testKey);
+      expect(retrievedToken, equals(testToken));
     });
 
-    test('Delete Token (In-Memory)', () async {
-      await inMemoryStorage.saveToken('testKey', 'testToken');
-      await inMemoryStorage.deleteToken('testKey');
-      final token = await inMemoryStorage.getToken('testKey');
-      expect(token, isNull);
+    test('Delete token (in-memory)', () async {
+      await inMemoryStorage.saveToken(testKey, testToken);
+      await inMemoryStorage.deleteToken(testKey);
+      final retrievedToken = await inMemoryStorage.getToken(testKey);
+      expect(retrievedToken, isNull);
     });
 
-    test('Delete Token (Persistent)', () async {
-      await persistentStorage.saveToken('testKey', 'testToken');
-      await persistentStorage.deleteToken('testKey');
-      final token = await persistentStorage.getToken('testKey');
-      expect(token, isNull);
+    test('Delete token (persistent)', () async {
+      await persistentStorage.saveToken(testKey, testToken);
+      await persistentStorage.deleteToken(testKey);
+      final retrievedToken = await persistentStorage.getToken(testKey);
+      expect(retrievedToken, isNull);
     });
 
-    test('Clear Storage (In-Memory)', () async {
-      await inMemoryStorage.saveToken('key1', 'token1');
-      await inMemoryStorage.saveToken('key2', 'token2');
+    test('Clear storage (in-memory)', () async {
+      await inMemoryStorage.saveToken(testKey, testToken);
       await inMemoryStorage.clearStorage();
-      final token1 = await inMemoryStorage.getToken('key1');
-      final token2 = await inMemoryStorage.getToken('key2');
-      expect(token1, isNull);
-      expect(token2, isNull);
+      final retrievedToken = await inMemoryStorage.getToken(testKey);
+      expect(retrievedToken, isNull);
     });
 
-    test('Clear Storage (Persistent)', () async {
-      await persistentStorage.saveToken('key1', 'token1');
-      await persistentStorage.saveToken('key2', 'token2');
+    test('Clear storage (persistent)', () async {
+      await persistentStorage.saveToken(testKey, testToken);
       await persistentStorage.clearStorage();
-      final token1 = await persistentStorage.getToken('key1');
-      final token2 = await persistentStorage.getToken('key2');
-      expect(token1, isNull);
-      expect(token2, isNull);
+      final retrievedToken = await persistentStorage.getToken(testKey);
+      expect(retrievedToken, isNull);
     });
   });
 }
