@@ -1,4 +1,4 @@
-# entra_id-dart-admin-sample-app
+# entra_id-dart-sample-app
 
 ## Description
 
