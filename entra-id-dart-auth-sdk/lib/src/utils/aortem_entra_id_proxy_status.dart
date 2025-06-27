@@ -43,9 +43,10 @@ class AortemEntraIdProxyStatus {
       final proxyRequest = http.Request('GET', proxyUri)
         ..headers.addAll({
           // Adds the Proxy-Authorization header if username and password are provided.
-          'Proxy-Authorization': username != null && password != null
-              ? 'Basic ${base64Encode(utf8.encode('$username:$password'))}' // Encodes credentials in Base64 format.
-              : '',
+          'Proxy-Authorization':
+              username != null && password != null
+                  ? 'Basic ${base64Encode(utf8.encode('$username:$password'))}' // Encodes credentials in Base64 format.
+                  : '',
         });
 
       // Sends the proxy request and waits for the response.

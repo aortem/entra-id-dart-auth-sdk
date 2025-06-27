@@ -34,9 +34,12 @@ class AortemEntraIdCryptoProvider {
     try {
       final rng = Random.secure(); // Secure random number generator
       final bytes = List<int>.generate(
-          64, (_) => rng.nextInt(256)); // Generate 64 random bytes
-      return base64Url
-          .encode(bytes); // Return the base64 URL-safe encoded verifier
+        64,
+        (_) => rng.nextInt(256),
+      ); // Generate 64 random bytes
+      return base64Url.encode(
+        bytes,
+      ); // Return the base64 URL-safe encoded verifier
     } catch (e) {
       throw FormatException("Failed to generate PKCE code verifier: $e");
     }
@@ -53,8 +56,9 @@ class AortemEntraIdCryptoProvider {
     try {
       final bytes = utf8.encode(codeVerifier); // Encode the code verifier
       final hash = sha256.convert(bytes); // Hash it with SHA256
-      return base64Url
-          .encode(hash.bytes); // Return the code challenge as base64 URL-safe
+      return base64Url.encode(
+        hash.bytes,
+      ); // Return the code challenge as base64 URL-safe
     } catch (e) {
       throw FormatException("Failed to generate PKCE code challenge: $e");
     }
@@ -99,8 +103,9 @@ class AortemEntraIdCryptoProvider {
   /// Throws [FormatException] if decoding fails.
   static String decodeBase64Url(String input) {
     try {
-      final decodedBytes =
-          base64Url.decode(input); // Decode from Base64 URL-safe string
+      final decodedBytes = base64Url.decode(
+        input,
+      ); // Decode from Base64 URL-safe string
       return utf8.decode(decodedBytes); // Convert bytes back to string
     } catch (e) {
       throw FormatException("Failed to decode Base64 URL-safe string: $e");

@@ -1,4 +1,3 @@
-
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/core/aortem_entra_id_system_options.dart';
 
@@ -39,7 +38,8 @@ void main() {
       );
 
       expect(
-        () => AortemEntraIdSystemOptions.initialize(requestTimeoutInSeconds: -1),
+        () =>
+            AortemEntraIdSystemOptions.initialize(requestTimeoutInSeconds: -1),
         throwsArgumentError,
       );
     });
@@ -52,10 +52,7 @@ void main() {
     });
 
     test('Throws error if accessing instance before initialization', () {
-      expect(
-        () => AortemEntraIdSystemOptions.instance,
-        throwsStateError,
-      );
+      expect(() => AortemEntraIdSystemOptions.instance, throwsStateError);
     });
 
     test('Reset allows reinitialization', () {
@@ -64,12 +61,11 @@ void main() {
 
       AortemEntraIdSystemOptions.reset();
 
-      expect(
-        () => AortemEntraIdSystemOptions.instance,
-        throwsStateError,
-      );
+      expect(() => AortemEntraIdSystemOptions.instance, throwsStateError);
 
-      final options = AortemEntraIdSystemOptions.initialize(enableLogging: false);
+      final options = AortemEntraIdSystemOptions.initialize(
+        enableLogging: false,
+      );
       expect(options.enableLogging, isFalse);
     });
   });

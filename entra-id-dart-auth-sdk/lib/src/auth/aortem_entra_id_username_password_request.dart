@@ -72,7 +72,10 @@ class AortemEntraIdUsernamePasswordRequest {
   /// final tokens = await request.acquireToken('user@example.com', 'password123');
   /// print('Access Token: ${tokens['access_token']}');
   /// ```
-  Future<Map<String, dynamic>> acquireToken(String username, String password) async {
+  Future<Map<String, dynamic>> acquireToken(
+    String username,
+    String password,
+  ) async {
     if (username.isEmpty || password.isEmpty) {
       throw ArgumentError('Username and password must not be empty.');
     }

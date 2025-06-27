@@ -18,7 +18,9 @@ class AortemEntraIdTelemetryOptions {
     this.retryAttempts = 3, // Default: 3 retries
   }) {
     if (enableTelemetry && telemetryEndpoint.isEmpty) {
-      throw ArgumentError('Telemetry is enabled, but no telemetry endpoint is provided.');
+      throw ArgumentError(
+        'Telemetry is enabled, but no telemetry endpoint is provided.',
+      );
     }
 
     if (retryAttempts < 0) {

@@ -38,13 +38,17 @@ void main() {
     test('getDescription returns correct descriptions', () {
       expect(AortemEntraIdHttpStatus.getDescription(200), equals('OK'));
       expect(AortemEntraIdHttpStatus.getDescription(404), equals('Not Found'));
-      expect(AortemEntraIdHttpStatus.getDescription(500),
-          equals('Internal Server Error'));
+      expect(
+        AortemEntraIdHttpStatus.getDescription(500),
+        equals('Internal Server Error'),
+      );
     });
 
     test('getDescription returns unknown for unsupported codes', () {
-      expect(AortemEntraIdHttpStatus.getDescription(999),
-          equals('Unknown Status Code'));
+      expect(
+        AortemEntraIdHttpStatus.getDescription(999),
+        equals('Unknown Status Code'),
+      );
     });
   });
 }

@@ -1,5 +1,3 @@
-
-
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/utils/aortem_entra_id_network_utils.dart';
 
@@ -13,7 +11,10 @@ void main() {
     });
 
     test('validateUrl should throw for invalid URLs', () {
-      expect(() => networkUtils.validateUrl('invalid_url'), throwsArgumentError);
+      expect(
+        () => networkUtils.validateUrl('invalid_url'),
+        throwsArgumentError,
+      );
     });
 
     test('validateUrl should return true for valid URLs', () {

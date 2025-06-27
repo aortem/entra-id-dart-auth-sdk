@@ -50,6 +50,8 @@ class AortemEntraIdNetworkUtils {
         await Future.delayed(Duration(milliseconds: retryDelay));
       }
     }
-    throw Exception('Failed to complete the operation after $retryCount attempts');
+    throw Exception(
+      'Failed to complete the operation after $retryCount attempts',
+    );
   }
 }

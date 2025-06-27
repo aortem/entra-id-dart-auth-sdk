@@ -15,16 +15,18 @@ class AortemEntraIdPkceGenerator {
     final codeVerifier = _generateCodeVerifier();
     final codeChallenge = _generateCodeChallenge(codeVerifier);
 
-    return {
-      'code_verifier': codeVerifier,
-      'code_challenge': codeChallenge,
-    };
+    return {'code_verifier': codeVerifier, 'code_challenge': codeChallenge};
   }
 
   /// Generate a random code verifier according to PKCE standards.
   String _generateCodeVerifier() {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
-    final codeVerifier = List.generate(43, (index) => characters[_random.nextInt(characters.length)]).join();
+    const characters =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
+    final codeVerifier =
+        List.generate(
+          43,
+          (index) => characters[_random.nextInt(characters.length)],
+        ).join();
     return codeVerifier;
   }
 
@@ -32,6 +34,8 @@ class AortemEntraIdPkceGenerator {
   String _generateCodeChallenge(String codeVerifier) {
     final bytes = utf8.encode(codeVerifier);
     final hash = sha256.convert(bytes);
-    return base64Url.encode(hash.bytes).replaceAll('=', ''); // PKCE spec requires URL-safe encoding
+    return base64Url
+        .encode(hash.bytes)
+        .replaceAll('=', ''); // PKCE spec requires URL-safe encoding
   }
 }

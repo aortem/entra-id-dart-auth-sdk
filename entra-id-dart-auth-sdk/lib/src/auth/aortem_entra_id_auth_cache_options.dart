@@ -9,7 +9,7 @@ enum CacheStorageType {
   persistent,
 
   /// Distributed cache storage
-  distributed
+  distributed,
 }
 
 /// Defines the cache eviction policy
@@ -21,7 +21,7 @@ enum CacheEvictionPolicy {
   fifo,
 
   /// Time-based expiration
-  timeBase
+  timeBase,
 }
 
 /// Configuration options for the Entra ID cache implementation.
@@ -53,15 +53,16 @@ class AortemEntraIdCacheOptions {
   final String namespace;
 
   /// Creates a new instance of AortemEntraIdCacheOptions
-  AortemEntraIdCacheOptions(
-      {this.storageType = CacheStorageType.memory,
-      this.maxItems = 1000,
-      this.defaultTtlSeconds = 3600, // 1 hour
-      this.enableEncryption = false,
-      this.evictionPolicy = CacheEvictionPolicy.lru,
-      this.persistAcrossSessions = false,
-      this.cleanupThreshold = 90, // 90% full
-      this.namespace = 'default'}) {
+  AortemEntraIdCacheOptions({
+    this.storageType = CacheStorageType.memory,
+    this.maxItems = 1000,
+    this.defaultTtlSeconds = 3600, // 1 hour
+    this.enableEncryption = false,
+    this.evictionPolicy = CacheEvictionPolicy.lru,
+    this.persistAcrossSessions = false,
+    this.cleanupThreshold = 90, // 90% full
+    this.namespace = 'default',
+  }) {
     _validateOptions();
     _logger.info('Initialized cache options with storage type: $storageType');
   }
@@ -69,18 +70,23 @@ class AortemEntraIdCacheOptions {
   /// Creates cache options from JSON configuration
   factory AortemEntraIdCacheOptions.fromJson(Map<String, dynamic> json) {
     return AortemEntraIdCacheOptions(
-        storageType: CacheStorageType.values.firstWhere((e) =>
+      storageType: CacheStorageType.values.firstWhere(
+        (e) =>
             e.toString() ==
-            'CacheStorageType.${json['storageType'] ?? 'memory'}'),
-        maxItems: json['maxItems'] as int? ?? 1000,
-        defaultTtlSeconds: json['defaultTtlSeconds'] as int? ?? 3600,
-        enableEncryption: json['enableEncryption'] as bool? ?? false,
-        evictionPolicy: CacheEvictionPolicy.values.firstWhere((e) =>
+            'CacheStorageType.${json['storageType'] ?? 'memory'}',
+      ),
+      maxItems: json['maxItems'] as int? ?? 1000,
+      defaultTtlSeconds: json['defaultTtlSeconds'] as int? ?? 3600,
+      enableEncryption: json['enableEncryption'] as bool? ?? false,
+      evictionPolicy: CacheEvictionPolicy.values.firstWhere(
+        (e) =>
             e.toString() ==
-            'CacheEvictionPolicy.${json['evictionPolicy'] ?? 'lru'}'),
-        persistAcrossSessions: json['persistAcrossSessions'] as bool? ?? false,
-        cleanupThreshold: json['cleanupThreshold'] as int? ?? 90,
-        namespace: json['namespace'] as String? ?? 'default');
+            'CacheEvictionPolicy.${json['evictionPolicy'] ?? 'lru'}',
+      ),
+      persistAcrossSessions: json['persistAcrossSessions'] as bool? ?? false,
+      cleanupThreshold: json['cleanupThreshold'] as int? ?? 90,
+      namespace: json['namespace'] as String? ?? 'default',
+    );
   }
 
   /// Converts cache options to JSON
@@ -93,7 +99,7 @@ class AortemEntraIdCacheOptions {
       'evictionPolicy': evictionPolicy.toString().split('.').last,
       'persistAcrossSessions': persistAcrossSessions,
       'cleanupThreshold': cleanupThreshold,
-      'namespace': namespace
+      'namespace': namespace,
     };
   }
 

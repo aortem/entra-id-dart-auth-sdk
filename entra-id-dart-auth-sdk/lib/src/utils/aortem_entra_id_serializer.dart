@@ -36,7 +36,10 @@ class AortemEntraIdSerializer {
   /// [jsonString] is the JSON string to deserialize.
   /// [fromJsonFactory] is a function that converts a map to an entity.
   /// Throws [ArgumentError] for invalid JSON or unsupported formats.
-  static T deserializeTo<T>(String jsonString, T Function(Map<String, dynamic>) fromJsonFactory) {
+  static T deserializeTo<T>(
+    String jsonString,
+    T Function(Map<String, dynamic>) fromJsonFactory,
+  ) {
     try {
       final map = deserialize(jsonString);
       return fromJsonFactory(map);

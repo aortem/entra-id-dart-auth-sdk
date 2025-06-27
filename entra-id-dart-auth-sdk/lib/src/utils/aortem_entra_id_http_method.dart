@@ -59,8 +59,9 @@ class AortemEntraIdHttpMethodUtils {
   /// ```
   static AortemEntraIdHttpMethod stringToMethod(String method) {
     try {
-      return AortemEntraIdHttpMethod.values
-          .firstWhere((e) => e.name.toLowerCase() == method.toLowerCase());
+      return AortemEntraIdHttpMethod.values.firstWhere(
+        (e) => e.name.toLowerCase() == method.toLowerCase(),
+      );
     } catch (e) {
       throw ArgumentError('Unsupported HTTP method: $method');
     }

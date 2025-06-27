@@ -35,8 +35,9 @@ class AortemEntraIdClientAssertion {
     required this.privateKey,
     this.certificateThumbprint,
     String? audience,
-  }) : audience = audience ??
-            'https://login.microsoftonline.com/$tenantId/oauth2/v2.0/token' {
+  }) : audience =
+           audience ??
+           'https://login.microsoftonline.com/$tenantId/oauth2/v2.0/token' {
     if (clientId.isEmpty) {
       throw ArgumentError('clientId cannot be empty');
     }

@@ -30,7 +30,7 @@ class AortemEntraIdSystemOptions {
     bool enableLogging = false,
     bool enableTelemetry = true,
     int requestTimeoutInSeconds = 30, // Default timeout: 30 seconds
-    int maxRetryAttempts = 3,         // Default retry: 3 attempts
+    int maxRetryAttempts = 3, // Default retry: 3 attempts
   }) {
     if (_instance == null) {
       // Validate configurations
@@ -64,8 +64,10 @@ class AortemEntraIdSystemOptions {
   /// Throws an exception if the options have not been initialized.
   static AortemEntraIdSystemOptions get instance {
     if (_instance == null) {
-      throw StateError('AortemEntraIdSystemOptions has not been initialized. '
-          'Call initialize() first.');
+      throw StateError(
+        'AortemEntraIdSystemOptions has not been initialized. '
+        'Call initialize() first.',
+      );
     }
     return _instance!;
   }

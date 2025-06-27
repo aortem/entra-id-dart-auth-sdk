@@ -58,7 +58,7 @@ class AortemEntraIdHttpStatus {
   static const int serviceUnavailable = 503;
 
   /// Check if the status code indicates success.
-  /// 
+  ///
   /// Returns `true` if the status code is between 200 and 299.
   ///
   /// - [statusCode]: The HTTP status code to check.
@@ -67,7 +67,7 @@ class AortemEntraIdHttpStatus {
   }
 
   /// Check if the status code indicates a client error.
-  /// 
+  ///
   /// Returns `true` if the status code is between 400 and 499.
   ///
   /// - [statusCode]: The HTTP status code to check.
@@ -76,7 +76,7 @@ class AortemEntraIdHttpStatus {
   }
 
   /// Check if the status code indicates a server error.
-  /// 
+  ///
   /// Returns `true` if the status code is 500 or higher.
   ///
   /// - [statusCode]: The HTTP status code to check.

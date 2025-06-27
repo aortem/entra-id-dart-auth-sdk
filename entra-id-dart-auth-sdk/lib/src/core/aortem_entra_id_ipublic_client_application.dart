@@ -45,7 +45,8 @@ abstract class AortemEntraIdIPublicClientApplication {
 /// This class implements the `AortemEntraIdIPublicClientApplication` interface
 /// and provides methods for acquiring tokens interactively or using the device code flow.
 /// It also supports clearing the token cache.
-class AortemEntraIdPublicClientApp implements AortemEntraIdIPublicClientApplication {
+class AortemEntraIdPublicClientApp
+    implements AortemEntraIdIPublicClientApplication {
   /// The client ID of the application registered in Entra ID.
   final String clientId;
 
@@ -80,7 +81,9 @@ class AortemEntraIdPublicClientApp implements AortemEntraIdIPublicClientApplicat
   /// - [scopes]: A list of scopes required for the access token.
   /// - Returns: A map containing the access token, refresh token, ID token, and expiration details.
   @override
-  Future<Map<String, dynamic>> acquireTokenInteractively(List<String> scopes) async {
+  Future<Map<String, dynamic>> acquireTokenInteractively(
+    List<String> scopes,
+  ) async {
     print("Launching interactive authentication...");
     await Future.delayed(Duration(seconds: 3)); // Simulated flow
     return {
@@ -105,7 +108,9 @@ class AortemEntraIdPublicClientApp implements AortemEntraIdIPublicClientApplicat
   /// - [scopes]: A list of scopes required for the access token.
   /// - Returns: A map containing the access token, refresh token, ID token, and expiration details.
   @override
-  Future<Map<String, dynamic>> acquireTokenByDeviceCode(List<String> scopes) async {
+  Future<Map<String, dynamic>> acquireTokenByDeviceCode(
+    List<String> scopes,
+  ) async {
     print("Starting device code flow...");
     await Future.delayed(Duration(seconds: 3)); // Simulated flow
     return {
