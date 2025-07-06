@@ -1,132 +1,137 @@
-# Entra Id Auth SDK
+# Entra Id Dart Auth SDK
 
 ## Overview
 
-The Entra Id Auth SDK offers a robust and flexible set of tools to perform authentication procedures within Dart or Flutter projects. This is a Dart implementation of Entra Id Authentication.
+The **Entra Id Dart Auth SDK** provides first-class integration with Microsoft Entra ID (formerly Azure AD) authentication flows for both server-side Dart applications and Flutter clients. With this SDK you can:
 
-## Features:
+* Acquire and manage OAuth 2.0 access & ID tokens
+* Authenticate users via interactive, ROPC, and client credentials flows
+* Handle token caching and automatic refresh
+* Integrate with MSAL.js for Flutter web
+* Use customizable secure storage backends
+* Perform admin operations via Microsoft Graph tokens
 
-- **User Management:** Manage user accounts seamlessly with a suite of comprehensive user management functionalities.
-- **Custom Token Minting:** Integrate Entra Id authentication with your backend services by generating custom tokens.
-- **Generating Email Action Links:** Perform authentication by creating and sending email action links to users emails for email verification, password reset, etc.
-- **ID Token verification:** Verify ID tokens securely to ensure that application users are authenticated and authorised to use app.
-- **Managing SAML/OIDC Provider Configuration**: Manage and configure SAML and ODIC providers to support authentication and simple sign-on solutions.
+Whether you’re building a Dart backend service or a Flutter mobile/web app, this SDK streamlines Entra ID authentication.
+
+## Features
+
+* **Unified Auth Flows**
+  Support for authorization code (PKCE), resource owner password credential (ROPC), client credentials, and refresh token flows.
+* **Token Management**
+  Automatic token caching, expiration checks, and silent token refresh.
+* **Secure Storage**
+  Pluggable `TokenStorage` interface with built-in `AortemEntraIdStorage` (file, in-memory, or custom backends).
+* **MSAL.js Integration (Web)**
+  Leverage Microsoft’s MSAL.js library under the hood for Flutter web PKCE flows.
+* **Graph API Support**
+  Acquire on-behalf-of and Graph tokens, with helper methods for common scopes (User.Read, Mail.Send, etc.).
+* **Platform-Agnostic**
+  Works in Dart VM (server), Flutter mobile, and Flutter web environments.
 
 ## Getting Started
 
-If you want to use the Entra Id Auth SDK for implementing a Entra Id authentication in your Flutter projects follow the instructions on how to set up the auth SDK.
+1. **Prerequisites**
 
-- Ensure you have a Flutter or Dart (3.4.x) SDK installed in your system.
-- Set up a Entra Id project and service account.
-- Set up a Flutter project.
+   * Dart SDK ≥ 2.14.0 (for null-safety) or Flutter SDK ≥ 3.0
+   * An Azure AD (Entra ID) tenant with an app registration configured for your chosen flow
+
+2. **Configure Entra ID App**
+
+   * Define redirect URIs (for web/mobile).
+   * Create client secrets (for server flows).
+   * Grant Graph API permissions and admin consent if needed.
 
 ## Installation
 
-For Flutter use:
+Add the SDK to your project:
 
-```javascript
+```bash
+# Dart:
+dart pub add entra_id_dart_auth_sdk
+
+# Flutter:
 flutter pub add entra_id_dart_auth_sdk
 ```
 
-You can manually edit your `pubspec.yaml `file this:
+Or manually in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  entra_id_dart_auth_sdk: ^0.0.1-pre+11
+  entra_id_dart_auth_sdk: ^0.0.1
 ```
 
-You can run a `flutter pub get` for Flutter respectively to complete installation.
+Then run:
 
-**NB:** SDK version might vary.
+```bash
+dart pub get
+```
 
 ## Usage
 
-**Example:**
+### Initialize the SDK
 
-```
-import 'dart:io';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:entra_id/screens/splash_screen/splash_screen.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+```dart
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
-import 'package:flutter/services.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  try {
-    if (kIsWeb) {
-      // Initialize for web
-      debugPrint('Initializing Entra Id for Web...');
-      FirebaseApp.initializeAppWithEnvironmentVariables(
-        apiKey: 'YOUR-API-KEY',
-        projectId: 'YOUR-PROJECT-ID',
-        bucketName: 'Your Bucket Name',
-      );
-      debugPrint('Entra Id initialized for Web.');
-    } else {
-      if (Platform.isAndroid || Platform.isIOS) {
-        debugPrint('Initializing Entra Id for Mobile...');
-
-        // Load the service account JSON
-        String serviceAccountContent = await rootBundle.loadString(
-          'assets/service_account.json',
-        );
-        debugPrint('Service account loaded.');
-
-        // Initialize Entra Id with the service account content
-        await FirebaseApp.initializeAppWithServiceAccount(
-          serviceAccountContent: serviceAccountContent,
-        );
-        debugPrint('Entra Id initialized for Mobile.');
-      }
-    }
-
-    // Access Entra Id Auth instance
-    final auth = FirebaseApp.instance.getAuth();
-    debugPrint('Entra Id Auth instance obtained.');
-
-    runApp(const MyApp());
-  } catch (e, stackTrace) {
-    debugPrint('Error initializing Entra Id: $e');
-    debugPrint('StackTrace: $stackTrace');
-  }
+  final auth = EntraIdAuth(
+    tenantId: 'your-tenant-id',
+    clientId: 'your-client-id',
+    redirectUri: Uri.parse('com.example.app://auth'),
+  );
 }
-
 ```
 
-- Import the package into your Dart or Flutter project:
-  ```
-  import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
-  ```
-  For Flutter web initialize Entra Id app as follows:
-  ```
-  FirebaseApp.initializeAppWithEnvironmentVariables(
-    apiKey: 'YOUR-API-KEY',
-    projectId: 'YOUR-PROJECT-ID',
-    bucketName: 'Your Bucket Name',
-  );
+### Authorization Code (PKCE) Flow
+
+```dart
+// Trigger interactive auth
+final result = await auth.acquireTokenInteractive(
+  scopes: ['User.Read', 'Mail.Send'],
+);
+print('Access Token: ${result.accessToken}');
+```
+
+### Client Credentials Flow (Server)
+
+```dart
+// Uses client secret from environment
+final creds = ClientCredentials.fromEnv();
+final authServer = EntraIdAuth.server(
+  tenantId: 'your-tenant-id',
+  clientCredentials: creds,
+);
+
+final token = await authServer.acquireTokenForClient(
+  scopes: ['https://graph.microsoft.com/.default'],
+);
+print('Client Token: ${token.accessToken}');
+```
+
+### Token Storage & Refresh
+
+```dart
+// Use the default file-based storage
+await auth.initStorage();
+
+// Later, silently get a valid token
+final cached = await auth.acquireTokenSilent(
+  scopes: ['User.Read'],
+);
+```
+
+## Advanced
+
+* **Custom Storage**: Implement `TokenStorage` for secure database or keychain storage.
+* **Graph Helpers**: Use `GraphClient` for easy requests:
+
+  ```dart
+  final graph = GraphClient(auth);
+  final user = await graph.getCurrentUser();
   ```
 
-- For Flutter mobile:
-    - Load the service account JSON
-    ```
-       String serviceAccountContent = await rootBundle.loadString(
-         'assets/service_account.json',
-       );
-    ```
-    - Initialize Flutter mobile with service account content
-    ```
-      await FirebaseApp.initializeAppWithServiceAccount(
-        serviceAccountContent: serviceAccountContent,
-      );
-    ```
-
-- Access Entra Id Auth instance.
-  ```
-     final auth = FirebaseApp.instance.getAuth();
-  ```
 ## Documentation
 
-For more refer to Gitbook for prelease [documentation here](https://aortem.gitbook.io/entra_id-dart-auth-admin-sdk/).
+For full API reference, examples, and migration guides, see our GitBook:
+
+👉 [Entra Id Dart Auth SDK Docs](https://aortem.gitbook.io/entra-id-dart-auth-sdk/)

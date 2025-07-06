@@ -1,5 +1,5 @@
 import 'package:entra_id_dart_auth_sdk/src/enum/aortem_entra_id_browser_type_enum.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 import '../config/aortem_entra_id_configuration.dart';
 import 'aortem_entra_id_client_application.dart';
@@ -47,10 +47,7 @@ class AortemEntraIdPublicClientApplication
     _logger.info('Acquiring token for public client');
     try {
       // Logic to acquire token (e.g., making an HTTP request to token endpoint)
-      return {
-        'access_token': 'mocked_access_token',
-        'expires_in': 3600,
-      };
+      return {'access_token': 'mocked_access_token', 'expires_in': 3600};
     } catch (e) {
       handleError(
         'Failed to acquire token',
@@ -66,10 +63,7 @@ class AortemEntraIdPublicClientApplication
 
     try {
       // Make a POST request to refresh token endpoint
-      return {
-        'access_token': 'mocked_refreshed_token',
-        'expires_in': 3600,
-      };
+      return {'access_token': 'mocked_refreshed_token', 'expires_in': 3600};
     } catch (e) {
       handleError(
         'Failed to refresh token',
@@ -119,10 +113,7 @@ class AortemEntraIdPublicClientApplication
 
     try {
       // Logic to initiate device code flow (request device code, poll, etc.)
-      return {
-        'access_token': 'mocked_device_code_token',
-        'expires_in': 3600,
-      };
+      return {'access_token': 'mocked_device_code_token', 'expires_in': 3600};
     } catch (e) {
       handleError(
         'Failed to acquire token with device code',
