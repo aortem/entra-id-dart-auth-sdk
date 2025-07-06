@@ -1,5 +1,5 @@
 import 'package:entra_id_dart_auth_sdk/src/exception/aortem_entra_id_serialized_refresh_token_exception.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 import '../utils/aortem_entra_id_guid_generator.dart';
 

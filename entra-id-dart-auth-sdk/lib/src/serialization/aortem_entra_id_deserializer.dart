@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// AortemEntraIdDeserializer provides utilities to deserialize Entra ID JSON responses into SDK-specific entities.
 class AortemEntraIdDeserializer {

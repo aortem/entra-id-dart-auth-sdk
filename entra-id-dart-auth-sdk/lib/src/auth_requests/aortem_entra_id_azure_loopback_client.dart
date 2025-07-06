@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:entra_id_dart_auth_sdk/src/exception/aortem_entra_id_azure_loopback_client_exception.dart';
 import 'package:entra_id_dart_auth_sdk/src/model/aortem_entra_id_azure_loopback_client_model.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Handles local HTTP server for authentication redirects
 class AortemEntraIdAzureLoopbackClient {

@@ -1,4 +1,4 @@
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 import '../exception/aortem_entra_id_serialized_id_token_exception.dart';
 

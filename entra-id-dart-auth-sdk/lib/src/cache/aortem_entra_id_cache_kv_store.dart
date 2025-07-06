@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:entra_id_dart_auth_sdk/src/model/aortem_entra_id_cache_kv_store_model.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 import '../enum/aortem_entra_id_cache_eviction_policy_enum.dart';
 import 'aortem_entra_id_cache_options.dart';

@@ -1,7 +1,7 @@
 import 'package:entra_id_dart_auth_sdk/src/enum/aortem_entra_id_app_enviroment_enum.dart';
 import 'package:entra_id_dart_auth_sdk/src/enum/aortem_entra_id_application_type_enum.dart';
 import 'package:entra_id_dart_auth_sdk/src/exception/aortem_entra_id_serialized_app_metadata_exception.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Represents application metadata for caching and configuration
 class AortemEntraIdSerializedAppMetadataEntity {

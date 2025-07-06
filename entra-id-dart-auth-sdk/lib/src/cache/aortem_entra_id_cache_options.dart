@@ -1,4 +1,4 @@
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 import '../enum/aortem_entra_id_cache_eviction_policy_enum.dart';
 import '../enum/aortem_entra_id_cache_storage_type_enum.dart';

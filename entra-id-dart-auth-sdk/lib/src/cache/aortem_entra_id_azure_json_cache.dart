@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:entra_id_dart_auth_sdk/src/exception/aortem_entra_id_azure_json_cache_exception.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 import 'aortem_entra_id_cache_kv_store.dart';
 import 'aortem_entra_id_cache_options.dart';
@@ -20,9 +20,9 @@ class AortemEntraIdAzureJsonCache {
 
   /// Creates a new instance of AortemEntraIdAzureJsonCache
   AortemEntraIdAzureJsonCache({AortemEntraIdCacheOptions? options})
-      : _kvStore = AortemEntraIdCacheKVStore(
-          options ?? AortemEntraIdCacheOptions(namespace: 'azure_json_cache'),
-        ) {
+    : _kvStore = AortemEntraIdCacheKVStore(
+        options ?? AortemEntraIdCacheOptions(namespace: 'azure_json_cache'),
+      ) {
     _logger.info('Initializing Azure JSON cache');
   }
 

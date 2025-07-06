@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:ds_standard_features/ds_standard_features.dart' as http
+import 'package:ds_standard_features/ds_standard_features.dart'
+    as http
     show post;
 import 'package:entra_id_dart_auth_sdk/src/exception/aortem_entra_id_silent_flow_request_exception.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 import '../cache/aortem_entra_id_cache_kv_store.dart';
 import '../config/aortem_entra_id_configuration.dart';
@@ -125,9 +126,7 @@ class AortemEntraIdSilentFlowRequest {
       // Make HTTP request to token endpoint
       final response = await http.post(
         Uri.parse('$authority/oauth2/v2.0/token'),
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: requestBody,
       );
 

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:entra_id_dart_auth_sdk/src/enum/aortem_entra_id_token_type_enum.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 import '../exception/aortem_entra_id_token_cache_exception.dart';
 import '../model/aortem_entra_id_token_cache_model.dart';

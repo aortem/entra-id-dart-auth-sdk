@@ -1,5 +1,5 @@
 import 'package:entra_id_dart_auth_sdk/src/exception/aortem_entra_id_on_behalf_of_request_exception.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 import '../cache/aortem_entra_id_cache_kv_store.dart';
 import '../config/aortem_entra_id_configuration.dart';

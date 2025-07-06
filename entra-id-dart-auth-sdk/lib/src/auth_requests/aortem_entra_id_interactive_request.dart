@@ -4,7 +4,7 @@ import 'package:entra_id_dart_auth_sdk/src/enum/aortem_entra_id_interactive_requ
 import 'package:entra_id_dart_auth_sdk/src/exception/aortem_entra_id_interactive_request_exception.dart';
 import 'package:entra_id_dart_auth_sdk/src/model/aortem_entra_id_authorization_url_request_model.dart';
 import 'package:entra_id_dart_auth_sdk/src/model/aortem_entra_id_interactive_request_model.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 import '../crypto/aortem_entra_id_crypto_provider.dart';
 import '../utils/aortem_entra_id_guid_generator.dart';

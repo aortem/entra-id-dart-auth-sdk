@@ -3,7 +3,7 @@ import 'package:entra_id_dart_auth_sdk/src/enum/aortem_entra_id_device_code_requ
 import 'package:entra_id_dart_auth_sdk/src/exception/aortem_entra_id_device_code_request_exception.dart';
 import 'package:entra_id_dart_auth_sdk/src/model/aortem_entra_id_device_code_request_model.dart';
 import 'package:entra_id_dart_auth_sdk/src/model/aortem_entra_id_device_code_response_model.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Handles device code authentication flow
 class AortemEntraIdDeviceCodeRequest {

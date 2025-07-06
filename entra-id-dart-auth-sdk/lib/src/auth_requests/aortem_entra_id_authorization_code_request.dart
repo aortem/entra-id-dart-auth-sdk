@@ -1,12 +1,13 @@
 import 'package:entra_id_dart_auth_sdk/src/exception/aortem_entra_id_authorization_code_request_exception.dart';
 import 'package:entra_id_dart_auth_sdk/src/model/aortem_entra_id_authorization_code_request_model.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 import '../utils/aortem_entra_id_encoding_utils.dart';
 
 /// Handles authorization code token requests
 class AortemEntraIdAuthorizationCodeRequest {
-  static final Logger _logger =
-      Logger('AortemEntraIdAuthorizationCodeRequest'); // Make it static
+  static final Logger _logger = Logger(
+    'AortemEntraIdAuthorizationCodeRequest',
+  ); // Make it static
 
   /// The token endpoint URL
   final String tokenEndpoint;
@@ -173,7 +174,10 @@ class AortemEntraIdAuthorizationCodeRequest {
       return true;
     } catch (e, stackTrace) {
       _logger.severe(
-          'Failed to validate authorization code response', e, stackTrace);
+        'Failed to validate authorization code response',
+        e,
+        stackTrace,
+      );
       rethrow;
     }
   }
