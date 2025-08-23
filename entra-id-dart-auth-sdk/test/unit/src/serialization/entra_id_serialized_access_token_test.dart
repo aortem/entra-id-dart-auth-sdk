@@ -3,12 +3,12 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 void main() {
-  group('AortemEntraIdSerializedAccessTokenEntity', () {
-    late AortemEntraIdSerializedAccessTokenEntity tokenEntity;
+  group('EntraIdSerializedAccessTokenEntity', () {
+    late EntraIdSerializedAccessTokenEntity tokenEntity;
 
     setUp(() {
-      // Set up an initial instance of AortemEntraIdSerializedAccessTokenEntity
-      tokenEntity = AortemEntraIdSerializedAccessTokenEntity(
+      // Set up an initial instance of EntraIdSerializedAccessTokenEntity
+      tokenEntity = EntraIdSerializedAccessTokenEntity(
         accessToken: 'sample-access-token',
         clientId: 'sample-client-id',
         issuedOn: DateTime.utc(2025, 4, 4, 10, 0, 0),
@@ -69,7 +69,7 @@ void main() {
       expect(json['tenantId'], equals('sample-tenant-id'));
       expect(json['authority'], equals('sample-authority'));
 
-      final fromJson = AortemEntraIdSerializedAccessTokenEntity.fromJson(json);
+      final fromJson = EntraIdSerializedAccessTokenEntity.fromJson(json);
       expect(fromJson.accessToken, equals('sample-access-token'));
       expect(fromJson.clientId, equals('sample-client-id'));
       expect(fromJson.issuedOn, equals(tokenEntity.issuedOn));
@@ -80,7 +80,7 @@ void main() {
 
     test('should throw AccessTokenEntityException for invalid token', () {
       expect(
-        () => AortemEntraIdSerializedAccessTokenEntity(
+        () => EntraIdSerializedAccessTokenEntity(
           accessToken: '',
           clientId: 'sample-client-id',
           issuedOn: DateTime.utc(2025, 4, 4, 10, 0, 0),

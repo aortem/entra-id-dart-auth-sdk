@@ -8,7 +8,7 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:http/testing.dart';
 
 void main() {
-  group('AortemEntraIdProxyStatus', () {
+  group('EntraIdProxyStatus', () {
     test('should successfully validate a reachable proxy', () async {
       final mockClient = MockClient((request) async {
         if (request.url.host == 'proxy.example.com' &&
@@ -18,7 +18,7 @@ void main() {
         return http.Response('Not Found', 404);
       });
 
-      final proxyStatus = AortemEntraIdProxyStatus(
+      final proxyStatus = EntraIdProxyStatus(
         proxyUrl: 'proxy.example.com',
         port: 8080,
       );
@@ -33,7 +33,7 @@ void main() {
         return http.Response('Not Found', 404);
       });
 
-      final proxyStatus = AortemEntraIdProxyStatus(
+      final proxyStatus = EntraIdProxyStatus(
         proxyUrl: 'proxy.example.com',
         port: 8080,
       );
@@ -46,7 +46,7 @@ void main() {
     });
 
     test('should throw an exception for invalid proxy URL', () async {
-      final proxyStatus = AortemEntraIdProxyStatus(
+      final proxyStatus = EntraIdProxyStatus(
         proxyUrl: 'invalid_proxy',
         port: 8080,
       );
@@ -68,7 +68,7 @@ void main() {
         return http.Response('Unauthorized', 401);
       });
 
-      final proxyStatus = AortemEntraIdProxyStatus(
+      final proxyStatus = EntraIdProxyStatus(
         proxyUrl: 'proxy.example.com',
         port: 8080,
         username: 'user',

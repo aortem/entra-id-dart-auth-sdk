@@ -8,7 +8,7 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 /// tokens that are necessary to access resources on behalf of the client,
 /// or refresh existing tokens when needed.
 ///
-/// The `AortemEntraIdConfidentialClientApplication` class is typically used
+/// The `EntraIdConfidentialClientApplication` class is typically used
 /// to authenticate applications that are confidential clients (such as web apps
 /// or daemons) and to interact with APIs like Microsoft Graph.
 ///
@@ -19,7 +19,7 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 /// - **Token Refresh:** Refreshes an expired token using the refresh token.
 /// - **On-Behalf-Of Flow:** Acquires a token on behalf of another user using their token.
 
-class AortemEntraIdConfidentialClientApplication {
+class EntraIdConfidentialClientApplication {
   /// The client ID associated with the Entra ID application.
   /// This is a unique identifier for the application registered in Microsoft Entra ID.
   final String clientId;
@@ -47,7 +47,7 @@ class AortemEntraIdConfidentialClientApplication {
   /// [credential] - The credential to be used for authentication (client secret, certificate, or assertion).
   /// [credentialType] - Type of credential being used (e.g., secret, certificate, or assertion).
   /// [allowLegacyProtocols] - Whether to allow legacy protocols (defaults to false).
-  AortemEntraIdConfidentialClientApplication({
+  EntraIdConfidentialClientApplication({
     required this.clientId,
     required this.authority,
     required this.credential,

@@ -14,9 +14,9 @@ void main() {
   const testTenantId = 'test-tenant-id';
   const testCertThumbprint = 'test-thumbprint';
 
-  group('AortemEntraIdClientAssertion', () {
+  group('EntraIdClientAssertion', () {
     test('should initialize with default audience', () {
-      final assertion = AortemEntraIdClientAssertion(
+      final assertion = EntraIdClientAssertion(
         clientId: testClientId,
         tenantId: testTenantId,
         privateKey: testPrivateKey,
@@ -30,7 +30,7 @@ void main() {
 
     test('should initialize with custom audience', () {
       const customAudience = 'https://custom.audience';
-      final assertion = AortemEntraIdClientAssertion(
+      final assertion = EntraIdClientAssertion(
         clientId: testClientId,
         tenantId: testTenantId,
         privateKey: testPrivateKey,
@@ -42,7 +42,7 @@ void main() {
 
     test('should throw when clientId is empty', () {
       expect(
-        () => AortemEntraIdClientAssertion(
+        () => EntraIdClientAssertion(
           clientId: '',
           tenantId: testTenantId,
           privateKey: testPrivateKey,
@@ -53,7 +53,7 @@ void main() {
 
     test('should throw when tenantId is empty', () {
       expect(
-        () => AortemEntraIdClientAssertion(
+        () => EntraIdClientAssertion(
           clientId: testClientId,
           tenantId: '',
           privateKey: testPrivateKey,
@@ -64,7 +64,7 @@ void main() {
 
     test('should throw when privateKey is empty', () {
       expect(
-        () => AortemEntraIdClientAssertion(
+        () => EntraIdClientAssertion(
           clientId: testClientId,
           tenantId: testTenantId,
           privateKey: '',
@@ -74,7 +74,7 @@ void main() {
     });
 
     test('should throw when private key is invalid', () async {
-      final assertion = AortemEntraIdClientAssertion(
+      final assertion = EntraIdClientAssertion(
         clientId: testClientId,
         tenantId: testTenantId,
         privateKey: 'invalid-key',

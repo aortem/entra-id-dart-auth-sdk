@@ -1,9 +1,9 @@
-/// AortemEntraIdSystemOptions: Configure System-Level SDK Behavior.
+/// EntraIdSystemOptions: Configure System-Level SDK Behavior.
 ///
 /// This class provides centralized control over system-level behaviors such as logging,
 /// telemetry, and request timeouts in the Aortem EntraId Dart SDK.
-class AortemEntraIdSystemOptions {
-  static AortemEntraIdSystemOptions? _instance;
+class EntraIdSystemOptions {
+  static EntraIdSystemOptions? _instance;
 
   /// Enables or disables logging in the SDK.
   final bool enableLogging;
@@ -18,7 +18,7 @@ class AortemEntraIdSystemOptions {
   final int maxRetryAttempts;
 
   /// Private constructor for creating a singleton instance.
-  AortemEntraIdSystemOptions._internal({
+  EntraIdSystemOptions._internal({
     required this.enableLogging,
     required this.enableTelemetry,
     required this.requestTimeoutInSeconds,
@@ -26,7 +26,7 @@ class AortemEntraIdSystemOptions {
   });
 
   /// Singleton instance getter. Initializes the system options if not already initialized.
-  factory AortemEntraIdSystemOptions.initialize({
+  factory EntraIdSystemOptions.initialize({
     bool enableLogging = false,
     bool enableTelemetry = true,
     int requestTimeoutInSeconds = 30, // Default timeout: 30 seconds
@@ -41,7 +41,7 @@ class AortemEntraIdSystemOptions {
         throw ArgumentError('Max retry attempts cannot be negative.');
       }
 
-      _instance = AortemEntraIdSystemOptions._internal(
+      _instance = EntraIdSystemOptions._internal(
         enableLogging: enableLogging,
         enableTelemetry: enableTelemetry,
         requestTimeoutInSeconds: requestTimeoutInSeconds,
@@ -62,10 +62,10 @@ class AortemEntraIdSystemOptions {
   /// Access the shared instance of system options.
   ///
   /// Throws an exception if the options have not been initialized.
-  static AortemEntraIdSystemOptions get instance {
+  static EntraIdSystemOptions get instance {
     if (_instance == null) {
       throw StateError(
-        'AortemEntraIdSystemOptions has not been initialized. '
+        'EntraIdSystemOptions has not been initialized. '
         'Call initialize() first.',
       );
     }

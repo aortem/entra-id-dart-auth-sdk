@@ -3,9 +3,9 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 void main() {
-  group('AortemEntraIdGuidGenerator', () {
+  group('EntraIdGuidGenerator', () {
     test('generate should return a valid version 4 GUID', () {
-      final guid = AortemEntraIdGuidGenerator.generate();
+      final guid = EntraIdGuidGenerator.generate();
 
       // Validate the format of the GUID (xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx)
       final guidRegExp = RegExp(
@@ -19,8 +19,8 @@ void main() {
     });
 
     test('generate should produce different GUIDs for multiple calls', () {
-      final guid1 = AortemEntraIdGuidGenerator.generate();
-      final guid2 = AortemEntraIdGuidGenerator.generate();
+      final guid1 = EntraIdGuidGenerator.generate();
+      final guid2 = EntraIdGuidGenerator.generate();
 
       // Assert that the GUIDs are different
       expect(

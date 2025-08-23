@@ -11,7 +11,7 @@ class EntraAuth {
   final Logger _logger = Logger('EntraAuth');
 
   /// Configuration object for the Entra ID SDK.
-  final AortemEntraIdAuthConfiguration _configuration;
+  final EntraIdAuthConfiguration _configuration;
 
   /// Creates an instance of `EntraAuth` with the given configuration.
   ///
@@ -30,7 +30,7 @@ class EntraAuth {
   /// final config = entraAuth.configuration;
   /// print(config.clientId);
   /// ```
-  AortemEntraIdAuthConfiguration get configuration => _configuration;
+  EntraIdAuthConfiguration get configuration => _configuration;
 
   /// Initializes the SDK components.
   ///

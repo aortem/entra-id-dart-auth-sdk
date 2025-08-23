@@ -2,11 +2,11 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart'; // To use sha256 for testing
 
 void main() {
-  group('AortemEntraIdPkceGenerator', () {
-    late AortemEntraIdPkceGenerator pkceGenerator;
+  group('EntraIdPkceGenerator', () {
+    late EntraIdPkceGenerator pkceGenerator;
 
     setUp(() {
-      pkceGenerator = AortemEntraIdPkceGenerator();
+      pkceGenerator = EntraIdPkceGenerator();
     });
 
     test('should generate a code verifier and code challenge pair', () {

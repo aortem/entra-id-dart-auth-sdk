@@ -1,5 +1,5 @@
 /// Enum defining standard HTTP methods.
-enum AortemEntraIdHttpMethod {
+enum EntraIdHttpMethod {
   /// The HTTP GET method is used to retrieve data from a server.
   get,
 

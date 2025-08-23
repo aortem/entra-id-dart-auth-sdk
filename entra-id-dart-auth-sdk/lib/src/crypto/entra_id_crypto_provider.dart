@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:ds_standard_features/ds_standard_features.dart';
 
-/// AortemEntraIdCryptoProvider: Utility class to perform cryptographic operations
+/// EntraIdCryptoProvider: Utility class to perform cryptographic operations
 /// in the Entra ID Dart SDK. It includes methods for hashing, signing, and
 /// generating PKCE (Proof Key for Code Exchange) challenges.
-class AortemEntraIdCryptoProvider {
+class EntraIdCryptoProvider {
   /// Method to generate a SHA256 hash of the input string.
   ///
   /// [input] The input string to be hashed.

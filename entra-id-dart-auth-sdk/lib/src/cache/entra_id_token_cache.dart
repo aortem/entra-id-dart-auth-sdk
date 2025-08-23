@@ -9,8 +9,8 @@ import '../utils/entra_id_guid_generator.dart';
 
 /// Abstract base class for token cache implementations
 
-abstract class AortemEntraIdTokenCache {
-  final Logger _logger = Logger('AortemEntraIdTokenCache');
+abstract class EntraIdTokenCache {
+  final Logger _logger = Logger('EntraIdTokenCache');
 
   /// Stream controller for cache events
   final _changeController = StreamController<String>.broadcast();
@@ -76,7 +76,7 @@ abstract class AortemEntraIdTokenCache {
       clientId,
       if (userId != null) userId,
       if (scopes != null && scopes.isNotEmpty) scopes.join(' '),
-      AortemEntraIdGuidGenerator.generate(),
+      EntraIdGuidGenerator.generate(),
     ];
 
     return components.join(':');

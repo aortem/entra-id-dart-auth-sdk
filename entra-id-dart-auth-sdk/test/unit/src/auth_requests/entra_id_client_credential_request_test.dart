@@ -5,12 +5,12 @@ import 'package:entra_id_dart_auth_sdk/src/auth_requests/entra_id_client_credent
 import 'package:http/testing.dart';
 
 void main() {
-  group('AortemEntraIdClientCredentialRequest', () {
-    late AortemEntraIdClientCredentialRequest request;
+  group('EntraIdClientCredentialRequest', () {
+    late EntraIdClientCredentialRequest request;
     late http.Client mockClient;
 
     setUp(() {
-      request = AortemEntraIdClientCredentialRequest(
+      request = EntraIdClientCredentialRequest(
         clientId: 'test-client-id',
         clientSecret: 'test-client-secret',
         authority: 'https://login.microsoftonline.com',
@@ -21,7 +21,7 @@ void main() {
 
     test('throws ArgumentError when credentials or tenantId are empty', () {
       expect(
-        () => AortemEntraIdClientCredentialRequest(
+        () => EntraIdClientCredentialRequest(
           clientId: '',
           clientSecret: '',
           authority: 'https://login.microsoftonline.com',
@@ -44,7 +44,7 @@ void main() {
       });
 
       // Use the mock client
-      request = AortemEntraIdClientCredentialRequest(
+      request = EntraIdClientCredentialRequest(
         clientId: 'test-client-id',
         clientSecret: 'test-client-secret',
         authority: 'https://login.microsoftonline.com',

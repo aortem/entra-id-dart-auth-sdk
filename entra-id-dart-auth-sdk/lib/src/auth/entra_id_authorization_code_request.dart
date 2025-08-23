@@ -79,8 +79,8 @@ class AuthorizationCodeException implements Exception {
 }
 
 /// Handles authorization code token requests
-class AortemEntraIdAuthorizationCodeRequest {
-  final Logger _logger = Logger('AortemEntraIdAuthorizationCodeRequest');
+class EntraIdAuthorizationCodeRequest {
+  final Logger _logger = Logger('EntraIdAuthorizationCodeRequest');
 
   /// The token endpoint URL
   final String tokenEndpoint;
@@ -88,8 +88,8 @@ class AortemEntraIdAuthorizationCodeRequest {
   /// Parameters for the token request
   final AuthorizationCodeRequestParameters parameters;
 
-  /// Creates a new instance of AortemEntraIdAuthorizationCodeRequest
-  AortemEntraIdAuthorizationCodeRequest({
+  /// Creates a new instance of EntraIdAuthorizationCodeRequest
+  EntraIdAuthorizationCodeRequest({
     required this.tokenEndpoint,
     required this.parameters,
   }) {
@@ -174,7 +174,7 @@ class AortemEntraIdAuthorizationCodeRequest {
 
     // Add basic auth header for confidential clients
     if (parameters.clientSecret != null) {
-      final credentials = AortemEntraIdEncodingUtils.encodeBase64(
+      final credentials = EntraIdEncodingUtils.encodeBase64(
         '${parameters.clientId}:${parameters.clientSecret}',
       );
       headers['Authorization'] = 'Basic $credentials';

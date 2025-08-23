@@ -1,30 +1,30 @@
 import 'package:entra_id_dart_auth_sdk/src/enum/entra_id_http_method_enum.dart';
 
 /// Utility class for managing and validating HTTP methods.
-class AortemEntraIdHttpMethodUtils {
-  /// Converts an [AortemEntraIdHttpMethod] enum value to its string representation.
+class EntraIdHttpMethodUtils {
+  /// Converts an [EntraIdHttpMethod] enum value to its string representation.
   ///
   /// Example:
   /// ```dart
-  /// final method = AortemEntraIdHttpMethod.post;
-  /// print(AortemEntraIdHttpMethodUtils.methodToString(method)); // Output: post
+  /// final method = EntraIdHttpMethod.post;
+  /// print(EntraIdHttpMethodUtils.methodToString(method)); // Output: post
   /// ```
-  static String methodToString(AortemEntraIdHttpMethod method) {
+  static String methodToString(EntraIdHttpMethod method) {
     return method.name;
   }
 
-  /// Converts a string to its corresponding [AortemEntraIdHttpMethod] enum value.
+  /// Converts a string to its corresponding [EntraIdHttpMethod] enum value.
   ///
   /// Throws [ArgumentError] if the provided method string is not supported.
   ///
   /// Example:
   /// ```dart
-  /// final method = AortemEntraIdHttpMethodUtils.stringToMethod('get');
-  /// print(method); // Output: AortemEntraIdHttpMethod.get
+  /// final method = EntraIdHttpMethodUtils.stringToMethod('get');
+  /// print(method); // Output: EntraIdHttpMethod.get
   /// ```
-  static AortemEntraIdHttpMethod stringToMethod(String method) {
+  static EntraIdHttpMethod stringToMethod(String method) {
     try {
-      return AortemEntraIdHttpMethod.values.firstWhere(
+      return EntraIdHttpMethod.values.firstWhere(
         (e) => e.name.toLowerCase() == method.toLowerCase(),
       );
     } catch (e) {
@@ -36,11 +36,11 @@ class AortemEntraIdHttpMethodUtils {
   ///
   /// Example:
   /// ```dart
-  /// final isValid = AortemEntraIdHttpMethodUtils.isSupported('patch');
+  /// final isValid = EntraIdHttpMethodUtils.isSupported('patch');
   /// print(isValid); // Output: true
   /// ```
   static bool isSupported(String method) {
-    return AortemEntraIdHttpMethod.values
+    return EntraIdHttpMethod.values
         .map((e) => e.name.toLowerCase())
         .contains(method.toLowerCase());
   }

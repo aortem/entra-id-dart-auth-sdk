@@ -6,10 +6,10 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 import 'dart:convert';
 
 void main() {
-  group('AortemEntraIdCryptoProvider', () {
+  group('EntraIdCryptoProvider', () {
     test('should generate a valid SHA256 hash', () {
       final input = 'test string';
-      final hash = AortemEntraIdCryptoProvider.generateSha256Hash(input);
+      final hash = EntraIdCryptoProvider.generateSha256Hash(input);
       final expectedHash = sha256.convert(utf8.encode(input)).toString();
 
       expect(hash, equals(expectedHash));
@@ -20,7 +20,7 @@ void main() {
       () {
         final codeVerifier = 'dGVzdCBzdHJpbmc=';
         final codeChallenge =
-            AortemEntraIdCryptoProvider.generatePkceCodeChallenge(codeVerifier);
+            EntraIdCryptoProvider.generatePkceCodeChallenge(codeVerifier);
         final expectedChallenge = base64Url.encode(
           sha256.convert(utf8.encode(codeVerifier)).bytes,
         );
@@ -32,7 +32,7 @@ void main() {
     test('should generate a valid HMAC-SHA256 signature', () {
       final key = 'secret-key';
       final data = 'data-to-sign';
-      final signature = AortemEntraIdCryptoProvider.generateHmacSha256(
+      final signature = EntraIdCryptoProvider.generateHmacSha256(
         key,
         data,
       );
@@ -45,7 +45,7 @@ void main() {
 
     test('should encode a string to Base64 URL-safe', () {
       final input = 'test string';
-      final encoded = AortemEntraIdCryptoProvider.encodeBase64Url(input);
+      final encoded = EntraIdCryptoProvider.encodeBase64Url(input);
       final expectedEncoded = base64Url.encode(utf8.encode(input));
 
       expect(encoded, equals(expectedEncoded));
@@ -53,7 +53,7 @@ void main() {
 
     test('should decode a Base64 URL-safe string', () {
       final input = 'dGVzdCBzdHJpbmc='; // base64 URL-safe encoded 'test string'
-      final decoded = AortemEntraIdCryptoProvider.decodeBase64Url(input);
+      final decoded = EntraIdCryptoProvider.decodeBase64Url(input);
 
       expect(decoded, equals('test string'));
     });
@@ -62,7 +62,7 @@ void main() {
       'should throw FormatException on Base64 URL-safe decoding failure',
       () {
         expect(
-          () => AortemEntraIdCryptoProvider.decodeBase64Url('invalid-base64'),
+          () => EntraIdCryptoProvider.decodeBase64Url('invalid-base64'),
           throwsA(isA<FormatException>()),
         );
       },

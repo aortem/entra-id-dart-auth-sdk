@@ -1,8 +1,8 @@
-/// AortemEntraIdConfiguration: Centralized SDK Configuration Management.
+/// EntraIdConfiguration: Centralized SDK Configuration Management.
 /// This class manages global configuration settings for the Aortem EntraId Dart SDK.
-class AortemEntraIdConfiguration {
+class EntraIdConfiguration {
   // Singleton instance of the configuration.
-  static AortemEntraIdConfiguration? _instance;
+  static EntraIdConfiguration? _instance;
 
   /// Required configuration properties.
   final String clientId;
@@ -27,7 +27,7 @@ class AortemEntraIdConfiguration {
   /// Cache expiration time in seconds.
 
   /// Private constructor to restrict object creation.
-  AortemEntraIdConfiguration._internal({
+  EntraIdConfiguration._internal({
     required this.clientId,
 
     /// Initializes the client ID.
@@ -50,7 +50,7 @@ class AortemEntraIdConfiguration {
 
   /// Factory constructor to initialize the singleton instance.
   /// If the instance already exists, it returns the existing instance.
-  factory AortemEntraIdConfiguration.initialize({
+  factory EntraIdConfiguration.initialize({
     required String clientId,
 
     /// Requires client ID as an input.
@@ -70,7 +70,7 @@ class AortemEntraIdConfiguration {
 
     /// Optionally sets cache expiration (default: 1 hour).
   }) {
-    _instance ??= AortemEntraIdConfiguration._internal(
+    _instance ??= EntraIdConfiguration._internal(
       clientId: clientId,
       tenantId: tenantId,
       authority: authority,

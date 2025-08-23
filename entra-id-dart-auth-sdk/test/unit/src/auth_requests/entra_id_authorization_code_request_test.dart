@@ -2,12 +2,12 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 void main() {
-  group('AortemEntraIdAuthorizationCodeRequest', () {
+  group('EntraIdAuthorizationCodeRequest', () {
     const tokenEndpoint =
         'https://login.microsoftonline.com/common/oauth2/v2.0/token';
 
     test('builds correct request body with all fields', () {
-      final request = AortemEntraIdAuthorizationCodeRequest(
+      final request = EntraIdAuthorizationCodeRequest(
         tokenEndpoint: tokenEndpoint,
         parameters: AuthorizationCodeRequestParameters(
           authorizationCode: 'abc123',
@@ -31,7 +31,7 @@ void main() {
     });
 
     test('builds correct headers with basic auth and correlation ID', () {
-      final request = AortemEntraIdAuthorizationCodeRequest(
+      final request = EntraIdAuthorizationCodeRequest(
         tokenEndpoint: tokenEndpoint,
         parameters: AuthorizationCodeRequestParameters(
           authorizationCode: 'abc123',
@@ -57,7 +57,7 @@ void main() {
       );
 
       expect(
-        () => AortemEntraIdAuthorizationCodeRequest
+        () => EntraIdAuthorizationCodeRequest
             .validateAuthorizationCodeResponse(
           uri,
           'state123',
@@ -76,7 +76,7 @@ void main() {
       final uri = Uri.parse('https://app.com/callback?code=abc123&state=wrong');
 
       expect(
-        () => AortemEntraIdAuthorizationCodeRequest
+        () => EntraIdAuthorizationCodeRequest
             .validateAuthorizationCodeResponse(
           uri,
           'expectedState',
@@ -96,7 +96,7 @@ void main() {
         'https://app.com/callback?code=abc123&state=expectedState',
       );
 
-      final result = AortemEntraIdAuthorizationCodeRequest
+      final result = EntraIdAuthorizationCodeRequest
           .validateAuthorizationCodeResponse(
         uri,
         'expectedState',
@@ -109,7 +109,7 @@ void main() {
       final response = {'token_type': 'Bearer'};
 
       expect(
-        () => AortemEntraIdAuthorizationCodeRequest.validateTokenResponse(
+        () => EntraIdAuthorizationCodeRequest.validateTokenResponse(
           response,
         ),
         throwsA(
@@ -126,7 +126,7 @@ void main() {
       final response = {'access_token': 'abc', 'token_type': 'Bearer'};
 
       final result =
-          AortemEntraIdAuthorizationCodeRequest.validateTokenResponse(response);
+          EntraIdAuthorizationCodeRequest.validateTokenResponse(response);
       expect(result, isTrue);
     });
   });

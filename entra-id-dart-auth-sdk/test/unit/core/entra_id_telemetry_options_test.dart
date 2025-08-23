@@ -2,9 +2,9 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/core/entra_id_telemetry_options.dart';
 
 void main() {
-  group('AortemEntraIdTelemetryOptions', () {
+  group('EntraIdTelemetryOptions', () {
     test('should initialize with valid parameters', () {
-      final options = AortemEntraIdTelemetryOptions(
+      final options = EntraIdTelemetryOptions(
         enableTelemetry: true,
         telemetryEndpoint: 'https://telemetry.example.com',
         retryAttempts: 3,
@@ -19,7 +19,7 @@ void main() {
       'should throw error if telemetry is enabled but endpoint is empty',
       () {
         expect(
-          () => AortemEntraIdTelemetryOptions(
+          () => EntraIdTelemetryOptions(
             enableTelemetry: true,
             telemetryEndpoint: '',
           ),
@@ -30,7 +30,7 @@ void main() {
 
     test('should throw error for negative retry attempts', () {
       expect(
-        () => AortemEntraIdTelemetryOptions(
+        () => EntraIdTelemetryOptions(
           enableTelemetry: true,
           telemetryEndpoint: 'https://telemetry.example.com',
           retryAttempts: -1,
@@ -40,7 +40,7 @@ void main() {
     });
 
     test('should initialize with default retry attempts', () {
-      final options = AortemEntraIdTelemetryOptions(
+      final options = EntraIdTelemetryOptions(
         enableTelemetry: true,
         telemetryEndpoint: 'https://telemetry.example.com',
       );

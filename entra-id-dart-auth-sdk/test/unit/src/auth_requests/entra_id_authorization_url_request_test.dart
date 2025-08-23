@@ -2,13 +2,13 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 void main() {
-  group('AortemEntraIdAuthorizationUrlRequest', () {
+  group('EntraIdAuthorizationUrlRequest', () {
     const authorityUrl =
         'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
 
     test('throws if clientId is empty', () {
       expect(
-        () => AortemEntraIdAuthorizationUrlRequest(
+        () => EntraIdAuthorizationUrlRequest(
           authorityUrl: authorityUrl,
           parameters: AuthorizationUrlRequestParameters(
             clientId: '',
@@ -28,7 +28,7 @@ void main() {
 
     test('throws if redirectUri is empty', () {
       expect(
-        () => AortemEntraIdAuthorizationUrlRequest(
+        () => EntraIdAuthorizationUrlRequest(
           authorityUrl: authorityUrl,
           parameters: AuthorizationUrlRequestParameters(
             clientId: 'client123',
@@ -48,7 +48,7 @@ void main() {
 
     test('throws if redirectUri is not absolute', () {
       expect(
-        () => AortemEntraIdAuthorizationUrlRequest(
+        () => EntraIdAuthorizationUrlRequest(
           authorityUrl: authorityUrl,
           parameters: AuthorizationUrlRequestParameters(
             clientId: 'client123',
@@ -68,7 +68,7 @@ void main() {
 
     test('throws if scopes are empty', () {
       expect(
-        () => AortemEntraIdAuthorizationUrlRequest(
+        () => EntraIdAuthorizationUrlRequest(
           authorityUrl: authorityUrl,
           parameters: AuthorizationUrlRequestParameters(
             clientId: 'client123',
@@ -88,7 +88,7 @@ void main() {
 
     test('throws if PKCE code challenge provided without method', () {
       expect(
-        () => AortemEntraIdAuthorizationUrlRequest(
+        () => EntraIdAuthorizationUrlRequest(
           authorityUrl: authorityUrl,
           parameters: AuthorizationUrlRequestParameters(
             clientId: 'client123',
@@ -108,7 +108,7 @@ void main() {
     });
 
     test('builds URL with minimum required fields', () {
-      final request = AortemEntraIdAuthorizationUrlRequest(
+      final request = EntraIdAuthorizationUrlRequest(
         authorityUrl: authorityUrl,
         parameters: AuthorizationUrlRequestParameters(
           clientId: 'client123',
@@ -133,7 +133,7 @@ void main() {
     });
 
     test('builds URL with optional parameters', () {
-      final request = AortemEntraIdAuthorizationUrlRequest(
+      final request = EntraIdAuthorizationUrlRequest(
         authorityUrl: authorityUrl,
         parameters: AuthorizationUrlRequestParameters(
           clientId: 'client123',
@@ -160,7 +160,7 @@ void main() {
     });
 
     test('validateRedirectUri returns true for matching URIs', () {
-      final result = AortemEntraIdAuthorizationUrlRequest.validateRedirectUri(
+      final result = EntraIdAuthorizationUrlRequest.validateRedirectUri(
         'https://example.com/callback?code=abc',
         'https://example.com/callback',
       );
@@ -169,7 +169,7 @@ void main() {
     });
 
     test('validateRedirectUri returns false for different paths', () {
-      final result = AortemEntraIdAuthorizationUrlRequest.validateRedirectUri(
+      final result = EntraIdAuthorizationUrlRequest.validateRedirectUri(
         'https://example.com/wrong',
         'https://example.com/callback',
       );
@@ -179,7 +179,7 @@ void main() {
 
     test('validateRedirectUri throws if input is not valid URIs', () {
       expect(
-        () => AortemEntraIdAuthorizationUrlRequest.validateRedirectUri(
+        () => EntraIdAuthorizationUrlRequest.validateRedirectUri(
           '::not-a-uri::',
           'https://example.com/callback',
         ),

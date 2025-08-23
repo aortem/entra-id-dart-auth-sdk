@@ -2,11 +2,11 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/auth/cache/entra_id_distributed_cache_plugin.dart';
 
 void main() {
-  group('AortemEntraIdDistributedCachePlugin Tests', () {
-    late AortemEntraIdDistributedCachePlugin cache;
+  group('EntraIdDistributedCachePlugin Tests', () {
+    late EntraIdDistributedCachePlugin cache;
 
     setUp(() {
-      cache = AortemEntraIdDistributedCachePlugin(
+      cache = EntraIdDistributedCachePlugin(
         connectionString: 'test_connection',
         namespace: 'test',
       );
@@ -43,7 +43,7 @@ void main() {
     });
 
     test('Namespace Isolation', () async {
-      final cache2 = AortemEntraIdDistributedCachePlugin(
+      final cache2 = EntraIdDistributedCachePlugin(
         connectionString: 'test_connection',
         namespace: 'other',
       );

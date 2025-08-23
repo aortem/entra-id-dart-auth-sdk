@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:ds_standard_features/ds_standard_features.dart';
 
-/// AortemEntraIdPkceGenerator: Generates a PKCE code verifier and challenge pair for OAuth 2.0 flows.
+/// EntraIdPkceGenerator: Generates a PKCE code verifier and challenge pair for OAuth 2.0 flows.
 ///
 /// This class generates secure, random code verifiers and corresponding code challenges for OAuth 2.0 authorization with PKCE.
-class AortemEntraIdPkceGenerator {
+class EntraIdPkceGenerator {
   final Random _random = Random.secure();
 
   /// Generate a secure code verifier and code challenge pair for PKCE.

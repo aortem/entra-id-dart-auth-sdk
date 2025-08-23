@@ -13,22 +13,22 @@ class MockEntity {
 }
 
 void main() {
-  group('AortemEntraIdSerializer', () {
+  group('EntraIdSerializer', () {
     test('serialize should return JSON string', () {
       final entity = MockEntity(key: 'value');
-      final jsonString = AortemEntraIdSerializer.serialize(entity.toJson());
+      final jsonString = EntraIdSerializer.serialize(entity.toJson());
       expect(jsonString, '{"key":"value"}');
     });
 
     test('deserialize should return Map from JSON string', () {
       final jsonString = '{"key":"value"}';
-      final map = AortemEntraIdSerializer.deserialize(jsonString);
+      final map = EntraIdSerializer.deserialize(jsonString);
       expect(map['key'], 'value');
     });
 
     test('deserializeTo should return entity from JSON string', () {
       final jsonString = '{"key":"value"}';
-      final entity = AortemEntraIdSerializer.deserializeTo<MockEntity>(
+      final entity = EntraIdSerializer.deserializeTo<MockEntity>(
         jsonString,
         (json) => MockEntity.fromJson(json),
       );
@@ -37,21 +37,21 @@ void main() {
 
     test('serialize should throw ArgumentError for invalid input', () {
       expect(
-        () => AortemEntraIdSerializer.serialize(Object()),
+        () => EntraIdSerializer.serialize(Object()),
         throwsArgumentError,
       );
     });
 
     test('deserialize should throw ArgumentError for empty JSON string', () {
       expect(
-        () => AortemEntraIdSerializer.deserialize(''),
+        () => EntraIdSerializer.deserialize(''),
         throwsArgumentError,
       );
     });
 
     test('deserialize should throw ArgumentError for invalid JSON', () {
       expect(
-        () => AortemEntraIdSerializer.deserialize('invalid'),
+        () => EntraIdSerializer.deserialize('invalid'),
         throwsArgumentError,
       );
     });

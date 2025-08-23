@@ -4,7 +4,7 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 // Import the actual file path where your class is defined
 
 void main() {
-  group('AortemEntraIdSerializedRefreshTokenEntity', () {
+  group('EntraIdSerializedRefreshTokenEntity', () {
     test('should create an entity from JSON and serialize back to JSON', () {
       final json = {
         'refreshToken': 'test-refresh-token',
@@ -20,7 +20,7 @@ void main() {
         'metadata': {'key': 'value'},
       };
 
-      final entity = AortemEntraIdSerializedRefreshTokenEntity.fromJson(json);
+      final entity = EntraIdSerializedRefreshTokenEntity.fromJson(json);
 
       // Test that the entity was created correctly
       expect(entity.refreshToken, 'test-refresh-token');
@@ -52,7 +52,7 @@ void main() {
 
     test('should throw exception if required fields are empty', () {
       expect(
-        () => AortemEntraIdSerializedRefreshTokenEntity(
+        () => EntraIdSerializedRefreshTokenEntity(
           refreshToken: '',
           clientId: 'test-client-id',
           tenantId: 'test-tenant-id',
@@ -65,7 +65,7 @@ void main() {
       );
 
       expect(
-        () => AortemEntraIdSerializedRefreshTokenEntity(
+        () => EntraIdSerializedRefreshTokenEntity(
           refreshToken: 'test-refresh-token',
           clientId: '',
           tenantId: 'test-tenant-id',
@@ -78,7 +78,7 @@ void main() {
       );
 
       expect(
-        () => AortemEntraIdSerializedRefreshTokenEntity(
+        () => EntraIdSerializedRefreshTokenEntity(
           refreshToken: 'test-refresh-token',
           clientId: 'test-client-id',
           tenantId: '',
@@ -92,7 +92,7 @@ void main() {
     });
 
     test('should generate a unique cache key', () {
-      final entity = AortemEntraIdSerializedRefreshTokenEntity(
+      final entity = EntraIdSerializedRefreshTokenEntity(
         refreshToken: 'test-refresh-token',
         clientId: 'test-client-id',
         tenantId: 'test-tenant-id',
@@ -109,7 +109,7 @@ void main() {
     });
 
     test('should correctly copy and update fields', () {
-      final entity = AortemEntraIdSerializedRefreshTokenEntity(
+      final entity = EntraIdSerializedRefreshTokenEntity(
         refreshToken: 'test-refresh-token',
         clientId: 'test-client-id',
         tenantId: 'test-tenant-id',
@@ -127,7 +127,7 @@ void main() {
     });
 
     test('should check for required scopes', () {
-      final entity = AortemEntraIdSerializedRefreshTokenEntity(
+      final entity = EntraIdSerializedRefreshTokenEntity(
         refreshToken: 'test-refresh-token',
         clientId: 'test-client-id',
         tenantId: 'test-tenant-id',

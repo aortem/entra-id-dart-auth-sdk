@@ -1,8 +1,8 @@
-/// AortemEntraIdIPartitionManager: Interface for partition management.
+/// EntraIdIPartitionManager: Interface for partition management.
 ///
 /// This interface defines the contract for managing token and cache
 /// partitioning in multi-tenant or multi-client scenarios.
-abstract class AortemEntraIdIPartitionManager {
+abstract class EntraIdIPartitionManager {
   /// Gets the partition key based on the provided [tenantId] or [clientId].
   ///
   /// Throws an [ArgumentError] if no valid key can be generated.

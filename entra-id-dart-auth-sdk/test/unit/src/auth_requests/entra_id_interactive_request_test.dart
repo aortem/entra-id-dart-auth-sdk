@@ -3,7 +3,7 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 void main() {
-  group('AortemEntraIdInteractiveRequest', () {
+  group('EntraIdInteractiveRequest', () {
     test('should initialize with valid parameters', () {
       final params = InteractiveRequestParameters(
         clientId: 'test-client-id',
@@ -12,7 +12,7 @@ void main() {
         timeout: Duration(minutes: 2),
       );
 
-      final request = AortemEntraIdInteractiveRequest(
+      final request = EntraIdInteractiveRequest(
         authorityUrl:
             'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
         parameters: params,
@@ -32,7 +32,7 @@ void main() {
       );
 
       expect(
-        () => AortemEntraIdInteractiveRequest(
+        () => EntraIdInteractiveRequest(
           authorityUrl:
               'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
           parameters: params,
@@ -49,7 +49,7 @@ void main() {
         timeout: Duration(minutes: 1),
       );
 
-      final request = AortemEntraIdInteractiveRequest(
+      final request = EntraIdInteractiveRequest(
         authorityUrl:
             'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
         parameters: params,
@@ -67,7 +67,7 @@ void main() {
         scopes: ['openid'],
       );
 
-      final request = AortemEntraIdInteractiveRequest(
+      final request = EntraIdInteractiveRequest(
         authorityUrl:
             'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
         parameters: params,
@@ -88,7 +88,7 @@ void main() {
         scopes: ['openid'],
       );
 
-      final request = AortemEntraIdInteractiveRequest(
+      final request = EntraIdInteractiveRequest(
         authorityUrl:
             'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
         parameters: params,
@@ -112,7 +112,7 @@ void main() {
         timeout: Duration(seconds: 1), // Timeout after 1 second
       );
 
-      final request = AortemEntraIdInteractiveRequest(
+      final request = EntraIdInteractiveRequest(
         authorityUrl:
             'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
         parameters: params,
@@ -134,7 +134,7 @@ void main() {
         scopes: ['openid'],
       );
 
-      final request = AortemEntraIdInteractiveRequest(
+      final request = EntraIdInteractiveRequest(
         authorityUrl:
             'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
         parameters: params,

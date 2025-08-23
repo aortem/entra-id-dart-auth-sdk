@@ -2,11 +2,11 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 void main() {
-  group('AortemEntraIdPublicClientApp', () {
-    late AortemEntraIdPublicClientApp app;
+  group('EntraIdPublicClientApp', () {
+    late EntraIdPublicClientApp app;
 
     setUp(() {
-      app = AortemEntraIdPublicClientApp(
+      app = EntraIdPublicClientApp(
         clientId: 'test-client-id',
         authority: 'https://login.microsoftonline.com',
         redirectUri: 'http://localhost',

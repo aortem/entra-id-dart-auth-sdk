@@ -2,53 +2,53 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/utils/entra_id_http_method.dart';
 
 void main() {
-  group('AortemEntraIdHttpMethodUtils', () {
+  group('EntraIdHttpMethodUtils', () {
     test('methodToString converts enum to string', () {
       expect(
-        AortemEntraIdHttpMethodUtils.methodToString(
-          AortemEntraIdHttpMethod.get,
+        EntraIdHttpMethodUtils.methodToString(
+          EntraIdHttpMethod.get,
         ),
         'get',
       );
       expect(
-        AortemEntraIdHttpMethodUtils.methodToString(
-          AortemEntraIdHttpMethod.post,
+        EntraIdHttpMethodUtils.methodToString(
+          EntraIdHttpMethod.post,
         ),
         'post',
       );
       expect(
-        AortemEntraIdHttpMethodUtils.methodToString(
-          AortemEntraIdHttpMethod.put,
+        EntraIdHttpMethodUtils.methodToString(
+          EntraIdHttpMethod.put,
         ),
         'put',
       );
       expect(
-        AortemEntraIdHttpMethodUtils.methodToString(
-          AortemEntraIdHttpMethod.delete,
+        EntraIdHttpMethodUtils.methodToString(
+          EntraIdHttpMethod.delete,
         ),
         'delete',
       );
       expect(
-        AortemEntraIdHttpMethodUtils.methodToString(
-          AortemEntraIdHttpMethod.patch,
+        EntraIdHttpMethodUtils.methodToString(
+          EntraIdHttpMethod.patch,
         ),
         'patch',
       );
       expect(
-        AortemEntraIdHttpMethodUtils.methodToString(
-          AortemEntraIdHttpMethod.head,
+        EntraIdHttpMethodUtils.methodToString(
+          EntraIdHttpMethod.head,
         ),
         'head',
       );
       expect(
-        AortemEntraIdHttpMethodUtils.methodToString(
-          AortemEntraIdHttpMethod.options,
+        EntraIdHttpMethodUtils.methodToString(
+          EntraIdHttpMethod.options,
         ),
         'options',
       );
       expect(
-        AortemEntraIdHttpMethodUtils.methodToString(
-          AortemEntraIdHttpMethod.trace,
+        EntraIdHttpMethodUtils.methodToString(
+          EntraIdHttpMethod.trace,
         ),
         'trace',
       );
@@ -56,65 +56,65 @@ void main() {
 
     test('stringToMethod converts string to enum', () {
       expect(
-        AortemEntraIdHttpMethodUtils.stringToMethod('get'),
-        AortemEntraIdHttpMethod.get,
+        EntraIdHttpMethodUtils.stringToMethod('get'),
+        EntraIdHttpMethod.get,
       );
       expect(
-        AortemEntraIdHttpMethodUtils.stringToMethod('POST'),
-        AortemEntraIdHttpMethod.post,
+        EntraIdHttpMethodUtils.stringToMethod('POST'),
+        EntraIdHttpMethod.post,
       );
       expect(
-        AortemEntraIdHttpMethodUtils.stringToMethod('Put'),
-        AortemEntraIdHttpMethod.put,
+        EntraIdHttpMethodUtils.stringToMethod('Put'),
+        EntraIdHttpMethod.put,
       );
       expect(
-        AortemEntraIdHttpMethodUtils.stringToMethod('delete'),
-        AortemEntraIdHttpMethod.delete,
+        EntraIdHttpMethodUtils.stringToMethod('delete'),
+        EntraIdHttpMethod.delete,
       );
       expect(
-        AortemEntraIdHttpMethodUtils.stringToMethod('PATCH'),
-        AortemEntraIdHttpMethod.patch,
+        EntraIdHttpMethodUtils.stringToMethod('PATCH'),
+        EntraIdHttpMethod.patch,
       );
       expect(
-        AortemEntraIdHttpMethodUtils.stringToMethod('head'),
-        AortemEntraIdHttpMethod.head,
+        EntraIdHttpMethodUtils.stringToMethod('head'),
+        EntraIdHttpMethod.head,
       );
       expect(
-        AortemEntraIdHttpMethodUtils.stringToMethod('OPTIONS'),
-        AortemEntraIdHttpMethod.options,
+        EntraIdHttpMethodUtils.stringToMethod('OPTIONS'),
+        EntraIdHttpMethod.options,
       );
       expect(
-        AortemEntraIdHttpMethodUtils.stringToMethod('TrAcE'),
-        AortemEntraIdHttpMethod.trace,
+        EntraIdHttpMethodUtils.stringToMethod('TrAcE'),
+        EntraIdHttpMethod.trace,
       );
     });
 
     test('stringToMethod throws ArgumentError for invalid method', () {
       expect(
-        () => AortemEntraIdHttpMethodUtils.stringToMethod('invalid'),
+        () => EntraIdHttpMethodUtils.stringToMethod('invalid'),
         throwsArgumentError,
       );
       expect(
-        () => AortemEntraIdHttpMethodUtils.stringToMethod('123'),
+        () => EntraIdHttpMethodUtils.stringToMethod('123'),
         throwsArgumentError,
       );
       expect(
-        () => AortemEntraIdHttpMethodUtils.stringToMethod(''),
+        () => EntraIdHttpMethodUtils.stringToMethod(''),
         throwsArgumentError,
       );
     });
 
     test('isSupported returns true for valid methods', () {
-      expect(AortemEntraIdHttpMethodUtils.isSupported('get'), isTrue);
-      expect(AortemEntraIdHttpMethodUtils.isSupported('POST'), isTrue);
-      expect(AortemEntraIdHttpMethodUtils.isSupported('patch'), isTrue);
-      expect(AortemEntraIdHttpMethodUtils.isSupported('TRACE'), isTrue);
+      expect(EntraIdHttpMethodUtils.isSupported('get'), isTrue);
+      expect(EntraIdHttpMethodUtils.isSupported('POST'), isTrue);
+      expect(EntraIdHttpMethodUtils.isSupported('patch'), isTrue);
+      expect(EntraIdHttpMethodUtils.isSupported('TRACE'), isTrue);
     });
 
     test('isSupported returns false for invalid methods', () {
-      expect(AortemEntraIdHttpMethodUtils.isSupported('invalid'), isFalse);
-      expect(AortemEntraIdHttpMethodUtils.isSupported('123'), isFalse);
-      expect(AortemEntraIdHttpMethodUtils.isSupported(''), isFalse);
+      expect(EntraIdHttpMethodUtils.isSupported('invalid'), isFalse);
+      expect(EntraIdHttpMethodUtils.isSupported('123'), isFalse);
+      expect(EntraIdHttpMethodUtils.isSupported(''), isFalse);
     });
   });
 }

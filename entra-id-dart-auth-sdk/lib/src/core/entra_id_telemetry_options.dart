@@ -1,7 +1,7 @@
-/// AortemEntraIdTelemetryOptions: Configure telemetry settings for the SDK.
+/// EntraIdTelemetryOptions: Configure telemetry settings for the SDK.
 ///
 /// This class manages telemetry options, such as event tracking and endpoint configuration.
-class AortemEntraIdTelemetryOptions {
+class EntraIdTelemetryOptions {
   /// Enable or disable telemetry collection
   final bool enableTelemetry;
 
@@ -12,7 +12,7 @@ class AortemEntraIdTelemetryOptions {
   final int retryAttempts;
 
   /// Private constructor with named parameters
-  AortemEntraIdTelemetryOptions({
+  EntraIdTelemetryOptions({
     required this.enableTelemetry,
     required this.telemetryEndpoint,
     this.retryAttempts = 3, // Default: 3 retries

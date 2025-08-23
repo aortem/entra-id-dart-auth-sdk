@@ -9,7 +9,7 @@
 ### Added
 
 * **Runtime Versioning**: Introduced top-level `sdkVersion` constant (`0.0.1-pre+1`) in `lib/entra_id_dart_auth_sdk.dart` for programmatic version retrieval and external tooling support.
-* **Secure Storage Backend**: Added `AortemEntraIdStorage` implementation (exported from `src/storage/entra_id_storage.dart`), featuring:
+* **Secure Storage Backend**: Added `EntraIdStorage` implementation (exported from `src/storage/entra_id_storage.dart`), featuring:
 
   * Token load/save methods with automatic serialization.
   * Pluggable interface for custom storage backends.
@@ -31,8 +31,8 @@
   * Removed manual JSON serialization code; switched to `json_serializable` for generated models.
 * **Documentation Updates**:
 
-  * Enhanced “Enhance with Entra Id Dart Auth SDK” section in `README.md` with Flutter and server-side usage examples.
-  * Added “Migrating from 0.x” section outlining breaking changes and upgrade steps.
+  * Enhanced â€œEnhance with Entra Id Dart Auth SDKâ€ section in `README.md` with Flutter and server-side usage examples.
+  * Added â€œMigrating from 0.xâ€ section outlining breaking changes and upgrade steps.
 * **CI/CD Improvements** (`.gitlab-ci.yml`):
 
   * Enforced semantic version branch names via regex (`^v?\d+\.\d+\.\d+(-[\w\.]+)?$`).
@@ -67,7 +67,7 @@
 
 ### Performance
 
-* **I/O Optimization**: Improved token storage performance by batching file operations in `AortemEntraIdStorage`.
+* **I/O Optimization**: Improved token storage performance by batching file operations in `EntraIdStorage`.
 * **Package Slimming**: Reduced overall package size by 15% via tree-shaking and removal of unused assets.
 
 ### Refactoring
@@ -80,10 +80,10 @@
 ## 0.0.1-pre+1
 
 - Add all EntraId Methods.
-- Implement AortemEntraIdHashUtils for hashing functionalities
-- Develop AortemEntraIdDistributedCachePlugin for distributed caching
-- Create AortemEntraIdEncodingUtils for encoding operations
-- Add AortemEntraIdGuidGenerator for GUID generation
+- Implement EntraIdHashUtils for hashing functionalities
+- Develop EntraIdDistributedCachePlugin for distributed caching
+- Create EntraIdEncodingUtils for encoding operations
+- Add EntraIdGuidGenerator for GUID generation
 
 ## 0.0.1-pre
 

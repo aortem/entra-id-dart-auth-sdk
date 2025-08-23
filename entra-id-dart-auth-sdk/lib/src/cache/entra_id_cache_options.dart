@@ -4,8 +4,8 @@ import '../enum/entra_id_cache_eviction_policy_enum.dart';
 import '../enum/entra_id_cache_storage_type_enum.dart';
 
 /// Configuration options for the Entra ID cache implementation.
-class AortemEntraIdCacheOptions {
-  final Logger _logger = Logger('AortemEntraIdCacheOptions');
+class EntraIdCacheOptions {
+  final Logger _logger = Logger('EntraIdCacheOptions');
 
   /// The type of storage to use for caching
   final CacheStorageType storageType;
@@ -31,8 +31,8 @@ class AortemEntraIdCacheOptions {
   /// Namespace for partitioning cache data
   final String namespace;
 
-  /// Creates a new instance of AortemEntraIdCacheOptions
-  AortemEntraIdCacheOptions({
+  /// Creates a new instance of EntraIdCacheOptions
+  EntraIdCacheOptions({
     this.storageType = CacheStorageType.memory,
     this.maxItems = 1000,
     this.defaultTtlSeconds = 3600, // 1 hour
@@ -47,8 +47,8 @@ class AortemEntraIdCacheOptions {
   }
 
   /// Creates cache options from JSON configuration
-  factory AortemEntraIdCacheOptions.fromJson(Map<String, dynamic> json) {
-    return AortemEntraIdCacheOptions(
+  factory EntraIdCacheOptions.fromJson(Map<String, dynamic> json) {
+    return EntraIdCacheOptions(
       storageType: CacheStorageType.values.firstWhere(
         (e) =>
             e.toString() ==
@@ -101,7 +101,7 @@ class AortemEntraIdCacheOptions {
   }
 
   /// Creates a copy of the options with updated values
-  AortemEntraIdCacheOptions copyWith({
+  EntraIdCacheOptions copyWith({
     CacheStorageType? storageType,
     int? maxItems,
     int? defaultTtlSeconds,
@@ -111,7 +111,7 @@ class AortemEntraIdCacheOptions {
     int? cleanupThreshold,
     String? namespace,
   }) {
-    return AortemEntraIdCacheOptions(
+    return EntraIdCacheOptions(
       storageType: storageType ?? this.storageType,
       maxItems: maxItems ?? this.maxItems,
       defaultTtlSeconds: defaultTtlSeconds ?? this.defaultTtlSeconds,

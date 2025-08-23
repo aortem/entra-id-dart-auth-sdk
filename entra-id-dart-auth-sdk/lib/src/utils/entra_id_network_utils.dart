@@ -2,7 +2,7 @@ import 'dart:io';
 
 import '../exception/entra_id_network_exception.dart';
 
-/// AortemEntraIdNetworkUtils: Provides network utility methods for the SDK.
+/// EntraIdNetworkUtils: Provides network utility methods for the SDK.
 ///
 /// This utility class supports:
 /// - Internet connectivity checks
@@ -11,15 +11,15 @@ import '../exception/entra_id_network_exception.dart';
 ///
 /// It is designed to be testable by allowing injection of a helper class
 /// that wraps [InternetAddress.lookup].
-class AortemEntraIdNetworkUtils {
+class EntraIdNetworkUtils {
   /// Helper instance for DNS lookup, injected for testability.
   final NetworkUtilsHelper helper;
 
-  /// Creates an instance of [AortemEntraIdNetworkUtils].
+  /// Creates an instance of [EntraIdNetworkUtils].
   ///
   /// You can optionally pass a [NetworkUtilsHelper] to override the default
   /// behavior, which is helpful for mocking during tests.
-  AortemEntraIdNetworkUtils({this.helper = const NetworkUtilsHelper()});
+  EntraIdNetworkUtils({this.helper = const NetworkUtilsHelper()});
 
   /// Checks if the device has an active internet connection.
   ///
@@ -105,7 +105,7 @@ class AortemEntraIdNetworkUtils {
 
 /// Helper class to wrap the static [InternetAddress.lookup] method.
 ///
-/// This abstraction allows the [AortemEntraIdNetworkUtils] class to be
+/// This abstraction allows the [EntraIdNetworkUtils] class to be
 /// unit-tested by mocking DNS lookup behavior.
 class NetworkUtilsHelper {
   /// Creates a constant [NetworkUtilsHelper] instance.

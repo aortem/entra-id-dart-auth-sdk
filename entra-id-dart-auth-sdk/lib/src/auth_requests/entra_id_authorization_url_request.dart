@@ -6,8 +6,8 @@ import '../utils/entra_id_encoding_utils.dart';
 import '../utils/entra_id_guid_generator.dart';
 
 /// Handles creation of authorization URLs for OAuth2 flows
-class AortemEntraIdAuthorizationUrlRequest {
-  final Logger _logger = Logger('AortemEntraIdAuthorizationUrlRequest');
+class EntraIdAuthorizationUrlRequest {
+  final Logger _logger = Logger('EntraIdAuthorizationUrlRequest');
 
   /// The base authorization endpoint
   final String authorityUrl;
@@ -21,8 +21,8 @@ class AortemEntraIdAuthorizationUrlRequest {
   /// PKCE code challenge method (e.g., 'S256')
   final String? pkceCodeChallengeMethod;
 
-  /// Creates a new instance of AortemEntraIdAuthorizationUrlRequest
-  AortemEntraIdAuthorizationUrlRequest({
+  /// Creates a new instance of EntraIdAuthorizationUrlRequest
+  EntraIdAuthorizationUrlRequest({
     required this.authorityUrl,
     required this.parameters,
     this.pkceCodeChallenge,
@@ -82,7 +82,7 @@ class AortemEntraIdAuthorizationUrlRequest {
         'response_type': 'code',
         'redirect_uri': parameters.redirectUri,
         'scope': parameters.scopes.join(' '),
-        'state': parameters.state ?? AortemEntraIdGuidGenerator.generate(),
+        'state': parameters.state ?? EntraIdGuidGenerator.generate(),
       };
 
       // Add PKCE parameters if provided
@@ -93,7 +93,7 @@ class AortemEntraIdAuthorizationUrlRequest {
 
       // Add optional parameters if provided
       if (parameters.loginHint != null) {
-        queryParams['login_hint'] = AortemEntraIdEncodingUtils.encodeUrl(
+        queryParams['login_hint'] = EntraIdEncodingUtils.encodeUrl(
           parameters.loginHint!,
         );
       }

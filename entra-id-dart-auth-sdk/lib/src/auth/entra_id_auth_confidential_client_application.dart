@@ -14,9 +14,9 @@ enum CredentialType {
 }
 
 /// Manages confidential client applications for the Aortem Entra ID SDK.
-class AortemEntraIdConfidentialClientApplication {
+class EntraIdConfidentialClientApplication {
   /// Configuration object for the confidential client application.
-  final AortemEntraIdAuthConfiguration configuration;
+  final EntraIdAuthConfiguration configuration;
 
   /// The credential used for authentication.
   final String credential;
@@ -29,12 +29,12 @@ class AortemEntraIdConfidentialClientApplication {
 
   /// Logger instance.
   static final Logger _logger = Logger(
-    'AortemEntraIdConfidentialClientApplication',
+    'EntraIdConfidentialClientApplication',
   );
 
   /// Constructor for initializing the confidential client application.
   /// Throws [ArgumentError] if required parameters are not provided or invalid.
-  AortemEntraIdConfidentialClientApplication({
+  EntraIdConfidentialClientApplication({
     required this.configuration,
     required this.credential,
     this.credentialType = CredentialType.secret,

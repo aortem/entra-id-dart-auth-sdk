@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-/// AortemEntraIdSerializer: Unified Serialization and Deserialization Utility.
+/// EntraIdSerializer: Unified Serialization and Deserialization Utility.
 ///
 /// Provides methods to serialize and deserialize entities into/from JSON format.
-class AortemEntraIdSerializer {
+class EntraIdSerializer {
   /// Serializes an entity to a JSON string.
   ///
   /// [entity] is the object to serialize.

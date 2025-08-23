@@ -24,8 +24,8 @@ class RefreshTokenEntityException implements Exception {
 }
 
 /// Entity representing a refresh token and its metadata
-class AortemEntraIdSerializedRefreshTokenEntity {
-  final Logger _logger = Logger('AortemEntraIdSerializedRefreshTokenEntity');
+class EntraIdSerializedRefreshTokenEntity {
+  final Logger _logger = Logger('EntraIdSerializedRefreshTokenEntity');
 
   /// The refresh token value
   final String refreshToken;
@@ -63,8 +63,8 @@ class AortemEntraIdSerializedRefreshTokenEntity {
   /// Additional token metadata
   final Map<String, dynamic> metadata;
 
-  /// Creates a new instance of AortemEntraIdSerializedRefreshTokenEntity
-  AortemEntraIdSerializedRefreshTokenEntity({
+  /// Creates a new instance of EntraIdSerializedRefreshTokenEntity
+  EntraIdSerializedRefreshTokenEntity({
     required this.refreshToken,
     required this.clientId,
     required this.tenantId,
@@ -82,10 +82,10 @@ class AortemEntraIdSerializedRefreshTokenEntity {
   }
 
   /// Creates a refresh token entity from JSON
-  factory AortemEntraIdSerializedRefreshTokenEntity.fromJson(
+  factory EntraIdSerializedRefreshTokenEntity.fromJson(
     Map<String, dynamic> json,
   ) {
-    return AortemEntraIdSerializedRefreshTokenEntity(
+    return EntraIdSerializedRefreshTokenEntity(
       refreshToken: json['refreshToken'] as String,
       clientId: json['clientId'] as String,
       tenantId: json['tenantId'] as String,
@@ -177,14 +177,14 @@ class AortemEntraIdSerializedRefreshTokenEntity {
       if (familyId != null) familyId!,
       environment,
       realm,
-      AortemEntraIdGuidGenerator.generate(),
+      EntraIdGuidGenerator.generate(),
     ];
 
     return components.join(':');
   }
 
   /// Creates a copy of the entity with updated fields
-  AortemEntraIdSerializedRefreshTokenEntity copyWith({
+  EntraIdSerializedRefreshTokenEntity copyWith({
     String? refreshToken,
     String? clientId,
     String? tenantId,
@@ -197,7 +197,7 @@ class AortemEntraIdSerializedRefreshTokenEntity {
     String? homeAccountId,
     Map<String, dynamic>? metadata,
   }) {
-    return AortemEntraIdSerializedRefreshTokenEntity(
+    return EntraIdSerializedRefreshTokenEntity(
       refreshToken: refreshToken ?? this.refreshToken,
       clientId: clientId ?? this.clientId,
       tenantId: tenantId ?? this.tenantId,

@@ -5,8 +5,8 @@ import 'package:entra_id_dart_auth_sdk/src/model/entra_id_azure_loopback_client_
 import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Handles local HTTP server for authentication redirects
-class AortemEntraIdAzureLoopbackClient {
-  final Logger _logger = Logger('AortemEntraIdAzureLoopbackClient');
+class EntraIdAzureLoopbackClient {
+  final Logger _logger = Logger('EntraIdAzureLoopbackClient');
 
   /// The port to listen on
   final int port;
@@ -23,8 +23,8 @@ class AortemEntraIdAzureLoopbackClient {
   /// Completer for the response
   Completer<LoopbackResponse>? _responseCompleter;
 
-  /// Creates a new instance of AortemEntraIdAzureLoopbackClient
-  AortemEntraIdAzureLoopbackClient({
+  /// Creates a new instance of EntraIdAzureLoopbackClient
+  EntraIdAzureLoopbackClient({
     this.port = 0, // 0 means let the system choose an available port
     this.path = '/redirect',
     this.timeout = const Duration(minutes: 5),

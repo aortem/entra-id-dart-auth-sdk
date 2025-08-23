@@ -2,15 +2,15 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 void main() {
-  group('AortemEntraIdSystemOptions', () {
+  group('EntraIdSystemOptions', () {
     test('should initialize and return the same instance', () {
-      final options1 = AortemEntraIdSystemOptions.initialize(
+      final options1 = EntraIdSystemOptions.initialize(
         enableLogging: true,
         enableTelemetry: true,
         requestTimeoutInSeconds: 30,
         maxRetryAttempts: 3,
       );
-      final options2 = AortemEntraIdSystemOptions.instance;
+      final options2 = EntraIdSystemOptions.instance;
 
       expect(
         options1,
@@ -19,16 +19,16 @@ void main() {
     });
 
     test('should reset and re-initialize the singleton', () {
-      final options1 = AortemEntraIdSystemOptions.initialize(
+      final options1 = EntraIdSystemOptions.initialize(
         enableLogging: true,
         enableTelemetry: true,
         requestTimeoutInSeconds: 30,
         maxRetryAttempts: 3,
       );
 
-      AortemEntraIdSystemOptions.reset();
+      EntraIdSystemOptions.reset();
 
-      final options2 = AortemEntraIdSystemOptions.initialize(
+      final options2 = EntraIdSystemOptions.initialize(
         enableLogging: false,
         enableTelemetry: false,
         requestTimeoutInSeconds: 10,
@@ -47,16 +47,16 @@ void main() {
     test(
       'should throw StateError if instance is accessed before initialization',
       () {
-        AortemEntraIdSystemOptions.reset(); // Ensure it's uninitialized
+        EntraIdSystemOptions.reset(); // Ensure it's uninitialized
 
         expect(
-          () => AortemEntraIdSystemOptions.instance,
+          () => EntraIdSystemOptions.instance,
           throwsA(
             isA<StateError>().having(
               (e) => e.message,
               'message',
               equals(
-                'AortemEntraIdSystemOptions has not been initialized. Call initialize() first.',
+                'EntraIdSystemOptions has not been initialized. Call initialize() first.',
               ),
             ),
           ),

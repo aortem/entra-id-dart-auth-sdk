@@ -5,18 +5,18 @@ import 'package:entra_id_dart_auth_sdk/src/cache/entra_id_azure_json_cache.dart'
 import 'package:entra_id_dart_auth_sdk/src/cache/entra_id_cache_kv_store.dart';
 import 'package:entra_id_dart_auth_sdk/src/cache/entra_id_cache_options.dart';
 
-class MockKVStore extends Mock implements AortemEntraIdCacheKVStore {}
+class MockKVStore extends Mock implements EntraIdCacheKVStore {}
 
 void main() {
-  late AortemEntraIdAzureJsonCache cache;
+  late EntraIdAzureJsonCache cache;
   late MockKVStore mockKvStore;
 
   setUp(() {
     mockKvStore = MockKVStore();
     // Create cache with custom constructor that accepts KV store
-    cache = AortemEntraIdAzureJsonCache.withStore(
+    cache = EntraIdAzureJsonCache.withStore(
       store: mockKvStore,
-      options: AortemEntraIdCacheOptions(namespace: 'azure_json_cache'),
+      options: EntraIdCacheOptions(namespace: 'azure_json_cache'),
     );
   });
 

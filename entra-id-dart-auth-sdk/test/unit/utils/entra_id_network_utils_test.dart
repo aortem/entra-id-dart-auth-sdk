@@ -2,8 +2,8 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/utils/entra_id_network_utils.dart';
 
 void main() {
-  group('AortemEntraIdNetworkUtils', () {
-    final networkUtils = AortemEntraIdNetworkUtils();
+  group('EntraIdNetworkUtils', () {
+    final networkUtils = EntraIdNetworkUtils();
 
     test('checkInternetConnectivity should return a boolean', () async {
       final result = await networkUtils.checkInternetConnectivity();

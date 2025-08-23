@@ -2,7 +2,7 @@ import 'package:entra_id_dart_auth_sdk/src/core/entra_id_configuration.dart';
 
 void main() {
   // Test case 1: Successful initialization of configuration.
-  final config1 = AortemEntraIdConfiguration.initialize(
+  final config1 = EntraIdConfiguration.initialize(
     clientId: "test-client-id-1",
     tenantId: "test-tenant-id-1",
     authority: "https://login.microsoftonline.com/tenant-id-1",
@@ -28,12 +28,12 @@ void main() {
     "Cache expiration should be 1800 seconds.",
   );
   assert(
-    AortemEntraIdConfiguration.isInitialized == true,
+    EntraIdConfiguration.isInitialized == true,
     "Configuration should be initialized.",
   );
 
   // Test case 2: Attempt to reinitialize (should not overwrite existing instance).
-  final config2 = AortemEntraIdConfiguration.initialize(
+  final config2 = EntraIdConfiguration.initialize(
     clientId: "test-client-id-2",
     tenantId: "test-tenant-id-2",
     authority: "https://login.microsoftonline.com/tenant-id-2",
@@ -70,14 +70,14 @@ void main() {
   );
 
   // Test case 3: Reset configuration and validate.
-  AortemEntraIdConfiguration.reset();
+  EntraIdConfiguration.reset();
   assert(
-    AortemEntraIdConfiguration.isInitialized == false,
+    EntraIdConfiguration.isInitialized == false,
     "Configuration should be reset.",
   );
 
   // Test case 4: Reinitialize after reset.
-  final config3 = AortemEntraIdConfiguration.initialize(
+  final config3 = EntraIdConfiguration.initialize(
     clientId: "test-client-id-3",
     tenantId: "test-tenant-id-3",
     authority: "https://login.microsoftonline.com/tenant-id-3",

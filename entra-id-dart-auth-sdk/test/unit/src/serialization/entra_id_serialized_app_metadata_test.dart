@@ -2,11 +2,11 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 void main() {
-  group('AortemEntraIdSerializedAppMetadataEntity', () {
-    late AortemEntraIdSerializedAppMetadataEntity appMetadata;
+  group('EntraIdSerializedAppMetadataEntity', () {
+    late EntraIdSerializedAppMetadataEntity appMetadata;
 
     setUp(() {
-      appMetadata = AortemEntraIdSerializedAppMetadataEntity(
+      appMetadata = EntraIdSerializedAppMetadataEntity(
         clientId: 'test-client-id',
         environment: AppEnvironment.development,
         displayName: 'Test App',
@@ -35,7 +35,7 @@ void main() {
 
     test('should throw exception for invalid clientId', () {
       expect(
-        () => AortemEntraIdSerializedAppMetadataEntity(
+        () => EntraIdSerializedAppMetadataEntity(
           clientId: '',
           environment: AppEnvironment.production,
           displayName: 'Test App',

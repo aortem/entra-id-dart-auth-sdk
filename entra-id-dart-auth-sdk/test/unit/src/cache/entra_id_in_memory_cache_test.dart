@@ -3,11 +3,11 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 void main() {
-  group('AortemEntraIdInMemoryCache', () {
-    late AortemEntraIdInMemoryCache cache;
+  group('EntraIdInMemoryCache', () {
+    late EntraIdInMemoryCache cache;
 
     setUp(() {
-      cache = AortemEntraIdInMemoryCache(
+      cache = EntraIdInMemoryCache(
         config: InMemoryCacheConfig(
           maxTokens: 5,
           cleanupInterval: Duration(seconds: 1),

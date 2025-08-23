@@ -5,9 +5,9 @@ import 'package:ds_standard_features/ds_standard_features.dart';
 void main() {
   Logger.root.level = Level.OFF; // Suppress logs during tests
 
-  group('AortemEntraIdCacheOptions', () {
+  group('EntraIdCacheOptions', () {
     test('uses default values when instantiated without parameters', () {
-      final options = AortemEntraIdCacheOptions();
+      final options = EntraIdCacheOptions();
 
       expect(options.storageType, CacheStorageType.memory);
       expect(options.maxItems, 1000);
@@ -31,7 +31,7 @@ void main() {
         'namespace': 'custom',
       };
 
-      final options = AortemEntraIdCacheOptions.fromJson(json);
+      final options = EntraIdCacheOptions.fromJson(json);
 
       expect(options.storageType, CacheStorageType.persistent);
       expect(options.maxItems, 500);
@@ -44,7 +44,7 @@ void main() {
     });
 
     test('converts to JSON correctly', () {
-      final options = AortemEntraIdCacheOptions(
+      final options = EntraIdCacheOptions(
         storageType: CacheStorageType.distributed,
         maxItems: 999,
         defaultTtlSeconds: 1234,
@@ -69,38 +69,38 @@ void main() {
 
     test('throws error for invalid maxItems', () {
       expect(
-        () => AortemEntraIdCacheOptions(maxItems: 0),
+        () => EntraIdCacheOptions(maxItems: 0),
         throwsA(isA<ArgumentError>()),
       );
     });
 
     test('throws error for invalid defaultTtlSeconds', () {
       expect(
-        () => AortemEntraIdCacheOptions(defaultTtlSeconds: 0),
+        () => EntraIdCacheOptions(defaultTtlSeconds: 0),
         throwsA(isA<ArgumentError>()),
       );
     });
 
     test('throws error for invalid cleanupThreshold', () {
       expect(
-        () => AortemEntraIdCacheOptions(cleanupThreshold: 0),
+        () => EntraIdCacheOptions(cleanupThreshold: 0),
         throwsA(isA<ArgumentError>()),
       );
       expect(
-        () => AortemEntraIdCacheOptions(cleanupThreshold: 101),
+        () => EntraIdCacheOptions(cleanupThreshold: 101),
         throwsA(isA<ArgumentError>()),
       );
     });
 
     test('throws error for empty namespace', () {
       expect(
-        () => AortemEntraIdCacheOptions(namespace: ''),
+        () => EntraIdCacheOptions(namespace: ''),
         throwsA(isA<ArgumentError>()),
       );
     });
 
     test('copyWith returns new instance with updated values', () {
-      final original = AortemEntraIdCacheOptions();
+      final original = EntraIdCacheOptions();
       final updated = original.copyWith(
         maxItems: 2000,
         evictionPolicy: CacheEvictionPolicy.fifo,

@@ -6,8 +6,8 @@ import 'package:entra_id_dart_auth_sdk/src/model/entra_id_device_code_response_m
 import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Handles device code authentication flow
-class AortemEntraIdDeviceCodeRequest {
-  final Logger _logger = Logger('AortemEntraIdDeviceCodeRequest');
+class EntraIdDeviceCodeRequest {
+  final Logger _logger = Logger('EntraIdDeviceCodeRequest');
 
   /// The device code endpoint URL
   final String deviceCodeEndpoint;
@@ -27,8 +27,8 @@ class AortemEntraIdDeviceCodeRequest {
   /// Polling timer
   Timer? pollingTimer;
 
-  /// Creates a new instance of AortemEntraIdDeviceCodeRequest
-  AortemEntraIdDeviceCodeRequest({
+  /// Creates a new instance of EntraIdDeviceCodeRequest
+  EntraIdDeviceCodeRequest({
     required this.deviceCodeEndpoint,
     required this.tokenEndpoint,
     required this.parameters,

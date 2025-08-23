@@ -9,7 +9,7 @@ import 'dart:convert';
 import 'package:http/testing.dart';
 
 void main() {
-  group('AortemEntraIdUsernamePasswordRequest', () {
+  group('EntraIdUsernamePasswordRequest', () {
     test('should successfully acquire tokens', () async {
       final mockClient = MockClient((request) async {
         if (request.url.path.contains('/oauth2/v2.0/token')) {
@@ -25,7 +25,7 @@ void main() {
         return http.Response('Not Found', 404);
       });
 
-      final authRequest = AortemEntraIdUsernamePasswordRequest(
+      final authRequest = EntraIdUsernamePasswordRequest(
         clientId: 'test-client-id',
         clientSecret: 'test-client-secret',
         tenantId: 'test-tenant-id',
@@ -43,7 +43,7 @@ void main() {
     });
 
     test('should throw ArgumentError for empty username or password', () {
-      final authRequest = AortemEntraIdUsernamePasswordRequest(
+      final authRequest = EntraIdUsernamePasswordRequest(
         clientId: 'test-client-id',
         clientSecret: 'test-client-secret',
         tenantId: 'test-tenant-id',
@@ -72,7 +72,7 @@ void main() {
         );
       });
 
-      final authRequest = AortemEntraIdUsernamePasswordRequest(
+      final authRequest = EntraIdUsernamePasswordRequest(
         clientId: 'test-client-id',
         clientSecret: 'test-client-secret',
         tenantId: 'test-tenant-id',

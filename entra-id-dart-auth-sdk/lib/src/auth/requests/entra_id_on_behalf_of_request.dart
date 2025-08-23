@@ -33,14 +33,14 @@ class OnBehalfOfRequestException implements Exception {
 }
 
 /// Handles the OAuth 2.0 On-Behalf-Of flow for delegated access scenarios
-class AortemEntraIdOnBehalfOfRequest {
-  final Logger _logger = Logger('AortemEntraIdOnBehalfOfRequest');
+class EntraIdOnBehalfOfRequest {
+  final Logger _logger = Logger('EntraIdOnBehalfOfRequest');
 
   /// Configuration for the request
-  final AortemEntraIdAuthConfiguration configuration;
+  final EntraIdAuthConfiguration configuration;
 
   /// Cache store for tokens
-  final AortemEntraIdCacheKVStore _cacheStore;
+  final EntraIdCacheKVStore _cacheStore;
 
   /// The user assertion (access token) to exchange
   final String userAssertion;
@@ -48,10 +48,10 @@ class AortemEntraIdOnBehalfOfRequest {
   /// The requested scopes
   final List<String> scopes;
 
-  /// Creates a new instance of AortemEntraIdOnBehalfOfRequest
-  AortemEntraIdOnBehalfOfRequest({
+  /// Creates a new instance of EntraIdOnBehalfOfRequest
+  EntraIdOnBehalfOfRequest({
     required this.configuration,
-    required AortemEntraIdCacheKVStore cacheStore,
+    required EntraIdCacheKVStore cacheStore,
     required this.userAssertion,
     required this.scopes,
   }) : _cacheStore = cacheStore {

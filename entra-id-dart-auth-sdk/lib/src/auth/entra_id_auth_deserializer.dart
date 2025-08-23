@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:logging/logging.dart';
 
-/// AortemEntraIdDeserializer provides utilities to deserialize Entra ID JSON responses into SDK-specific entities.
-class AortemEntraIdDeserializer {
+/// EntraIdDeserializer provides utilities to deserialize Entra ID JSON responses into SDK-specific entities.
+class EntraIdDeserializer {
   // Logger for error tracking
-  static final _logger = Logger('AortemEntraIdDeserializer');
+  static final _logger = Logger('EntraIdDeserializer');
 
   /// Deserializes a token response from the Entra ID API.
   ///

@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-/// AortemEntraIdClientCredentialRequest:
+/// EntraIdClientCredentialRequest:
 /// Handles the client credential flow for confidential clients in the Aortem EntraId Dart SDK.
 ///
 
 /// This class provides functionality to acquire access tokens using the client credentials flow.
-class AortemEntraIdClientCredentialRequest {
+class EntraIdClientCredentialRequest {
   /// The client ID of the confidential client application.
   final String clientId;
 
@@ -32,7 +32,7 @@ class AortemEntraIdClientCredentialRequest {
   /// - [scopes]: A list of scopes for which the token is requested (required).
   ///
   /// Throws an [ArgumentError] if any required parameter is missing or invalid.
-  AortemEntraIdClientCredentialRequest({
+  EntraIdClientCredentialRequest({
     required this.clientId,
     required this.clientSecret,
     required this.authority,

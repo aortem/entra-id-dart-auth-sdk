@@ -1,9 +1,9 @@
-/// `AortemEntraIdITokenCache` defines the contract for token caching mechanisms
+/// `EntraIdITokenCache` defines the contract for token caching mechanisms
 /// in the Aortem EntraId Dart SDK.
 ///
 /// This interface ensures efficient and consistent token storage and retrieval,
 /// supporting both in-memory and distributed caching strategies.
-abstract class AortemEntraIdITokenCache {
+abstract class EntraIdITokenCache {
   /// Saves a token in the cache.
   ///
   /// [key] - The identifier for the token.

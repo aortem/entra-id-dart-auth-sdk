@@ -1,8 +1,8 @@
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
-// Mock implementation of AortemEntraIdITokenCache for testing purposes
-class MockTokenCache implements AortemEntraIdITokenCache {
+// Mock implementation of EntraIdITokenCache for testing purposes
+class MockTokenCache implements EntraIdITokenCache {
   final Map<String, Map<String, dynamic>> _cache = {};
 
   @override
@@ -27,7 +27,7 @@ class MockTokenCache implements AortemEntraIdITokenCache {
 }
 
 void main() {
-  group('AortemEntraIdITokenCache', () {
+  group('EntraIdITokenCache', () {
     late MockTokenCache tokenCache;
 
     setUp(() {

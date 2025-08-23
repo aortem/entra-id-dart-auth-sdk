@@ -5,7 +5,7 @@ import 'package:jwt_generator/jwt_generator.dart';
 /// This class creates signed JWTs that securely authenticate client applications
 /// with Entra ID. It requires the client ID, tenant ID, and a private key in PEM format.
 /// Optionally, a certificate thumbprint can be provided for certificate-based authentication.
-class AortemEntraIdClientAssertion {
+class EntraIdClientAssertion {
   /// The client ID of the application registered in Entra ID.
   final String clientId;
 
@@ -21,7 +21,7 @@ class AortemEntraIdClientAssertion {
   /// The audience for the client assertion, typically the token endpoint URL.
   final String audience;
 
-  /// Creates an instance of [AortemEntraIdClientAssertion].
+  /// Creates an instance of [EntraIdClientAssertion].
   ///
   /// The [clientId], [tenantId], and [privateKey] parameters are required.
   /// The [certificateThumbprint] is optional and used for certificate-based authentication.
@@ -29,7 +29,7 @@ class AortemEntraIdClientAssertion {
   /// it defaults to 'https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token'.
   ///
   /// Throws an [ArgumentError] if any required parameter is empty.
-  AortemEntraIdClientAssertion({
+  EntraIdClientAssertion({
     required this.clientId,
     required this.tenantId,
     required this.privateKey,

@@ -1,7 +1,7 @@
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
-class InMemoryTokenCache extends AortemEntraIdTokenCache {
+class InMemoryTokenCache extends EntraIdTokenCache {
   final List<CachedToken> _tokens = [];
 
   @override

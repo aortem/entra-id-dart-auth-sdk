@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-/// AortemEntraIdHttpClient: A lightweight HTTP client for making REST API requests.
+/// EntraIdHttpClient: A lightweight HTTP client for making REST API requests.
 ///
 /// This class simplifies HTTP communication by providing easy-to-use methods
 /// for common HTTP operations such as GET and POST. It also supports custom headers
@@ -11,7 +11,7 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 /// - Base URL support for consistent endpoint construction.
 /// - Customizable headers for authentication or other purposes.
 /// - Automatic response handling with error checking.
-class AortemEntraIdHttpClient {
+class EntraIdHttpClient {
   /// The base URL for the API. All requests will be made relative to this URL.
   final String baseUrl;
 
@@ -21,12 +21,12 @@ class AortemEntraIdHttpClient {
   /// The underlying HTTP client used to send requests.
   final http.Client httpClient;
 
-  /// Constructor for `AortemEntraIdHttpClient`.
+  /// Constructor for `EntraIdHttpClient`.
   ///
   /// - [baseUrl]: The base URL for API requests.
   /// - [defaultHeaders]: Optional default headers to include in all requests.
   /// - [client]: An optional custom HTTP client instance.
-  AortemEntraIdHttpClient({
+  EntraIdHttpClient({
     required this.baseUrl,
     this.defaultHeaders = const {},
     http.Client? client,

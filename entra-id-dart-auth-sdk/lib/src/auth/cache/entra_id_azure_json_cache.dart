@@ -30,11 +30,11 @@ class JsonCacheException implements Exception {
 }
 
 /// Provides JSON-based caching functionality for the Entra ID SDK
-class AortemEntraIdAzureJsonCache {
-  final Logger _logger = Logger('AortemEntraIdAzureJsonCache');
+class EntraIdAzureJsonCache {
+  final Logger _logger = Logger('EntraIdAzureJsonCache');
 
   /// The underlying key-value store
-  final AortemEntraIdCacheKVStore _kvStore;
+  final EntraIdCacheKVStore _kvStore;
 
   /// Cache version for compatibility
   static const String cacheVersion = '1.0';
@@ -42,10 +42,10 @@ class AortemEntraIdAzureJsonCache {
   /// Cache schema version
   static const String schemaVersion = '1.0';
 
-  /// Creates a new instance of AortemEntraIdAzureJsonCache
-  AortemEntraIdAzureJsonCache({AortemEntraIdCacheOptions? options})
-    : _kvStore = AortemEntraIdCacheKVStore(
-        options ?? AortemEntraIdCacheOptions(namespace: 'azure_json_cache'),
+  /// Creates a new instance of EntraIdAzureJsonCache
+  EntraIdAzureJsonCache({EntraIdCacheOptions? options})
+    : _kvStore = EntraIdCacheKVStore(
+        options ?? EntraIdCacheOptions(namespace: 'azure_json_cache'),
       ) {
     _logger.info('Initializing Azure JSON cache');
   }

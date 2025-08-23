@@ -2,12 +2,12 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 void main() {
-  group('AortemEntraIdDeserializer', () {
+  group('EntraIdDeserializer', () {
     test(
       'deserializeTokenResponse should return correct data for valid response',
       () {
         const jsonResponse = '{"access_token": "token123", "expires_in": 3600}';
-        final result = AortemEntraIdDeserializer.deserializeTokenResponse(
+        final result = EntraIdDeserializer.deserializeTokenResponse(
           jsonResponse,
         );
 
@@ -23,7 +23,7 @@ void main() {
 
         expect(
           () =>
-              AortemEntraIdDeserializer.deserializeTokenResponse(jsonResponse),
+              EntraIdDeserializer.deserializeTokenResponse(jsonResponse),
           throwsA(isA<FormatException>()),
         );
       },
@@ -33,7 +33,7 @@ void main() {
       'deserializeUserProfileResponse should return correct data for valid response',
       () {
         const jsonResponse = '{"id": "user123", "displayName": "User Name"}';
-        final result = AortemEntraIdDeserializer.deserializeUserProfileResponse(
+        final result = EntraIdDeserializer.deserializeUserProfileResponse(
           jsonResponse,
         );
 
@@ -48,7 +48,7 @@ void main() {
         const jsonResponse = '{"id": "user123"}';
 
         expect(
-          () => AortemEntraIdDeserializer.deserializeUserProfileResponse(
+          () => EntraIdDeserializer.deserializeUserProfileResponse(
             jsonResponse,
           ),
           throwsA(isA<FormatException>()),
@@ -61,7 +61,7 @@ void main() {
       () {
         const jsonResponse =
             '{"error": "invalid_grant", "error_description": "The provided grant is invalid."}';
-        final result = AortemEntraIdDeserializer.deserializeErrorResponse(
+        final result = EntraIdDeserializer.deserializeErrorResponse(
           jsonResponse,
         );
 
@@ -77,7 +77,7 @@ void main() {
 
         expect(
           () =>
-              AortemEntraIdDeserializer.deserializeErrorResponse(jsonResponse),
+              EntraIdDeserializer.deserializeErrorResponse(jsonResponse),
           throwsA(isA<FormatException>()),
         );
       },
@@ -89,7 +89,7 @@ void main() {
         const jsonResponse = '{"access_token": "token123", "expires_in": 3600}';
 
         final result =
-            AortemEntraIdDeserializer.deserializeResponse<Map<String, dynamic>>(
+            EntraIdDeserializer.deserializeResponse<Map<String, dynamic>>(
               jsonResponse,
               (json) => json,
             );

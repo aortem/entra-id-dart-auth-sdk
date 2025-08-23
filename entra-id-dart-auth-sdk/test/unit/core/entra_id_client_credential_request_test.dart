@@ -16,13 +16,13 @@ void main() {
     registerFallbackValue(UriFake()); // Register fallback for Uri
   });
 
-  group('AortemEntraIdClientCredentialRequest Tests', () {
+  group('EntraIdClientCredentialRequest Tests', () {
     late MockHttpClient mockHttpClient;
-    late AortemEntraIdClientCredentialRequest request;
+    late EntraIdClientCredentialRequest request;
 
     setUp(() {
       mockHttpClient = MockHttpClient();
-      request = AortemEntraIdClientCredentialRequest(
+      request = EntraIdClientCredentialRequest(
         clientId: 'test-client-id',
         clientSecret: 'test-client-secret',
         authority: 'https://login.microsoftonline.com',

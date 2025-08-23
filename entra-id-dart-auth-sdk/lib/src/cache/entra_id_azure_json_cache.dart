@@ -6,11 +6,11 @@ import 'entra_id_cache_kv_store.dart';
 import 'entra_id_cache_options.dart';
 
 /// Provides JSON-based caching functionality for the Entra ID SDK
-class AortemEntraIdAzureJsonCache {
-  final Logger _logger = Logger('AortemEntraIdAzureJsonCache');
+class EntraIdAzureJsonCache {
+  final Logger _logger = Logger('EntraIdAzureJsonCache');
 
   /// The underlying key-value store
-  final AortemEntraIdCacheKVStore _kvStore;
+  final EntraIdCacheKVStore _kvStore;
 
   /// Cache version for compatibility
   static const String cacheVersion = '1.0';
@@ -18,30 +18,30 @@ class AortemEntraIdAzureJsonCache {
   /// Cache schema version
   static const String schemaVersion = '1.0';
 
-  /// Creates a new instance of AortemEntraIdAzureJsonCache
-  AortemEntraIdAzureJsonCache({AortemEntraIdCacheOptions? options})
-    : _kvStore = AortemEntraIdCacheKVStore(
-        options ?? AortemEntraIdCacheOptions(namespace: 'azure_json_cache'),
+  /// Creates a new instance of EntraIdAzureJsonCache
+  EntraIdAzureJsonCache({EntraIdCacheOptions? options})
+    : _kvStore = EntraIdCacheKVStore(
+        options ?? EntraIdCacheOptions(namespace: 'azure_json_cache'),
       ) {
     _logger.info('Initializing Azure JSON cache');
   }
 
   /// Factory constructor for testing that allows injecting a custom store
-  factory AortemEntraIdAzureJsonCache.withStore({
-    required AortemEntraIdCacheKVStore store,
-    AortemEntraIdCacheOptions? options,
+  factory EntraIdAzureJsonCache.withStore({
+    required EntraIdCacheKVStore store,
+    EntraIdCacheOptions? options,
   }) {
-    return AortemEntraIdAzureJsonCache._internal(
+    return EntraIdAzureJsonCache._internal(
       store: store,
       options:
-          options ?? AortemEntraIdCacheOptions(namespace: 'azure_json_cache'),
+          options ?? EntraIdCacheOptions(namespace: 'azure_json_cache'),
     );
   }
 
   /// Internal constructor used by factory constructors
-  AortemEntraIdAzureJsonCache._internal({
-    required AortemEntraIdCacheKVStore store,
-    required AortemEntraIdCacheOptions options,
+  EntraIdAzureJsonCache._internal({
+    required EntraIdCacheKVStore store,
+    required EntraIdCacheOptions options,
   }) : _kvStore = store {
     _logger.info('Initializing Azure JSON cache with custom store');
   }

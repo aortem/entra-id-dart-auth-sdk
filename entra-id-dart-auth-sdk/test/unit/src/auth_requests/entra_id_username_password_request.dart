@@ -5,11 +5,11 @@ import 'package:http/testing.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 void main() {
-  group('AortemEntraIdUsernamePasswordRequest', () {
-    late AortemEntraIdUsernamePasswordRequest request;
+  group('EntraIdUsernamePasswordRequest', () {
+    late EntraIdUsernamePasswordRequest request;
 
     setUp(() {
-      request = AortemEntraIdUsernamePasswordRequest(
+      request = EntraIdUsernamePasswordRequest(
         clientId: 'test-client-id',
         clientSecret: 'test-client-secret',
         tenantId: 'test-tenant-id',

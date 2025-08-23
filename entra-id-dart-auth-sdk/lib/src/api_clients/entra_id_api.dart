@@ -2,21 +2,21 @@
 ///
 /// This class ensures that API identifiers are standardized, validated,
 /// and consistently used across different SDK components.
-class AortemEntraIdApiId {
+class EntraIdApiId {
   /// The API identifier.
   final String _apiId;
 
   /// Private constructor to enforce validation before instantiation.
-  AortemEntraIdApiId._(this._apiId);
+  EntraIdApiId._(this._apiId);
 
   /// Factory constructor to validate and create an instance.
   ///
   /// Throws an [ArgumentError] if the provided API identifier is invalid.
-  factory AortemEntraIdApiId(String apiId) {
+  factory EntraIdApiId(String apiId) {
     if (!_isValidApiId(apiId)) {
       throw ArgumentError('Invalid API Identifier: $apiId');
     }
-    return AortemEntraIdApiId._(apiId);
+    return EntraIdApiId._(apiId);
   }
 
   /// Returns the API identifier value.
@@ -32,12 +32,12 @@ class AortemEntraIdApiId {
   }
 
   @override
-  String toString() => 'AortemEntraIdApiId($_apiId)';
+  String toString() => 'EntraIdApiId($_apiId)';
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is AortemEntraIdApiId && other._apiId == _apiId);
+      (other is EntraIdApiId && other._apiId == _apiId);
 
   @override
   int get hashCode => _apiId.hashCode;

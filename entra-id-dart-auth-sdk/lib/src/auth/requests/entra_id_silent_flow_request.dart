@@ -28,15 +28,15 @@ class SilentFlowRequestException implements Exception {
 /// This class attempts to retrieve a valid access token from the cache.
 /// If no valid token is found, it attempts to refresh the token using
 /// the refresh token stored in cache.
-class AortemEntraIdSilentFlowRequest {
+class EntraIdSilentFlowRequest {
   /// Logger instance for tracking silent authentication flow.
-  final Logger _logger = Logger('AortemEntraIdSilentFlowRequest');
+  final Logger _logger = Logger('EntraIdSilentFlowRequest');
 
   /// Configuration for the request.
-  final AortemEntraIdAuthConfiguration configuration;
+  final EntraIdAuthConfiguration configuration;
 
   /// Cache store for token storage and retrieval.
-  final AortemEntraIdCacheKVStore _cacheStore;
+  final EntraIdCacheKVStore _cacheStore;
 
   /// The requested authentication scopes.
   final List<String> scopes;
@@ -47,12 +47,12 @@ class AortemEntraIdSilentFlowRequest {
   /// Optional authority URL for token requests.
   final String? authority;
 
-  /// Creates an instance of [AortemEntraIdSilentFlowRequest].
+  /// Creates an instance of [EntraIdSilentFlowRequest].
   ///
   /// Ensures that the request parameters are valid before proceeding.
-  AortemEntraIdSilentFlowRequest({
+  EntraIdSilentFlowRequest({
     required this.configuration,
-    required AortemEntraIdCacheKVStore cacheStore,
+    required EntraIdCacheKVStore cacheStore,
     required this.scopes,
     this.accountId,
     this.authority,

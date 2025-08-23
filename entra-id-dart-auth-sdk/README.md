@@ -11,7 +11,7 @@ The **Entra Id Dart Auth SDK** provides first-class integration with Microsoft E
 * Use customizable secure storage backends
 * Perform admin operations via Microsoft Graph tokens
 
-Whether you’re building a Dart backend service or a Flutter mobile/web app, this SDK streamlines Entra ID authentication.
+Whether youâ€™re building a Dart backend service or a Flutter mobile/web app, this SDK streamlines Entra ID authentication.
 
 ## Features
 
@@ -20,9 +20,9 @@ Whether you’re building a Dart backend service or a Flutter mobile/web app, th
 * **Token Management**
   Automatic token caching, expiration checks, and silent token refresh.
 * **Secure Storage**
-  Pluggable `TokenStorage` interface with built-in `AortemEntraIdStorage` (file, in-memory, or custom backends).
+  Pluggable `TokenStorage` interface with built-in `EntraIdStorage` (file, in-memory, or custom backends).
 * **MSAL.js Integration (Web)**
-  Leverage Microsoft’s MSAL.js library under the hood for Flutter web PKCE flows.
+  Leverage Microsoftâ€™s MSAL.js library under the hood for Flutter web PKCE flows.
 * **Graph API Support**
   Acquire on-behalf-of and Graph tokens, with helper methods for common scopes (User.Read, Mail.Send, etc.).
 * **Platform-Agnostic**
@@ -32,7 +32,7 @@ Whether you’re building a Dart backend service or a Flutter mobile/web app, th
 
 1. **Prerequisites**
 
-   * Dart SDK ≥ 2.14.0 (for null-safety) or Flutter SDK ≥ 3.0
+   * Dart SDK â‰¥ 2.14.0 (for null-safety) or Flutter SDK â‰¥ 3.0
    * An Azure AD (Entra ID) tenant with an app registration configured for your chosen flow
 
 2. **Configure Entra ID App**
@@ -134,4 +134,4 @@ final cached = await auth.acquireTokenSilent(
 
 For full API reference, examples, and migration guides, see our GitBook:
 
-👉 [Entra Id Dart Auth SDK Docs](https://aortem.gitbook.io/entra-id-dart-auth-sdk/)
+ðŸ‘‰ [Entra Id Dart Auth SDK Docs](https://aortem.gitbook.io/entra-id-dart-auth-sdk/)

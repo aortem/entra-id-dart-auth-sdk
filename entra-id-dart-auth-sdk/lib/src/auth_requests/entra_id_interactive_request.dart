@@ -11,8 +11,8 @@ import '../utils/entra_id_guid_generator.dart';
 import 'entra_id_authorization_url_request.dart';
 
 /// Handles interactive authentication flows
-class AortemEntraIdInteractiveRequest {
-  final Logger _logger = Logger('AortemEntraIdInteractiveRequest');
+class EntraIdInteractiveRequest {
+  final Logger _logger = Logger('EntraIdInteractiveRequest');
 
   /// The authority URL for authentication
   final String authorityUrl;
@@ -39,8 +39,8 @@ class AortemEntraIdInteractiveRequest {
   /// Timer for authentication timeout
   Timer? _timeoutTimer;
 
-  /// Creates a new instance of AortemEntraIdInteractiveRequest
-  AortemEntraIdInteractiveRequest({
+  /// Creates a new instance of EntraIdInteractiveRequest
+  EntraIdInteractiveRequest({
     required this.authorityUrl,
     required this.parameters,
   }) {
@@ -90,12 +90,12 @@ class AortemEntraIdInteractiveRequest {
 
   /// Initializes security parameters
   void _initializeSecurityParameters() {
-    _state = AortemEntraIdGuidGenerator.generate();
-    _nonce = AortemEntraIdGuidGenerator.generate();
+    _state = EntraIdGuidGenerator.generate();
+    _nonce = EntraIdGuidGenerator.generate();
 
     if (parameters.usePkce) {
       _pkceCodeVerifier =
-          AortemEntraIdCryptoProvider.generatePkceCodeVerifier();
+          EntraIdCryptoProvider.generatePkceCodeVerifier();
     }
   }
 
@@ -105,7 +105,7 @@ class AortemEntraIdInteractiveRequest {
       _updateStatus(InteractiveRequestStatus.inProgress);
       _startTimeoutTimer();
 
-      final urlRequest = AortemEntraIdAuthorizationUrlRequest(
+      final urlRequest = EntraIdAuthorizationUrlRequest(
         authorityUrl: authorityUrl,
         parameters: AuthorizationUrlRequestParameters(
           clientId: parameters.clientId,
@@ -118,7 +118,7 @@ class AortemEntraIdInteractiveRequest {
           correlationId: parameters.correlationId,
         ),
         pkceCodeChallenge: parameters.usePkce
-            ? AortemEntraIdCryptoProvider.generatePkceCodeChallenge(
+            ? EntraIdCryptoProvider.generatePkceCodeChallenge(
                 _pkceCodeVerifier!,
               )
             : null,

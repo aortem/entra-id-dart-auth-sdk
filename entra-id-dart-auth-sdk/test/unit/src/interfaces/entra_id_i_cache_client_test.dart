@@ -1,8 +1,8 @@
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
-/// A simple in-memory implementation of AortemEntraIdICacheClient for testing.
-class InMemoryCacheClient implements AortemEntraIdICacheClient {
+/// A simple in-memory implementation of EntraIdICacheClient for testing.
+class InMemoryCacheClient implements EntraIdICacheClient {
   final Map<String, String> _cache = {};
 
   @override
@@ -28,7 +28,7 @@ class InMemoryCacheClient implements AortemEntraIdICacheClient {
 
 void main() {
   group('InMemoryCacheClient', () {
-    late AortemEntraIdICacheClient cacheClient;
+    late EntraIdICacheClient cacheClient;
 
     setUp(() {
       cacheClient = InMemoryCacheClient();

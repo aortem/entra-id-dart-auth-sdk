@@ -6,9 +6,9 @@ import 'entra_id_client_application.dart';
 
 /// Represents a public client application in Entra ID.
 /// Used for applications that cannot securely store secrets (e.g., mobile apps, SPAs).
-class AortemEntraIdPublicClientApplication
-    extends AortemEntraIdClientApplication {
-  final Logger _logger = Logger('AortemEntraIdPublicClientApplication');
+class EntraIdPublicClientApplication
+    extends EntraIdClientApplication {
+  final Logger _logger = Logger('EntraIdPublicClientApplication');
 
   /// The type of browser to use for interactive authentication
   final BrowserType browserType;
@@ -19,9 +19,9 @@ class AortemEntraIdPublicClientApplication
   /// Whether to use PKCE for authorization code flow
   final bool usePkce;
 
-  /// Creates a new instance of AortemEntraIdPublicClientApplication
-  AortemEntraIdPublicClientApplication({
-    required AortemEntraIdConfiguration configuration,
+  /// Creates a new instance of EntraIdPublicClientApplication
+  EntraIdPublicClientApplication({
+    required EntraIdConfiguration configuration,
     this.browserType = BrowserType.systemDefault,
     this.enableMemoryCache = true,
     this.usePkce = true,

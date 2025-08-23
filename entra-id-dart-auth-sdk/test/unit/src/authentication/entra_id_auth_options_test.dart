@@ -1,11 +1,11 @@
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/authentication/entra_id_auth_options.dart'
-    show AortemEntraIdAuthOptions;
+    show EntraIdAuthOptions;
 
 void main() {
-  group('AortemEntraIdAuthOptions', () {
+  group('EntraIdAuthOptions', () {
     test('should create an instance with valid parameters', () {
-      final options = AortemEntraIdAuthOptions(
+      final options = EntraIdAuthOptions(
         clientId: 'test-client-id',
         authority: 'https://login.microsoftonline.com/common',
         redirectUri: 'https://localhost/auth/callback',
@@ -23,7 +23,7 @@ void main() {
 
     test('should throw error when clientId is empty', () {
       expect(
-        () => AortemEntraIdAuthOptions(
+        () => EntraIdAuthOptions(
           clientId: '',
           authority: 'https://login.microsoftonline.com/common',
           redirectUri: 'https://localhost/auth/callback',
@@ -40,7 +40,7 @@ void main() {
 
     test('should throw error on invalid authority URL', () {
       expect(
-        () => AortemEntraIdAuthOptions(
+        () => EntraIdAuthOptions(
           clientId: 'test-client-id',
           authority: 'invalid-url',
           redirectUri: 'https://localhost/auth/callback',
@@ -57,7 +57,7 @@ void main() {
 
     test('should throw error on invalid redirectUri', () {
       expect(
-        () => AortemEntraIdAuthOptions(
+        () => EntraIdAuthOptions(
           clientId: 'test-client-id',
           authority: 'https://login.microsoftonline.com/common',
           redirectUri: 'not-a-valid-uri',

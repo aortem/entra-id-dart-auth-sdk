@@ -106,8 +106,8 @@ enum DeviceCodeStatus {
 }
 
 /// Handles device code authentication flow
-class AortemEntraIdDeviceCodeRequest {
-  final Logger _logger = Logger('AortemEntraIdDeviceCodeRequest');
+class EntraIdDeviceCodeRequest {
+  final Logger _logger = Logger('EntraIdDeviceCodeRequest');
 
   /// The device code endpoint URL
   final String deviceCodeEndpoint;
@@ -127,8 +127,8 @@ class AortemEntraIdDeviceCodeRequest {
   /// Polling timer
   Timer? _pollingTimer;
 
-  /// Creates a new instance of AortemEntraIdDeviceCodeRequest
-  AortemEntraIdDeviceCodeRequest({
+  /// Creates a new instance of EntraIdDeviceCodeRequest
+  EntraIdDeviceCodeRequest({
     required this.deviceCodeEndpoint,
     required this.tokenEndpoint,
     required this.parameters,

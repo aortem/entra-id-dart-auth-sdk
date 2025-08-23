@@ -2,10 +2,10 @@ import 'dart:convert'; // Provides utilities for encoding and decoding data, suc
 import 'package:ds_standard_features/ds_standard_features.dart'
     as http; // Imports the HTTP client library.
 
-/// AortemEntraIdProxyStatus: Manages and monitors proxy configurations for the SDK.
+/// EntraIdProxyStatus: Manages and monitors proxy configurations for the SDK.
 ///
 /// Handles settings for proxy URLs, authentication, and status checking to ensure seamless network connectivity.
-class AortemEntraIdProxyStatus {
+class EntraIdProxyStatus {
   /// The proxy server's URL or IP address.
   final String proxyUrl;
 
@@ -21,7 +21,7 @@ class AortemEntraIdProxyStatus {
   /// Constructor to initialize the proxy settings.
   ///
   /// Requires [proxyUrl] and [port] as mandatory parameters. [username] and [password] are optional.
-  AortemEntraIdProxyStatus({
+  EntraIdProxyStatus({
     required this.proxyUrl, // Initializes the proxy URL.
     required this.port, // Initializes the port number.
     this.username, // Initializes the optional username for proxy authentication.

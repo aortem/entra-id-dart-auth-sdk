@@ -4,17 +4,17 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 // Replace with actual import path
 
 void main() {
-  group('AortemEntraIdHttpMethodUtils', () {
+  group('EntraIdHttpMethodUtils', () {
     test('methodToString converts enum to string correctly', () {
       expect(
-        AortemEntraIdHttpMethodUtils.methodToString(
-          AortemEntraIdHttpMethod.get,
+        EntraIdHttpMethodUtils.methodToString(
+          EntraIdHttpMethod.get,
         ),
         equals('get'),
       );
       expect(
-        AortemEntraIdHttpMethodUtils.methodToString(
-          AortemEntraIdHttpMethod.post,
+        EntraIdHttpMethodUtils.methodToString(
+          EntraIdHttpMethod.post,
         ),
         equals('post'),
       );
@@ -22,32 +22,32 @@ void main() {
 
     test('stringToMethod converts valid string to enum', () {
       expect(
-        AortemEntraIdHttpMethodUtils.stringToMethod('get'),
-        equals(AortemEntraIdHttpMethod.get),
+        EntraIdHttpMethodUtils.stringToMethod('get'),
+        equals(EntraIdHttpMethod.get),
       );
       expect(
-        AortemEntraIdHttpMethodUtils.stringToMethod('POST'),
-        equals(AortemEntraIdHttpMethod.post),
+        EntraIdHttpMethodUtils.stringToMethod('POST'),
+        equals(EntraIdHttpMethod.post),
       );
     });
 
     test('stringToMethod throws ArgumentError on invalid method', () {
       expect(
-        () => AortemEntraIdHttpMethodUtils.stringToMethod('FETCH'),
+        () => EntraIdHttpMethodUtils.stringToMethod('FETCH'),
         throwsA(isA<ArgumentError>()),
       );
     });
 
     test('isSupported returns true for valid HTTP methods', () {
-      expect(AortemEntraIdHttpMethodUtils.isSupported('get'), isTrue);
-      expect(AortemEntraIdHttpMethodUtils.isSupported('DeLeTe'), isTrue);
-      expect(AortemEntraIdHttpMethodUtils.isSupported('OPTIONS'), isTrue);
+      expect(EntraIdHttpMethodUtils.isSupported('get'), isTrue);
+      expect(EntraIdHttpMethodUtils.isSupported('DeLeTe'), isTrue);
+      expect(EntraIdHttpMethodUtils.isSupported('OPTIONS'), isTrue);
     });
 
     test('isSupported returns false for unsupported methods', () {
-      expect(AortemEntraIdHttpMethodUtils.isSupported('fetch'), isFalse);
-      expect(AortemEntraIdHttpMethodUtils.isSupported('foo'), isFalse);
-      expect(AortemEntraIdHttpMethodUtils.isSupported(''), isFalse);
+      expect(EntraIdHttpMethodUtils.isSupported('fetch'), isFalse);
+      expect(EntraIdHttpMethodUtils.isSupported('foo'), isFalse);
+      expect(EntraIdHttpMethodUtils.isSupported(''), isFalse);
     });
   });
 }

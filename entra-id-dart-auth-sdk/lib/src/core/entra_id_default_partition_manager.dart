@@ -1,7 +1,7 @@
 import 'entra_id_i_partition_manager.dart';
 
-/// Default implementation of AortemEntraIdIPartitionManager.
-class DefaultPartitionManager implements AortemEntraIdIPartitionManager {
+/// Default implementation of EntraIdIPartitionManager.
+class DefaultPartitionManager implements EntraIdIPartitionManager {
   /// Gets a partition key based on tenant and client ID.
   ///
   /// Combines the tenant and client ID with a delimiter to create a unique key.

@@ -7,8 +7,8 @@ import '../model/entra_id_token_cache_model.dart';
 import 'entra_id_token_cache.dart';
 
 /// Implements an in-memory token cache
-class AortemEntraIdInMemoryCache extends AortemEntraIdTokenCache {
-  final Logger _logger = Logger('AortemEntraIdInMemoryCache');
+class EntraIdInMemoryCache extends EntraIdTokenCache {
+  final Logger _logger = Logger('EntraIdInMemoryCache');
 
   /// The cache configuration
   final InMemoryCacheConfig config;
@@ -19,8 +19,8 @@ class AortemEntraIdInMemoryCache extends AortemEntraIdTokenCache {
   /// Timer for automatic cleanup
   Timer? _cleanupTimer;
 
-  /// Creates a new instance of AortemEntraIdInMemoryCache
-  AortemEntraIdInMemoryCache({InMemoryCacheConfig? config})
+  /// Creates a new instance of EntraIdInMemoryCache
+  EntraIdInMemoryCache({InMemoryCacheConfig? config})
     : config = config ?? InMemoryCacheConfig() {
     if (this.config.enableAutomaticCleanup) {
       _startCleanupTimer();

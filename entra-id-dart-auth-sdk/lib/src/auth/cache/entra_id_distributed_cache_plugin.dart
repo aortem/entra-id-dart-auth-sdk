@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:logging/logging.dart';
 
-/// AortemEntraIdDistributedCachePlugin: Supports distributed token caching.
+/// EntraIdDistributedCachePlugin: Supports distributed token caching.
 ///
 /// This class provides functionality to manage distributed caching for tokens
 /// and metadata in the Aortem EntraId SDK. It simulates a distributed cache
@@ -10,7 +10,7 @@ import 'package:logging/logging.dart';
 ///
 /// Example:
 /// ```dart
-/// final cache = AortemEntraIdDistributedCachePlugin(
+/// final cache = EntraIdDistributedCachePlugin(
 ///   connectionString: 'example_connection_string',
 ///   namespace: 'auth',
 /// );
@@ -19,7 +19,7 @@ import 'package:logging/logging.dart';
 /// final token = await cache.retrieve('token');
 /// print('Retrieved token: $token');
 /// ```
-class AortemEntraIdDistributedCachePlugin {
+class EntraIdDistributedCachePlugin {
   /// Connection string to connect to the distributed cache.
   final String connectionString;
 
@@ -27,7 +27,7 @@ class AortemEntraIdDistributedCachePlugin {
   final String _namespace;
 
   /// Logger for debugging cache operations.
-  final _logger = Logger('AortemEntraIdDistributedCachePlugin');
+  final _logger = Logger('EntraIdDistributedCachePlugin');
 
   /// In-memory simulation of a distributed cache.
   late Map<String, DistrubutionCacheEntry> _cacheMock;
@@ -36,7 +36,7 @@ class AortemEntraIdDistributedCachePlugin {
   ///
   /// The [connectionString] is mandatory and must not be empty.
   /// An optional [namespace] can be provided to segregate cache keys.
-  AortemEntraIdDistributedCachePlugin({
+  EntraIdDistributedCachePlugin({
     required this.connectionString,
     String namespace = '',
   }) : _namespace = namespace.isNotEmpty ? '$namespace:' : '' {

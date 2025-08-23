@@ -4,11 +4,11 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 void main() {
-  group('AortemEntraIdAzureLoopbackClient', () {
-    late AortemEntraIdAzureLoopbackClient loopbackClient;
+  group('EntraIdAzureLoopbackClient', () {
+    late EntraIdAzureLoopbackClient loopbackClient;
 
     setUp(() {
-      loopbackClient = AortemEntraIdAzureLoopbackClient();
+      loopbackClient = EntraIdAzureLoopbackClient();
     });
 
     tearDown(() async {
@@ -43,7 +43,7 @@ void main() {
     });
 
     test('should timeout if no redirect is received', () async {
-      loopbackClient = AortemEntraIdAzureLoopbackClient(
+      loopbackClient = EntraIdAzureLoopbackClient(
         timeout: Duration(seconds: 2),
       );
       await loopbackClient.start();

@@ -10,14 +10,14 @@ import '../cache/entra_id_cache_kv_store.dart';
 import '../config/entra_id_configuration.dart';
 
 /// Handles silent token acquisition using cached refresh tokens
-class AortemEntraIdSilentFlowRequest {
-  final Logger _logger = Logger('AortemEntraIdSilentFlowRequest');
+class EntraIdSilentFlowRequest {
+  final Logger _logger = Logger('EntraIdSilentFlowRequest');
 
   /// Configuration for the request
-  final AortemEntraIdConfiguration configuration;
+  final EntraIdConfiguration configuration;
 
   /// Cache store for tokens
-  final AortemEntraIdCacheKVStore _cacheStore;
+  final EntraIdCacheKVStore _cacheStore;
 
   /// The requested scopes
   final List<String> scopes;
@@ -28,10 +28,10 @@ class AortemEntraIdSilentFlowRequest {
   /// Authority to use for the request (optional)
   final String? authority;
 
-  /// Creates a new instance of AortemEntraIdSilentFlowRequest
-  AortemEntraIdSilentFlowRequest({
+  /// Creates a new instance of EntraIdSilentFlowRequest
+  EntraIdSilentFlowRequest({
     required this.configuration,
-    required AortemEntraIdCacheKVStore cacheStore,
+    required EntraIdCacheKVStore cacheStore,
     required this.scopes,
     this.accountId,
     this.authority,

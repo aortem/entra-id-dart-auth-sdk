@@ -52,8 +52,8 @@ class LoopbackResponse {
 ///
 /// This server listens on a loopback address and captures authentication
 /// responses sent to the redirect URI.
-class AortemEntraIdAzureLoopbackClient {
-  final Logger _logger = Logger('AortemEntraIdAzureLoopbackClient');
+class EntraIdAzureLoopbackClient {
+  final Logger _logger = Logger('EntraIdAzureLoopbackClient');
 
   /// The port the server will listen on (0 means auto-assign).
   final int port;
@@ -70,12 +70,12 @@ class AortemEntraIdAzureLoopbackClient {
   /// Completer used to capture the response asynchronously.
   Completer<LoopbackResponse>? _responseCompleter;
 
-  /// Creates an instance of [AortemEntraIdAzureLoopbackClient].
+  /// Creates an instance of [EntraIdAzureLoopbackClient].
   ///
   /// - [port]: The port for the local HTTP server (0 to auto-assign).
   /// - [path]: The path used for authentication redirection.
   /// - [timeout]: The maximum duration to wait for a response.
-  AortemEntraIdAzureLoopbackClient({
+  EntraIdAzureLoopbackClient({
     this.port = 0, // System assigns an available port.
     this.path = '/redirect',
     this.timeout = const Duration(minutes: 5),

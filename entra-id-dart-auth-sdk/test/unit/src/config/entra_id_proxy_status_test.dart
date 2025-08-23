@@ -7,11 +7,11 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
-  group('AortemEntraIdProxyStatus', () {
-    late AortemEntraIdProxyStatus proxyStatus;
+  group('EntraIdProxyStatus', () {
+    late EntraIdProxyStatus proxyStatus;
 
     setUp(() {
-      proxyStatus = AortemEntraIdProxyStatus(
+      proxyStatus = EntraIdProxyStatus(
         proxyUrl: 'localhost',
         port: 8080,
         username: 'user',
@@ -28,7 +28,7 @@ void main() {
 
     test('validateProxy throws exception on failure', () async {
       // This test checks for exception handling (mocked failure)
-      final badProxyStatus = AortemEntraIdProxyStatus(
+      final badProxyStatus = EntraIdProxyStatus(
         proxyUrl: 'invalid.proxy',
         port: 9999,
         username: 'fake',
@@ -39,7 +39,7 @@ void main() {
     });
 
     test('validateProxy fails when no username/password is provided', () async {
-      final badProxyStatus = AortemEntraIdProxyStatus(
+      final badProxyStatus = EntraIdProxyStatus(
         proxyUrl: 'localhost',
         port: 8080,
       );

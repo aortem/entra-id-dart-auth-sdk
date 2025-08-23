@@ -5,12 +5,12 @@ import 'dart:convert';
 // Adjust the import according to your project structure
 
 void main() {
-  group('AortemEntraIdSerializer', () {
+  group('EntraIdSerializer', () {
     test('should serialize an entity to JSON string', () {
       final entity = {'name': 'John Doe', 'age': 30};
 
       // Serialize the entity
-      final jsonString = AortemEntraIdSerializer.serialize(entity);
+      final jsonString = EntraIdSerializer.serialize(entity);
 
       // Check if the result is a valid JSON string
       expect(jsonString, isA<String>());
@@ -22,7 +22,7 @@ void main() {
 
       // Attempt to serialize an invalid entity
       expect(
-        () => AortemEntraIdSerializer.serialize(invalidEntity),
+        () => EntraIdSerializer.serialize(invalidEntity),
         throwsArgumentError,
       );
     });
@@ -31,7 +31,7 @@ void main() {
       final jsonString = '{"name": "John Doe", "age": 30}';
 
       // Deserialize the JSON string
-      final map = AortemEntraIdSerializer.deserialize(jsonString);
+      final map = EntraIdSerializer.deserialize(jsonString);
 
       // Check if the deserialized map matches the expected structure
       expect(map, isA<Map<String, dynamic>>());
@@ -46,7 +46,7 @@ void main() {
 
         // Attempt to deserialize an empty JSON string
         expect(
-          () => AortemEntraIdSerializer.deserialize(emptyJsonString),
+          () => EntraIdSerializer.deserialize(emptyJsonString),
           throwsArgumentError,
         );
       },
@@ -59,7 +59,7 @@ void main() {
 
         // Attempt to deserialize an invalid JSON string
         expect(
-          () => AortemEntraIdSerializer.deserialize(invalidJsonString),
+          () => EntraIdSerializer.deserialize(invalidJsonString),
           throwsArgumentError,
         );
       },
@@ -74,7 +74,7 @@ void main() {
         fromJsonFactory(Map<String, dynamic> map) => Person.fromJson(map);
 
         // Deserialize using the factory function
-        final person = AortemEntraIdSerializer.deserializeTo<Person>(
+        final person = EntraIdSerializer.deserializeTo<Person>(
           jsonString,
           fromJsonFactory,
         );
@@ -96,7 +96,7 @@ void main() {
 
         // Attempt to deserialize with invalid data type
         expect(
-          () => AortemEntraIdSerializer.deserializeTo<Person>(
+          () => EntraIdSerializer.deserializeTo<Person>(
             jsonString,
             fromJsonFactory,
           ),

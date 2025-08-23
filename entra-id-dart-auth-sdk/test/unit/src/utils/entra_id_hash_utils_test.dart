@@ -5,14 +5,14 @@ import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as crypto;
 
 void main() {
-  group('AortemEntraIdHashUtils', () {
+  group('EntraIdHashUtils', () {
     test('hashSHA256 should hash input and return Base64 encoded string', () {
       final input = 'example_data';
       final expectedHash = base64Encode(
         crypto.sha256.convert(utf8.encode(input)).bytes,
       );
 
-      final hashedValue = AortemEntraIdHashUtils.hashSHA256(input);
+      final hashedValue = EntraIdHashUtils.hashSHA256(input);
 
       // Assert that the hash matches the expected value
       expect(hashedValue, equals(expectedHash));
@@ -20,9 +20,9 @@ void main() {
 
     test('validateSHA256 should return true for matching hash', () {
       final input = 'example_data';
-      final hashedValue = AortemEntraIdHashUtils.hashSHA256(input);
+      final hashedValue = EntraIdHashUtils.hashSHA256(input);
 
-      final isValid = AortemEntraIdHashUtils.validateSHA256(input, hashedValue);
+      final isValid = EntraIdHashUtils.validateSHA256(input, hashedValue);
 
       // Assert that the plain text matches the hash
       expect(isValid, isTrue);
@@ -32,7 +32,7 @@ void main() {
       final input = 'example_data';
       final incorrectHash = 'incorrect_hash_value';
 
-      final isValid = AortemEntraIdHashUtils.validateSHA256(
+      final isValid = EntraIdHashUtils.validateSHA256(
         input,
         incorrectHash,
       );
@@ -42,7 +42,7 @@ void main() {
     });
 
     test('hashSHA256 should throw error for empty input', () {
-      expect(() => AortemEntraIdHashUtils.hashSHA256(''), throwsArgumentError);
+      expect(() => EntraIdHashUtils.hashSHA256(''), throwsArgumentError);
     });
   });
 }

@@ -2,10 +2,10 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 void main() {
-  group('AortemEntraIdSerializedIdTokenEntity', () {
+  group('EntraIdSerializedIdTokenEntity', () {
     test('should throw exception if raw ID token is empty', () {
       expect(
-        () => AortemEntraIdSerializedIdTokenEntity.fromClaims({
+        () => EntraIdSerializedIdTokenEntity.fromClaims({
           'iss': 'https://login.microsoftonline.com/tenant-id/v2.0',
           'sub': 'subject-id',
           'aud': 'client-id',
@@ -27,7 +27,7 @@ void main() {
       };
       final rawToken = 'raw-id-token';
 
-      final tokenEntity = AortemEntraIdSerializedIdTokenEntity.fromClaims(
+      final tokenEntity = EntraIdSerializedIdTokenEntity.fromClaims(
         claims,
         rawToken,
       );
@@ -47,14 +47,14 @@ void main() {
       final rawToken = 'raw-id-token';
 
       expect(
-        () => AortemEntraIdSerializedIdTokenEntity.fromClaims(claims, rawToken),
+        () => EntraIdSerializedIdTokenEntity.fromClaims(claims, rawToken),
         throwsA(isA<IdTokenEntityException>()),
       );
     });
 
     test('should extract tenant ID from issuer', () {
       final issuer = 'https://login.microsoftonline.com/tenant-id/v2.0';
-      final tenantId = AortemEntraIdSerializedIdTokenEntity.extractTenantId(
+      final tenantId = EntraIdSerializedIdTokenEntity.extractTenantId(
         issuer,
       );
 

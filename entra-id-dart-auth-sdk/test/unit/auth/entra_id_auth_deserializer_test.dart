@@ -2,14 +2,14 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/auth/entra_id_auth_deserializer.dart';
 
 void main() {
-  group('AortemEntraIdDeserializer Tests', () {
+  group('EntraIdDeserializer Tests', () {
     test(
       'deserializeTokenResponse should correctly deserialize valid token response',
       () {
         final String jsonResponse =
             '{"access_token": "token123", "expires_in": 3600}';
 
-        final result = AortemEntraIdDeserializer.deserializeTokenResponse(
+        final result = EntraIdDeserializer.deserializeTokenResponse(
           jsonResponse,
         );
 
@@ -26,7 +26,7 @@ void main() {
 
         expect(
           () =>
-              AortemEntraIdDeserializer.deserializeTokenResponse(jsonResponse),
+              EntraIdDeserializer.deserializeTokenResponse(jsonResponse),
           throwsA(isA<FormatException>()),
         );
       },
@@ -38,7 +38,7 @@ void main() {
         final String jsonResponse =
             '{"id": "user123", "displayName": "John Doe"}';
 
-        final result = AortemEntraIdDeserializer.deserializeUserProfileResponse(
+        final result = EntraIdDeserializer.deserializeUserProfileResponse(
           jsonResponse,
         );
 
@@ -54,7 +54,7 @@ void main() {
             '{"id": "user123"}'; // Missing 'displayName'
 
         expect(
-          () => AortemEntraIdDeserializer.deserializeUserProfileResponse(
+          () => EntraIdDeserializer.deserializeUserProfileResponse(
             jsonResponse,
           ),
           throwsA(isA<FormatException>()),
@@ -68,7 +68,7 @@ void main() {
         final String jsonResponse =
             '{"error": "invalid_grant", "error_description": "The grant is invalid"}';
 
-        final result = AortemEntraIdDeserializer.deserializeErrorResponse(
+        final result = EntraIdDeserializer.deserializeErrorResponse(
           jsonResponse,
         );
 
@@ -85,7 +85,7 @@ void main() {
 
         expect(
           () =>
-              AortemEntraIdDeserializer.deserializeErrorResponse(jsonResponse),
+              EntraIdDeserializer.deserializeErrorResponse(jsonResponse),
           throwsA(isA<FormatException>()),
         );
       },

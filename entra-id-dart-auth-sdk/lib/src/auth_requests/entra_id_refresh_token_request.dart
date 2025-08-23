@@ -5,7 +5,7 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 ///
 /// This class handles the process of sending a request to the token endpoint
 /// to obtain a new access token using a previously obtained refresh token.
-class AortemEntraIdRefreshTokenRequest {
+class EntraIdRefreshTokenRequest {
   /// The refresh token used to request a new access token.
   final String refreshToken;
 
@@ -18,9 +18,9 @@ class AortemEntraIdRefreshTokenRequest {
   /// The URL of the token endpoint where the request will be sent.
   final String tokenEndpoint;
 
-  /// Constructs a new [AortemEntraIdRefreshTokenRequest] with the given [refreshToken],
+  /// Constructs a new [EntraIdRefreshTokenRequest] with the given [refreshToken],
   /// [clientId], [clientSecret], and [tokenEndpoint].
-  AortemEntraIdRefreshTokenRequest({
+  EntraIdRefreshTokenRequest({
     required this.refreshToken,
     required this.clientId,
     required this.clientSecret,

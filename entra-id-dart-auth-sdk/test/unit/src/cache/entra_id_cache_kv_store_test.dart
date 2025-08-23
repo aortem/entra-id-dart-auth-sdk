@@ -2,18 +2,18 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'dart:async';
 
 import 'package:entra_id_dart_auth_sdk/src/cache/entra_id_cache_kv_store.dart'
-    show AortemEntraIdCacheKVStore;
+    show EntraIdCacheKVStore;
 import 'package:entra_id_dart_auth_sdk/src/cache/entra_id_cache_options.dart'
-    show AortemEntraIdCacheOptions;
+    show EntraIdCacheOptions;
 import 'package:entra_id_dart_auth_sdk/src/enum/entra_id_cache_eviction_policy_enum.dart';
 import 'package:entra_id_dart_auth_sdk/src/enum/entra_id_cache_storage_type_enum.dart';
 
 void main() {
-  late AortemEntraIdCacheKVStore cache;
-  late AortemEntraIdCacheOptions options;
+  late EntraIdCacheKVStore cache;
+  late EntraIdCacheOptions options;
 
   setUp(() {
-    options = AortemEntraIdCacheOptions(
+    options = EntraIdCacheOptions(
       storageType: CacheStorageType.memory,
       maxItems: 10,
       namespace: 'testNamespace',
@@ -22,7 +22,7 @@ void main() {
       cleanupThreshold: 50,
     );
 
-    cache = AortemEntraIdCacheKVStore(options);
+    cache = EntraIdCacheKVStore(options);
   });
 
   tearDown(() {
@@ -54,8 +54,8 @@ void main() {
   });
 
   test('Should evict items in FIFO order', () async {
-    cache = AortemEntraIdCacheKVStore(
-      AortemEntraIdCacheOptions(
+    cache = EntraIdCacheKVStore(
+      EntraIdCacheOptions(
         storageType: CacheStorageType.memory,
         maxItems: 10,
         namespace: 'testNamespace',

@@ -9,26 +9,26 @@
 /// try {
 ///   await request.acquireToken('user@example.com', 'password123');
 /// } catch (e) {
-///   if (e is AortemEntraIdUserCancelledException) {
+///   if (e is EntraIdUserCancelledException) {
 ///     print('User cancelled the authentication process.');
 ///   } else {
 ///     print('Other error: $e');
 ///   }
 /// }
 /// ```
-class AortemEntraIdUserCancelledException implements Exception {
+class EntraIdUserCancelledException implements Exception {
   /// The error message associated with the exception.
   ///
   /// Defaults to 'User cancelled the authentication process.'
   final String message;
 
-  /// Constructs an instance of `AortemEntraIdUserCancelledException`.
+  /// Constructs an instance of `EntraIdUserCancelledException`.
   ///
   /// - [message]: The message describing the cancellation. Defaults to a predefined message
   ///   if not provided.
-  AortemEntraIdUserCancelledException(
+  EntraIdUserCancelledException(
       [this.message = 'User cancelled the authentication process.']);
 
   @override
-  String toString() => 'AortemEntraIdUserCancelledException: $message';
+  String toString() => 'EntraIdUserCancelledException: $message';
 }

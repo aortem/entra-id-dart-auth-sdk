@@ -2,11 +2,11 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 void main() {
-  group('AortemEntraIdDistributedCachePlugin', () {
-    late AortemEntraIdDistributedCachePlugin cache;
+  group('EntraIdDistributedCachePlugin', () {
+    late EntraIdDistributedCachePlugin cache;
 
     setUp(() {
-      cache = AortemEntraIdDistributedCachePlugin(
+      cache = EntraIdDistributedCachePlugin(
         connectionString: 'mock://connection',
         namespace: 'test',
       );
@@ -63,7 +63,7 @@ void main() {
 
     test('throws error on empty connection string', () {
       expect(
-        () => AortemEntraIdDistributedCachePlugin(connectionString: ''),
+        () => EntraIdDistributedCachePlugin(connectionString: ''),
         throwsA(isA<ArgumentError>()),
       );
     });

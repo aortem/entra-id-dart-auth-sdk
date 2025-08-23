@@ -36,14 +36,14 @@ class ClientApplicationException implements Exception {
 
 /// Abstract base class for all client applications in the Entra ID SDK.
 /// Provides core functionality for authentication and token management.
-abstract class AortemEntraIdClientApplication {
-  final Logger _logger = Logger('AortemEntraIdClientApplication');
+abstract class EntraIdClientApplication {
+  final Logger _logger = Logger('EntraIdClientApplication');
 
   /// Configuration for the client application
-  final AortemEntraIdAuthConfiguration configuration;
+  final EntraIdAuthConfiguration configuration;
 
   /// Cache store for tokens and other data
-  late final AortemEntraIdCacheKVStore _cacheStore;
+  late final EntraIdCacheKVStore _cacheStore;
 
   /// Current status of the client application
   ClientApplicationStatus _status = ClientApplicationStatus.notInitialized;
@@ -52,8 +52,8 @@ abstract class AortemEntraIdClientApplication {
   final _statusController =
       StreamController<ClientApplicationStatus>.broadcast();
 
-  /// Creates a new instance of AortemEntraIdClientApplication
-  AortemEntraIdClientApplication(this.configuration) {
+  /// Creates a new instance of EntraIdClientApplication
+  EntraIdClientApplication(this.configuration) {
     _initializeApplication();
   }
 
@@ -69,8 +69,8 @@ abstract class AortemEntraIdClientApplication {
       _logger.info('Initializing client application');
 
       // Initialize cache store with default options
-      _cacheStore = AortemEntraIdCacheKVStore(
-        AortemEntraIdCacheOptions(namespace: configuration.clientId),
+      _cacheStore = EntraIdCacheKVStore(
+        EntraIdCacheOptions(namespace: configuration.clientId),
       );
 
       _updateStatus(ClientApplicationStatus.ready);

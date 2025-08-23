@@ -3,10 +3,10 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 // Replace with your actual package name
 
 void main() {
-  group('AortemEntraIdConfiguration', () {
+  group('EntraIdConfiguration', () {
     setUp(() {
       // Reset the configuration before each test
-      AortemEntraIdConfiguration.reset();
+      EntraIdConfiguration.reset();
     });
 
     test('should initialize with correct properties', () {
@@ -17,7 +17,7 @@ void main() {
       const redirectUri = 'https://myapp.com/redirect';
 
       // Act
-      final config = AortemEntraIdConfiguration.initialize(
+      final config = EntraIdConfiguration.initialize(
         clientId: clientId,
         tenantId: tenantId,
         authority: authority,
@@ -43,7 +43,7 @@ void main() {
         const redirectUri = 'https://myapp.com/redirect';
 
         // Act
-        final config = AortemEntraIdConfiguration.initialize(
+        final config = EntraIdConfiguration.initialize(
           clientId: clientId,
           tenantId: tenantId,
           authority: authority,
@@ -64,13 +64,13 @@ void main() {
       const redirectUri = 'https://myapp.com/redirect';
 
       // Act
-      final firstInstance = AortemEntraIdConfiguration.initialize(
+      final firstInstance = EntraIdConfiguration.initialize(
         clientId: clientId,
         tenantId: tenantId,
         authority: authority,
         redirectUri: redirectUri,
       );
-      final secondInstance = AortemEntraIdConfiguration.initialize(
+      final secondInstance = EntraIdConfiguration.initialize(
         clientId: clientId,
         tenantId: tenantId,
         authority: authority,
@@ -92,7 +92,7 @@ void main() {
       const redirectUri = 'https://myapp.com/redirect';
 
       // Act
-      final config = AortemEntraIdConfiguration.initialize(
+      final config = EntraIdConfiguration.initialize(
         clientId: clientId,
         tenantId: tenantId,
         authority: authority,
@@ -103,10 +103,10 @@ void main() {
       expect(config.clientId, equals(clientId));
 
       // Reset the configuration
-      AortemEntraIdConfiguration.reset();
+      EntraIdConfiguration.reset();
 
       // Act again to reinitialize
-      final newConfig = AortemEntraIdConfiguration.initialize(
+      final newConfig = EntraIdConfiguration.initialize(
         clientId: 'newClientId',
         tenantId: 'newTenantId',
         authority: 'https://newauthority.com',

@@ -3,11 +3,11 @@ import 'package:entra_id_dart_auth_sdk/src/auth/entra_id_auth_confidential_clien
 import 'package:entra_id_dart_auth_sdk/src/auth/entra_id_auth_configuration.dart';
 
 void main() {
-  group('AortemEntraIdConfidentialClientApplication Tests', () {
-    late AortemEntraIdAuthConfiguration configuration;
+  group('EntraIdConfidentialClientApplication Tests', () {
+    late EntraIdAuthConfiguration configuration;
 
     setUp(() {
-      configuration = AortemEntraIdAuthConfiguration(
+      configuration = EntraIdAuthConfiguration(
         clientId: 'test-client-id',
         tenantId: 'test-tenant-id',
         authority: 'https://login.microsoftonline.com/test-tenant',
@@ -18,7 +18,7 @@ void main() {
       'should initialize successfully with valid configuration and secret',
       () {
         expect(
-          () => AortemEntraIdConfidentialClientApplication(
+          () => EntraIdConfidentialClientApplication(
             configuration: configuration,
             credential: 'test-secret',
             credentialType: CredentialType.secret,
@@ -30,7 +30,7 @@ void main() {
 
     test('should throw an error if credential is empty', () {
       expect(
-        () => AortemEntraIdConfidentialClientApplication(
+        () => EntraIdConfidentialClientApplication(
           configuration: configuration,
           credential: '',
         ),
@@ -39,14 +39,14 @@ void main() {
     });
 
     test('should throw an error if authority is invalid', () {
-      final invalidConfiguration = AortemEntraIdAuthConfiguration(
+      final invalidConfiguration = EntraIdAuthConfiguration(
         clientId: 'test-client-id',
         tenantId: 'test-tenant-id',
         authority: 'http://invalid-url.com',
       );
 
       expect(
-        () => AortemEntraIdConfidentialClientApplication(
+        () => EntraIdConfidentialClientApplication(
           configuration: invalidConfiguration,
           credential: 'test-secret',
         ),
@@ -55,7 +55,7 @@ void main() {
     });
 
     test('should return application metadata correctly', () {
-      final app = AortemEntraIdConfidentialClientApplication(
+      final app = EntraIdConfidentialClientApplication(
         configuration: configuration,
         credential: 'test-secret',
       );

@@ -1,10 +1,10 @@
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart'
-    show AortemEntraIdClientApplication;
+    show EntraIdClientApplication;
 import 'package:entra_id_dart_auth_sdk/src/enum/entra_id_client_application_eum.dart';
 import 'package:entra_id_dart_auth_sdk/src/config/entra_id_configuration.dart';
 
-class TestClientApplication extends AortemEntraIdClientApplication {
+class TestClientApplication extends EntraIdClientApplication {
   TestClientApplication(super.configuration);
 
   @override
@@ -24,12 +24,12 @@ class TestClientApplication extends AortemEntraIdClientApplication {
 }
 
 void main() {
-  group('AortemEntraIdClientApplication', () {
-    late AortemEntraIdConfiguration config;
+  group('EntraIdClientApplication', () {
+    late EntraIdConfiguration config;
     late TestClientApplication app;
 
     setUp(() {
-      config = AortemEntraIdConfiguration.initialize(
+      config = EntraIdConfiguration.initialize(
         clientId: 'test-client-id',
         authority: 'https://login.microsoftonline.com/common',
         tenantId: 'common',
@@ -41,7 +41,7 @@ void main() {
 
     tearDown(() async {
       await app.dispose();
-      AortemEntraIdConfiguration.reset(); // reset the singleton after each test
+      EntraIdConfiguration.reset(); // reset the singleton after each test
     });
 
     test('initial status is ready after construction', () {

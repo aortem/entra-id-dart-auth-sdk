@@ -2,15 +2,15 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/storage/entra_id_storage.dart';
 
 void main() {
-  group('AortemEntraIdStorage Tests', () {
-    late AortemEntraIdStorage inMemoryStorage;
-    late AortemEntraIdStorage persistentStorage;
+  group('EntraIdStorage Tests', () {
+    late EntraIdStorage inMemoryStorage;
+    late EntraIdStorage persistentStorage;
     final testKey = 'accessToken';
     final testToken = 'test-token-value';
 
     setUp(() async {
-      inMemoryStorage = AortemEntraIdStorage(persistent: false);
-      persistentStorage = AortemEntraIdStorage(persistent: true);
+      inMemoryStorage = EntraIdStorage(persistent: false);
+      persistentStorage = EntraIdStorage(persistent: true);
       await persistentStorage.clearStorage(); // Ensure clean state
     });
 

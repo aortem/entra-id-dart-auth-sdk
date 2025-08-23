@@ -24,8 +24,8 @@ class AccessTokenEntityException implements Exception {
 }
 
 /// Represents a serialized access token with its metadata
-class AortemEntraIdSerializedAccessTokenEntity {
-  final Logger _logger = Logger('AortemEntraIdSerializedAccessTokenEntity');
+class EntraIdSerializedAccessTokenEntity {
+  final Logger _logger = Logger('EntraIdSerializedAccessTokenEntity');
 
   /// The access token value
   final String accessToken;
@@ -72,8 +72,8 @@ class AortemEntraIdSerializedAccessTokenEntity {
   /// Extended properties for future use
   final Map<String, dynamic> extendedProperties;
 
-  /// Creates a new instance of AortemEntraIdSerializedAccessTokenEntity
-  AortemEntraIdSerializedAccessTokenEntity({
+  /// Creates a new instance of EntraIdSerializedAccessTokenEntity
+  EntraIdSerializedAccessTokenEntity({
     required this.accessToken,
     required this.clientId,
     required this.issuedOn,
@@ -94,10 +94,10 @@ class AortemEntraIdSerializedAccessTokenEntity {
   }
 
   /// Creates an access token entity from JSON
-  factory AortemEntraIdSerializedAccessTokenEntity.fromJson(
+  factory EntraIdSerializedAccessTokenEntity.fromJson(
     Map<String, dynamic> json,
   ) {
-    return AortemEntraIdSerializedAccessTokenEntity(
+    return EntraIdSerializedAccessTokenEntity(
       accessToken: json['accessToken'] as String,
       clientId: json['clientId'] as String,
       issuedOn: DateTime.parse(json['issuedOn'] as String),
@@ -212,14 +212,14 @@ class AortemEntraIdSerializedAccessTokenEntity {
       if (userId != null) userId!,
       if (resource != null) resource!,
       scopes.join(' '),
-      AortemEntraIdGuidGenerator.generate(),
+      EntraIdGuidGenerator.generate(),
     ];
 
     return components.join(':');
   }
 
   /// Creates a copy of the entity with updated fields
-  AortemEntraIdSerializedAccessTokenEntity copyWith({
+  EntraIdSerializedAccessTokenEntity copyWith({
     String? accessToken,
     String? clientId,
     DateTime? issuedOn,
@@ -235,7 +235,7 @@ class AortemEntraIdSerializedAccessTokenEntity {
     bool? isRefreshable,
     Map<String, dynamic>? extendedProperties,
   }) {
-    return AortemEntraIdSerializedAccessTokenEntity(
+    return EntraIdSerializedAccessTokenEntity(
       accessToken: accessToken ?? this.accessToken,
       clientId: clientId ?? this.clientId,
       issuedOn: issuedOn ?? this.issuedOn,

@@ -7,8 +7,8 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 import 'package:http/testing.dart';
 
 void main() {
-  group('AortemEntraIdHttpClient', () {
-    late AortemEntraIdHttpClient client;
+  group('EntraIdHttpClient', () {
+    late EntraIdHttpClient client;
 
     test('GET request returns parsed JSON response', () async {
       final mockClient = MockClient((request) async {
@@ -17,7 +17,7 @@ void main() {
         return http.Response(jsonEncode({'message': 'success'}), 200);
       });
 
-      client = AortemEntraIdHttpClient(
+      client = EntraIdHttpClient(
         baseUrl: 'https://api.example.com',
         client: mockClient,
       );
@@ -34,7 +34,7 @@ void main() {
         return http.Response(jsonEncode({'status': 'ok'}), 200);
       });
 
-      client = AortemEntraIdHttpClient(
+      client = EntraIdHttpClient(
         baseUrl: 'https://api.example.com',
         client: mockClient,
       );
@@ -48,7 +48,7 @@ void main() {
         return http.Response('Not found', 404);
       });
 
-      client = AortemEntraIdHttpClient(
+      client = EntraIdHttpClient(
         baseUrl: 'https://api.example.com',
         client: mockClient,
       );
@@ -70,7 +70,7 @@ void main() {
         return http.Response(jsonEncode({'message': 'headers ok'}), 200);
       });
 
-      client = AortemEntraIdHttpClient(
+      client = EntraIdHttpClient(
         baseUrl: 'https://api.example.com',
         defaultHeaders: {'Authorization': 'Bearer 123'},
         client: mockClient,

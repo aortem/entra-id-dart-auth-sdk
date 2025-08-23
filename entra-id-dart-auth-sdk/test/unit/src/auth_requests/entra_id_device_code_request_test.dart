@@ -5,11 +5,11 @@ import 'package:ds_standard_features/ds_standard_features.dart';
 class MockLogger extends Mock implements Logger {}
 
 void main() {
-  group('AortemEntraIdDeviceCodeRequest', () {
-    late AortemEntraIdDeviceCodeRequest deviceCodeRequest;
+  group('EntraIdDeviceCodeRequest', () {
+    late EntraIdDeviceCodeRequest deviceCodeRequest;
 
     setUp(() {
-      deviceCodeRequest = AortemEntraIdDeviceCodeRequest(
+      deviceCodeRequest = EntraIdDeviceCodeRequest(
         deviceCodeEndpoint: 'https://example.com/device/code',
         tokenEndpoint: 'https://example.com/token',
         parameters: DeviceCodeRequestParameters(

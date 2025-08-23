@@ -10,18 +10,18 @@ import 'package:entra_id_dart_auth_sdk/src/utils/entra_id_exceptions.dart';
 class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
-  late AortemEntraIdHttpClient client;
+  late EntraIdHttpClient client;
   late MockHttpClient mockHttpClient;
 
   setUp(() {
     mockHttpClient = MockHttpClient();
-    client = AortemEntraIdHttpClient(
+    client = EntraIdHttpClient(
       baseUrl: 'https://api.example.com/',
       client: mockHttpClient,
     );
   });
 
-  group('AortemEntraIdHttpClient Tests', () {
+  group('EntraIdHttpClient Tests', () {
     test('GET request should return a successful response', () async {
       final expectedResponse = {'message': 'Success'};
       final responseJson = jsonEncode(expectedResponse);

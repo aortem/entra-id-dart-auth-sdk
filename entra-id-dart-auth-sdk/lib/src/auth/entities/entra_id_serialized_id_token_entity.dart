@@ -25,8 +25,8 @@ class IdTokenEntityException implements Exception {
 }
 
 /// Entity representing a deserialized OpenID Connect ID token
-class AortemEntraIdSerializedIdTokenEntity {
-  final Logger _logger = Logger('AortemEntraIdSerializedIdTokenEntity');
+class EntraIdSerializedIdTokenEntity {
+  final Logger _logger = Logger('EntraIdSerializedIdTokenEntity');
 
   /// The raw ID token string
   final String rawIdToken;
@@ -73,8 +73,8 @@ class AortemEntraIdSerializedIdTokenEntity {
   /// Cache key for the token
   late final String cacheKey;
 
-  /// Creates a new instance of AortemEntraIdSerializedIdTokenEntity
-  AortemEntraIdSerializedIdTokenEntity({
+  /// Creates a new instance of EntraIdSerializedIdTokenEntity
+  EntraIdSerializedIdTokenEntity({
     required this.rawIdToken,
     required this.issuer,
     required this.subject,
@@ -95,11 +95,11 @@ class AortemEntraIdSerializedIdTokenEntity {
   }
 
   /// Creates an ID token entity from claims
-  factory AortemEntraIdSerializedIdTokenEntity.fromClaims(
+  factory EntraIdSerializedIdTokenEntity.fromClaims(
     Map<String, dynamic> claims,
     String rawToken,
   ) {
-    return AortemEntraIdSerializedIdTokenEntity(
+    return EntraIdSerializedIdTokenEntity(
       rawIdToken: rawToken,
       issuer: claims['iss'] as String,
       subject: claims['sub'] as String,
@@ -144,10 +144,10 @@ class AortemEntraIdSerializedIdTokenEntity {
   }
 
   /// Creates an ID token entity from JSON
-  factory AortemEntraIdSerializedIdTokenEntity.fromJson(
+  factory EntraIdSerializedIdTokenEntity.fromJson(
     Map<String, dynamic> json,
   ) {
-    return AortemEntraIdSerializedIdTokenEntity(
+    return EntraIdSerializedIdTokenEntity(
       rawIdToken: json['rawIdToken'] as String,
       issuer: json['issuer'] as String,
       subject: json['subject'] as String,
@@ -276,7 +276,7 @@ class AortemEntraIdSerializedIdTokenEntity {
   }
 
   /// Creates a copy of the entity with updated fields
-  AortemEntraIdSerializedIdTokenEntity copyWith({
+  EntraIdSerializedIdTokenEntity copyWith({
     String? rawIdToken,
     String? issuer,
     String? subject,
@@ -292,7 +292,7 @@ class AortemEntraIdSerializedIdTokenEntity {
     DateTime? authTime,
     Map<String, dynamic>? additionalClaims,
   }) {
-    return AortemEntraIdSerializedIdTokenEntity(
+    return EntraIdSerializedIdTokenEntity(
       rawIdToken: rawIdToken ?? this.rawIdToken,
       issuer: issuer ?? this.issuer,
       subject: subject ?? this.subject,

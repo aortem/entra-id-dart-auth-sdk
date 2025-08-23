@@ -4,12 +4,12 @@ import 'package:entra_id_dart_auth_sdk/src/cache/entra_id_cache_kv_store.dart';
 import 'package:entra_id_dart_auth_sdk/src/config/entra_id_configuration.dart';
 import 'package:entra_id_dart_auth_sdk/src/exception/entra_id_on_behalf_of_request_exception.dart';
 
-class MockCacheStore extends Mock implements AortemEntraIdCacheKVStore {}
+class MockCacheStore extends Mock implements EntraIdCacheKVStore {}
 
 void main() {
-  late AortemEntraIdOnBehalfOfRequest oboRequest;
+  late EntraIdOnBehalfOfRequest oboRequest;
   late MockCacheStore mockCacheStore;
-  late AortemEntraIdConfiguration config;
+  late EntraIdConfiguration config;
 
   const testClientId = 'test-client-id';
   const testTenantId = 'test-tenant-id';
@@ -22,10 +22,10 @@ void main() {
     mockCacheStore = MockCacheStore();
 
     // Reset any existing configuration before each test
-    AortemEntraIdConfiguration.reset();
+    EntraIdConfiguration.reset();
 
     // Initialize configuration with required parameters
-    config = AortemEntraIdConfiguration.initialize(
+    config = EntraIdConfiguration.initialize(
       clientId: testClientId,
       tenantId: testTenantId,
       authority: testAuthority,
@@ -35,13 +35,13 @@ void main() {
 
   tearDown(() {
     // Clean up after each test
-    AortemEntraIdConfiguration.reset();
+    EntraIdConfiguration.reset();
   });
 
   group('Validation', () {
     test('throws when user assertion is empty', () {
       expect(
-        () => AortemEntraIdOnBehalfOfRequest(
+        () => EntraIdOnBehalfOfRequest(
           configuration: config,
           cacheStore: mockCacheStore,
           userAssertion: '',
@@ -53,7 +53,7 @@ void main() {
 
     test('throws when scopes are empty', () {
       expect(
-        () => AortemEntraIdOnBehalfOfRequest(
+        () => EntraIdOnBehalfOfRequest(
           configuration: config,
           cacheStore: mockCacheStore,
           userAssertion: testUserAssertion,
@@ -66,7 +66,7 @@ void main() {
 
   group('Cache Operations', () {
     setUp(() {
-      oboRequest = AortemEntraIdOnBehalfOfRequest(
+      oboRequest = EntraIdOnBehalfOfRequest(
         configuration: config,
         cacheStore: mockCacheStore,
         userAssertion: testUserAssertion,
@@ -102,7 +102,7 @@ void main() {
 
   group('Execute Request', () {
     setUp(() {
-      oboRequest = AortemEntraIdOnBehalfOfRequest(
+      oboRequest = EntraIdOnBehalfOfRequest(
         configuration: config,
         cacheStore: mockCacheStore,
         userAssertion: testUserAssertion,

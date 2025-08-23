@@ -1,17 +1,17 @@
 import 'dart:convert';
 
-/// AortemEntraIdEncodingUtils: Provides encoding and decoding utilities.
+/// EntraIdEncodingUtils: Provides encoding and decoding utilities.
 ///
 /// This class supports Base64 and URL encoding/decoding operations required
 /// for secure communication and request construction in the Aortem EntraId Dart SDK.
-class AortemEntraIdEncodingUtils {
+class EntraIdEncodingUtils {
   /// Encodes a string to Base64 URL-safe format.
   ///
   /// Throws [ArgumentError] if the input is empty.
   ///
   /// Example:
   /// ```dart
-  /// final encoded = AortemEntraIdEncodingUtils.encodeBase64('Hello, World!');
+  /// final encoded = EntraIdEncodingUtils.encodeBase64('Hello, World!');
   /// print(encoded); // Encoded Base64 string.
   /// ```
   static String encodeBase64(String input) {
@@ -29,7 +29,7 @@ class AortemEntraIdEncodingUtils {
   ///
   /// Example:
   /// ```dart
-  /// final decoded = AortemEntraIdEncodingUtils.decodeBase64(encoded);
+  /// final decoded = EntraIdEncodingUtils.decodeBase64(encoded);
   /// print(decoded); // Decoded string.
   /// ```
   static String decodeBase64(String encodedInput) {
@@ -45,7 +45,7 @@ class AortemEntraIdEncodingUtils {
   ///
   /// Example:
   /// ```dart
-  /// final encoded = AortemEntraIdEncodingUtils.encodeUrl('Hello, World!');
+  /// final encoded = EntraIdEncodingUtils.encodeUrl('Hello, World!');
   /// print(encoded); // Encoded URL string.
   /// ```
   static String encodeUrl(String input) {
@@ -56,7 +56,7 @@ class AortemEntraIdEncodingUtils {
   ///
   /// Example:
   /// ```dart
-  /// final decoded = AortemEntraIdEncodingUtils.decodeUrl(encoded);
+  /// final decoded = EntraIdEncodingUtils.decodeUrl(encoded);
   /// print(decoded); // Decoded URL string.
   /// ```
   static String decodeUrl(String encodedInput) {

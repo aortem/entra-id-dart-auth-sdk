@@ -3,8 +3,8 @@ import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Configuration class for the Entra ID Authentication SDK.
 /// Manages global settings and configurations for authentication workflows.
-class AortemEntraIdAuthConfiguration {
-  final Logger _logger = Logger('AortemEntraIdConfiguration');
+class EntraIdAuthConfiguration {
+  final Logger _logger = Logger('EntraIdConfiguration');
 
   /// The client ID of the application registered in Entra ID
   final String clientId;
@@ -36,13 +36,13 @@ class AortemEntraIdAuthConfiguration {
   /// Custom headers to be included in requests
   final Map<String, String>? customHeaders;
 
-  /// Creates a new instance of AortemEntraIdConfiguration
+  /// Creates a new instance of EntraIdConfiguration
   ///
   /// Required parameters:
   /// - [clientId]: The client ID from Entra ID application registration
   /// - [tenantId]: The tenant ID for the Entra ID instance
   /// - [authority]: The authority URL for authentication
-  AortemEntraIdAuthConfiguration({
+  EntraIdAuthConfiguration({
     required this.clientId,
     required this.tenantId,
     required this.authority,
@@ -59,8 +59,8 @@ class AortemEntraIdAuthConfiguration {
   }
 
   /// Factory method to create configuration from JSON
-  factory AortemEntraIdAuthConfiguration.fromJson(Map<String, dynamic> json) {
-    return AortemEntraIdAuthConfiguration(
+  factory EntraIdAuthConfiguration.fromJson(Map<String, dynamic> json) {
+    return EntraIdAuthConfiguration(
       clientId: json['clientId'] as String,
       tenantId: json['tenantId'] as String,
       authority: json['authority'] as String,
@@ -128,7 +128,7 @@ class AortemEntraIdAuthConfiguration {
   String get apiEndpoint => '$authority/$tenantId/oauth2/v2.0';
 
   /// Creates a copy of the configuration with updated values
-  AortemEntraIdAuthConfiguration copyWith({
+  EntraIdAuthConfiguration copyWith({
     String? clientId,
     String? tenantId,
     String? authority,
@@ -140,7 +140,7 @@ class AortemEntraIdAuthConfiguration {
     int? timeoutInSeconds,
     Map<String, String>? customHeaders,
   }) {
-    return AortemEntraIdAuthConfiguration(
+    return EntraIdAuthConfiguration(
       clientId: clientId ?? this.clientId,
       tenantId: tenantId ?? this.tenantId,
       authority: authority ?? this.authority,

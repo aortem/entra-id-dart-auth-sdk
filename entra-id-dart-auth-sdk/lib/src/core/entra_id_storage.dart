@@ -1,12 +1,12 @@
 import 'dart:convert'; // Provides utilities for encoding and decoding JSON and Base64.
 import 'dart:io'; // Provides file system operations for persistent storage.
 
-/// AortemEntraIdStorage: Manages token storage for Aortem EntraId SDK.
+/// EntraIdStorage: Manages token storage for Aortem EntraId SDK.
 ///
 /// This class provides secure storage for tokens used in the SDK. It supports
 /// both in-memory and persistent storage options. Tokens are encrypted when
 /// stored persistently to ensure security.
-class AortemEntraIdStorage {
+class EntraIdStorage {
   /// Indicates whether the storage is persistent (true) or in-memory (false).
   final bool persistent;
 
@@ -16,8 +16,8 @@ class AortemEntraIdStorage {
   /// File path for persistent token storage.
   late String _filePath;
 
-  /// Creates an instance of `AortemEntraIdStorage`.
-  AortemEntraIdStorage({this.persistent = false}) {
+  /// Creates an instance of `EntraIdStorage`.
+  EntraIdStorage({this.persistent = false}) {
     if (persistent) {
       _initializeFilePath();
     }

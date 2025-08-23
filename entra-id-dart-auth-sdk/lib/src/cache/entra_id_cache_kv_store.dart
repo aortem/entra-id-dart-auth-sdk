@@ -6,11 +6,11 @@ import '../enum/entra_id_cache_eviction_policy_enum.dart';
 import 'entra_id_cache_options.dart';
 
 /// A key-value store implementation for caching in the Entra ID SDK.
-class AortemEntraIdCacheKVStore {
-  final Logger _logger = Logger('AortemEntraIdCacheKVStore');
+class EntraIdCacheKVStore {
+  final Logger _logger = Logger('EntraIdCacheKVStore');
 
   /// Cache options
-  final AortemEntraIdCacheOptions options;
+  final EntraIdCacheOptions options;
 
   /// Internal storage map
   final Map<String, CacheEntry> _cache = {};
@@ -18,8 +18,8 @@ class AortemEntraIdCacheKVStore {
   /// Stream controller for cache events
   final _changeController = StreamController<String>.broadcast();
 
-  /// Creates a new instance of AortemEntraIdCacheKVStore
-  AortemEntraIdCacheKVStore(this.options) {
+  /// Creates a new instance of EntraIdCacheKVStore
+  EntraIdCacheKVStore(this.options) {
     _logger.info(
       'Initializing cache store with ${options.storageType} storage type',
     );

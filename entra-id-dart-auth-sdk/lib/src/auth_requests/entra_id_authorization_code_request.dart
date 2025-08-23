@@ -4,9 +4,9 @@ import 'package:ds_standard_features/ds_standard_features.dart';
 import '../utils/entra_id_encoding_utils.dart';
 
 /// Handles authorization code token requests
-class AortemEntraIdAuthorizationCodeRequest {
+class EntraIdAuthorizationCodeRequest {
   static final Logger _logger = Logger(
-    'AortemEntraIdAuthorizationCodeRequest',
+    'EntraIdAuthorizationCodeRequest',
   ); // Make it static
 
   /// The token endpoint URL
@@ -15,8 +15,8 @@ class AortemEntraIdAuthorizationCodeRequest {
   /// Parameters for the token request
   final AuthorizationCodeRequestParameters parameters;
 
-  /// Creates a new instance of AortemEntraIdAuthorizationCodeRequest
-  AortemEntraIdAuthorizationCodeRequest({
+  /// Creates a new instance of EntraIdAuthorizationCodeRequest
+  EntraIdAuthorizationCodeRequest({
     required this.tokenEndpoint,
     required this.parameters,
   }) {
@@ -106,7 +106,7 @@ class AortemEntraIdAuthorizationCodeRequest {
     try {
       // Add basic auth header for confidential clients
       if (parameters.clientSecret != null) {
-        final credentials = AortemEntraIdEncodingUtils.encodeBase64(
+        final credentials = EntraIdEncodingUtils.encodeBase64(
           '${parameters.clientId}:${parameters.clientSecret}',
         );
         headers['Authorization'] = 'Basic $credentials';

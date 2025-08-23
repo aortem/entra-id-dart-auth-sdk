@@ -1,15 +1,15 @@
 import 'dart:math';
 
-/// AortemEntraIdGuidGenerator: Generates unique identifiers (GUIDs).
+/// EntraIdGuidGenerator: Generates unique identifiers (GUIDs).
 ///
 /// This class provides utilities for generating GUIDs, ensuring uniqueness
 /// in request tracking, token operations, and logging for the Aortem EntraId Dart SDK.
-class AortemEntraIdGuidGenerator {
+class EntraIdGuidGenerator {
   /// Generates a version 4 (random) GUID.
   ///
   /// Example:
   /// ```dart
-  /// final guid = AortemEntraIdGuidGenerator.generate();
+  /// final guid = EntraIdGuidGenerator.generate();
   /// print(guid); // Outputs a GUID like "550e8400-e29b-41d4-a716-446655440000".
   /// ```
   static String generate() {

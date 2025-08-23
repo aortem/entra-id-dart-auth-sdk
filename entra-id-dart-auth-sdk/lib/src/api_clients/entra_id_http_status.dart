@@ -1,6 +1,6 @@
-/// AortemEntraIdHttpStatus: Provides utilities for interpreting HTTP status codes.
-class AortemEntraIdHttpStatus {
-  /// Informational responses (100–199).
+/// EntraIdHttpStatus: Provides utilities for interpreting HTTP status codes.
+class EntraIdHttpStatus {
+  /// Informational responses (100â€“199).
   /// Indicates that the request was received and the process is continuing.
 
   /// Status code for "Continue".
@@ -9,7 +9,7 @@ class AortemEntraIdHttpStatus {
   /// Status code for "Switching Protocols".
   static const int switchingProtocols = 101;
 
-  /// Successful responses (200–299).
+  /// Successful responses (200â€“299).
   /// Indicates that the request was successfully received, understood, and accepted.
 
   /// Status code for "OK".
@@ -24,7 +24,7 @@ class AortemEntraIdHttpStatus {
   /// Status code for "No Content".
   static const int noContent = 204;
 
-  /// Client error responses (400–499).
+  /// Client error responses (400â€“499).
   /// Indicates that the client seems to have made an error.
 
   /// Status code for "Bad Request".
@@ -42,7 +42,7 @@ class AortemEntraIdHttpStatus {
   /// Status code for "Conflict".
   static const int conflict = 409;
 
-  /// Server error responses (500–599).
+  /// Server error responses (500â€“599).
   /// Indicates that the server failed to fulfill a valid request.
 
   /// Status code for "Internal Server Error".

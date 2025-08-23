@@ -1,9 +1,9 @@
 import 'dart:async';
 
-/// AortemEntraIdIPublicClientApplication: Interface for public client applications.
+/// EntraIdIPublicClientApplication: Interface for public client applications.
 /// Defines the methods required for public client applications, such as acquiring tokens interactively
 /// or through device code flow, and clearing token cache.
-abstract class AortemEntraIdIPublicClientApplication {
+abstract class EntraIdIPublicClientApplication {
   /// Acquire a token interactively by prompting the user to authenticate.
   ///
   /// Parameters:
@@ -38,15 +38,15 @@ abstract class AortemEntraIdIPublicClientApplication {
   Future<void> clearCache();
 }
 
-/// Example implementation of the AortemEntraIdIPublicClientApplication interface
+/// Example implementation of the EntraIdIPublicClientApplication interface
 /// for managing public client authentication flows like interactive and device code.
-/// AortemEntraIdPublicClientApp: Represents a public client application for Aortem Entra ID.
+/// EntraIdPublicClientApp: Represents a public client application for Aortem Entra ID.
 ///
-/// This class implements the `AortemEntraIdIPublicClientApplication` interface
+/// This class implements the `EntraIdIPublicClientApplication` interface
 /// and provides methods for acquiring tokens interactively or using the device code flow.
 /// It also supports clearing the token cache.
-class AortemEntraIdPublicClientApp
-    implements AortemEntraIdIPublicClientApplication {
+class EntraIdPublicClientApp
+    implements EntraIdIPublicClientApplication {
   /// The client ID of the application registered in Entra ID.
   final String clientId;
 
@@ -56,12 +56,12 @@ class AortemEntraIdPublicClientApp
   /// The redirect URI where the application expects to receive the authentication response.
   final String redirectUri;
 
-  /// Creates an instance of `AortemEntraIdPublicClientApp`.
+  /// Creates an instance of `EntraIdPublicClientApp`.
   ///
   /// - [clientId]: The application client ID.
   /// - [authority]: The authentication authority URL.
   /// - [redirectUri]: The redirect URI for handling authentication responses.
-  AortemEntraIdPublicClientApp({
+  EntraIdPublicClientApp({
     required this.clientId,
     required this.authority,
     required this.redirectUri,

@@ -3,7 +3,7 @@ import 'package:entra_id_dart_auth_sdk/src/authentication/entra_id_confidential_
 import 'package:entra_id_dart_auth_sdk/src/enum/entra_id_confidential_client_enum.dart';
 
 class MockConfidentialClientApp
-    extends AortemEntraIdConfidentialClientApplication {
+    extends EntraIdConfidentialClientApplication {
   MockConfidentialClientApp()
     : super(
         clientId: 'mock-client',
@@ -17,11 +17,11 @@ class MockConfidentialClientApp
 }
 
 void main() {
-  group('AortemEntraIdConfidentialClientApplication', () {
-    late AortemEntraIdConfidentialClientApplication app;
+  group('EntraIdConfidentialClientApplication', () {
+    late EntraIdConfidentialClientApplication app;
 
     setUp(() {
-      app = AortemEntraIdConfidentialClientApplication(
+      app = EntraIdConfidentialClientApplication(
         clientId: 'test-client-id',
         authority: 'https://login.microsoftonline.com/test',
         credential: 'test-secret',
@@ -38,7 +38,7 @@ void main() {
     });
 
     test('throws if credential is empty during validation', () {
-      final appWithEmptyCredential = AortemEntraIdConfidentialClientApplication(
+      final appWithEmptyCredential = EntraIdConfidentialClientApplication(
         clientId: 'test-client-id',
         authority: 'https://login.microsoftonline.com/test',
         credential: '',
@@ -58,7 +58,7 @@ void main() {
 
     test('throws if authority is not HTTPS', () {
       final appWithInvalidAuthority =
-          AortemEntraIdConfidentialClientApplication(
+          EntraIdConfidentialClientApplication(
             clientId: 'test-client-id',
             authority: 'http://login.microsoftonline.com/test',
             credential: 'test-secret',

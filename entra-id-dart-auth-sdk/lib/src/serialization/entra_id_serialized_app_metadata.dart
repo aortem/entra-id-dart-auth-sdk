@@ -4,8 +4,8 @@ import 'package:entra_id_dart_auth_sdk/src/exception/entra_id_serialized_app_met
 import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Represents application metadata for caching and configuration
-class AortemEntraIdSerializedAppMetadataEntity {
-  final Logger _logger = Logger('AortemEntraIdSerializedAppMetadataEntity');
+class EntraIdSerializedAppMetadataEntity {
+  final Logger _logger = Logger('EntraIdSerializedAppMetadataEntity');
 
   /// Client ID of the application
   final String clientId;
@@ -49,8 +49,8 @@ class AortemEntraIdSerializedAppMetadataEntity {
   /// Additional application properties
   final Map<String, dynamic> properties;
 
-  /// Creates a new instance of AortemEntraIdSerializedAppMetadataEntity
-  AortemEntraIdSerializedAppMetadataEntity({
+  /// Creates a new instance of EntraIdSerializedAppMetadataEntity
+  EntraIdSerializedAppMetadataEntity({
     required this.clientId,
     required this.environment,
     required this.displayName,
@@ -70,10 +70,10 @@ class AortemEntraIdSerializedAppMetadataEntity {
   }
 
   /// Creates an app metadata entity from JSON
-  factory AortemEntraIdSerializedAppMetadataEntity.fromJson(
+  factory EntraIdSerializedAppMetadataEntity.fromJson(
     Map<String, dynamic> json,
   ) {
-    return AortemEntraIdSerializedAppMetadataEntity(
+    return EntraIdSerializedAppMetadataEntity(
       clientId: json['clientId'] as String,
       environment: AppEnvironment.values.firstWhere(
         (e) => e.toString() == 'AppEnvironment.${json['environment']}',
@@ -182,7 +182,7 @@ class AortemEntraIdSerializedAppMetadataEntity {
   }
 
   /// Creates a copy of the entity with updated fields
-  AortemEntraIdSerializedAppMetadataEntity copyWith({
+  EntraIdSerializedAppMetadataEntity copyWith({
     String? clientId,
     AppEnvironment? environment,
     String? displayName,
@@ -198,7 +198,7 @@ class AortemEntraIdSerializedAppMetadataEntity {
     bool? requiresPkce,
     Map<String, dynamic>? properties,
   }) {
-    return AortemEntraIdSerializedAppMetadataEntity(
+    return EntraIdSerializedAppMetadataEntity(
       clientId: clientId ?? this.clientId,
       environment: environment ?? this.environment,
       displayName: displayName ?? this.displayName,

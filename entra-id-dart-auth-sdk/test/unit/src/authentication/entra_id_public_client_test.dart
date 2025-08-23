@@ -3,14 +3,14 @@ import 'package:entra_id_dart_auth_sdk/src/authentication/entra_id_public_client
 import 'package:entra_id_dart_auth_sdk/src/config/entra_id_configuration.dart';
 
 void main() {
-  group('AortemEntraIdPublicClientApplication', () {
-    late AortemEntraIdConfiguration config;
+  group('EntraIdPublicClientApplication', () {
+    late EntraIdConfiguration config;
 
     setUp(() {
       // Reset singleton between tests to avoid shared state
-      AortemEntraIdConfiguration.reset();
+      EntraIdConfiguration.reset();
 
-      config = AortemEntraIdConfiguration.initialize(
+      config = EntraIdConfiguration.initialize(
         clientId: 'test-client-id',
         tenantId: 'test-tenant-id',
         authority: 'https://login.microsoftonline.com/common',
@@ -19,7 +19,7 @@ void main() {
     });
 
     test('should initialize with default parameters', () {
-      final app = AortemEntraIdPublicClientApplication(
+      final app = EntraIdPublicClientApplication(
         configuration: config,
         redirectUri: config.redirectUri,
       );
@@ -30,7 +30,7 @@ void main() {
     });
 
     test('getApplicationMetadata returns correct metadata', () {
-      final app = AortemEntraIdPublicClientApplication(
+      final app = EntraIdPublicClientApplication(
         configuration: config,
         redirectUri: config.redirectUri,
       );
@@ -43,7 +43,7 @@ void main() {
     });
 
     test('signOut completes successfully', () async {
-      final app = AortemEntraIdPublicClientApplication(
+      final app = EntraIdPublicClientApplication(
         configuration: config,
         redirectUri: config.redirectUri,
       );

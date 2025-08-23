@@ -1,10 +1,10 @@
-/// AortemEntraIdAuthOptions encapsulates the authentication configuration
+/// EntraIdAuthOptions encapsulates the authentication configuration
 /// parameters for the Aortem EntraId Dart SDK.
 ///
 /// This class ensures proper validation and provides a structured way to
 /// configure authentication settings such as `clientId`, `authority`, and
 /// `redirectUri`.
-class AortemEntraIdAuthOptions {
+class EntraIdAuthOptions {
   /// The client ID of the application registered in Entra ID.
   final String clientId;
 
@@ -17,7 +17,7 @@ class AortemEntraIdAuthOptions {
   /// Additional scopes to request during authentication.
   final List<String>? scopes;
 
-  AortemEntraIdAuthOptions._({
+  EntraIdAuthOptions._({
     required this.clientId,
     required this.authority,
     required this.redirectUri,
@@ -25,7 +25,7 @@ class AortemEntraIdAuthOptions {
   });
 
   /// Factory constructor that validates and initializes authentication options.
-  factory AortemEntraIdAuthOptions({
+  factory EntraIdAuthOptions({
     required String clientId,
     required String authority,
     required String redirectUri,
@@ -41,7 +41,7 @@ class AortemEntraIdAuthOptions {
       throw ArgumentError('Invalid redirect URI: $redirectUri');
     }
 
-    return AortemEntraIdAuthOptions._(
+    return EntraIdAuthOptions._(
       clientId: clientId,
       authority: authority,
       redirectUri: redirectUri,
@@ -57,13 +57,13 @@ class AortemEntraIdAuthOptions {
 
   @override
   String toString() {
-    return 'AortemEntraIdAuthOptions(clientId: $clientId, authority: $authority, redirectUri: $redirectUri, scopes: $scopes)';
+    return 'EntraIdAuthOptions(clientId: $clientId, authority: $authority, redirectUri: $redirectUri, scopes: $scopes)';
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is AortemEntraIdAuthOptions &&
+      (other is EntraIdAuthOptions &&
           other.clientId == clientId &&
           other.authority == authority &&
           other.redirectUri == redirectUri &&

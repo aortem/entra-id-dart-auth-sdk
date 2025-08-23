@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:entra_id_dart_auth_sdk/src/exception/entra_id_authorization_user_cancle_exception.dart';
 
-/// AortemEntraIdUsernamePasswordRequest: Handles username and password authentication flow.
+/// EntraIdUsernamePasswordRequest: Handles username and password authentication flow.
 ///
 /// Acquires tokens by directly using the user's credentials.
-/// AortemEntraIdUsernamePasswordRequest: Handles token acquisition using the username-password grant flow.
+/// EntraIdUsernamePasswordRequest: Handles token acquisition using the username-password grant flow.
 ///
 /// This class is responsible for acquiring access tokens, refresh tokens, and ID tokens
 /// from Microsoft Entra ID using the Resource Owner Password Credentials (ROPC) flow.
@@ -17,7 +17,7 @@ import 'package:entra_id_dart_auth_sdk/src/exception/entra_id_authorization_user
 ///
 /// Example usage:
 /// ```dart
-/// final request = AortemEntraIdUsernamePasswordRequest(
+/// final request = EntraIdUsernamePasswordRequest(
 ///   clientId: 'your-client-id',
 ///   clientSecret: 'your-client-secret',
 ///   tenantId: 'your-tenant-id',
@@ -27,7 +27,7 @@ import 'package:entra_id_dart_auth_sdk/src/exception/entra_id_authorization_user
 /// final tokens = await request.acquireToken('user@example.com', 'password123');
 /// print('Access Token: ${tokens['access_token']}');
 /// ```
-class AortemEntraIdUsernamePasswordRequest {
+class EntraIdUsernamePasswordRequest {
   /// The client ID of the application registered in Microsoft Entra ID.
   final String clientId;
 
@@ -40,13 +40,13 @@ class AortemEntraIdUsernamePasswordRequest {
   /// The authority URL for token requests, e.g., `https://login.microsoftonline.com`.
   final String authority;
 
-  /// Constructs an instance of `AortemEntraIdUsernamePasswordRequest`.
+  /// Constructs an instance of `EntraIdUsernamePasswordRequest`.
   ///
   /// - [clientId]: The application's client ID.
   /// - [clientSecret]: The application's client secret.
   /// - [tenantId]: The directory's tenant ID.
   /// - [authority]: The authority URL for authentication requests.
-  AortemEntraIdUsernamePasswordRequest({
+  EntraIdUsernamePasswordRequest({
     required this.clientId,
     required this.clientSecret,
     required this.tenantId,
@@ -66,7 +66,7 @@ class AortemEntraIdUsernamePasswordRequest {
   ///
   /// Throws:
   /// - [ArgumentError]: If the username or password is empty.
-  /// - [AortemEntraIdUserCancelledException]: If the user cancels the authentication flow.
+  /// - [EntraIdUserCancelledException]: If the user cancels the authentication flow.
   /// - [Exception]: For HTTP errors or unexpected responses.
   ///
   /// Example:
@@ -116,7 +116,7 @@ class AortemEntraIdUsernamePasswordRequest {
         final error = jsonDecode(response.body);
         // Check if the error is caused by user cancellation
         if (error['error'] == 'access_denied') {
-          throw AortemEntraIdUserCancelledException();
+          throw EntraIdUserCancelledException();
         }
         throw Exception(
           'Failed to acquire token. Error: ${error['error_description'] ?? response.body}',

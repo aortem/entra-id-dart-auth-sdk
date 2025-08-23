@@ -5,13 +5,13 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 class MockNetworkUtilsHelper extends Mock implements NetworkUtilsHelper {}
 
 void main() {
-  group('AortemEntraIdNetworkUtils', () {
+  group('EntraIdNetworkUtils', () {
     late MockNetworkUtilsHelper mockNetworkHelper;
-    late AortemEntraIdNetworkUtils networkUtils;
+    late EntraIdNetworkUtils networkUtils;
 
     setUp(() {
       mockNetworkHelper = MockNetworkUtilsHelper();
-      networkUtils = AortemEntraIdNetworkUtils(helper: mockNetworkHelper);
+      networkUtils = EntraIdNetworkUtils(helper: mockNetworkHelper);
     });
 
     test('validateUrl returns true for valid URL', () {

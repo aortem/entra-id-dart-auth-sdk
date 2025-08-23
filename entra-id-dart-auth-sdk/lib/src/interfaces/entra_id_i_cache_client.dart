@@ -5,7 +5,7 @@
 /// to token storage and metadata management, ensuring flexibility in
 /// implementing different caching mechanisms (e.g., in-memory, database, or
 /// distributed caching).
-abstract class AortemEntraIdICacheClient {
+abstract class EntraIdICacheClient {
   /// Stores a value in the cache with the given [key] and [value].
   /// The optional [ttl] (time-to-live) parameter allows setting an expiration time in seconds.
   Future<void> set(String key, String value, {Duration? ttl});

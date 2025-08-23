@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-/// AortemEntraIdUsernamePasswordRequest: Handles username and password authentication flow.
+/// EntraIdUsernamePasswordRequest: Handles username and password authentication flow.
 ///
 /// Acquires tokens by directly using the user's credentials.
-/// AortemEntraIdUsernamePasswordRequest: Handles token acquisition using the username-password grant flow.
+/// EntraIdUsernamePasswordRequest: Handles token acquisition using the username-password grant flow.
 ///
 /// This class is responsible for acquiring access tokens, refresh tokens, and ID tokens
 /// from Microsoft Entra ID using the Resource Owner Password Credentials (ROPC) flow.
@@ -16,7 +16,7 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 ///
 /// Example usage:
 /// ```dart
-/// final request = AortemEntraIdUsernamePasswordRequest(
+/// final request = EntraIdUsernamePasswordRequest(
 ///   clientId: 'your-client-id',
 ///   clientSecret: 'your-client-secret',
 ///   tenantId: 'your-tenant-id',
@@ -26,7 +26,7 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 /// final tokens = await request.acquireToken('user@example.com', 'password123');
 /// print('Access Token: ${tokens['access_token']}');
 /// ```
-class AortemEntraIdUsernamePasswordRequest {
+class EntraIdUsernamePasswordRequest {
   /// The client ID of the application registered in Microsoft Entra ID.
   final String clientId;
 
@@ -39,13 +39,13 @@ class AortemEntraIdUsernamePasswordRequest {
   /// The authority URL for token requests, e.g., `https://login.microsoftonline.com`.
   final String authority;
 
-  /// Constructs an instance of `AortemEntraIdUsernamePasswordRequest`.
+  /// Constructs an instance of `EntraIdUsernamePasswordRequest`.
   ///
   /// - [clientId]: The application's client ID.
   /// - [clientSecret]: The application's client secret.
   /// - [tenantId]: The directory's tenant ID.
   /// - [authority]: The authority URL for authentication requests.
-  AortemEntraIdUsernamePasswordRequest({
+  EntraIdUsernamePasswordRequest({
     required this.clientId,
     required this.clientSecret,
     required this.tenantId,

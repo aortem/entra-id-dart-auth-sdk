@@ -2,9 +2,9 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/utils/entra_id_pkce_generator.dart';
 
 void main() {
-  group('AortemEntraIdPkceGenerator', () {
+  group('EntraIdPkceGenerator', () {
     test('should generate a valid code verifier and challenge pair', () {
-      final pkceGenerator = AortemEntraIdPkceGenerator();
+      final pkceGenerator = EntraIdPkceGenerator();
       final pkcePair = pkceGenerator.generatePkcePair();
 
       expect(pkcePair['code_verifier'], isNotEmpty);
@@ -16,7 +16,7 @@ void main() {
     });
 
     test('should generate different code verifiers on each call', () {
-      final pkceGenerator = AortemEntraIdPkceGenerator();
+      final pkceGenerator = EntraIdPkceGenerator();
       final pkcePair1 = pkceGenerator.generatePkcePair();
       final pkcePair2 = pkceGenerator.generatePkcePair();
 
@@ -27,7 +27,7 @@ void main() {
     });
 
     test('should generate a URL-safe base64 encoded code challenge', () {
-      final pkceGenerator = AortemEntraIdPkceGenerator();
+      final pkceGenerator = EntraIdPkceGenerator();
       final pkcePair = pkceGenerator.generatePkcePair();
 
       final codeChallenge = pkcePair['code_challenge']!;

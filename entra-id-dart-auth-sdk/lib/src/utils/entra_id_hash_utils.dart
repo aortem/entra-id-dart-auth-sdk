@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart';
  // Requires `crypto` package in pubspec.yaml.
 
-/// AortemEntraIdHashUtils: Provides hashing utilities for secure data handling.
+/// EntraIdHashUtils: Provides hashing utilities for secure data handling.
 ///
 /// This class supports hashing operations using industry-standard algorithms
 /// like SHA256, ensuring compliance with cryptographic best practices.
-class AortemEntraIdHashUtils {
+class EntraIdHashUtils {
   /// Hashes the input data using the SHA256 algorithm.
   ///
   /// [input] is the data to be hashed. It must not be null or empty.
@@ -15,7 +15,7 @@ class AortemEntraIdHashUtils {
   ///
   /// Example:
   /// ```dart
-  /// final hashedValue = AortemEntraIdHashUtils.hashSHA256('example_data');
+  /// final hashedValue = EntraIdHashUtils.hashSHA256('example_data');
   /// print(hashedValue);
   /// ```
   static String hashSHA256(String input) {
@@ -36,7 +36,7 @@ class AortemEntraIdHashUtils {
   ///
   /// Example:
   /// ```dart
-  /// final isValid = AortemEntraIdHashUtils.validateSHA256(
+  /// final isValid = EntraIdHashUtils.validateSHA256(
   ///   'example_data',
   ///   hashedValue,
   /// );
