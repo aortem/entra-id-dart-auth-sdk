@@ -6,8 +6,6 @@ import 'package:entra_id_dart_auth_sdk/src/auth/entra_id_username_password_reque
 
 import 'dart:convert';
 
-import 'package:http/testing.dart';
-
 void main() {
   group('EntraIdUsernamePasswordRequest', () {
     test('should successfully acquire tokens', () async {

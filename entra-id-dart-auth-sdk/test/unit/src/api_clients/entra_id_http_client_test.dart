@@ -4,8 +4,6 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
-import 'package:http/testing.dart';
-
 void main() {
   group('EntraIdHttpClient', () {
     late EntraIdHttpClient client;

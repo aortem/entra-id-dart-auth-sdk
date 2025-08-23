@@ -5,8 +5,6 @@ import 'package:entra_id_dart_auth_sdk/src/utils/entra_id_proxy_status.dart';
 
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-import 'package:http/testing.dart';
-
 void main() {
   group('EntraIdProxyStatus', () {
     test('should successfully validate a reachable proxy', () async {

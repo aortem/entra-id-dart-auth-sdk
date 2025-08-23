@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/auth_requests/entra_id_username_password_request.dart';
-import 'package:http/testing.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 void main() {
