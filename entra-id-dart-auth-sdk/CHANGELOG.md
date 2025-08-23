@@ -9,7 +9,7 @@
 ### Added
 
 * **Runtime Versioning**: Introduced top-level `sdkVersion` constant (`0.0.1-pre+1`) in `lib/entra_id_dart_auth_sdk.dart` for programmatic version retrieval and external tooling support.
-* **Secure Storage Backend**: Added `AortemEntraIdStorage` implementation (exported from `src/storage/aortem_entra_id_storage.dart`), featuring:
+* **Secure Storage Backend**: Added `AortemEntraIdStorage` implementation (exported from `src/storage/entra_id_storage.dart`), featuring:
 
   * Token load/save methods with automatic serialization.
   * Pluggable interface for custom storage backends.
@@ -57,7 +57,7 @@
   * Removed `src/network/http_agent.dart`, replaced with consolidated `NetworkClient`.
 * **Deprecated Plugins**:
 
-  * Removed `aortem_entra_id_azure_json_cache` and `aortem_entra_id_distributed_cache_plugin` from exports.
+  * Removed `entra_id_azure_json_cache` and `entra_id_distributed_cache_plugin` from exports.
 * **Dart SDK Support**: Dropped Dart 2.12 support (now requires `sdk: ">=2.14.0 <3.0.0"`).
 
 ### Security

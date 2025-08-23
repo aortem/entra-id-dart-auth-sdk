@@ -37,4 +37,4 @@ git_hooks:
     pre-push: ./local_dev_tools/validate_branch.dart
 
 false_secrets:
-  - test/unit/core/aortem_entra_id_client_assertion.dart
+  - test/unit/core/entra_id_client_assertion.dart
