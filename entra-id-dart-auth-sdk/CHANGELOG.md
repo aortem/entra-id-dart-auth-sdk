@@ -1,3 +1,9 @@
+## 0.0.1-pre+3
+
+### Changed
+- Bumped Dart SDK constraint to `^3.9.0` (package and example app).
+- Declared package license as `BSD-3` in `pubspec.yaml`.
+
 ## 0.0.1-pre+2
 
 ### Added
