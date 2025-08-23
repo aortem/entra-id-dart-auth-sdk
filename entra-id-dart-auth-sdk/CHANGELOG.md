@@ -1,8 +1,16 @@
 ## 0.0.1-pre+3
 
 ### Changed
-- Bumped Dart SDK constraint to `^3.9.0` (package and example app).
-- Declared package license as `BSD-3` in `pubspec.yaml`.
+* Bumped Dart SDK constraint to `^3.9.0` (package and example app).
+* Declared package license as `BSD-3` in `pubspec.yaml`.
+* **Rename:** all public file/module names changed from `aortem_entra_id*` → `entra_id*`.
+
+  * If you import subpaths, replace occurrences of `aortem_entra_id` with `entra_id`.
+  * Prefer importing the package entrypoint:
+
+    ```dart
+    import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
+    ```
 
 ## 0.0.1-pre+2
 
