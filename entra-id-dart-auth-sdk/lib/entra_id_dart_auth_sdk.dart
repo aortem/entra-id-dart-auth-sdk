@@ -56,7 +56,7 @@ export 'src/enum/entra_id_cache_storage_type_enum.dart';
 export 'src/enum/entra_id_client_application_eum.dart';
 export 'src/enum/entra_id_confidential_client_enum.dart';
 export 'src/enum/entra_id_device_code_request_enum.dart';
-export 'src/enum/entra_id_http_method_enum.dart';
+
 export 'src/enum/entra_id_interactive_request_enum.dart';
 export 'src/enum/entra_id_token_type_enum.dart';
 

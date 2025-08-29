@@ -33,9 +33,10 @@ class NetworkException implements Exception {
   /// ```dart
   /// throw NetworkException('Failed to connect to the server.', e);
   /// ```
-  NetworkException(
-      [this.message = 'Network operation failed.',
-      this.cause]); // Constructor initializes the exception with a message and an optional cause.
+  NetworkException([
+    this.message = 'Network operation failed.',
+    this.cause,
+  ]); // Constructor initializes the exception with a message and an optional cause.
 
   @override
   String toString() =>

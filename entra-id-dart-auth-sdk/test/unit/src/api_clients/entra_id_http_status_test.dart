@@ -40,10 +40,7 @@ void main() {
       expect(EntraIdHttpStatus.getDescription(100), equals('Continue'));
       expect(EntraIdHttpStatus.getDescription(200), equals('OK'));
       expect(EntraIdHttpStatus.getDescription(201), equals('Created'));
-      expect(
-        EntraIdHttpStatus.getDescription(400),
-        equals('Bad Request'),
-      );
+      expect(EntraIdHttpStatus.getDescription(400), equals('Bad Request'));
       expect(EntraIdHttpStatus.getDescription(403), equals('Forbidden'));
       expect(EntraIdHttpStatus.getDescription(404), equals('Not Found'));
       expect(

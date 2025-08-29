@@ -118,35 +118,33 @@ class EntraIdSerializedIdTokenEntity {
       preferredUsername: claims['preferred_username'] as String?,
       email: claims['email'] as String?,
       emailVerified: claims['email_verified'] as bool?,
-      authTime:
-          claims['auth_time'] != null
-              ? DateTime.fromMillisecondsSinceEpoch(
-                (claims['auth_time'] as int) * 1000,
-                isUtc: true,
-              )
-              : null,
-      additionalClaims: Map<String, dynamic>.from(claims)..removeWhere(
-        (key, _) => [
-          'iss',
-          'sub',
-          'aud',
-          'exp',
-          'iat',
-          'nonce',
-          'name',
-          'preferred_username',
-          'email',
-          'email_verified',
-          'auth_time',
-        ].contains(key),
-      ),
+      authTime: claims['auth_time'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(
+              (claims['auth_time'] as int) * 1000,
+              isUtc: true,
+            )
+          : null,
+      additionalClaims: Map<String, dynamic>.from(claims)
+        ..removeWhere(
+          (key, _) => [
+            'iss',
+            'sub',
+            'aud',
+            'exp',
+            'iat',
+            'nonce',
+            'name',
+            'preferred_username',
+            'email',
+            'email_verified',
+            'auth_time',
+          ].contains(key),
+        ),
     );
   }
 
   /// Creates an ID token entity from JSON
-  factory EntraIdSerializedIdTokenEntity.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory EntraIdSerializedIdTokenEntity.fromJson(Map<String, dynamic> json) {
     return EntraIdSerializedIdTokenEntity(
       rawIdToken: json['rawIdToken'] as String,
       issuer: json['issuer'] as String,
@@ -160,10 +158,9 @@ class EntraIdSerializedIdTokenEntity {
       preferredUsername: json['preferredUsername'] as String?,
       email: json['email'] as String?,
       emailVerified: json['emailVerified'] as bool?,
-      authTime:
-          json['authTime'] != null
-              ? DateTime.parse(json['authTime'] as String)
-              : null,
+      authTime: json['authTime'] != null
+          ? DateTime.parse(json['authTime'] as String)
+          : null,
       additionalClaims: Map<String, dynamic>.from(
         json['additionalClaims'] as Map<String, dynamic>? ?? {},
       ),

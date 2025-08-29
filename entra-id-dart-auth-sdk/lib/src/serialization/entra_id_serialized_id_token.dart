@@ -122,9 +122,7 @@ class EntraIdSerializedIdTokenEntity {
   }
 
   /// Creates an ID token entity from JSON
-  factory EntraIdSerializedIdTokenEntity.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory EntraIdSerializedIdTokenEntity.fromJson(Map<String, dynamic> json) {
     return EntraIdSerializedIdTokenEntity(
       rawIdToken: json['rawIdToken'] as String,
       issuer: json['issuer'] as String,

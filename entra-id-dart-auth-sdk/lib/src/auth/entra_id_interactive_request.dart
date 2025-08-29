@@ -181,8 +181,7 @@ class EntraIdInteractiveRequest {
     _nonce = EntraIdGuidGenerator.generate();
 
     if (parameters.usePkce) {
-      _pkceCodeVerifier =
-          EntraIdCryptoProvider.generatePkceCodeVerifier();
+      _pkceCodeVerifier = EntraIdCryptoProvider.generatePkceCodeVerifier();
     }
   }
 

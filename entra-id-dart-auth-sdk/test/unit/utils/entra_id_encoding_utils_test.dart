@@ -12,14 +12,8 @@ void main() {
     });
 
     test('should throw error on empty Base64 input', () {
-      expect(
-        () => EntraIdEncodingUtils.encodeBase64(''),
-        throwsArgumentError,
-      );
-      expect(
-        () => EntraIdEncodingUtils.decodeBase64(''),
-        throwsArgumentError,
-      );
+      expect(() => EntraIdEncodingUtils.encodeBase64(''), throwsArgumentError);
+      expect(() => EntraIdEncodingUtils.decodeBase64(''), throwsArgumentError);
     });
 
     test('should encode and decode URL correctly', () {

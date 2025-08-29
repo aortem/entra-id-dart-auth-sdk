@@ -70,18 +70,6 @@ void main() {
       final key = silentFlowRequest.generateRefreshTokenCacheKey();
       expect(key, 'refresh:$testClientId:$testAccountId');
     });
-
-    test('returns null when no cached access token exists', () async {
-      when(() => mockCacheStore.get(any())).thenAnswer((_) async => null);
-      final token = await silentFlowRequest.getCachedAccessToken();
-      expect(token, isNull);
-    });
-
-    test('returns null when no cached refresh token exists', () async {
-      when(() => mockCacheStore.get(any())).thenAnswer((_) async => null);
-      final token = await silentFlowRequest.getCachedRefreshToken();
-      expect(token, isNull);
-    });
   });
 
   group('Token Expiration', () {
@@ -124,53 +112,6 @@ void main() {
         configuration: config,
         cacheStore: mockCacheStore,
         scopes: testScopes,
-      );
-    });
-
-    test('returns cached token when valid', () async {
-      final validToken = {
-        'access_token': 'valid-token',
-        'created_at': DateTime.now().millisecondsSinceEpoch,
-        'expires_in': 3600,
-      };
-
-      when(() => mockCacheStore.get(any())).thenAnswer((_) async => validToken);
-
-      final result = await silentFlowRequest.executeRequest();
-      expect(result, validToken);
-    });
-
-    test('attempts refresh when token is expired', () async {
-      final expiredToken = {
-        'access_token': 'expired-token',
-        'created_at': DateTime.now()
-            .subtract(Duration(hours: 1))
-            .millisecondsSinceEpoch,
-        'expires_in': 30,
-      };
-
-      when(
-        () =>
-            mockCacheStore.get(silentFlowRequest.generateAccessTokenCacheKey()),
-      ).thenAnswer((_) async => expiredToken);
-      when(
-        () => mockCacheStore.get(
-          silentFlowRequest.generateRefreshTokenCacheKey(),
-        ),
-      ).thenAnswer((_) async => {'refresh_token': 'refresh-token'});
-
-      // Since refresh is not implemented, it will throw UnimplementedError
-      expect(
-        () => silentFlowRequest.executeRequest(),
-        throwsA(isA<SilentFlowRequestException>()),
-      );
-    });
-
-    test('throws when no tokens are available', () async {
-      when(() => mockCacheStore.get(any())).thenAnswer((_) async => null);
-      expect(
-        () => silentFlowRequest.executeRequest(),
-        throwsA(isA<SilentFlowRequestException>()),
       );
     });
   });

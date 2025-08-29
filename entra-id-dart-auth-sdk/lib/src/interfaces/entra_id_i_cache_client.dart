@@ -5,18 +5,18 @@
 /// to token storage and metadata management, ensuring flexibility in
 /// implementing different caching mechanisms (e.g., in-memory, database, or
 /// distributed caching).
+/// EntraIdICacheClient: contract for SDK caching.
+/// Methods must align with parent contract: save/retrieve/remove/clear.
 abstract class EntraIdICacheClient {
-  /// Stores a value in the cache with the given [key] and [value].
-  /// The optional [ttl] (time-to-live) parameter allows setting an expiration time in seconds.
-  Future<void> set(String key, String value, {Duration? ttl});
+  /// Save a value for [key]. Optional [ttl] sets expiry.
+  Future<void> save(String key, String value, {Duration? ttl});
 
-  /// Retrieves a value from the cache by its [key].
-  /// Returns `null` if the key does not exist.
-  Future<String?> get(String key);
+  /// Retrieve cached value for [key], or null if missing/expired.
+  Future<String?> retrieve(String key);
 
-  /// Removes an item from the cache by its [key].
-  Future<void> delete(String key);
+  /// Remove a specific [key] from cache.
+  Future<void> remove(String key);
 
-  /// Clears all cached data.
+  /// Clear all cached entries.
   Future<void> clear();
 }

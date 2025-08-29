@@ -25,8 +25,7 @@ void main() {
             '{"access_token": "token123"}'; // Missing 'expires_in'
 
         expect(
-          () =>
-              EntraIdDeserializer.deserializeTokenResponse(jsonResponse),
+          () => EntraIdDeserializer.deserializeTokenResponse(jsonResponse),
           throwsA(isA<FormatException>()),
         );
       },
@@ -54,9 +53,8 @@ void main() {
             '{"id": "user123"}'; // Missing 'displayName'
 
         expect(
-          () => EntraIdDeserializer.deserializeUserProfileResponse(
-            jsonResponse,
-          ),
+          () =>
+              EntraIdDeserializer.deserializeUserProfileResponse(jsonResponse),
           throwsA(isA<FormatException>()),
         );
       },
@@ -84,8 +82,7 @@ void main() {
             '{"error": "invalid_grant"}'; // Missing 'error_description'
 
         expect(
-          () =>
-              EntraIdDeserializer.deserializeErrorResponse(jsonResponse),
+          () => EntraIdDeserializer.deserializeErrorResponse(jsonResponse),
           throwsA(isA<FormatException>()),
         );
       },

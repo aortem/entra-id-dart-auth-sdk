@@ -57,8 +57,7 @@ void main() {
       );
 
       expect(
-        () => EntraIdAuthorizationCodeRequest
-            .validateAuthorizationCodeResponse(
+        () => EntraIdAuthorizationCodeRequest.validateAuthorizationCodeResponse(
           uri,
           'state123',
         ),
@@ -76,8 +75,7 @@ void main() {
       final uri = Uri.parse('https://app.com/callback?code=abc123&state=wrong');
 
       expect(
-        () => EntraIdAuthorizationCodeRequest
-            .validateAuthorizationCodeResponse(
+        () => EntraIdAuthorizationCodeRequest.validateAuthorizationCodeResponse(
           uri,
           'expectedState',
         ),
@@ -96,11 +94,11 @@ void main() {
         'https://app.com/callback?code=abc123&state=expectedState',
       );
 
-      final result = EntraIdAuthorizationCodeRequest
-          .validateAuthorizationCodeResponse(
-        uri,
-        'expectedState',
-      );
+      final result =
+          EntraIdAuthorizationCodeRequest.validateAuthorizationCodeResponse(
+            uri,
+            'expectedState',
+          );
 
       expect(result, isTrue);
     });
@@ -109,9 +107,7 @@ void main() {
       final response = {'token_type': 'Bearer'};
 
       expect(
-        () => EntraIdAuthorizationCodeRequest.validateTokenResponse(
-          response,
-        ),
+        () => EntraIdAuthorizationCodeRequest.validateTokenResponse(response),
         throwsA(
           isA<AuthorizationCodeException>().having(
             (e) => e.code,
@@ -125,8 +121,9 @@ void main() {
     test('validateTokenResponse succeeds with valid response', () {
       final response = {'access_token': 'abc', 'token_type': 'Bearer'};
 
-      final result =
-          EntraIdAuthorizationCodeRequest.validateTokenResponse(response);
+      final result = EntraIdAuthorizationCodeRequest.validateTokenResponse(
+        response,
+      );
       expect(result, isTrue);
     });
   });

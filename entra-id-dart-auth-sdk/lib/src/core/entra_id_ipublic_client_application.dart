@@ -45,8 +45,7 @@ abstract class EntraIdIPublicClientApplication {
 /// This class implements the `EntraIdIPublicClientApplication` interface
 /// and provides methods for acquiring tokens interactively or using the device code flow.
 /// It also supports clearing the token cache.
-class EntraIdPublicClientApp
-    implements EntraIdIPublicClientApplication {
+class EntraIdPublicClientApp implements EntraIdIPublicClientApplication {
   /// The client ID of the application registered in Entra ID.
   final String clientId;
 

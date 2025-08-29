@@ -22,11 +22,10 @@ class EntraIdPkceGenerator {
   String generateCodeVerifier() {
     const characters =
         'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
-    final codeVerifier =
-        List.generate(
-          43,
-          (index) => characters[_random.nextInt(characters.length)],
-        ).join();
+    final codeVerifier = List.generate(
+      43,
+      (index) => characters[_random.nextInt(characters.length)],
+    ).join();
     return codeVerifier;
   }
 

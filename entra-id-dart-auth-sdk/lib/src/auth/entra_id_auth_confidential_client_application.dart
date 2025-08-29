@@ -28,9 +28,7 @@ class EntraIdConfidentialClientApplication {
   final bool allowLegacyProtocols;
 
   /// Logger instance.
-  static final Logger _logger = Logger(
-    'EntraIdConfidentialClientApplication',
-  );
+  static final Logger _logger = Logger('EntraIdConfidentialClientApplication');
 
   /// Constructor for initializing the confidential client application.
   /// Throws [ArgumentError] if required parameters are not provided or invalid.

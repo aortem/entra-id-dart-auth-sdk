@@ -5,51 +5,35 @@ void main() {
   group('EntraIdHttpMethodUtils', () {
     test('methodToString converts enum to string', () {
       expect(
-        EntraIdHttpMethodUtils.methodToString(
-          EntraIdHttpMethod.get,
-        ),
+        EntraIdHttpMethodUtils.methodToString(EntraIdHttpMethod.get),
         'get',
       );
       expect(
-        EntraIdHttpMethodUtils.methodToString(
-          EntraIdHttpMethod.post,
-        ),
+        EntraIdHttpMethodUtils.methodToString(EntraIdHttpMethod.post),
         'post',
       );
       expect(
-        EntraIdHttpMethodUtils.methodToString(
-          EntraIdHttpMethod.put,
-        ),
+        EntraIdHttpMethodUtils.methodToString(EntraIdHttpMethod.put),
         'put',
       );
       expect(
-        EntraIdHttpMethodUtils.methodToString(
-          EntraIdHttpMethod.delete,
-        ),
+        EntraIdHttpMethodUtils.methodToString(EntraIdHttpMethod.delete),
         'delete',
       );
       expect(
-        EntraIdHttpMethodUtils.methodToString(
-          EntraIdHttpMethod.patch,
-        ),
+        EntraIdHttpMethodUtils.methodToString(EntraIdHttpMethod.patch),
         'patch',
       );
       expect(
-        EntraIdHttpMethodUtils.methodToString(
-          EntraIdHttpMethod.head,
-        ),
+        EntraIdHttpMethodUtils.methodToString(EntraIdHttpMethod.head),
         'head',
       );
       expect(
-        EntraIdHttpMethodUtils.methodToString(
-          EntraIdHttpMethod.options,
-        ),
+        EntraIdHttpMethodUtils.methodToString(EntraIdHttpMethod.options),
         'options',
       );
       expect(
-        EntraIdHttpMethodUtils.methodToString(
-          EntraIdHttpMethod.trace,
-        ),
+        EntraIdHttpMethodUtils.methodToString(EntraIdHttpMethod.trace),
         'trace',
       );
     });

@@ -19,8 +19,9 @@ void main() {
       'should generate a valid PKCE code challenge from the code verifier',
       () {
         final codeVerifier = 'dGVzdCBzdHJpbmc=';
-        final codeChallenge =
-            EntraIdCryptoProvider.generatePkceCodeChallenge(codeVerifier);
+        final codeChallenge = EntraIdCryptoProvider.generatePkceCodeChallenge(
+          codeVerifier,
+        );
         final expectedChallenge = base64Url.encode(
           sha256.convert(utf8.encode(codeVerifier)).bytes,
         );
@@ -32,10 +33,7 @@ void main() {
     test('should generate a valid HMAC-SHA256 signature', () {
       final key = 'secret-key';
       final data = 'data-to-sign';
-      final signature = EntraIdCryptoProvider.generateHmacSha256(
-        key,
-        data,
-      );
+      final signature = EntraIdCryptoProvider.generateHmacSha256(key, data);
 
       final hmac = Hmac(sha256, utf8.encode(key));
       final expectedSignature = hmac.convert(utf8.encode(data)).toString();
