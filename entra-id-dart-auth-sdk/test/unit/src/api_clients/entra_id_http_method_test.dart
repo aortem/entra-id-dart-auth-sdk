@@ -1,53 +1,37 @@
-import 'package:ds_tools_testing/ds_tools_testing.dart';
-import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
-
-// Replace with actual import path
+import 'package:entra_id_dart_auth_sdk/src/api_clients/entra_id_http_method.dart';
+import 'package:test/test.dart';
 
 void main() {
-  group('EntraIdHttpMethodUtils', () {
-    test('methodToString converts enum to string correctly', () {
-      expect(
-        EntraIdHttpMethodUtils.methodToString(
-          EntraIdHttpMethod.get,
-        ),
-        equals('get'),
-      );
-      expect(
-        EntraIdHttpMethodUtils.methodToString(
-          EntraIdHttpMethod.post,
-        ),
-        equals('post'),
-      );
+  group('AortemEntraIdHttpMethod enum helpers', () {
+    test('asString returns enum name', () {
+      expect(EntraIdHttpMethod.GET.asString, equals('GET'));
+      expect(EntraIdHttpMethod.POST.asString, equals('POST'));
     });
 
-    test('stringToMethod converts valid string to enum', () {
+    test('fromString is case-insensitive and maps correctly', () {
+      expect(EntraIdHttpMethod.fromString('get'), EntraIdHttpMethod.GET);
+      expect(EntraIdHttpMethod.fromString('POST'), EntraIdHttpMethod.POST);
+      expect(EntraIdHttpMethod.fromString('Put'), EntraIdHttpMethod.PUT);
+      expect(EntraIdHttpMethod.fromString('delete'), EntraIdHttpMethod.DELETE);
+      expect(EntraIdHttpMethod.fromString('patch'), EntraIdHttpMethod.PATCH);
       expect(
-        EntraIdHttpMethodUtils.stringToMethod('get'),
-        equals(EntraIdHttpMethod.get),
+        EntraIdHttpMethod.fromString('options'),
+        EntraIdHttpMethod.OPTIONS,
       );
-      expect(
-        EntraIdHttpMethodUtils.stringToMethod('POST'),
-        equals(EntraIdHttpMethod.post),
-      );
+      expect(EntraIdHttpMethod.fromString('HEAD'), EntraIdHttpMethod.HEAD);
     });
 
-    test('stringToMethod throws ArgumentError on invalid method', () {
+    test('fromString throws on unsupported method', () {
       expect(
-        () => EntraIdHttpMethodUtils.stringToMethod('FETCH'),
+        () => EntraIdHttpMethod.fromString('FOOBAR'),
         throwsA(isA<ArgumentError>()),
       );
     });
 
-    test('isSupported returns true for valid HTTP methods', () {
-      expect(EntraIdHttpMethodUtils.isSupported('get'), isTrue);
-      expect(EntraIdHttpMethodUtils.isSupported('DeLeTe'), isTrue);
-      expect(EntraIdHttpMethodUtils.isSupported('OPTIONS'), isTrue);
-    });
-
-    test('isSupported returns false for unsupported methods', () {
-      expect(EntraIdHttpMethodUtils.isSupported('fetch'), isFalse);
-      expect(EntraIdHttpMethodUtils.isSupported('foo'), isFalse);
-      expect(EntraIdHttpMethodUtils.isSupported(''), isFalse);
+    test('isSupported identifies valid and invalid methods', () {
+      expect(EntraIdHttpMethod.isSupported('get'), isTrue);
+      expect(EntraIdHttpMethod.isSupported('PATCH'), isTrue);
+      expect(EntraIdHttpMethod.isSupported('foobar'), isFalse);
     });
   });
 }

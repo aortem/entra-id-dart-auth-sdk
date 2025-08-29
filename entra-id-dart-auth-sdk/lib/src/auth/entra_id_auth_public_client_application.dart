@@ -16,8 +16,7 @@ enum BrowserType {
 
 /// Represents a public client application in Entra ID.
 /// Used for applications that cannot securely store secrets (e.g., mobile apps, SPAs).
-class EntraIdPublicClientApplication
-    extends EntraIdClientApplication {
+class EntraIdPublicClientApplication extends EntraIdClientApplication {
   final Logger _logger = Logger('EntraIdPublicClientApplication');
 
   /// The type of browser to use for interactive authentication

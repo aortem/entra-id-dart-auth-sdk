@@ -22,7 +22,8 @@ void main() {
         'sub': 'subject-id',
         'aud': 'client-id',
         'iat': 1618912345,
-        'exp': DateTime.now().add(Duration(hours: 1)).millisecondsSinceEpoch ~/
+        'exp':
+            DateTime.now().add(Duration(hours: 1)).millisecondsSinceEpoch ~/
             1000,
       };
       final rawToken = 'raw-id-token';
@@ -54,9 +55,7 @@ void main() {
 
     test('should extract tenant ID from issuer', () {
       final issuer = 'https://login.microsoftonline.com/tenant-id/v2.0';
-      final tenantId = EntraIdSerializedIdTokenEntity.extractTenantId(
-        issuer,
-      );
+      final tenantId = EntraIdSerializedIdTokenEntity.extractTenantId(issuer);
 
       expect(tenantId, equals('tenant-id'));
     });

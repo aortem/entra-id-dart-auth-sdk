@@ -26,8 +26,9 @@ class EntraIdUserCancelledException implements Exception {
   ///
   /// - [message]: The message describing the cancellation. Defaults to a predefined message
   ///   if not provided.
-  EntraIdUserCancelledException(
-      [this.message = 'User cancelled the authentication process.']);
+  EntraIdUserCancelledException([
+    this.message = 'User cancelled the authentication process.',
+  ]);
 
   @override
   String toString() => 'EntraIdUserCancelledException: $message';

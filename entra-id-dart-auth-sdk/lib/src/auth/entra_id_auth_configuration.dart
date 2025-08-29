@@ -70,9 +70,8 @@ class EntraIdAuthConfiguration {
       cacheOptions: json['cacheOptions'] as Map<String, dynamic>? ?? {},
       telemetryOptions: json['telemetryOptions'] as Map<String, dynamic>? ?? {},
       timeoutInSeconds: json['timeoutInSeconds'] as int? ?? 30,
-      customHeaders:
-          (json['customHeaders'] as Map<String, dynamic>?)
-              ?.cast<String, String>(),
+      customHeaders: (json['customHeaders'] as Map<String, dynamic>?)
+          ?.cast<String, String>(),
     );
   }
 

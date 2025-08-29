@@ -38,8 +38,7 @@ void main() {
       );
 
       expect(
-        () =>
-            EntraIdSystemOptions.initialize(requestTimeoutInSeconds: -1),
+        () => EntraIdSystemOptions.initialize(requestTimeoutInSeconds: -1),
         throwsArgumentError,
       );
     });
@@ -63,9 +62,7 @@ void main() {
 
       expect(() => EntraIdSystemOptions.instance, throwsStateError);
 
-      final options = EntraIdSystemOptions.initialize(
-        enableLogging: false,
-      );
+      final options = EntraIdSystemOptions.initialize(enableLogging: false);
       expect(options.enableLogging, isFalse);
     });
   });

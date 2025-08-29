@@ -33,8 +33,7 @@ class EntraIdAzureJsonCache {
   }) {
     return EntraIdAzureJsonCache._internal(
       store: store,
-      options:
-          options ?? EntraIdCacheOptions(namespace: 'azure_json_cache'),
+      options: options ?? EntraIdCacheOptions(namespace: 'azure_json_cache'),
     );
   }
 

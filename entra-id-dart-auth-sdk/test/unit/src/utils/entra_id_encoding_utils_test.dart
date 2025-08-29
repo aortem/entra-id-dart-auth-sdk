@@ -24,17 +24,11 @@ void main() {
     });
 
     test('encodeBase64 should throw ArgumentError for empty input', () {
-      expect(
-        () => EntraIdEncodingUtils.encodeBase64(''),
-        throwsArgumentError,
-      );
+      expect(() => EntraIdEncodingUtils.encodeBase64(''), throwsArgumentError);
     });
 
     test('decodeBase64 should throw ArgumentError for empty input', () {
-      expect(
-        () => EntraIdEncodingUtils.decodeBase64(''),
-        throwsArgumentError,
-      );
+      expect(() => EntraIdEncodingUtils.decodeBase64(''), throwsArgumentError);
     });
 
     test('encodeUrl should encode a string for use in URLs', () {

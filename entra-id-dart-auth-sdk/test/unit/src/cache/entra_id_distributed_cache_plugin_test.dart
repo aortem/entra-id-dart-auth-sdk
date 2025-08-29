@@ -21,12 +21,9 @@ void main() {
     });
 
     test('should return null for expired value', () async {
-      await cache.save(
-          'tempKey',
-          {
-            'data': 'expired',
-          },
-          ttl: Duration(milliseconds: 10));
+      await cache.save('tempKey', {
+        'data': 'expired',
+      }, ttl: Duration(milliseconds: 10));
       await Future.delayed(Duration(milliseconds: 15));
 
       final result = await cache.retrieve('tempKey');

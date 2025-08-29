@@ -36,17 +36,11 @@ void main() {
     });
 
     test('serialize should throw ArgumentError for invalid input', () {
-      expect(
-        () => EntraIdSerializer.serialize(Object()),
-        throwsArgumentError,
-      );
+      expect(() => EntraIdSerializer.serialize(Object()), throwsArgumentError);
     });
 
     test('deserialize should throw ArgumentError for empty JSON string', () {
-      expect(
-        () => EntraIdSerializer.deserialize(''),
-        throwsArgumentError,
-      );
+      expect(() => EntraIdSerializer.deserialize(''), throwsArgumentError);
     });
 
     test('deserialize should throw ArgumentError for invalid JSON', () {

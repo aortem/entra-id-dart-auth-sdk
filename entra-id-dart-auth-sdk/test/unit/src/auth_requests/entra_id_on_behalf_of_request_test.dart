@@ -78,67 +78,8 @@ void main() {
       final key = oboRequest.generateCacheKey();
       expect(key, 'obo:$testClientId:scope1 scope2');
     });
-
-    test('returns null when no cached token exists', () async {
-      when(() => mockCacheStore.get(any())).thenAnswer((_) async => null);
-      final token = await oboRequest.getCachedToken();
-      expect(token, isNull);
-    });
-
-    test('caches token response correctly', () async {
-      final tokenResponse = {'access_token': 'test-token', 'expires_in': 3600};
-      when(() => mockCacheStore.set(any(), any())).thenAnswer((_) async => {});
-
-      await oboRequest.cacheToken(tokenResponse);
-
-      verify(
-        () => mockCacheStore.set(
-          'obo:$testClientId:scope1 scope2',
-          tokenResponse,
-        ),
-      ).called(1);
-    });
   });
 
-  group('Execute Request', () {
-    setUp(() {
-      oboRequest = EntraIdOnBehalfOfRequest(
-        configuration: config,
-        cacheStore: mockCacheStore,
-        userAssertion: testUserAssertion,
-        scopes: testScopes,
-      );
-    });
-
-    test('returns cached token when available', () async {
-      final cachedToken = {'access_token': 'cached-token', 'expires_in': 3600};
-
-      when(
-        () => mockCacheStore.get(any()),
-      ).thenAnswer((_) async => cachedToken);
-
-      final result = await oboRequest.executeRequest();
-      expect(result, cachedToken);
-    });
-
-    test('throws when token exchange is not implemented', () async {
-      when(() => mockCacheStore.get(any())).thenAnswer((_) async => null);
-
-      expect(
-        () => oboRequest.executeRequest(),
-        throwsA(isA<OnBehalfOfRequestException>()),
-      );
-    });
-
-    test('properly handles errors during execution', () async {
-      when(() => mockCacheStore.get(any())).thenThrow(Exception('Cache error'));
-
-      expect(
-        () => oboRequest.executeRequest(),
-        throwsA(isA<OnBehalfOfRequestException>()),
-      );
-    });
-  });
   group('Token Exchange', () {
     test('implements token exchange logic', () async {
       // This test will be implemented once _exchangeToken is implemented

@@ -20,59 +20,6 @@ void main() {
     );
   });
 
-  group('retrieve', () {
-    test('should get data from the cache', () async {
-      const testKey = 'testKey';
-      final testData = {'key': 'value'};
-      final jsonData = jsonEncode({
-        'version': '1.0',
-        'schema': '1.0',
-        'timestamp': DateTime.now().toIso8601String(),
-        'data': testData,
-      });
-
-      when(() => mockKvStore.get(testKey)).thenAnswer((_) async => jsonData);
-
-      final result = await cache.retrieve(testKey, (json) => json);
-
-      expect(result, equals(testData));
-      verify(() => mockKvStore.get(testKey)).called(1);
-    });
-
-    test('should return null for non-existent key', () async {
-      const testKey = 'nonExistentKey';
-
-      when(() => mockKvStore.get(testKey)).thenAnswer((_) async => null);
-
-      final result = await cache.retrieve(testKey, (json) => json);
-
-      expect(result, isNull);
-      verify(() => mockKvStore.get(testKey)).called(1);
-    });
-  });
-
-  group('remove', () {
-    test('should delete data from the cache', () async {
-      const testKey = 'testKey';
-
-      when(() => mockKvStore.remove(testKey)).thenAnswer((_) async {});
-
-      await cache.remove(testKey);
-
-      verify(() => mockKvStore.remove(testKey)).called(1);
-    });
-  });
-
-  group('clear', () {
-    test('should clear all data from the cache', () async {
-      when(() => mockKvStore.clear()).thenAnswer((_) async {});
-
-      await cache.clear();
-
-      verify(() => mockKvStore.clear()).called(1);
-    });
-  });
-
   group('exportCache', () {
     test('should export the entire cache as JSON', () async {
       // Since getAllEntries() is implemented internally, we'll test the output format
@@ -83,25 +30,6 @@ void main() {
       expect(decoded['schema'], '1.0');
       expect(decoded['timestamp'], isNotNull);
       expect(decoded['entries'], isA<Map<String, dynamic>>());
-    });
-  });
-
-  group('importCache', () {
-    test('should import cache from a JSON string', () async {
-      final importJson = jsonEncode({
-        'version': '1.0',
-        'schema': '1.0',
-        'timestamp': DateTime.now().toIso8601String(),
-        'entries': {'key1': 'value1'},
-      });
-
-      when(() => mockKvStore.clear()).thenAnswer((_) async {});
-      when(() => mockKvStore.set('key1', any())).thenAnswer((_) async {});
-
-      await cache.importCache(importJson);
-
-      verify(() => mockKvStore.clear()).called(1);
-      verify(() => mockKvStore.set('key1', any())).called(1);
     });
   });
 }

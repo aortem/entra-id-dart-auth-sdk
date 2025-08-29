@@ -22,8 +22,7 @@ void main() {
         const jsonResponse = '{"access_token": "token123"}';
 
         expect(
-          () =>
-              EntraIdDeserializer.deserializeTokenResponse(jsonResponse),
+          () => EntraIdDeserializer.deserializeTokenResponse(jsonResponse),
           throwsA(isA<FormatException>()),
         );
       },
@@ -48,9 +47,8 @@ void main() {
         const jsonResponse = '{"id": "user123"}';
 
         expect(
-          () => EntraIdDeserializer.deserializeUserProfileResponse(
-            jsonResponse,
-          ),
+          () =>
+              EntraIdDeserializer.deserializeUserProfileResponse(jsonResponse),
           throwsA(isA<FormatException>()),
         );
       },
@@ -76,8 +74,7 @@ void main() {
         const jsonResponse = '{"error": "invalid_grant"}';
 
         expect(
-          () =>
-              EntraIdDeserializer.deserializeErrorResponse(jsonResponse),
+          () => EntraIdDeserializer.deserializeErrorResponse(jsonResponse),
           throwsA(isA<FormatException>()),
         );
       },

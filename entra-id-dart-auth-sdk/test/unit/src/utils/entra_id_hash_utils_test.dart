@@ -32,10 +32,7 @@ void main() {
       final input = 'example_data';
       final incorrectHash = 'incorrect_hash_value';
 
-      final isValid = EntraIdHashUtils.validateSHA256(
-        input,
-        incorrectHash,
-      );
+      final isValid = EntraIdHashUtils.validateSHA256(input, incorrectHash);
 
       // Assert that the validation fails
       expect(isValid, isFalse);

@@ -2,8 +2,7 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/authentication/entra_id_confidential_client.dart';
 import 'package:entra_id_dart_auth_sdk/src/enum/entra_id_confidential_client_enum.dart';
 
-class MockConfidentialClientApp
-    extends EntraIdConfidentialClientApplication {
+class MockConfidentialClientApp extends EntraIdConfidentialClientApplication {
   MockConfidentialClientApp()
     : super(
         clientId: 'mock-client',
@@ -57,12 +56,11 @@ void main() {
     });
 
     test('throws if authority is not HTTPS', () {
-      final appWithInvalidAuthority =
-          EntraIdConfidentialClientApplication(
-            clientId: 'test-client-id',
-            authority: 'http://login.microsoftonline.com/test',
-            credential: 'test-secret',
-          );
+      final appWithInvalidAuthority = EntraIdConfidentialClientApplication(
+        clientId: 'test-client-id',
+        authority: 'http://login.microsoftonline.com/test',
+        credential: 'test-secret',
+      );
 
       expect(
         () => appWithInvalidAuthority.validateConfiguration(),
