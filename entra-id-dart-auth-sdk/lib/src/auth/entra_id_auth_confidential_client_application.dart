@@ -1,5 +1,5 @@
 import 'package:entra_id_dart_auth_sdk/src/auth/entra_id_auth_configuration.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Enum for credential types used in authentication
 enum CredentialType {

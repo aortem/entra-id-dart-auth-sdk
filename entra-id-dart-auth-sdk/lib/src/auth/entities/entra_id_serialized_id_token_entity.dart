@@ -1,4 +1,4 @@
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Exception thrown for ID token entity operations
 /// Exception thrown when an error occurs during ID token entity operations.

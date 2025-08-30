@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Exception thrown for loopback client operations.
 ///

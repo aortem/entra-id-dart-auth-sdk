@@ -1,4 +1,4 @@
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Exception thrown for errors related to application metadata entity operations.
 /// This exception is used to handle issues that arise when processing or retrieving

@@ -1,5 +1,5 @@
 import 'package:entra_id_dart_auth_sdk/src/utils/entra_id_encoding_utils.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Parameters for an authorization code token request
 class AuthorizationCodeRequestParameters {

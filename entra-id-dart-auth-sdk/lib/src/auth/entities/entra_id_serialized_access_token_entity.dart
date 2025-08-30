@@ -1,5 +1,5 @@
 import 'package:entra_id_dart_auth_sdk/src/utils/entra_id_guid_generator.dart';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Exception thrown when an error occurs during access token entity operations.
 /// This is used to handle errors related to access token management, such as validation failures.

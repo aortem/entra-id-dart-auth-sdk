@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Represents a device code response from the authorization endpoint
 class DeviceCodeResponse {

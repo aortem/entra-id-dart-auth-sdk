@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 import 'entra_id_auth_cache_options.dart';
 
 /// Represents a cached item with metadata

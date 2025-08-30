@@ -1,4 +1,4 @@
-import 'package:logging/logging.dart'; // Provides logging capabilities for the SDK.
+import 'package:ds_standard_features/ds_standard_features.dart'; // Provides logging capabilities for the SDK.
 import 'auth/entra_id_auth_configuration.dart'; // Imports the configuration class for Entra ID.
 
 /// Main class providing access to all Entra ID authentication functionality.

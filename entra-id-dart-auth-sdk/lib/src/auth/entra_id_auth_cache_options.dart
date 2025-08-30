@@ -1,4 +1,4 @@
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Defines the available storage types for caching
 enum CacheStorageType {

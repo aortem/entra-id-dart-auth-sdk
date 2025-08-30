@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:logging/logging.dart';
+import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// EntraIdDistributedCachePlugin: Supports distributed token caching.
 ///
