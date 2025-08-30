@@ -1,7 +1,7 @@
-## 0.0.1-pre+3
+## 0.0.1
 
 ### Changed
-* Bumped Dart SDK constraint to `^3.9.0` (package and example app).
+* Bumped Dart SDK constraint to `^3.9.2` (package and example app).
 * Declared package license as `BSD-3` in `pubspec.yaml`.
 * **Rename:** all public file/module names changed from `aortem_entra_id*` → `entra_id*`.
 
