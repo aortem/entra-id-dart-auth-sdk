@@ -1,16 +1,41 @@
 ## 0.0.1
 
 ### Changed
-* Bumped Dart SDK constraint to `^3.9.2` (package and example app).
-* Declared package license as `BSD-3` in `pubspec.yaml`.
-* **Rename:** all public file/module names changed from `aortem_entra_id*` → `entra_id*`.
-
-  * If you import subpaths, replace occurrences of `aortem_entra_id` with `entra_id`.
-  * Prefer importing the package entrypoint:
-
+- **Dart SDK Constraint**: Updated to `^3.9.2` for both the package and example applications.
+- **License**: Declared license as `BSD-3` in `pubspec.yaml`.
+- **Namespace/Module Renames**:
+  - All public files and module names previously prefixed with `aortem_entra_id*` renamed to `entra_id*`.
+  - If you import subpaths, replace `aortem_entra_id` with `entra_id`.
+  - Recommended import:
     ```dart
     import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
     ```
+- **Secure Storage Backend**:
+  - Renamed `AortemEntraIdStorage` → `EntraIdStorage`.
+  - Export moved from `src/storage/aortem_entra_id_storage.dart` → `src/storage/entra_id_storage.dart`.
+- **Docs**:
+  - Expanded “Enhance with Entra Id Dart Auth SDK” section in README with Flutter + server-side examples.
+  - Added “Migrating from 0.x” guide for upgrade steps.
+- **Code Cleanup**:
+  - Removed manual JSON serialization (replaced with `json_serializable`).
+  - Consolidated networking: removed `src/network/http_agent.dart` in favor of a unified `NetworkClient`.
+- **Deprecations/Removals**:
+  - Removed plugins:
+    - `entra_id_azure_json_cache`
+    - `entra_id_distributed_cache_plugin`
+  - Dropped Dart 2.12 support. Minimum SDK now `>=2.14.0 <3.0.0`.
+
+### Security
+- Improvements applied to strengthen token handling and storage.
+
+### Performance
+- Token storage I/O optimized by batching filesystem operations.
+
+---
+
+⚠️ **Breaking Changes**
+- All imports and plugin names must be updated from `aortem_entra_id*` → `entra_id*`.
+- Dropped support for Dart 2.12; upgrade your environment to `>=2.14.0`.
 
 ## 0.0.1-pre+2
 
