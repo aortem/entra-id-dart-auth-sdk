@@ -28,7 +28,7 @@ val minSdkVersion = (project.findProperty("flutter.minSdkVersion") as? String)?.
 val targetSdkVersion = (project.findProperty("flutter.targetSdkVersion") as? String)?.toIntOrNull() ?: 35
 
 android {
-    namespace = "com.aortem.entra_id.dart.admin.auth.sample.app"
+    namespace = "com.entra_id.dart.admin.auth.sample.app"
     compileSdk = compileSdkVersion?.toInt() ?: 34
     ndkVersion = ndkVersion
 
@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.aortem.entra_id.dart.admin.auth.sample.app"
+        applicationId = "com.entra_id.dart.admin.auth.sample.app"
         minSdk = minSdkVersion
         targetSdk = targetSdkVersion
         versionCode = flutterVersionCode
