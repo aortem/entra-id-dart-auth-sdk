@@ -3,8 +3,6 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/auth_requests/entra_id_client_credential_request.dart';
 
-import 'package:http/testing.dart' as http_testing;
-
 void main() {
   group('EntraIdClientCredentialRequest', () {
     test('acquireToken returns token map on 200 OK', () async {
