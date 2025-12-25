@@ -1,3 +1,8 @@
+## 0.0.2
+
+### Updated
+- **Dart SDK Constraint**: Updated to `^3.10.3` for both the package and example applications.
+
 ## 0.0.1
 
 ### Changed
