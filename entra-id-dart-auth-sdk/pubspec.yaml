@@ -22,6 +22,7 @@ dependencies:
   jwt_generator: ^0.0.6
   web: ^1.1.1
   crypto: ^3.0.7
+  http: ^1.6.0
 
 #------------------ TESTING FEATURES---------------------------------
 
