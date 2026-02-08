@@ -29,6 +29,7 @@ dependencies:
 dev_dependencies:
   ds_tools_testing: ^0.1.1
   git_hooks: any
+  lints: ^6.1.0
 
 # Optional Local Hooks for development.
 git_hooks:
