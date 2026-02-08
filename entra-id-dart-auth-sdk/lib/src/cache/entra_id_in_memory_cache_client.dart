@@ -1,12 +1,20 @@
 import 'dart:async';
 import 'package:entra_id_dart_auth_sdk/src/interfaces/entra_id_i_cache_client.dart';
 
+/// An in-memory implementation of the cache client for storing authentication tokens.
+///
+/// This cache stores key-value pairs in memory with optional expiration (TTL).
+/// It supports automatic purging of expired entries via a background sweep timer.
 class InMemoryCacheClient implements EntraIdICacheClient {
   final Map<String, _Entry> _store = {};
   final bool _enableSweeper;
   final Duration _sweepInterval;
   Timer? _sweeper;
 
+  /// Creates an in-memory cache client instance.
+  ///
+  /// [enableSweeper] Whether to enable automatic expiration sweep. Defaults to true.
+  /// [sweepInterval] How often to check for expired entries. Defaults to 5 minutes.
   InMemoryCacheClient({
     bool enableSweeper = true,
     Duration sweepInterval = const Duration(minutes: 5),
@@ -46,6 +54,9 @@ class InMemoryCacheClient implements EntraIdICacheClient {
     _store.clear();
   }
 
+  /// Disposes the cache client and cancels the expiration sweep timer.
+  ///
+  /// Call this method when the cache is no longer needed to prevent resource leaks.
   void dispose() {
     _sweeper?.cancel();
     _sweeper = null;
