@@ -7,28 +7,28 @@
 /// {@endtemplate}
 enum EntraIdHttpMethod {
   /// HTTP GET method - Used for retrieving resources.
-  GET,
+  get,
 
   /// HTTP POST method - Used for creating new resources.
-  POST,
+  post,
 
   /// HTTP PUT method - Used for updating existing resources or creating
   /// resources when the URI is known.
-  PUT,
+  put,
 
   /// HTTP DELETE method - Used for deleting resources.
-  DELETE,
+  delete,
 
   /// HTTP PATCH method - Used for partial updates to resources.
-  PATCH,
+  patch,
 
   /// HTTP OPTIONS method - Used for describing the communication options
   /// for the target resource.
-  OPTIONS,
+  options,
 
   /// HTTP HEAD method - Used for retrieving header information without
   /// the response body.
-  HEAD;
+  head;
 
   /// {@template http_method_as_string}
   /// Converts the HTTP method enum value to its string representation.
@@ -37,17 +37,17 @@ enum EntraIdHttpMethod {
   ///
   /// Example:
   /// ```dart
-  /// final method =     EntraIdHttpMethod.GET;
+  /// final method =     EntraIdHttpMethod.get;
   /// print(method.asString); // Output: "GET"
   /// ```
   /// {@endtemplate}
-  String get asString => name;
+  String get asString => name.toUpperCase();
 
   /// {@template http_method_from_string}
   /// Converts a string HTTP method name to the corresponding enum value.
   ///
   /// This conversion is case-insensitive. For example, both "get" and "GET"
-  /// will return [    EntraIdHttpMethod.GET].
+  /// will return [    EntraIdHttpMethod.get].
   ///
   /// Throws an [ArgumentError] if the provided string does not correspond
   /// to any supported HTTP method.
@@ -61,7 +61,7 @@ enum EntraIdHttpMethod {
   /// Example:
   /// ```dart
   /// final enumValue =     EntraIdHttpMethod.fromString('post');
-  /// print(enumValue); // Output:     EntraIdHttpMethod.POST
+  /// print(enumValue); // Output:     EntraIdHttpMethod.post
   /// ```
   /// {@endtemplate}
   static EntraIdHttpMethod fromString(String method) {
