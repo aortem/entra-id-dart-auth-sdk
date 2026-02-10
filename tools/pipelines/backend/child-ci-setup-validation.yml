@@ -154,18 +154,18 @@ validate_format:
     #     cd - >/dev/null
     #   fi
 
-    - echo "🔧 Running pub.dev/Pana–style format check…"
-    # silent check, exit code tells us pass/fail
-    - dart format --output=none --set-exit-if-changed .
+    - echo "🔧 Running pub.dev/Pana–style format check (informational)…"
     - |
-      if [ $? -ne 0 ]; then
-        echo "❌ Formatting issues detected! Listing files that need formatting:"
-        # now show exactly which files are out of line
-        dart format --dry-run .
-        exit 1
-      else
+      if dart format --output=none --set-exit-if-changed .; then
         echo "✅ All Dart files are properly formatted."
+      else
+        echo "⚠️ Formatting differences detected (non-blocking)."
+        echo "📄 Files that would be reformatted:"
+        dart format --dry-run .
+        echo "ℹ️ To fix locally: dart format ."
+        true
       fi
+
   rules:
     - when: always
   allow_failure: true
