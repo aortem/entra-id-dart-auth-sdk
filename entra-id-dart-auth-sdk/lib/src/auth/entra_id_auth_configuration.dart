@@ -1,5 +1,4 @@
 import 'package:ds_standard_features/ds_standard_features.dart';
-import 'package:ds_standard_features/ds_standard_features.dart';
 
 /// Configuration class for the Entra ID Authentication SDK.
 /// Manages global settings and configurations for authentication workflows.

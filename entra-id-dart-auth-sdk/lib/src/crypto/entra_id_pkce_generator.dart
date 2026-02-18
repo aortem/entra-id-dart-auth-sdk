@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:ds_standard_features/ds_standard_features.dart';
+import 'package:crypto/crypto.dart';
 
 /// EntraIdPkceGenerator: Generates a PKCE code verifier and challenge pair for OAuth 2.0 flows.
 ///

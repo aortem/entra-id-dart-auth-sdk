@@ -2,14 +2,14 @@ import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'dart:convert';
-import 'package:ds_standard_features/ds_standard_features.dart' as crypto;
+import 'package:crypto/crypto.dart';
 
 void main() {
   group('EntraIdHashUtils', () {
     test('hashSHA256 should hash input and return Base64 encoded string', () {
       final input = 'example_data';
       final expectedHash = base64Encode(
-        crypto.sha256.convert(utf8.encode(input)).bytes,
+        sha256.convert(utf8.encode(input)).bytes,
       );
 
       final hashedValue = EntraIdHashUtils.hashSHA256(input);

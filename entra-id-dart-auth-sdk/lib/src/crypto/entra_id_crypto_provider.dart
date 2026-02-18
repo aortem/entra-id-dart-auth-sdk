@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:ds_standard_features/ds_standard_features.dart';
+import 'package:crypto/crypto.dart';
 
 /// EntraIdCryptoProvider: Utility class to perform cryptographic operations
 /// in the Entra ID Dart SDK. It includes methods for hashing, signing, and

@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:ds_standard_features/ds_standard_features.dart' as http;
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart' as http_testing;
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/src/auth_requests/entra_id_client_credential_request.dart';
 

@@ -1,5 +1,4 @@
-import 'package:ds_standard_features/ds_standard_features.dart'
-    show Hmac, sha256;
+import 'package:crypto/crypto.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 

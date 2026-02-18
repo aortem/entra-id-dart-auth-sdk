@@ -21,12 +21,15 @@ dependencies:
   build_web_compilers: ^4.2.4
   jwt_generator: ^0.0.6
   web: ^1.1.1
+  crypto: ^3.0.7
+  http: ^1.6.0
 
 #------------------ TESTING FEATURES---------------------------------
 
 dev_dependencies:
   ds_tools_testing: ^0.1.1
   git_hooks: any
+  lints: ^6.1.0
 
 # Optional Local Hooks for development.
 git_hooks:

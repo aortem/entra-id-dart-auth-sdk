@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:crypto/crypto.dart';
 
-import 'package:ds_standard_features/ds_standard_features.dart';
 // Requires `crypto` package in pubspec.yaml.
 
 /// EntraIdHashUtils: Provides hashing utilities for secure data handling.
