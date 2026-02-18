@@ -113,4 +113,4 @@ export 'src/utils/entra_id_hash_utils.dart';
 export 'src/utils/entra_id_network_utils.dart';
 
 /// Version information
-const String sdkVersion = '0.0.1-pre+1';
+const String sdkVersion = '0.0.3';

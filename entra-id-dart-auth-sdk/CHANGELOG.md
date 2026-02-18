@@ -1,3 +1,16 @@
+## 0.0.3
+
+### Updated
+- **Dart SDK Constraint**: Updated to `^3.11.0`.
+- **HTTP Methods**: Normalized `EntraIdHttpMethod` enum values to lowercase while preserving uppercase `asString`, and added HTTP method utilities.
+- **Crypto Utilities**: Switched hashing/PKCE/HMAC usage to `package:crypto` and updated related tests.
+- **Token Cache Keys**: Simplified token key construction using Dart 3.11 null-aware elements.
+- **Cache Docs**: Expanded in-memory cache client documentation.
+- **Dependencies**: Updated to the latest versions available on pub.dev.
+
+### Fixed
+- **Imports**: Removed duplicate `ds_standard_features` import.
+
 ## 0.0.2
 
 ### Updated
