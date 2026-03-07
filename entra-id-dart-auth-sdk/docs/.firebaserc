@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "aortem-prod"
+  },
+  "targets": {
+    "aortem-prod": {
+      "hosting": {
+        "entra-id-dart-auth-sdk-docs": [
+          "entra-id-dart-auth-sdk-docs"
+        ]
+      }
+    }
+  }
+}

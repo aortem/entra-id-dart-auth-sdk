@@ -1,0 +1,5 @@
+name: entra-id-dart-auth-sdk
+title: Entra ID Dart Auth SDK
+version: v0.0.3
+nav:
+- modules/ROOT/nav.adoc
