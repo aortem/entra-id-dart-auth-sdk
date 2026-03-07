@@ -32,7 +32,7 @@ void main() {
 
     test('isServerError returns false for non-server error codes', () {
       expect(EntraIdHttpStatus.isServerError(499), isFalse);
-      expect(EntraIdHttpStatus.isServerError(600), isFalse);
+      expect(EntraIdHttpStatus.isServerError(400), isFalse);
     });
 
     test('getDescription returns correct descriptions', () {

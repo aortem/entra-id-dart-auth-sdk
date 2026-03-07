@@ -182,7 +182,7 @@ class EntraIdTokenDto implements TokenDto {
       'nbf': nbf.millisecondsSinceEpoch ~/ 1000,
       'iat': iat.millisecondsSinceEpoch ~/ 1000,
       'jti': jti,
-      if (x5t != null) 'x5t': x5t!,
+      'x5t': ?x5t,
     };
   }
 
@@ -191,7 +191,7 @@ class EntraIdTokenDto implements TokenDto {
     return <String, Object>{
       'typ': 'JWT',
       'alg': 'RS256',
-      if (x5t != null) 'x5t': x5t!,
+      'x5t': ?x5t,
     };
   }
 

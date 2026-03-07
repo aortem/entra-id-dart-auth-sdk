@@ -28,6 +28,7 @@ void main() {
         clientSecret: 'test-client-secret',
         tenantId: 'test-tenant-id',
         authority: 'https://login.microsoftonline.com',
+        client: mockClient,
       );
 
       log('MockClient initialized: $mockClient');
@@ -75,6 +76,7 @@ void main() {
         clientSecret: 'test-client-secret',
         tenantId: 'test-tenant-id',
         authority: 'https://login.microsoftonline.com',
+        client: mockClient,
       );
 
       log('MockClient initialized: $mockClient');

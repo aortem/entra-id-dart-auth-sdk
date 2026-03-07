@@ -18,6 +18,9 @@ class EntraIdProxyStatus {
   /// The password for proxy authentication (optional).
   final String? password;
 
+  /// HTTP client used for validation requests.
+  final http.Client httpClient;
+
   /// Constructor to initialize the proxy settings.
   ///
   /// Requires [proxyUrl] and [port] as mandatory parameters. [username] and [password] are optional.
@@ -26,7 +29,8 @@ class EntraIdProxyStatus {
     required this.port, // Initializes the port number.
     this.username, // Initializes the optional username for proxy authentication.
     this.password, // Initializes the optional password for proxy authentication.
-  });
+    http.Client? client,
+  }) : httpClient = client ?? http.Client();
 
   /// Validate the proxy configuration by attempting a simple network request.
   ///
@@ -35,9 +39,6 @@ class EntraIdProxyStatus {
     try {
       // Constructs the proxy URI from the provided URL and port.
       final proxyUri = Uri.parse('http://$proxyUrl:$port');
-
-      // Creates an HTTP client for sending the request.
-      final client = http.Client();
 
       // Creates an HTTP GET request to the proxy URI.
       final proxyRequest = http.Request('GET', proxyUri)
@@ -49,7 +50,7 @@ class EntraIdProxyStatus {
         });
 
       // Sends the proxy request and waits for the response.
-      final response = await client.send(proxyRequest);
+      final response = await httpClient.send(proxyRequest);
 
       // Retrieves the status code from the response.
       final statusCode = response.statusCode;

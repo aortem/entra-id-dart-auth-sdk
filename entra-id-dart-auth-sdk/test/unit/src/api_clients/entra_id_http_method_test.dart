@@ -4,21 +4,21 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 void main() {
   group('AortemEntraIdHttpMethod enum helpers', () {
     test('asString returns enum name', () {
-      expect(EntraIdHttpMethod.GET.asString, equals('GET'));
-      expect(EntraIdHttpMethod.POST.asString, equals('POST'));
+      expect(EntraIdHttpMethod.get.asString, equals('GET'));
+      expect(EntraIdHttpMethod.post.asString, equals('POST'));
     });
 
     test('fromString is case-insensitive and maps correctly', () {
-      expect(EntraIdHttpMethod.fromString('get'), EntraIdHttpMethod.GET);
-      expect(EntraIdHttpMethod.fromString('POST'), EntraIdHttpMethod.POST);
-      expect(EntraIdHttpMethod.fromString('Put'), EntraIdHttpMethod.PUT);
-      expect(EntraIdHttpMethod.fromString('delete'), EntraIdHttpMethod.DELETE);
-      expect(EntraIdHttpMethod.fromString('patch'), EntraIdHttpMethod.PATCH);
+      expect(EntraIdHttpMethod.fromString('get'), EntraIdHttpMethod.get);
+      expect(EntraIdHttpMethod.fromString('POST'), EntraIdHttpMethod.post);
+      expect(EntraIdHttpMethod.fromString('Put'), EntraIdHttpMethod.put);
+      expect(EntraIdHttpMethod.fromString('delete'), EntraIdHttpMethod.delete);
+      expect(EntraIdHttpMethod.fromString('patch'), EntraIdHttpMethod.patch);
       expect(
         EntraIdHttpMethod.fromString('options'),
-        EntraIdHttpMethod.OPTIONS,
+        EntraIdHttpMethod.options,
       );
-      expect(EntraIdHttpMethod.fromString('HEAD'), EntraIdHttpMethod.HEAD);
+      expect(EntraIdHttpMethod.fromString('HEAD'), EntraIdHttpMethod.head);
     });
 
     test('fromString throws on unsupported method', () {
