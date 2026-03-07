@@ -39,6 +39,9 @@ class EntraIdUsernamePasswordRequest {
   /// The authority URL for token requests, e.g., `https://login.microsoftonline.com`.
   final String authority;
 
+  /// HTTP client used for token requests.
+  final http.Client httpClient;
+
   /// Constructs an instance of `EntraIdUsernamePasswordRequest`.
   ///
   /// - [clientId]: The application's client ID.
@@ -50,7 +53,8 @@ class EntraIdUsernamePasswordRequest {
     required this.clientSecret,
     required this.tenantId,
     required this.authority,
-  });
+    http.Client? client,
+  }) : httpClient = client ?? http.Client();
 
   /// Acquires tokens using the Resource Owner Password Credentials (ROPC) flow.
   ///
@@ -82,7 +86,7 @@ class EntraIdUsernamePasswordRequest {
 
     final url = '$authority/$tenantId/oauth2/v2.0/token';
 
-    final response = await http.post(
+    final response = await httpClient.post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: {

@@ -356,6 +356,8 @@ class EntraIdHttpClient {
       }
 
       return _handleResponse(uri, response);
+    } on HttpException {
+      rethrow;
     } catch (e) {
       // Network errors / unreachable server
       throw HttpException(

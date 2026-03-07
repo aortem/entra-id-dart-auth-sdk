@@ -1,4 +1,5 @@
 import 'package:entra_id_dart_auth_sdk/src/enum/entra_id_confidential_client_enum.dart';
+import 'package:entra_id_dart_auth_sdk/src/auth_requests/entra_id_client_credential_request.dart';
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
@@ -20,6 +21,10 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 /// - **On-Behalf-Of Flow:** Acquires a token on behalf of another user using their token.
 
 class EntraIdConfidentialClientApplication {
+  static const List<String> _defaultScopes = [
+    'https://graph.microsoft.com/.default',
+  ];
+
   /// The client ID associated with the Entra ID application.
   /// This is a unique identifier for the application registered in Microsoft Entra ID.
   final String clientId;
@@ -40,6 +45,15 @@ class EntraIdConfidentialClientApplication {
   /// If set to `true`, it permits older authentication protocols that may be deprecated or less secure.
   final bool allowLegacyProtocols;
 
+  /// The scopes requested when acquiring access tokens.
+  final List<String> scopes;
+
+  /// The assertion type used when [credentialType] is [CredentialType.assertion].
+  final String clientAssertionType;
+
+  /// HTTP client used for token endpoint calls.
+  final http.Client httpClient;
+
   /// Constructor to initialize the client application.
   ///
   /// [clientId] - The unique identifier for the client application in Entra ID.
@@ -53,7 +67,12 @@ class EntraIdConfidentialClientApplication {
     required this.credential,
     this.credentialType = CredentialType.secret,
     this.allowLegacyProtocols = false,
-  });
+    List<String>? scopes,
+    this.clientAssertionType =
+        EntraIdClientCredentialRequest.defaultClientAssertionType,
+    http.Client? httpClient,
+  }) : scopes = List.unmodifiable(scopes ?? _defaultScopes),
+       httpClient = httpClient ?? http.Client();
 
   /// Validates the configuration of the client application.
   ///
@@ -102,24 +121,13 @@ class EntraIdConfidentialClientApplication {
   /// Returns a [Map<String, dynamic>] representing the token response.
   /// Throws an exception if the request fails or the response is not successful.
   Future<Map<String, dynamic>> _acquireTokenWithSecret() async {
-    final response = await http.post(
-      Uri.parse('$authority/oauth2/v2.0/token'),
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: {
-        'client_id': clientId,
-        'client_secret': credential,
-        'grant_type': 'client_credentials',
-        'scope': 'https://graph.microsoft.com/.default',
-      },
-    );
-
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body);
-    } else {
-      throw Exception(
-        'Failed to acquire token with client secret: ${response.body}',
-      );
-    }
+    return EntraIdClientCredentialRequest.tokenEndpoint(
+      clientId: clientId,
+      clientSecret: credential,
+      tokenEndpoint: _tokenEndpoint,
+      scopes: scopes,
+      client: httpClient,
+    ).acquireToken();
   }
 
   /// Acquires a token using a certificate.
@@ -131,25 +139,10 @@ class EntraIdConfidentialClientApplication {
   /// Returns a [Map<String, dynamic>] representing the token response.
   /// Throws an exception if the request fails or the response is not successful.
   Future<Map<String, dynamic>> _acquireTokenWithCertificate() async {
-    final response = await http.post(
-      Uri.parse('$authority/oauth2/v2.0/token'),
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: {
-        'client_id': clientId,
-        'client_certificate':
-            credential, // This is simplified; handle certificate properly in production
-        'grant_type': 'client_credentials',
-        'scope': 'https://graph.microsoft.com/.default',
-      },
+    throw UnsupportedError(
+      'Certificate-based client credentials are not implemented. '
+      'Use a client assertion or client secret credential.',
     );
-
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body);
-    } else {
-      throw Exception(
-        'Failed to acquire token with certificate: ${response.body}',
-      );
-    }
   }
 
   /// Acquires a token using an assertion (JWT).
@@ -160,24 +153,14 @@ class EntraIdConfidentialClientApplication {
   /// Returns a [Map<String, dynamic>] representing the token response.
   /// Throws an exception if the request fails or the response is not successful.
   Future<Map<String, dynamic>> _acquireTokenWithAssertion() async {
-    final response = await http.post(
-      Uri.parse('$authority/oauth2/v2.0/token'),
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: {
-        'client_id': clientId,
-        'client_assertion': credential, // The assertion string (JWT)
-        'grant_type': 'client_credentials',
-        'scope': 'https://graph.microsoft.com/.default',
-      },
-    );
-
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body);
-    } else {
-      throw Exception(
-        'Failed to acquire token with assertion: ${response.body}',
-      );
-    }
+    return EntraIdClientCredentialRequest.tokenEndpointAssertion(
+      clientId: clientId,
+      clientAssertion: credential,
+      tokenEndpoint: _tokenEndpoint,
+      scopes: scopes,
+      clientAssertionType: clientAssertionType,
+      client: httpClient,
+    ).acquireToken();
   }
 
   /// Refreshes the token using the provided refresh token.
@@ -191,14 +174,14 @@ class EntraIdConfidentialClientApplication {
   /// Returns a [Map<String, dynamic>] representing the new token response.
   /// Throws an exception if the request fails or the response is not successful.
   Future<Map<String, dynamic>> refreshToken(String refreshToken) async {
-    final response = await http.post(
-      Uri.parse('$authority/oauth2/v2.0/token'),
+    final response = await httpClient.post(
+      _tokenEndpoint,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: {
         'client_id': clientId,
         'refresh_token': refreshToken,
         'grant_type': 'refresh_token',
-        'scope': 'https://graph.microsoft.com/.default',
+        'scope': scopes.join(' '),
       },
     );
 
@@ -220,15 +203,15 @@ class EntraIdConfidentialClientApplication {
   /// Returns a [Map<String, dynamic>] representing the token response.
   /// Throws an exception if the request fails or the response is not successful.
   Future<Map<String, dynamic>> acquireTokenOnBehalfOf(String userToken) async {
-    final response = await http.post(
-      Uri.parse('$authority/oauth2/v2.0/token'),
+    final response = await httpClient.post(
+      _tokenEndpoint,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: {
         'client_id': clientId,
         'client_secret': credential,
         'grant_type': 'urn:ietf:params:oauth:grant-type:jwt-bearer',
         'assertion': userToken, // The user's token
-        'scope': 'https://graph.microsoft.com/.default',
+        'scope': scopes.join(' '),
       },
     );
 
@@ -240,4 +223,6 @@ class EntraIdConfidentialClientApplication {
       );
     }
   }
+
+  Uri get _tokenEndpoint => Uri.parse('$authority/oauth2/v2.0/token');
 }

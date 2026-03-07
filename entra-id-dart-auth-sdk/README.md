@@ -57,7 +57,7 @@ Or manually in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  entra_id_dart_auth_sdk: ^0.0.3
+  entra_id_dart_auth_sdk: ^0.0.4
 ```
 
 Then run:

@@ -31,6 +31,84 @@ void main() {
       );
     });
 
+    test('throws ArgumentError when scopes are empty', () {
+      expect(
+        () => EntraIdClientCredentialRequest(
+          clientId: 'test-client-id',
+          clientSecret: 'test-client-secret',
+          authority: 'https://login.microsoftonline.com',
+          tenantId: 'test-tenant-id',
+          scopes: const [],
+        ).acquireToken(),
+        throwsA(isA<ArgumentError>()),
+      );
+    });
+
+    test('returns token on successful secret flow', () async {
+      mockClient = MockClient((req) async {
+        final body = req.bodyFields;
+        expect(body['client_secret'], equals('test-client-secret'));
+        expect(body['scope'], equals('https://graph.microsoft.com/.default'));
+        return http.Response(
+          jsonEncode({
+            'access_token': 'secret-token',
+            'token_type': 'Bearer',
+          }),
+          200,
+        );
+      });
+
+      request = EntraIdClientCredentialRequest(
+        clientId: 'test-client-id',
+        clientSecret: 'test-client-secret',
+        authority: 'https://login.microsoftonline.com',
+        tenantId: 'test-tenant-id',
+        scopes: ['https://graph.microsoft.com/.default'],
+        client: mockClient,
+      );
+
+      final token = await request.acquireToken();
+
+      expect(token['access_token'], equals('secret-token'));
+    });
+
+    test('returns token on successful assertion flow', () async {
+      mockClient = MockClient((req) async {
+        final body = req.bodyFields;
+        expect(body['client_assertion'], equals('federated-jwt'));
+        expect(
+          body['client_assertion_type'],
+          equals(
+            'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+          ),
+        );
+        expect(
+          body['scope'],
+          equals('https://management.azure.com/.default'),
+        );
+        return http.Response(
+          jsonEncode({
+            'access_token': 'assertion-token',
+            'token_type': 'Bearer',
+          }),
+          200,
+        );
+      });
+
+      request = EntraIdClientCredentialRequest.assertion(
+        clientId: 'test-client-id',
+        clientAssertion: 'federated-jwt',
+        authority: 'https://login.microsoftonline.com',
+        tenantId: 'test-tenant-id',
+        scopes: ['https://management.azure.com/.default'],
+        client: mockClient,
+      );
+
+      final token = await request.acquireToken();
+
+      expect(token['access_token'], equals('assertion-token'));
+    });
+
     test('throws exception with error message on failure', () async {
       mockClient = MockClient((req) async {
         return http.Response(

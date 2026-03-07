@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
+import 'package:entra_id_dart_auth_sdk/src/exception/entra_id_http_exception.dart';
 
 void main() {
   group('EntraIdHttpClient', () {
@@ -12,7 +13,11 @@ void main() {
       final mockClient = MockClient((request) async {
         expect(request.method, equals('GET'));
         expect(request.url.toString(), equals('https://api.example.com/test'));
-        return http.Response(jsonEncode({'message': 'success'}), 200);
+        return http.Response(
+          jsonEncode({'message': 'success'}),
+          200,
+          headers: {'content-type': 'application/json'},
+        );
       });
 
       client = EntraIdHttpClient(
@@ -29,7 +34,11 @@ void main() {
         expect(request.method, equals('POST'));
         expect(request.url.toString(), equals('https://api.example.com/post'));
         expect(jsonDecode(request.body), equals({'key': 'value'}));
-        return http.Response(jsonEncode({'status': 'ok'}), 200);
+        return http.Response(
+          jsonEncode({'status': 'ok'}),
+          200,
+          headers: {'content-type': 'application/json'},
+        );
       });
 
       client = EntraIdHttpClient(
@@ -54,8 +63,10 @@ void main() {
       expect(
         () async => await client.get('/missing'),
         throwsA(
-          predicate(
-            (e) => e is Exception && e.toString().contains('HTTP Error: 404'),
+          isA<HttpException>().having(
+            (e) => e.statusCode,
+            'statusCode',
+            equals(404),
           ),
         ),
       );
@@ -65,7 +76,11 @@ void main() {
       final mockClient = MockClient((request) async {
         expect(request.headers['Authorization'], equals('Bearer 123'));
         expect(request.headers['X-Custom'], equals('override'));
-        return http.Response(jsonEncode({'message': 'headers ok'}), 200);
+        return http.Response(
+          jsonEncode({'message': 'headers ok'}),
+          200,
+          headers: {'content-type': 'application/json'},
+        );
       });
 
       client = EntraIdHttpClient(
