@@ -1,17 +1,25 @@
-= Package Overview
+﻿= Package Overview
 :page-layout: default
 
-Entra ID Dart Auth SDK is published as entra_id_dart_auth_sdk and is currently documented at version v0.0.3.
-
-== Package Root
-
-apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk
+Entra ID Dart Auth SDK is published as entra_id_dart_auth_sdk at version v0.0.3.
 
 == Source of Truth
 
-Use the package README, pubspec.yaml, examples, and test suite in the package root as the implementation source of truth.
+* Pubspec: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/pubspec.yaml
+* README: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/README.md
+* Changelog: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/CHANGELOG.md
 
-== Notes
+== Directory Layout
 
-* This Antora site gives each SDK the same documentation structure used across DartApps.
-* Product-specific narrative content can be expanded here over time without changing the standard hosting setup.
+* Repository root: apps/sdks/entra-id-dart-auth-sdk
+* Package root: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk
+* Documentation: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/docs
+* Library sources: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/lib
+* Examples: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/example
+* Tests: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/test
+* Local dev tools: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/local_dev_tools
+
+== Primary Source Areas
+
+* Public entrypoint: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/lib/entra_id_dart_auth_sdk.dart
+* apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/lib/src
