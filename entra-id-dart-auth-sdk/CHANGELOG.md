@@ -1,17 +1,3 @@
-## 0.0.4
-
-### Added
-- **Workload Identity Federation Support**: Added client-credentials token acquisition with Entra client assertions, including `client_assertion_type`, for reusable WIF-style exchanges.
-
-### Changed
-- **Confidential Client Scopes**: `EntraIdConfidentialClientApplication` now accepts explicit scopes instead of forcing Microsoft Graph-only usage.
-- **Canonical Token Path**: Routed confidential-client secret and assertion flows through the shared client-credentials request implementation.
-- **Dependencies**: Promoted `crypto` and `http` to direct dependencies and updated `build_web_compilers` to the latest resolvable release.
-
-### Fixed
-- **Assertion Flow**: Corrected confidential-client assertion requests so they send the full Entra token-exchange payload required for ARM and similar resource scopes.
-- **Test Coverage**: Added unit coverage for secret and assertion client-credential flows, custom scopes, and unsupported certificate handling.
-
 ## 0.0.3
 
 ### Updated
@@ -21,9 +7,15 @@
 - **Token Cache Keys**: Simplified token key construction using Dart 3.11 null-aware elements.
 - **Cache Docs**: Expanded in-memory cache client documentation.
 - **Dependencies**: Updated to the latest versions available on pub.dev.
+- **Workload Identity Federation Support**: Added client-credentials token acquisition with Entra client assertions, including `client_assertion_type`, for reusable WIF-style exchanges.
+- **Confidential Client Scopes**: `EntraIdConfidentialClientApplication` now accepts explicit scopes instead of forcing Microsoft Graph-only usage.
+- **Canonical Token Path**: Routed confidential-client secret and assertion flows through the shared client-credentials request implementation.
+- **Dependencies**: Promoted `crypto` and `http` to direct dependencies and updated `build_web_compilers` to the latest resolvable release.
 
 ### Fixed
 - **Imports**: Removed duplicate `ds_standard_features` import.
+- **Assertion Flow**: Corrected confidential-client assertion requests so they send the full Entra token-exchange payload required for ARM and similar resource scopes.
+- **Test Coverage**: Added unit coverage for secret and assertion client-credential flows, custom scopes, and unsupported certificate handling.
 
 ## 0.0.2
 
