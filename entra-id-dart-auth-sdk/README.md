@@ -1,137 +1,193 @@
 # Entra Id Dart Auth SDK
 
-## Overview
-
-The **Entra Id Dart Auth SDK** provides first-class integration with Microsoft Entra ID (formerly Azure AD) authentication flows for both server-side Dart applications and Flutter clients. With this SDK you can:
-
-* Acquire and manage OAuth 2.0 access & ID tokens
-* Authenticate users via interactive, ROPC, and client credentials flows
-* Handle token caching and automatic refresh
-* Integrate with MSAL.js for Flutter web
-* Use customizable secure storage backends
-* Perform admin operations via Microsoft Graph tokens
-
-Whether youâ€™re building a Dart backend service or a Flutter mobile/web app, this SDK streamlines Entra ID authentication.
+Entra Id Dart Auth SDK provides Dart-first building blocks for Microsoft Entra ID authentication flows, token handling, caching, and request utilities. The package currently exposes low-level and mid-level APIs for confidential-client flows, authorization URL generation, serialization, HTTP helpers, and cache primitives.
 
 ## Features
 
-* **Unified Auth Flows**
-  Support for authorization code (PKCE), resource owner password credential (ROPC), client credentials, and refresh token flows.
-* **Token Management**
-  Automatic token caching, expiration checks, and silent token refresh.
-* **Secure Storage**
-  Pluggable `TokenStorage` interface with built-in `EntraIdStorage` (file, in-memory, or custom backends).
-* **MSAL.js Integration (Web)**
-  Leverage Microsoftâ€™s MSAL.js library under the hood for Flutter web PKCE flows.
-* **Graph API Support**
-  Acquire on-behalf-of and Graph tokens, with helper methods for common scopes (User.Read, Mail.Send, etc.).
-* **Platform-Agnostic**
-  Works in Dart VM (server), Flutter mobile, and Flutter web environments.
+The package does not yet provide a fully complete Entra ID surface. The table below reflects the current exported SDK behavior.
 
-## Getting Started
-
-1. **Prerequisites**
-
-   * Dart SDK â‰¥ 2.14.0 (for null-safety) or Flutter SDK â‰¥ 3.0
-   * An Azure AD (Entra ID) tenant with an app registration configured for your chosen flow
-
-2. **Configure Entra ID App**
-
-   * Define redirect URIs (for web/mobile).
-   * Create client secrets (for server flows).
-   * Grant Graph API permissions and admin consent if needed.
+| Capability | Status | Notes |
+| --- | --- | --- |
+| Configuration via `EntraIdConfiguration` | Supported | Shared SDK configuration object. |
+| HTTP method and status helpers | Supported | Includes `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, and `HEAD`. |
+| HTTP client wrapper | Supported | Request helpers available through `EntraIdHttpClient`. |
+| Client credentials with client secret | Supported | Available through `EntraIdClientCredentialRequest` and `EntraIdConfidentialClientApplication`. |
+| Client credentials with client assertion | Supported | Assertion-based token exchange is supported. |
+| Client credentials with certificate | Not supported | `EntraIdConfidentialClientApplication` currently throws `UnsupportedError` for certificate credentials. |
+| Refresh token request | Supported | Available through `EntraIdRefreshTokenRequest`. |
+| Authorization URL generation | Supported | Available through `EntraIdAuthorizationUrlRequest`. |
+| Interactive request orchestration | Partial | URL generation and callback validation exist, but the full interactive token exchange is not complete. |
+| Public client application | Partial | Class is exported, but current token methods still use placeholder return values. |
+| Silent flow request | Partial | Cache lookup exists, but refresh behavior still needs hardening. |
+| Device code flow | Partial | Request/response helpers exist, but polling/token acquisition is not fully implemented. |
+| On-behalf-of flow | Not supported | `EntraIdOnBehalfOfRequest` is exported but token exchange is not yet implemented. |
+| Token cache abstractions | Supported | Includes cache store, cache options, token cache base class, and in-memory token cache. |
+| Serialization entities and serializer | Supported | Access token, refresh token, ID token, app metadata, serializer, and deserializer are exported. |
+| Utility helpers | Supported | Includes encoding, GUID generation, hashing, and network retry helpers. |
 
 ## Installation
 
-Add the SDK to your project:
+Add the package to your project:
 
 ```bash
-# Dart:
 dart pub add entra_id_dart_auth_sdk
-
-# Flutter:
-flutter pub add entra_id_dart_auth_sdk
 ```
 
-Or manually in your `pubspec.yaml`:
+Or add it manually to `pubspec.yaml`:
 
 ```yaml
 dependencies:
   entra_id_dart_auth_sdk: ^0.0.3
 ```
 
-Then run:
+Then install dependencies:
 
 ```bash
 dart pub get
 ```
 
-## Usage
+## Getting Started
 
-### Initialize the SDK
+Import the package:
 
 ```dart
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
-
-void main() async {
-  final auth = EntraIdAuth(
-    tenantId: 'your-tenant-id',
-    clientId: 'your-client-id',
-    redirectUri: Uri.parse('com.example.app://auth'),
-  );
-}
 ```
 
-### Authorization Code (PKCE) Flow
+Create shared configuration:
 
 ```dart
-// Trigger interactive auth
-final result = await auth.acquireTokenInteractive(
-  scopes: ['User.Read', 'Mail.Send'],
-);
-print('Access Token: ${result.accessToken}');
-```
-
-### Client Credentials Flow (Server)
-
-```dart
-// Uses client secret from environment
-final creds = ClientCredentials.fromEnv();
-final authServer = EntraIdAuth.server(
+final config = EntraIdConfiguration.initialize(
+  clientId: 'your-client-id',
   tenantId: 'your-tenant-id',
-  clientCredentials: creds,
+  authority: 'https://login.microsoftonline.com',
+  redirectUri: 'https://localhost:3000/auth/callback',
 );
-
-final token = await authServer.acquireTokenForClient(
-  scopes: ['https://graph.microsoft.com/.default'],
-);
-print('Client Token: ${token.accessToken}');
 ```
 
-### Token Storage & Refresh
+## Examples
+
+### Client Credentials Flow With Client Secret
 
 ```dart
-// Use the default file-based storage
-await auth.initStorage();
-
-// Later, silently get a valid token
-final cached = await auth.acquireTokenSilent(
-  scopes: ['User.Read'],
+final request = EntraIdClientCredentialRequest(
+  clientId: 'your-client-id',
+  clientSecret: 'your-client-secret',
+  authority: 'https://login.microsoftonline.com',
+  tenantId: 'your-tenant-id',
+  scopes: const ['https://graph.microsoft.com/.default'],
 );
+
+final token = await request.acquireToken();
+print(token['access_token']);
 ```
 
-## Advanced
+### Client Credentials Flow With Client Assertion
 
-* **Custom Storage**: Implement `TokenStorage` for secure database or keychain storage.
-* **Graph Helpers**: Use `GraphClient` for easy requests:
+```dart
+final request = EntraIdClientCredentialRequest.assertion(
+  clientId: 'your-client-id',
+  clientAssertion: 'signed-jwt-assertion',
+  authority: 'https://login.microsoftonline.com',
+  tenantId: 'your-tenant-id',
+  scopes: const ['https://management.azure.com/.default'],
+);
 
-  ```dart
-  final graph = GraphClient(auth);
-  final user = await graph.getCurrentUser();
-  ```
+final token = await request.acquireToken();
+print(token['access_token']);
+```
+
+### Confidential Client Application Wrapper
+
+```dart
+final app = EntraIdConfidentialClientApplication(
+  clientId: 'your-client-id',
+  authority: 'https://login.microsoftonline.com/your-tenant-id',
+  credential: 'your-client-secret',
+  scopes: const ['https://graph.microsoft.com/.default'],
+);
+
+final token = await app.acquireToken();
+print(token['access_token']);
+```
+
+### Build An Authorization URL
+
+```dart
+final urlRequest = EntraIdAuthorizationUrlRequest(
+  authorityUrl:
+      'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
+  parameters: AuthorizationUrlRequestParameters(
+    clientId: 'your-client-id',
+    redirectUri: 'https://localhost:3000/auth/callback',
+    scopes: const ['openid', 'profile', 'offline_access'],
+  ),
+);
+
+final authorizationUrl = urlRequest.buildUrl();
+print(authorizationUrl);
+```
+
+### Refresh A Token
+
+```dart
+final refreshRequest = EntraIdRefreshTokenRequest(
+  refreshToken: 'existing-refresh-token',
+  clientId: 'your-client-id',
+  clientSecret: 'your-client-secret',
+  tokenEndpoint:
+      'https://login.microsoftonline.com/your-tenant-id/oauth2/v2.0/token',
+);
+
+final refreshed = await refreshRequest.refresh();
+print(refreshed['access_token']);
+```
+
+### Cache Arbitrary Token Data
+
+```dart
+final cache = EntraIdCacheKVStore(
+  EntraIdCacheOptions(namespace: 'entra-id-demo'),
+);
+
+await cache.set('graph-token', {
+  'access_token': 'token-value',
+  'expires_in': 3600,
+});
+
+final cachedToken = await cache.get('graph-token');
+print(cachedToken);
+```
+
+## Current Limitations
+
+- Do not rely on `EntraIdPublicClientApplication` for production interactive or device-code flows yet; those methods still return placeholder values.
+- Do not rely on `EntraIdOnBehalfOfRequest` yet; the token exchange path is not implemented.
+- Do not use certificate credentials with `EntraIdConfidentialClientApplication` yet; only secret and assertion flows are currently usable.
+- Treat the interactive, silent, and device-code helpers as partial building blocks until the remaining flow logic is completed.
+
+## Available Versions / Sample Apps
+
+Entra Id Dart Auth SDK is currently published as a single package version. The repository also contains sample app placeholders under `/example` for future end-to-end flow validation across Dart, Flutter, and web scenarios.
 
 ## Documentation
 
-For full API reference, examples, and migration guides, see our GitBook:
+For detailed guides, API references, and migration notes, visit the GitBook documentation:
 
-ðŸ‘‰ [Entra Id Dart Auth SDK Docs](https://aortem.gitbook.io/entra-id-dart-auth-sdk/)
+[Entra Id Dart Auth SDK Documentation](https://aortem.gitbook.io/entra-id-dart-auth-sdk/)
+
+## Examples Directory
+
+Explore the `/example` directory in this repository for package integration scaffolding and sample-app placeholders.
+
+## Contributing
+
+Contributions are welcome. If you want to improve the SDK, open an issue or submit a pull request against this repository.
+
+## Support
+
+For support across Aortem open-source products, visit [Aortem Support](https://aortem.io/support).
+
+## Licensing
+
+This package is licensed under the BSD-3 license. See [LICENSE](LICENSE) for details.
