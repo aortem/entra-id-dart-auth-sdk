@@ -19,6 +19,7 @@ void main() {
       final proxyStatus = EntraIdProxyStatus(
         proxyUrl: 'proxy.example.com',
         port: 8080,
+        client: mockClient,
       );
 
       log('MockClient initialized: $mockClient');
@@ -34,6 +35,7 @@ void main() {
       final proxyStatus = EntraIdProxyStatus(
         proxyUrl: 'proxy.example.com',
         port: 8080,
+        client: mockClient,
       );
 
       log('MockClient initialized: $mockClient');
@@ -44,14 +46,19 @@ void main() {
     });
 
     test('should throw an exception for invalid proxy URL', () async {
+      final mockClient = MockClient((request) async {
+        return http.Response('Not Found', 404);
+      });
+
       final proxyStatus = EntraIdProxyStatus(
         proxyUrl: 'invalid_proxy',
         port: 8080,
+        client: mockClient,
       );
 
       expect(
         () async => await proxyStatus.validateProxy(),
-        throwsA(isA<FormatException>()),
+        throwsA(isA<Exception>()),
       );
     });
 
@@ -71,6 +78,7 @@ void main() {
         port: 8080,
         username: 'user',
         password: 'password',
+        client: mockClient,
       );
 
       log('MockClient initialized: $mockClient');

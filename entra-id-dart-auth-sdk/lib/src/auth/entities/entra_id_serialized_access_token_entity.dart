@@ -209,8 +209,8 @@ class EntraIdSerializedAccessTokenEntity {
     final components = [
       clientId,
       tenantId,
-      if (userId != null) userId!,
-      if (resource != null) resource!,
+      ?userId,
+      ?resource,
       scopes.join(' '),
       EntraIdGuidGenerator.generate(),
     ];

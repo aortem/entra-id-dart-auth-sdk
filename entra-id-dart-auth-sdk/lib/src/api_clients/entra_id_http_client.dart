@@ -72,7 +72,7 @@ class EntraIdHttpClient {
     Map<String, String>? headers,
     Map<String, dynamic>? queryParameters,
   }) => _sendRequest(
-    method: EntraIdHttpMethod.GET,
+    method: EntraIdHttpMethod.get,
     endpoint: endpoint,
     headers: headers,
     queryParameters: queryParameters,
@@ -102,7 +102,7 @@ class EntraIdHttpClient {
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
   }) => _sendRequest(
-    method: EntraIdHttpMethod.POST,
+    method: EntraIdHttpMethod.post,
     endpoint: endpoint,
     headers: headers,
     body: body,
@@ -134,7 +134,7 @@ class EntraIdHttpClient {
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
   }) => _sendRequest(
-    method: EntraIdHttpMethod.PUT,
+    method: EntraIdHttpMethod.put,
     endpoint: endpoint,
     headers: headers,
     body: body,
@@ -165,7 +165,7 @@ class EntraIdHttpClient {
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
   }) => _sendRequest(
-    method: EntraIdHttpMethod.PATCH,
+    method: EntraIdHttpMethod.patch,
     endpoint: endpoint,
     headers: headers,
     body: body,
@@ -197,7 +197,7 @@ class EntraIdHttpClient {
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
   }) => _sendRequest(
-    method: EntraIdHttpMethod.DELETE,
+    method: EntraIdHttpMethod.delete,
     endpoint: endpoint,
     headers: headers,
     body: body,
@@ -226,7 +226,7 @@ class EntraIdHttpClient {
     Map<String, String>? headers,
     Map<String, dynamic>? queryParameters,
   }) => _sendRequest(
-    method: EntraIdHttpMethod.OPTIONS,
+    method: EntraIdHttpMethod.options,
     endpoint: endpoint,
     headers: headers,
     queryParameters: queryParameters,
@@ -255,7 +255,7 @@ class EntraIdHttpClient {
     Map<String, String>? headers,
     Map<String, dynamic>? queryParameters,
   }) => _sendRequest(
-    method: EntraIdHttpMethod.HEAD,
+    method: EntraIdHttpMethod.head,
     endpoint: endpoint,
     headers: headers,
     queryParameters: queryParameters,
@@ -300,10 +300,10 @@ class EntraIdHttpClient {
 
     String? encodedBody;
     final allowsBody = switch (method) {
-      EntraIdHttpMethod.POST ||
-      EntraIdHttpMethod.PUT ||
-      EntraIdHttpMethod.PATCH ||
-      EntraIdHttpMethod.DELETE => true,
+      EntraIdHttpMethod.post ||
+      EntraIdHttpMethod.put ||
+      EntraIdHttpMethod.patch ||
+      EntraIdHttpMethod.delete => true,
       _ => false,
     };
     if (allowsBody && body != null) {
@@ -314,39 +314,39 @@ class EntraIdHttpClient {
 
     try {
       switch (method) {
-        case EntraIdHttpMethod.GET:
+        case EntraIdHttpMethod.get:
           response = await httpClient
               .get(uri, headers: combinedHeaders)
               .timeout(timeout);
           break;
-        case EntraIdHttpMethod.POST:
+        case EntraIdHttpMethod.post:
           response = await httpClient
               .post(uri, headers: combinedHeaders, body: encodedBody)
               .timeout(timeout);
           break;
-        case EntraIdHttpMethod.PUT:
+        case EntraIdHttpMethod.put:
           response = await httpClient
               .put(uri, headers: combinedHeaders, body: encodedBody)
               .timeout(timeout);
           break;
-        case EntraIdHttpMethod.DELETE:
+        case EntraIdHttpMethod.delete:
           response = await httpClient
               .delete(uri, headers: combinedHeaders, body: encodedBody)
               .timeout(timeout);
           break;
-        case EntraIdHttpMethod.PATCH:
+        case EntraIdHttpMethod.patch:
           response = await httpClient
               .patch(uri, headers: combinedHeaders, body: encodedBody)
               .timeout(timeout);
           break;
-        case EntraIdHttpMethod.OPTIONS:
+        case EntraIdHttpMethod.options:
           response = await _sendRaw(
             method: 'OPTIONS',
             uri: uri,
             headers: combinedHeaders,
           );
           break;
-        case EntraIdHttpMethod.HEAD:
+        case EntraIdHttpMethod.head:
           response = await _sendRaw(
             method: 'HEAD',
             uri: uri,
@@ -356,6 +356,8 @@ class EntraIdHttpClient {
       }
 
       return _handleResponse(uri, response);
+    } on HttpException {
+      rethrow;
     } catch (e) {
       // Network errors / unreachable server
       throw HttpException(

@@ -74,7 +74,7 @@ abstract class EntraIdTokenCache {
     final components = [
       tokenType.toString(),
       clientId,
-      if (userId != null) userId,
+      ?userId,
       if (scopes != null && scopes.isNotEmpty) scopes.join(' '),
       EntraIdGuidGenerator.generate(),
     ];
