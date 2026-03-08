@@ -88,8 +88,8 @@
   * Removed manual JSON serialization code; switched to `json_serializable` for generated models.
 * **Documentation Updates**:
 
-  * Enhanced â€œEnhance with Entra Id Dart Auth SDKâ€ section in `README.md` with Flutter and server-side usage examples.
-  * Added â€œMigrating from 0.xâ€ section outlining breaking changes and upgrade steps.
+  * Enhanced “Enhance with Entra Id Dart Auth SDK” section in `README.md` with Flutter and server-side usage examples.
+  * Added “Migrating from 0.x” section outlining breaking changes and upgrade steps.
 * **CI/CD Improvements** (`.gitlab-ci.yml`):
 
   * Enforced semantic version branch names via regex (`^v?\d+\.\d+\.\d+(-[\w\.]+)?$`).
