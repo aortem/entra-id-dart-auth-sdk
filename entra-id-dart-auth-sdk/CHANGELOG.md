@@ -1,5 +1,6 @@
-## 0.0.3
+# Changelog
 
+## [0.0.3]
 ### Updated
 - **Dart SDK Constraint**: Updated to `^3.11.0`.
 - **HTTP Methods**: Normalized `EntraIdHttpMethod` enum values to lowercase while preserving uppercase `asString`, and added HTTP method utilities.
@@ -17,13 +18,11 @@
 - **Assertion Flow**: Corrected confidential-client assertion requests so they send the full Entra token-exchange payload required for ARM and similar resource scopes.
 - **Test Coverage**: Added unit coverage for secret and assertion client-credential flows, custom scopes, and unsupported certificate handling.
 
-## 0.0.2
-
+## [0.0.2]
 ### Updated
 - **Dart SDK Constraint**: Updated to `^3.10.3` for both the package and example applications.
 
-## 0.0.1
-
+## [0.0.1]
 ### Changed
 - **Dart SDK Constraint**: Updated to `^3.9.2` for both the package and example applications.
 - **License**: Declared license as `BSD-3` in `pubspec.yaml`.
@@ -61,8 +60,7 @@
 - All imports and plugin names must be updated from `aortem_entra_id*` → `entra_id*`.
 - Dropped support for Dart 2.12; upgrade your environment to `>=2.14.0`.
 
-## 0.0.1-pre+2
-
+## [0.0.1-pre+2]
 ### Added
 
 * **Runtime Versioning**: Introduced top-level `sdkVersion` constant (`0.0.1-pre+1`) in `lib/entra_id_dart_auth_sdk.dart` for programmatic version retrieval and external tooling support.
@@ -134,14 +132,13 @@
 
 
 
-## 0.0.1-pre+1
-
+## [0.0.1-pre+1]
 - Add all EntraId Methods.
 - Implement EntraIdHashUtils for hashing functionalities
 - Develop EntraIdDistributedCachePlugin for distributed caching
 - Create EntraIdEncodingUtils for encoding operations
 - Add EntraIdGuidGenerator for GUID generation
 
-## 0.0.1-pre
-
+## [0.0.1-pre]
 - Initial pre-release version of the Entra Id Dart Auth SDK.
+
