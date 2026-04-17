@@ -5,7 +5,7 @@ site:
 
 content:
   sources:
-    - url: ..
+    - url: ../..
       branches: HEAD
       start_path: entra-id-dart-auth-sdk/docs/components/entra-id-dart-auth-sdk
 

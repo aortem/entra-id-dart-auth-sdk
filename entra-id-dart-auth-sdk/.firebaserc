@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "fire-base-dart-admin-auth-sdk"
+    "default": "aortem-prod"
+  },
+  "targets": {
+    "aortem-prod": {
+      "hosting": {
+        "entra-id-dart-auth-docs": [
+          "entra-id-dart-auth-docs"
+        ]
+      }
+    }
   }
 }

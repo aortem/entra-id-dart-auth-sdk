@@ -72,6 +72,6 @@ class EntraAuth {
 ///
 /// Example:
 /// ```dart
-/// print(SDK_VERSION); // Output: 0.0.3
+/// print(SDK_VERSION); // Output: 0.0.4
 /// ```
-const String sdkVersion = '0.0.3';
+const String sdkVersion = '0.0.4';
