@@ -1,21 +1,90 @@
-﻿= Releases
+= Releases
 :navtitle: Releases
-:description: Release tracking for Entra ID Dart Auth SDK.
+:description: Release highlights and package history for Entra ID Dart Auth SDK.
 :sectnums:
 
-This page tracks the current public package version documented for Entra ID Dart Auth SDK.
+This page summarizes the stable package release history for Entra ID Dart Auth SDK and keeps the public docs aligned with the published SDK versions.
 '''
-
-== v0.0.3
-
-=== Overview
-The current public package version for entra_id_dart_auth_sdk is v0.0.3.
 
 === Release Sources
 
 * Pubspec: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/pubspec.yaml
 * Changelog: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/CHANGELOG.md
 
+== v0.0.4
+
+=== Overview
+This release prepares the next Entra ID stable publish by refreshing the direct dependency constraints, aligning exported SDK version metadata, and keeping the docs current with the Dart `3.11.4` baseline.
+
+=== Highlights
+* Refreshed direct dependency constraints to current supported releases
+* Updated exported SDK version constants to match the publish target
+* Kept the public docs aligned with the next stable package version
+
+=== Improvements
+* Updated direct package constraints including `ds_standard_features`, `build_web_compilers`, and `jwt_generator`.
+* Bumped the SDK version constants in the public entrypoint and auth source files.
+* Aligned release docs and package-install snippets with the next stable publish target.
+
+== v0.0.3
+
+=== Overview
+This release expands confidential-client and workload-style support while aligning the package with newer Dart and dependency baselines.
+
+=== Highlights
+* Added workload-style client assertion support
+* Improved confidential-client scopes and token exchange flows
+* Updated Dart and dependency baselines
+
+=== Improvements
+* Added client-credentials token acquisition with Entra client assertions for reusable WIF-style exchanges.
+* Allowed `EntraIdConfidentialClientApplication` to accept explicit scopes beyond Microsoft Graph defaults.
+* Routed secret and assertion flows through a shared client-credentials implementation.
+* Updated the Dart SDK constraint to `^3.11.0` and refreshed package dependencies.
+
+=== Fixes
+* Removed duplicate imports and corrected assertion-request payload handling.
+* Added unit coverage for secret and assertion flows, custom scopes, and unsupported certificate handling.
+
+== v0.0.2
+
+=== Overview
+This release updates the package and examples to a newer Dart baseline.
+
+=== Highlights
+* Dart SDK constraint updated to `^3.10.3`
+
+=== Improvements
+* Updated the package and example applications to the `^3.10.3` Dart SDK baseline.
+
+== v0.0.1
+
+=== Overview
+This release establishes the first stable package version with the renamed `entra_id_*` namespace, stronger docs, and cleaner networking and storage internals.
+
+=== Highlights
+* First stable package release
+* Renamed public modules from `aortem_entra_id*` to `entra_id*`
+* Expanded migration and usage documentation
+
+=== Improvements
+* Renamed public files, modules, and storage implementations to the `entra_id*` namespace.
+* Added migration guidance and expanded Flutter and server-side README examples.
+* Replaced manual JSON serialization with `json_serializable` and consolidated networking around a shared `NetworkClient`.
+
 === Notes
-* Keep this page aligned with the version declared in pubspec.yaml.
-* Detailed release history and change notes remain in CHANGELOG.md until fuller curated release notes are added here.
+* This release includes breaking import and plugin-name changes.
+
+== Pre-release History
+
+=== Overview
+Earlier pre-stable package builds are part of the SDK history and remain documented in the changelog.
+
+=== Included Pre-release Tags
+* `0.0.1-pre+2`
+* `0.0.1-pre+1`
+* `0.0.1-pre`
+
+=== Notes
+* Keep this page aligned with the version declared in `pubspec.yaml`.
+* Use `CHANGELOG.md` as the source of truth for exhaustive historical change notes.

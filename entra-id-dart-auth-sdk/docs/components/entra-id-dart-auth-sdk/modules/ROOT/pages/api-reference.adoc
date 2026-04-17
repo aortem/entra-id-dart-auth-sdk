@@ -6,7 +6,7 @@ This page maps the public package entrypoint to the current source tree.
 == Package API
 
 * Package: entra_id_dart_auth_sdk
-* Version: v0.0.3
+* Version: v0.0.4
 * Package root: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk
 * Import path: package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart
 * Entrypoint file: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/lib/entra_id_dart_auth_sdk.dart

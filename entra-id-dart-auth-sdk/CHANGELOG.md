@@ -1,5 +1,15 @@
-## 0.0.3
+# Changelog
 
+## [0.0.4]
+### Updated
+- **Dart & Dependency Baseline**
+  - Updated direct package constraints to the latest supported releases on pub.dev, including `ds_standard_features`, `build_web_compilers`, and `jwt_generator`.
+- **Public Entrypoint Metadata**
+  - Bumped the exported SDK version constants and release docs to match the next stable publish.
+- **CI Validation**
+  - Aligned setup validation with the Dart `3.11.4` baseline.
+
+## [0.0.3]
 ### Updated
 - **Dart SDK Constraint**: Updated to `^3.11.0`.
 - **HTTP Methods**: Normalized `EntraIdHttpMethod` enum values to lowercase while preserving uppercase `asString`, and added HTTP method utilities.
@@ -17,13 +27,11 @@
 - **Assertion Flow**: Corrected confidential-client assertion requests so they send the full Entra token-exchange payload required for ARM and similar resource scopes.
 - **Test Coverage**: Added unit coverage for secret and assertion client-credential flows, custom scopes, and unsupported certificate handling.
 
-## 0.0.2
-
+## [0.0.2]
 ### Updated
 - **Dart SDK Constraint**: Updated to `^3.10.3` for both the package and example applications.
 
-## 0.0.1
-
+## [0.0.1]
 ### Changed
 - **Dart SDK Constraint**: Updated to `^3.9.2` for both the package and example applications.
 - **License**: Declared license as `BSD-3` in `pubspec.yaml`.
@@ -61,8 +69,7 @@
 - All imports and plugin names must be updated from `aortem_entra_id*` → `entra_id*`.
 - Dropped support for Dart 2.12; upgrade your environment to `>=2.14.0`.
 
-## 0.0.1-pre+2
-
+## [0.0.1-pre+2]
 ### Added
 
 * **Runtime Versioning**: Introduced top-level `sdkVersion` constant (`0.0.1-pre+1`) in `lib/entra_id_dart_auth_sdk.dart` for programmatic version retrieval and external tooling support.
@@ -88,8 +95,8 @@
   * Removed manual JSON serialization code; switched to `json_serializable` for generated models.
 * **Documentation Updates**:
 
-  * Enhanced â€œEnhance with Entra Id Dart Auth SDKâ€ section in `README.md` with Flutter and server-side usage examples.
-  * Added â€œMigrating from 0.xâ€ section outlining breaking changes and upgrade steps.
+  * Enhanced “Enhance with Entra Id Dart Auth SDK” section in `README.md` with Flutter and server-side usage examples.
+  * Added “Migrating from 0.x” section outlining breaking changes and upgrade steps.
 * **CI/CD Improvements** (`.gitlab-ci.yml`):
 
   * Enforced semantic version branch names via regex (`^v?\d+\.\d+\.\d+(-[\w\.]+)?$`).
@@ -134,14 +141,13 @@
 
 
 
-## 0.0.1-pre+1
-
+## [0.0.1-pre+1]
 - Add all EntraId Methods.
 - Implement EntraIdHashUtils for hashing functionalities
 - Develop EntraIdDistributedCachePlugin for distributed caching
 - Create EntraIdEncodingUtils for encoding operations
 - Add EntraIdGuidGenerator for GUID generation
 
-## 0.0.1-pre
-
+## [0.0.1-pre]
 - Initial pre-release version of the Entra Id Dart Auth SDK.
+

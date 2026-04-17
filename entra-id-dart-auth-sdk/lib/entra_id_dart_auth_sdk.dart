@@ -34,6 +34,7 @@ export 'src/cache/entra_id_cache_kv_store.dart';
 export 'src/cache/entra_id_cache_options.dart';
 export 'src/cache/entra_id_distributed_cache_plugin.dart';
 export 'src/cache/entra_id_in_memory_cache.dart';
+export 'src/cache/entra_id_in_memory_cache_client.dart';
 export 'src/cache/entra_id_token_cache.dart';
 
 // Configuration
@@ -113,4 +114,4 @@ export 'src/utils/entra_id_hash_utils.dart';
 export 'src/utils/entra_id_network_utils.dart';
 
 /// Version information
-const String sdkVersion = '0.0.3';
+const String sdkVersion = '0.0.4';
