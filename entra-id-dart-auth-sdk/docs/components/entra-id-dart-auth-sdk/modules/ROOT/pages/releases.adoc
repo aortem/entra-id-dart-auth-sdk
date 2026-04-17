@@ -11,6 +11,21 @@ This page summarizes the stable package release history for Entra ID Dart Auth S
 * Pubspec: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/pubspec.yaml
 * Changelog: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/CHANGELOG.md
 
+== v0.0.4
+
+=== Overview
+This release prepares the next Entra ID stable publish by refreshing the direct dependency constraints, aligning exported SDK version metadata, and keeping the docs current with the Dart `3.11.4` baseline.
+
+=== Highlights
+* Refreshed direct dependency constraints to current supported releases
+* Updated exported SDK version constants to match the publish target
+* Kept the public docs aligned with the next stable package version
+
+=== Improvements
+* Updated direct package constraints including `ds_standard_features`, `build_web_compilers`, and `jwt_generator`.
+* Bumped the SDK version constants in the public entrypoint and auth source files.
+* Aligned release docs and package-install snippets with the next stable publish target.
+
 == v0.0.3
 
 === Overview

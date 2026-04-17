@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.4]
+### Updated
+- **Dart & Dependency Baseline**
+  - Updated direct package constraints to the latest supported releases on pub.dev, including `ds_standard_features`, `build_web_compilers`, and `jwt_generator`.
+- **Public Entrypoint Metadata**
+  - Bumped the exported SDK version constants and release docs to match the next stable publish.
+- **CI Validation**
+  - Aligned setup validation with the Dart `3.11.4` baseline.
+
 ## [0.0.3]
 ### Updated
 - **Dart SDK Constraint**: Updated to `^3.11.0`.
