@@ -22,6 +22,10 @@ void main() {
       'exposes Aortem compatibility aliases from the package entrypoint',
       () {
         expect(
+          AortemEntraIdConfidentialClientApplication,
+          same(EntraIdConfidentialClientApplication),
+        );
+        expect(
           AortemEntraIdPublicClientApplication,
           same(EntraIdPublicClientApplication),
         );
@@ -38,7 +42,24 @@ void main() {
           AortemEntraIdInteractiveRequestStatus,
           same(InteractiveRequestStatus),
         );
+        expect(
+          AortemEntraIdUserCancelledException,
+          same(EntraIdUserCancelledException),
+        );
+        final networkException = AortemEntraIdNetworkException('network');
+        expect(networkException.toString(), contains('NetworkException'));
       },
     );
+
+    test('exposes Aortem compatibility exception classes', () {
+      final base = AortemEntraIdException('failed', code: 'test_error');
+      expect(base.message, 'failed');
+      expect(base.code, 'test_error');
+      expect(base.toString(), contains('AortemEntraIdException'));
+
+      final uiRequired = AortemEntraIdUiRequiredException();
+      expect(uiRequired.message, contains('User interaction'));
+      expect(uiRequired.code, 'ui_required');
+    });
   });
 }
