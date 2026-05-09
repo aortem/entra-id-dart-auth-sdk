@@ -11,6 +11,20 @@ This page summarizes the stable package release history for Entra ID Dart Auth S
 * Pubspec: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/pubspec.yaml
 * Changelog: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/CHANGELOG.md
 
+== v0.0.5
+
+=== Overview
+This release restores the Aortem public class names as compatibility aliases while preserving the current `EntraId*` implementation namespace.
+
+=== Highlights
+* Added `AortemEntraIdPublicClientApplication`
+* Added `AortemEntraIdSilentFlowRequest`
+* Added `AortemEntraIdInteractiveRequest`
+
+=== Improvements
+* Exported Aortem compatibility aliases from the package entrypoint.
+* Added public export tests to prevent the compatibility names from regressing.
+
 == v0.0.4
 
 === Overview

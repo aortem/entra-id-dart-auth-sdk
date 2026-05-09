@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.5]
+### Added
+- **Aortem Compatibility Aliases**
+  - Added public `AortemEntraIdPublicClientApplication`, `AortemEntraIdSilentFlowRequest`, and `AortemEntraIdInteractiveRequest` aliases through the package entrypoint.
+  - Added public export coverage for the Aortem compatibility names.
+
 ## [0.0.4]
 ### Updated
 - **Dart & Dependency Baseline**
