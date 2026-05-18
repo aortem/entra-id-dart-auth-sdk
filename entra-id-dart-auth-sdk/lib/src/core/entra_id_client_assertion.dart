@@ -188,11 +188,7 @@ class EntraIdTokenDto implements TokenDto {
 
   @override
   Map<String, Object> buildHeader() {
-    return <String, Object>{
-      'typ': 'JWT',
-      'alg': 'RS256',
-      'x5t': ?x5t,
-    };
+    return <String, Object>{'typ': 'JWT', 'alg': 'RS256', 'x5t': ?x5t};
   }
 
   /// Converts the [_EntraIdTokenDto] instance to a JSON-compatible map.
