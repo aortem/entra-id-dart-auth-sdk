@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.6]
+### Added
+- **Aortem Integration Compatibility**
+  - Added `AortemEntraIdConfidentialClientApplication` compatibility alias.
+  - Added `AortemEntraIdException`, `AortemEntraIdUiRequiredException`, and aliases for user-cancelled and network exceptions.
+  - Expanded public export coverage for the Entra ID SDK integration compatibility surface.
+
+## [0.0.5]
+### Added
+- **Aortem Compatibility Aliases**
+  - Added public `AortemEntraIdPublicClientApplication`, `AortemEntraIdSilentFlowRequest`, and `AortemEntraIdInteractiveRequest` aliases through the package entrypoint.
+  - Added public export coverage for the Aortem compatibility names.
+
 ## [0.0.4]
 ### Updated
 - **Dart & Dependency Baseline**

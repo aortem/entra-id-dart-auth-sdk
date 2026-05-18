@@ -98,9 +98,7 @@ class EntraIdClientCredentialRequest {
     required this.scopes,
     this.clientAssertionType = defaultClientAssertionType,
     http.Client? client,
-  }) : client =
-           client ??
-           http.Client(),
+  }) : client = client ?? http.Client(),
        clientSecret = null,
        authority = '',
        tenantId = '';
@@ -121,15 +119,13 @@ class EntraIdClientCredentialRequest {
       throw ArgumentError('At least one scope must be provided.');
     }
     final hasSecret = clientSecret != null && clientSecret!.isNotEmpty;
-    final hasAssertion =
-        clientAssertion != null && clientAssertion!.isNotEmpty;
+    final hasAssertion = clientAssertion != null && clientAssertion!.isNotEmpty;
     if (hasSecret == hasAssertion) {
       throw ArgumentError(
         'Exactly one client credential must be provided: either clientSecret or clientAssertion.',
       );
     }
-    if (tokenEndpoint == null &&
-        (authority.isEmpty || tenantId.isEmpty)) {
+    if (tokenEndpoint == null && (authority.isEmpty || tenantId.isEmpty)) {
       throw ArgumentError(
         'Authority and tenant ID must be provided when tokenEndpoint is not supplied.',
       );

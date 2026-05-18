@@ -22,10 +22,7 @@ void main() {
       expect(app.credential, equals('test-secret'));
       expect(app.credentialType, equals(CredentialType.secret));
       expect(app.allowLegacyProtocols, isFalse);
-      expect(
-        app.scopes,
-        equals(['https://graph.microsoft.com/.default']),
-      );
+      expect(app.scopes, equals(['https://graph.microsoft.com/.default']));
     });
 
     test('throws if credential is empty during validation', () {
@@ -96,9 +93,7 @@ void main() {
         expect(body['client_assertion'], equals('federated-jwt'));
         expect(
           body['client_assertion_type'],
-          equals(
-            'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-          ),
+          equals('urn:ietf:params:oauth:client-assertion-type:jwt-bearer'),
         );
         return http.Response(
           '{"access_token":"assertion-token","token_type":"Bearer"}',
