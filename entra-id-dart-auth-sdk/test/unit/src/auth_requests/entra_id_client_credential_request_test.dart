@@ -50,10 +50,7 @@ void main() {
         expect(body['client_secret'], equals('test-client-secret'));
         expect(body['scope'], equals('https://graph.microsoft.com/.default'));
         return http.Response(
-          jsonEncode({
-            'access_token': 'secret-token',
-            'token_type': 'Bearer',
-          }),
+          jsonEncode({'access_token': 'secret-token', 'token_type': 'Bearer'}),
           200,
         );
       });
@@ -78,14 +75,9 @@ void main() {
         expect(body['client_assertion'], equals('federated-jwt'));
         expect(
           body['client_assertion_type'],
-          equals(
-            'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-          ),
+          equals('urn:ietf:params:oauth:client-assertion-type:jwt-bearer'),
         );
-        expect(
-          body['scope'],
-          equals('https://management.azure.com/.default'),
-        );
+        expect(body['scope'], equals('https://management.azure.com/.default'));
         return http.Response(
           jsonEncode({
             'access_token': 'assertion-token',

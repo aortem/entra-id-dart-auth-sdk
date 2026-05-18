@@ -5,6 +5,7 @@ library;
 // lib/entra_id_dart_auth_sdk.dart
 
 // API Clients
+export 'src/aortem_compatibility.dart';
 export 'src/api_clients/entra_id_api.dart';
 export 'src/api_clients/entra_id_http_client.dart';
 export 'src/api_clients/entra_id_http_method.dart';
@@ -114,4 +115,4 @@ export 'src/utils/entra_id_hash_utils.dart';
 export 'src/utils/entra_id_network_utils.dart';
 
 /// Version information
-const String sdkVersion = '0.0.4';
+const String sdkVersion = '0.0.6';
