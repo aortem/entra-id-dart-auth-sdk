@@ -1,7 +1,7 @@
-﻿= Package Overview
+= Package Overview
 :page-layout: default
 
-Entra ID Dart Auth SDK is published as entra_id_dart_auth_sdk at version v0.0.4.
+Entra ID Dart Auth SDK is published as entra_id_dart_auth_sdk at version v0.0.7.
 
 == Source of Truth
 

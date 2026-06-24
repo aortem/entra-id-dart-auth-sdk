@@ -1,4 +1,4 @@
-﻿= Entra ID Dart Auth SDK Documentation
+= Entra ID Dart Auth SDK Documentation
 :page-layout: default
 :sectanchors:
 :toc: macro
@@ -21,7 +21,7 @@ toc::[]
 == Current Public Package
 
 * Package: entra_id_dart_auth_sdk
-* Version: v0.0.4
+* Version: v0.0.7
 * Repository root: apps/sdks/entra-id-dart-auth-sdk
 * Package root: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk
 * Docs root: apps/sdks/entra-id-dart-auth-sdk/entra-id-dart-auth-sdk/docs
