@@ -5,7 +5,7 @@ repository: https://github.com/aortem/entra-id-dart-auth-sdk
 license: BSD-3
 
 environment:
-  sdk: ^3.12.1
+  sdk: ^3.12.2
 
 # Add regular dependencies here.
 
@@ -18,7 +18,7 @@ dependencies:
   ds_standard_features: ^0.1.7
 
 #------------------ ADDITIONAL FEATURES---------------------------------
-  build_web_compilers: ^4.4.17
+  build_web_compilers: ^4.8.0
   crypto: ^3.0.7
   http: ^1.6.0
   jwt_generator: ^0.0.9
