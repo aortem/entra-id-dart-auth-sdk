@@ -2,6 +2,7 @@
 /// Provides authentication and authorization capabilities using Microsoft Entra ID
 /// (formerly Azure Active Directory).
 library;
+
 // lib/entra_id_dart_auth_sdk.dart
 
 // API Clients

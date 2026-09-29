@@ -191,3 +191,7 @@ For support across Aortem open-source products, visit [Aortem Support](https://a
 ## Licensing
 
 This package is licensed under the BSD-3 license. See [LICENSE](LICENSE) for details.
+
+### Dart compatibility
+
+Version 0.0.8 is validated with Dart 3.13.4. The existing compatible minimum SDK constraint is retained.
