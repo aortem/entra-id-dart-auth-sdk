@@ -2,6 +2,7 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:entra_id_dart_auth_sdk/entra_id_dart_auth_sdk.dart';
 
 import 'dart:convert';
+
 // Adjust the import according to your project structure
 
 void main() {
